@@ -1,0 +1,15 @@
+type: hyperskill
+title: Flashcards
+language: English
+summary: When learning a new language, it can be hard to remember all the new vocabulary,
+  which is exactly where flashcards can help. Typically, flashcards show a hint (a
+  task or a picture) on one side and the right answer on the other. Flashcards can
+  be used to remember any sort of data, so if you want to create a useful tool to
+  help your learning and your programming skills, this project is for you.<br/><br/>Learn
+  more at <a href="https://hyperskill.org">https://hyperskill.org/projects/44</a>
+programming_language: Java
+programming_language_version: 11
+content:
+- Flashcards
+- Problems
+mode: Study

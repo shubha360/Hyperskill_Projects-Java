@@ -1,0 +1,26 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Wireless connections are everywhere around us. But due to interference, the information is distorted. In this project, you implement a simple algorithm capable of correcting such errors.</p>
+
+<p>To correct errors, you must first simulate errors. Wireless communication channel will do it for you, but to check the algorithm such emulator will be useful.</p>
+
+<p>In this stage, you should write a program that creates errors in the input text, 1 random error per 3 symbols. An error means that the character is replaced by another random character. For example, “abc” characters can be “*bc” or “a*c” or “ab*”, where * is a random character. You can replace it with any character but it's recommended to use only uppercase and lowercase English letters, spacebar, and numbers.</p>
+
+<p>The input contains a single line of the text in which you need to make errors. Only one error per 3 symbols!</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Notice that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">&gt; Very important text
+VeSy QOporlantPt2xt</code></pre>
+
+<p><br>
+In this example:<br>
+<code class="java">Ver</code> turns into <code class="java">VeS</code>,<br>
+<code class="java">y i</code> turns into <code class="java">y Q</code>,<br>
+<code class="java">mpo</code> turns into <code class="java">Opo</code>,<br>
+<code class="java">rta</code> turns into <code class="java">rla</code>,<br>
+<code class="java">nt </code> turns into <code class="java">ntP</code>,<br>
+<code class="java">tex</code> turns into <code class="java">t2x</code>,<br>
+<code class="java">t</code> turns into <code class="java">t</code>.</p>

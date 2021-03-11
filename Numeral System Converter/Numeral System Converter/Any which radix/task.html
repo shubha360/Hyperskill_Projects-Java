@@ -1,0 +1,80 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>In this stage, you should add support for reading the source number in the given base and converting it to another given base.</p>
+
+<h2 style="text-align: center;">Algorithm</h2>
+
+<p>As there are 26 Latin letters and 10 digits, the maximum base is 26 + 10 = 36.</p>
+
+<p>To convert a number from the source base to the target base, take the following steps:</p>
+
+<ul>
+	<li>If the given number is not decimal, you can convert it to a decimal using the method <code class="java">Integer.parseInt(number, sourceBase)</code> that returns a decimal representation of a number.</li>
+	<li>After that, you can use the method <code class="java">Integer.toString(decimalNumber, newBase)</code> that takes a decimal number and converts it to the target base.</li>
+</ul>
+
+<p>Note that the minimum radix is 1: the number <code class="java">N</code> in radix 1 contains the symbol <code class="java">1</code> N times. The methods described above don’t work if <code class="java">sourceBase</code> or <code class="java">newBase</code> equal to 1. In that case, you should convert the numbers manually.</p>
+
+<p>For instance:</p>
+
+<p><span class="math-tex">\(111111_1 = 6_{10}\\ 3_{10} = 111_1\)</span></p>
+
+<p>This stage is auto-graded. The grader will input three lines:</p>
+
+<ol>
+	<li>The source radix;</li>
+	<li>The source number;</li>
+	<li>The target radix.</li>
+</ol>
+
+<p>Then, it will check that your output contains the correct number representation in the given radix. This time, don't use prefixes now.</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p><strong>Example 1:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">10
+11
+2</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">1011</code></pre>
+
+<p><strong>Example 2:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">1
+11111
+10</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">5</code></pre>
+
+<p><strong>Example 3:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">10
+4
+1</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">1111</code></pre>
+
+<p><strong>Example 4:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">10
+1001
+36</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">rt</code></pre>

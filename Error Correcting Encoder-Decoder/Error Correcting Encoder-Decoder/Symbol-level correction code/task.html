@@ -1,0 +1,28 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Errors are made, but how to correct them?</p>
+
+<p>Since we know that the error can be at max every 3 symbols, we can record every symbol 3 times. So, every symbol would be tripled before sending to the internet via a poor connection. Since we have only one error for 3 symbols, in every 3 symbols 2 will necessarily be the same.</p>
+
+<p>For example, if the user wants to send this text: <code class="java">"Ab"</code>, coded text before sending would be: <code class="java">"AAAbbb"</code>, the text after receiving through poor internet connection would be something like <code class="java">"AsAbb2"</code> (as in the previous stage), after decoding we can get <code class="java">"Ab"</code> since the first three symbols contain two A's and the second three symbols contain two b's.</p>
+
+<p>In this stage, you should write a program that:</p>
+
+<ol>
+	<li>Takes a message the user wants it to send. The input contains a single message.</li>
+	<li>Encode the message by tripling all the symbols.</li>
+	<li>Simulate sending this message via a poor internet connection (in other words, simulate errors).</li>
+	<li>Decode it back again.</li>
+</ol>
+
+<p>Output the message on every step!</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Notice that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">&gt; Important
+Important
+IIImmmpppooorrrtttaaannnttt
+I1ImQmOppooT0rruttaJannQ tt
+Important</code></pre>

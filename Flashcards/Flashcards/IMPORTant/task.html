@@ -1,0 +1,25 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Files are used to save progress and restore it the next time the user runs the program. It's tedious to print the actions manually. Sometimes you can just forget to do it! Let's add run arguments that define which file to read at the start and which file to save at the exit.</p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>When provided with command-line arguments, your program should do the following:</p>
+
+<ul>
+	<li>If <code class="java">-import IMPORT</code> is passed, where <code class="java">IMPORT</code>  is the file name, read the initial card set from the external file and print the message <code class="java">n cards have been loaded.</code> as the first line of the output, where <code class="java">n</code> is the number of cards loaded from the external file. If such an argument is not provided, the set of cards should initially be empty and no message about card loading should be output.</li>
+	<li>If <code class="java">-export EXPORT</code> is passed, where <code class="java">EXPORT</code> is the file name, write all cards that are in the program memory into this file after the user has entered <code class="java">exit</code>, and the last line of the output should be <code class="java">n cards have been saved.</code>, where <code class="java">n</code> is the number of flashcards in the set.</li>
+</ul>
+
+<h2 style="text-align: center;">Run arguments examples</h2>
+
+<pre><code class="language-no-highlight">java Flashcards -import derivatives.txt
+</code></pre>
+
+<pre><code class="language-no-highlight">java Flashcards -export animals.txt
+</code></pre>
+
+<pre><code class="language-no-highlight">java Flashcards -import words13june.txt -export words14june.txt
+</code></pre>
+
+<pre><code class="language-no-highlight">java Flashcards -export vocab.txt -import vocab.txt </code></pre>

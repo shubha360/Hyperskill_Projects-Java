@@ -1,0 +1,309 @@
+type: edu
+custom_name: stage4
+files:
+- name: src/flashcards/Main.java
+  visible: true
+  text: |
+    package flashcards;
+
+    import java.util.Scanner;
+
+    class FlashCard {
+
+        private String term;
+        private String definition;
+
+        public FlashCard(String term, String definition) {
+            this.term = term;
+            this.definition = definition;
+        }
+
+        public String getTerm() {
+            return term;
+        }
+
+        public void setTerm(String term) {
+            this.term = term;
+        }
+
+        public String getDefinition() {
+            return definition;
+        }
+
+        public void setDefinition(String definition) {
+            this.definition = definition;
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            java.util.Scanner scanner = new java.util.Scanner(System.in);
+
+            System.out.println("Input the number of cards:");
+            int numberOfCards = scanner.nextInt();
+            scanner.nextLine();
+
+            FlashCard[] cards = new FlashCard[numberOfCards];
+
+            for (int i = 0; i < cards.length; i++) {
+
+                System.out.printf("Card #%d:\n", (i + 1));
+                String term = scanner.nextLine();
+                System.out.printf("The definition for card #%d:\n", (i + 1));
+                String definition = scanner.nextLine();
+                cards[i] = new FlashCard(term, definition);
+            }
+
+            for (FlashCard card : cards) {
+
+                System.out.printf("Print the definition of \"%s\":\n", card.getTerm());
+                String answer = scanner.nextLine();
+
+                if (answer.equals(card.getDefinition())) {
+                    System.out.println("Correct!");
+                } else {
+                    System.out.printf("Wrong. The right answer is \"%s\".\n", card.getDefinition());
+                }
+            }
+        }
+    }
+  learner_created: false
+- name: test/FlashcardsTest.java
+  visible: false
+  text: "import org.hyperskill.hstest.dynamic.input.DynamicTestingMethod;\nimport\
+    \ org.hyperskill.hstest.stage.StageTest;\nimport org.hyperskill.hstest.testcase.CheckResult;\n\
+    import org.hyperskill.hstest.testcase.TestCase;\nimport org.hyperskill.hstest.testing.TestedProgram;\n\
+    import org.junit.BeforeClass;\n\nimport java.util.Arrays;\nimport java.util.List;\n\
+    \npublic class FlashcardsTest extends StageTest<String> {\n    \n    private static\
+    \ List<String> listOfTerms;\n    private static List<String> listOfDefinitions;\n\
+    \    private static List<String> listOfAddedDefinitions;\n    private static List<String>\
+    \ listOfRemovedDefinitions;\n    \n    @BeforeClass\n    public static void generateLists(){\n\
+    \        listOfTerms = getListOfTerms();\n        listOfDefinitions = getListOfDefinitions();\n\
+    \        listOfAddedDefinitions = getListOfWrongDefinitions1();\n        listOfRemovedDefinitions\
+    \ = getListOfWrongDefinitions2();\n    }\n    \n    @DynamicTestingMethod\n  \
+    \  CheckResult test1() {\n        TestedProgram main = new TestedProgram();\n\
+    \        \n        String output = main.start().toLowerCase().trim();\n      \
+    \  if (!output.startsWith(\"input\")) {\n            return CheckResult.wrong(\"\
+    Your program should prompt the user with the message \\\"Input the number of \"\
+    \ +\n                    \"cards:\\\"\");\n        }\n        \n        return\
+    \ CheckResult.correct();\n    }\n    \n    //Test where user gets the correct\
+    \ definition\n    @DynamicTestingMethod\n    CheckResult test2() {\n        TestedProgram\
+    \ main = new TestedProgram();\n        main.start();\n    \n        String output;\n\
+    \        String term;\n        String definition;\n        String lineOne;\n \
+    \       String[] lines;\n        \n        int numberOfTimes = listOfTerms.size();\n\
+    \        output = main.execute(numberOfTimes + \"\").toLowerCase().trim();\n \
+    \       \n        for (int i = 0; i < numberOfTimes; i++) {\n            term\
+    \ = listOfTerms.get(i);\n            definition = listOfDefinitions.get(i);\n\
+    \            \n            int cardNumber = i + 1;\n            if (!output.startsWith(\"\
+    card #\" + cardNumber)) {\n                return CheckResult.wrong(\"Your program\
+    \ should print \\\"Card #n\\\", where n is the index number of the \" +\n    \
+    \                    \"card to be created\");\n            }\n            \n \
+    \           output = main.execute(term).toLowerCase().trim();\n            if\
+    \ (!output.startsWith(\"the definition for card #\" + cardNumber)) {\n       \
+    \         return CheckResult.wrong(\"Your program should print \\\"The definition\
+    \ for card #n\\\" after saving the \" +\n                        \"term entered\
+    \ by the user.\");\n            }\n            \n            output = main.execute(definition).toLowerCase().trim();\n\
+    \        }\n        \n        for (int i = 0; i < numberOfTimes; i++) {\n    \
+    \        term = listOfTerms.get(i);\n            definition = listOfDefinitions.get(i);\n\
+    \            \n            if (!output.contains(\"\\\"\" + term + \"\\\"\")) {\n\
+    \                return CheckResult.wrong(\"Your program should print the definition\
+    \ requested in quotes\");\n            }\n            \n            if (!output.contains(\"\
+    definition\")) {\n                return CheckResult.wrong(\"Your program should\
+    \ prompt the user for the definition of a card with the message \" +\n       \
+    \                 \"\\\" Print the definition of \\\"term\\\": where \\\"term\\\
+    \" is the term of the flashcard to be checked\");\n            }\n           \
+    \ \n            output = main.execute(definition).toLowerCase().trim();\n    \
+    \        \n            lines = output.split(\"\\n\");\n            lineOne = lines[0];\n\
+    \            \n            if (!lineOne.equals(\"correct!\")) {\n            \
+    \    return CheckResult.wrong(\"Your program should print \\\"Correct!\\\" if\
+    \ the user inputs the correct \" +\n                        \"definition\");\n\
+    \            }\n            \n            if (i != (numberOfTimes -1)) {\n   \
+    \             \n                if (lines.length != 2) {\n                   \
+    \ return CheckResult.wrong(\"Your program should give feedback to the user on\
+    \ one line and the \" +\n                            \"next question on the next\
+    \ line\");\n                }\n                \n                output = lines[1].trim();\n\
+    \            }\n            \n        }\n        \n        \n        return CheckResult.correct();\n\
+    \        \n    }\n    \n    //Test to check if the user's program saves an existing\
+    \ card\n    @DynamicTestingMethod\n    CheckResult test3() {\n        TestedProgram\
+    \ main = new TestedProgram();\n        main.start();\n        String output;\n\
+    \        \n        main.execute(\"4\");\n        main.execute(\"print()\");\n\
+    \        main.execute(\"outputs text\");\n        \n        output = main.execute(\"\
+    print()\").toLowerCase();\n        if (!output.contains(\"\\\"print()\\\" already\
+    \ exists\")) {\n            return CheckResult.wrong(\"Your program should not\
+    \ add a term that already exists and should notify the \" +\n                \
+    \    \"user with the message \\\"The term 'term' already exists. Try again:\\\"\
+    \");\n        }\n    \n    \n        main.execute(\"son\");\n        main.execute(\"\
+    a male child\");\n        \n        main.execute(\"str()\");\n        main.execute(\"\
+    converts to a string\");\n        \n        main.execute(\"daughter\");\n    \
+    \    output = main.execute(\"a male child\");\n        if (!output.contains(\"\
+    \\\"a male child\\\" already exists\")) {\n            return CheckResult.wrong(\"\
+    Your program should not add a definition that already exists and should notify\
+    \ \" +\n                    \"the user with the message \\\"The definition 'definition'\
+    \ already exists. Try again:\\\"\");\n        }\n        \n        return CheckResult.correct();\n\
+    \    }\n    \n    //Test to check if the program's output are in separate lines\n\
+    \    @DynamicTestingMethod\n    CheckResult test4() {\n        TestedProgram main\
+    \ = new TestedProgram();\n        main.start();\n        \n        main.execute(\"\
+    2\");\n        main.execute(\"print()\");\n        main.execute(\"outputs text\"\
+    );\n        main.execute(\"print()\");\n        main.execute(\"str()\");\n   \
+    \     main.execute(\"outputs text\");\n        main.execute(\"converts to a string\"\
+    );\n        main.execute(\"outputs text\");\n        main.execute(\"converts to\
+    \ a string\");\n        \n        return null;\n    }\n    \n    //Test where\
+    \ user enters a definition for another term.\n    @DynamicTestingMethod\n    CheckResult\
+    \ test5() {\n        TestedProgram main = new TestedProgram();\n        main.start();\n\
+    \    \n        String output;\n        String lineOne;\n        String[] lines;\n\
+    \        String term;\n        \n        int numberOfTimes = listOfTerms.size();\n\
+    \        output = main.execute(numberOfTimes + \"\").toLowerCase().trim();\n \
+    \       \n        \n        for (int i = 0; i < numberOfTimes; i++) {\n      \
+    \      term = listOfTerms.get(i);\n            \n            int cardNumber =\
+    \ i + 1;\n            if (!output.startsWith(\"card #\" + cardNumber)) {\n   \
+    \             return CheckResult.wrong(\"Your program should print \\\"Card #n\\\
+    \", where n is the index number of the \" +\n                        \"card to\
+    \ be created\");\n            }\n            \n            output = main.execute(term).toLowerCase().trim();\n\
+    \            if (!output.startsWith(\"the definition for card #\" + cardNumber))\
+    \ {\n                return CheckResult.wrong(\"Your program should print \\\"\
+    The definition for card #n\\\" after saving the \" +\n                       \
+    \ \"term entered by the user.\");\n            }\n            \n            output\
+    \ = main.execute(listOfDefinitions.get(i)).toLowerCase().trim();\n        }\n\
+    \        \n        for (int i = 0; i < numberOfTimes; i++) {\n            term\
+    \ = listOfTerms.get(i);\n            \n            if (!output.contains(\"\\\"\
+    \" + term + \"\\\"\")) {\n                return CheckResult.wrong(\"Your program\
+    \ should print the definition requested in quotes\");\n            }\n       \
+    \     \n            if (!output.contains(\"definition\")) {\n                return\
+    \ CheckResult.wrong(\"Your program should prompt the user for the definition of\
+    \ a card with the \" +\n                        \"message \\\" Print the definition\
+    \ of \\\"term\\\": where \\\"term\\\" is the term of the flashcard to be checked\"\
+    );\n            }\n            \n            //Swap the definitions of similar\
+    \ terms\n            int index;\n            if (i % 2 == 0) {\n             \
+    \   output = main.execute(listOfDefinitions.get(i + 1)).toLowerCase().trim();\n\
+    \                index = i + 1;\n            } else {\n                output\
+    \ = main.execute(listOfDefinitions.get(i - 1)).toLowerCase().trim();\n       \
+    \         index = i - 1; \n            }\n            \n            \n       \
+    \     lines = output.split(\"\\n\");\n            lineOne = lines[0];\n      \
+    \      \n            if (!lineOne.contains(\"wrong. the right answer is \\\"\"\
+    \ + listOfDefinitions.get(i) + \"\\\"\")) {\n                return CheckResult.wrong(\"\
+    Your program should print \\\"Wrong.\\\" followed by the correct definition in\
+    \ \" +\n                        \"quotes if the user inputs the wrong definition\"\
+    );\n            }\n            \n            if (!lineOne.contains(\"correct for\
+    \ \\\"\" + listOfTerms.get(index) + \"\\\"\")) {\n                return CheckResult.wrong(\"\
+    Your output should also contain \\\"but your definition is correct for 'term'\"\
+    \ +\n                        \" \\\"\");\n            }\n            \n      \
+    \      if (i != (numberOfTimes -1)) {\n                \n                if (lines.length\
+    \ != 2) {\n                    return CheckResult.wrong(\"Your program should\
+    \ give feedback to the user on one line and the \" +\n                       \
+    \     \"next question on the next line\");\n                }\n              \
+    \  \n                output = lines[1].trim();\n            }\n            \n\
+    \        }\n        \n        return CheckResult.correct();\n    }\n    \n   \
+    \ //Test where user fails the definition by adding extra words that might invalidate\
+    \ the definition\n    @DynamicTestingMethod\n    CheckResult test6() {\n     \
+    \   TestedProgram main = new TestedProgram();\n        main.start();\n    \n \
+    \       String output;\n        String term;\n        String definition;\n   \
+    \     String lineOne;\n        String wrongDefinition;\n        String[] lines;\n\
+    \        \n        \n        int numberOfTimes = listOfTerms.size();\n       \
+    \ output = main.execute(numberOfTimes  + \"\").toLowerCase().trim();\n       \
+    \ \n        for (int i = 0; i < numberOfTimes; i++) {\n            term = listOfTerms.get(i);\n\
+    \            definition = listOfDefinitions.get(i);\n            \n          \
+    \  int cardNumber = i + 1;\n            if (!output.startsWith(\"card #\" + cardNumber))\
+    \ {\n                return CheckResult.wrong(\"Your program should print \\\"\
+    Card #n\\\", where n is the index number of the \" +\n                       \
+    \ \"card to be created\");\n            }\n            \n            output =\
+    \ main.execute(term).toLowerCase().trim();\n            if (!output.startsWith(\"\
+    the definition for card #\" + cardNumber)) {\n                return CheckResult.wrong(\"\
+    Your program should print \\\"The definition for card #n\\\" after saving the\
+    \ \" +\n                        \"term entered by the user.\");\n            }\n\
+    \            \n            output = main.execute(definition).toLowerCase().trim();\n\
+    \        }\n        \n        for (int i = 0; i < numberOfTimes; i++) {\n    \
+    \        term = listOfTerms.get(i);\n            definition = listOfDefinitions.get(i);\n\
+    \            wrongDefinition = listOfAddedDefinitions.get(i);\n            \n\
+    \            if (!output.contains(\"\\\"\" + term + \"\\\"\")) {\n           \
+    \     return CheckResult.wrong(\"Your program should print the definition requested\
+    \ in quotes\");\n            }\n            \n            if (!output.contains(\"\
+    definition\")) {\n                return CheckResult.wrong(\"Your program should\
+    \ prompt the user for the definition of a card with the message \" +\n       \
+    \                 \"\\\" Print the definition of \\\"term\\\": where \\\"term\\\
+    \" is the term of the flashcard to be checked\");\n            }\n           \
+    \ \n            output = main.execute(wrongDefinition).toLowerCase().trim();\n\
+    \            \n            lines = output.split(\"\\n\");\n            lineOne\
+    \ = lines[0];\n            \n            if (!lineOne.contains(\"wrong. the right\
+    \ answer is \\\"\" + definition + \"\\\"\")) {\n                return CheckResult.wrong(\"\
+    Your program should print \\\"Wrong\\\" followed by the correct definition in\
+    \ \" +\n                        \"quotes if the user inputs the wrong definition\"\
+    );\n            }\n            \n            if (i != (numberOfTimes -1)) {\n\
+    \                \n                if (lines.length != 2) {\n                \
+    \    return CheckResult.wrong(\"Your program should give feedback to the user\
+    \ on one line and the \" +\n                            \"next question on the\
+    \ next line\");\n                }\n                \n                output =\
+    \ lines[1].trim();\n            }\n            \n        }\n        \n       \
+    \ return CheckResult.correct();\n    }\n    \n    //Test where user fails the\
+    \ definition by removing essential word that invalidates the definition\n    @DynamicTestingMethod\n\
+    \    CheckResult test7() {\n        TestedProgram main = new TestedProgram();\n\
+    \        main.start();\n        \n        String output;\n        String lineOne;\n\
+    \        String term;\n        String definition;\n        String wrongDefinition;\n\
+    \        String[] lines;\n        \n        int numberOfTimes = listOfTerms.size();\n\
+    \        output = main.execute(numberOfTimes + \"\").toLowerCase().trim();\n \
+    \       \n        for (int i = 0; i < numberOfTimes; i++) {\n            term\
+    \ = listOfTerms.get(i);\n            definition = listOfDefinitions.get(i);\n\
+    \            \n            int cardNumber = i + 1;\n            if (!output.startsWith(\"\
+    card #\" + cardNumber)) {\n                return CheckResult.wrong(\"Your program\
+    \ should print \\\"Card #n\\\", where n is the index number of the \" +\n    \
+    \                    \"card to be created\");\n            }\n            \n \
+    \           output = main.execute(term).toLowerCase().trim();\n            if\
+    \ (!output.startsWith(\"the definition for card #\" + cardNumber)) {\n       \
+    \         return CheckResult.wrong(\"Your program should print \\\"The definition\
+    \ for card #n\\\" after saving the \" +\n                        \"term entered\
+    \ by the user.\");\n            }\n            \n            output = main.execute(definition).toLowerCase().trim();\n\
+    \        }\n        \n        for (int i = 0; i < numberOfTimes; i++) {\n    \
+    \        term = listOfTerms.get(i);\n            definition = listOfDefinitions.get(i);\n\
+    \            wrongDefinition = listOfRemovedDefinitions.get(i);\n            \n\
+    \            if (!output.contains(\"\\\"\" + term + \"\\\"\")) {\n           \
+    \     return CheckResult.wrong(\"Your program should print the definition requested\
+    \ in quotes\");\n            }\n            \n            if (!output.contains(\"\
+    definition\")) {\n                return CheckResult.wrong(\"Your program should\
+    \ prompt the user for the definition of a card with the message \" +\n       \
+    \                 \"\\\" Print the definition of \\\"term\\\": where \\\"term\\\
+    \" is the term of the flashcard to be checked\");\n            }\n           \
+    \ \n            output = main.execute(wrongDefinition).toLowerCase().trim();\n\
+    \            \n            lines = output.split(\"\\n\");\n            lineOne\
+    \ = lines[0];\n            \n            if (!lineOne.contains(\"wrong. the right\
+    \ answer is \\\"\" + definition + \"\\\"\")) {\n                return CheckResult.wrong(\"\
+    Your program should print \\\"Wrong\\\" followed by the correct definition in\
+    \ \" +\n                        \"quotes if the user inputs the wrong definition\"\
+    );\n            }\n            \n            if (i != (numberOfTimes -1)) {\n\
+    \                \n                if (lines.length != 2) {\n                \
+    \    return CheckResult.wrong(\"Your program should give feedback to the user\
+    \ on one line and the \" +\n                            \"next question on the\
+    \ next line\");\n                }\n                \n                output =\
+    \ lines[1].trim();\n            }\n            \n        }\n        \n       \
+    \ return CheckResult.correct();\n    }\n    \n    //Used to check if the program's\
+    \ output are in separate lines. Uses in test 4\n    @Override\n    public CheckResult\
+    \ check(String reply, String attach) {\n        String[] lines = reply.split(\"\
+    \\n\");\n        \n        if (lines.length != 11)  {\n            return CheckResult.wrong(\"\
+    Your program printed wrong number of lines. \" +\n                    \"Make sure\
+    \ all your outputs are on separate lines\");\n        }\n        \n        return\
+    \ CheckResult.correct();\n    }\n    \n    private static List<String> getListOfTerms()\
+    \ {\n        return Arrays.asList(\n                \"print()\",\n           \
+    \     \"str()\",\n                \"son\",\n                \"daughter\",\n  \
+    \              \"uncle\",\n                \"ankle\");\n    }\n    \n    private\
+    \ static List<String> getListOfDefinitions() {\n        return Arrays.asList(\n\
+    \                \"outputs text\",\n                \"converts to a string\",\n\
+    \                \"a male child\",\n                \"a female child\",\n    \
+    \            \"a brother of one's parent\",\n                \"a part of the body\
+    \ where the foot and the leg meet\"\n        );\n    }\n    \n    //Extra wrongs\
+    \ invalidate the definition\n    private static List<String> getListOfWrongDefinitions1()\
+    \ {\n        return Arrays.asList(\n                \"outputs text line by line\"\
+    ,\n                \"converts to a string and an integer\",\n                \"\
+    a male child or a female child\",\n                \"a female child or a male\
+    \ child\",\n                \"a brother of one's parent or grandparents\",\n \
+    \               \"a part of the body where the foot and the leg meet or the arm\"\
+    \n        );\n    }\n    \n    //Essential words removed invalidates the definition\n\
+    \    private static List<String> getListOfWrongDefinitions2() {\n        return\
+    \ Arrays.asList(\n                \"outputs\",\n                \"converts a string\"\
+    ,\n                \"a child\",\n                \"a child\",\n              \
+    \  \"a brother of one\",\n                \"a part of the body where the foot\
+    \ meet\"\n        );\n    }\n    \n}\n"
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/44/stages/235/implement#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Mon, 08 Mar 2021 11:57:45 UTC
+record: 4

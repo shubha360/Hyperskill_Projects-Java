@@ -1,0 +1,77 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>While studying, it may be very helpful to pay more attention to challenging parts where you make the most mistakes. In this stage, you will add some statistics features to your program so that the users can track their progress.</p>
+
+<p>Implement the following additional actions:</p>
+
+<ul>
+	<li>save the application log to the given file: <code class="java">log</code> </li>
+	<li>print the term or terms that the user makes most mistakes with: <code class="java">hardest card</code> </li>
+	<li>erase the mistake count for all cards: <code class="java">reset stats</code> </li>
+</ul>
+
+<p>Remember that now you need to store three items (term, definition, mistakes) instead of two (term, definition).</p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>Print the message <code class="java">Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):</code> each time the user is prompted for their next action. The action is read from the next line, processed, and the message is output again until the user decides to exit the program.</p>
+
+<p>The program's behavior depends on the user's input action:</p>
+
+<ul>
+	<li><code class="java">log</code> — ask the user where to save the log with the message <code class="java">File name:</code>, save all the lines that have been input/output to the console to the file, and print the message <code class="java">The log has been saved.</code> Don't clear the log after saving it to the file.</li>
+	<li><code class="java">hardest card</code> — print a string that contains the term of the card with the highest number of wrong answers, for example, <code class="java">The hardest card is "term". You have N errors answering it</code>. If there are several cards with the highest number of wrong answers, print all of the terms: <code class="java">The hardest cards are "term_1", "term_2"</code>. If there are no cards with errors in the user's answers, print the message <code class="java">There are no cards with errors.</code></li>
+	<li><code class="java">reset stats</code> — set the count of mistakes to 0 for all the cards and output the message <code class="java">Card statistics have been reset.</code></li>
+</ul>
+
+<p>Update your <code class="java">import</code> and <code class="java">export</code> actions from the previous stage, so that the error count for each flashcard is also imported and exported.</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>The symbol <code class="java">&gt; </code> represents the user input. Note that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+&gt; hardest card
+There are no cards with errors.
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+&gt; import
+File name:
+&gt; capitals.txt
+28 cards have been loaded.
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+&gt; hardest card
+The hardest card is "France". You have 10 errors answering it.
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+&gt; ask
+How many times to ask?
+&gt; 1
+Print the definition of "Russia":
+&gt; Paris
+Wrong. The right answer is "Moscow", but your definition is correct for "France" card.
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+&gt; hardest card
+The hardest cards are "Russia", "France". You have 10 errors answering them.
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+&gt; reset stats
+Card statistics have been reset.
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+&gt; hardest card
+There are no cards with errors.
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+&gt; log
+File name:
+&gt; todayLog.txt
+The log has been saved.
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+&gt; exit
+Bye bye!</code></pre>
+
+<p><em>Note that all your outputs and user inputs should be on separate lines.</em></p>

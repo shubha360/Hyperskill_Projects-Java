@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Error_Correcting_Encoder-Decoder.iml" filepath="$PROJECT_DIR$/.idea/modules/Error_Correcting_Encoder-Decoder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Error Correcting Encoder-Decoder/task/Error_Correcting_Encoder-Decoder.Error_Correcting_Encoder-Decoder-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Error Correcting Encoder-Decoder/task/Error_Correcting_Encoder-Decoder.Error_Correcting_Encoder-Decoder-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Error Correcting Encoder-Decoder/task/Error_Correcting_Encoder-Decoder.Error_Correcting_Encoder-Decoder-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Error Correcting Encoder-Decoder/task/Error_Correcting_Encoder-Decoder.Error_Correcting_Encoder-Decoder-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Error Correcting Encoder-Decoder/task/Error_Correcting_Encoder-Decoder.Error_Correcting_Encoder-Decoder-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Error Correcting Encoder-Decoder/task/Error_Correcting_Encoder-Decoder.Error_Correcting_Encoder-Decoder-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Error_Correcting_Encoder-Decoder.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Error_Correcting_Encoder-Decoder.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Error_Correcting_Encoder-Decoder.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Error_Correcting_Encoder-Decoder.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Error_Correcting_Encoder-Decoder.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Error_Correcting_Encoder-Decoder.util.test.iml" />
+    </modules>
+  </component>
+</project>

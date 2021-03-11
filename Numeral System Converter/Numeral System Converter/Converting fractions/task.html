@@ -1,0 +1,159 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Fractional numbers can also be converted from one base to another. To convert a fractional number to another base, you should use the algorithm described below.</p>
+
+<h2 style="text-align: center;">Algorithm</h2>
+
+<p>As you know from the previous stage, in order to convert a number from one base to another, first, we need to convert it to decimal if it’s not decimal yet, and only then convert it to another base. The same applies to fractional numbers.</p>
+
+<p>Let’s imagine you have a fractional number <span class="math-tex">\(ab.cdef\)</span> where <span class="math-tex">\(ab\)</span> is the integer part, <span class="math-tex">\(cdef\)</span> is the fractional part, and <span class="math-tex">\(a, b, c, d, e, f\)</span> are some digits or letters, depending on the base of the number.</p>
+
+<p>In this case, we have 2 digits (letters) in the integer part and 4 digits (letters) in the fractional part. In other cases, the number of digits (letters) in parts can be different.</p>
+
+<p>To convert the number into decimal, we need to:</p>
+
+<ul>
+	<li>Split the number into two parts: integer and fractional;</li>
+	<li>Convert the integer part into decimal using the method from the previous stage;</li>
+	<li>Convert the fractional part into decimal using the following formula:<span class="math-tex">\[decimalValue = {c \over base^1} + {d \over base^2} + {e \over base^3} + {f \over base^4}\]</span></li>
+</ul>
+
+<p>where <span class="math-tex">\(base\)</span> is a base of the number you want to convert into decimal.</p>
+
+<p>The more digits (letters) in the fractional part, the more addends in the formula. If the fractional part has letters, then you should use their number representation: ‘a’ – 10, ‘b’ – 11, c – ‘12’, and so on.</p>
+
+<p>As a result, you should get a decimal number no greater than 1. If it is greater than 1, you did something wrong.</p>
+
+<p>To see the decimal representation of the source number, you can sum the decimal integer and the decimal fractional parts.</p>
+
+<p>To convert a decimal fractional number into any other base, we need to:</p>
+
+<ul>
+	<li>Split the decimal number into two parts: integer and fractional;</li>
+	<li>Convert the integer part into the new base;</li>
+	<li>Convert the fractional part from decimal to any other base.</li>
+</ul>
+
+<p>Let’s elaborate on the third step and convert the fractional part of 0.5168 into base 19 as an example.</p>
+
+<p>Multiply the fractional part by the new base: <span class="math-tex">\(0.5168 * 19 = 9.8192\)</span>. The integer part of the result is the first digit (or letter if the integer part is greater than 9) in the fractional part of a number in the new base. In this case, the first digit in the fractional part is <strong>9</strong>.</p>
+
+<p>Take the fractional part from the result of the multiplication and multiply it by the new base again: <span class="math-tex">\(0.8192 * 19 = 15.5648\)</span>. For numbers greater than 9, you should use their letter representation: 10 – ‘a’, 11 – ‘b’, 12 – ‘c’, and so on. In this case, the second digit (letter) is <strong>f</strong> <strong>(15)</strong>.</p>
+
+<p>To calculate the rest of the digits (letters), you should repeat this action. In this stage, your program should output only 5 digits (letters) in the fractional part: </p>
+
+<p><span class="math-tex">\(0.5648 * 19 = 10.7312 \text{ (a)}\\ 0.7312 * 19 = 13.8928 \text{ (d)}\\ 0.8928 * 19 = 16.9632 \text{ (g)}\\\)</span></p>
+
+<p>The final result looks like this: <span class="math-tex">\(0.5168_{₁₀} = 0.9fadg_{₁₉}\)</span></p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><span class="math-tex">\(0.234_{10}\)</span> to base 7.</p>
+
+<ol>
+	<li><span class="math-tex">\(0.234 \cdot 7 = 1.638\)</span>: the first fraction symbol is 1.</li>
+	<li>Remove integer part. <span class="math-tex">\(0.638 \cdot 7 = 4.466\)</span>: the second fraction symbol is 4.</li>
+	<li>Remove integer part. <span class="math-tex">\(0.466 \cdot 7 = 3.262\)</span>: the third fraction symbol is 3.</li>
+	<li>The same for the next symbols.</li>
+</ol>
+
+<p>So, the number in base 7 is <span class="math-tex">\(0.143..._7\)</span></p>
+
+<p><strong>Example 2:</strong></p>
+
+<p><span class="math-tex">\(0.234_{10}\)</span> to base 36.</p>
+
+<ol>
+	<li><span class="math-tex">\(0.234  \cdot 36 = 8.424\)</span>: the first fraction symbol is 8.</li>
+	<li><span class="math-tex">\(0.424 \cdot 36 = 15.264\)</span>: the second fraction symbol is '15' and 'f' in base 36.</li>
+	<li><span class="math-tex">\(0.264 \cdot 36 = 9.504\)</span>: the third fraction symbol is 9.</li>
+</ol>
+
+<p>So, the number in base 36 is <span class="math-tex">\(0.8f9..._{36}\)</span></p>
+
+<p><strong>Example 3:</strong></p>
+
+<p><span class="math-tex">\(0.234_{7}\)</span> to base 36.</p>
+
+<ol>
+	<li>Convert the fractional part to base 10 using the formula above: <span class="math-tex">\(2 / 7 + 3 / 49 + 4 / 343 = 0.358..._{10}\)</span></li>
+	<li>Convert this number to base 36 like in example 2.</li>
+</ol>
+
+<p>This stage is auto-graded. The grader will input three lines: the source radix, the source number, and the target radix. Then it will check that<strong> </strong>your output is the correct number representation in the given radix. Don't forget to round up the result to 5 decimal places! If there is no fractional part in the initial number, you don't need to show the fractional part.</p>
+
+<p>Also, numbers in radix 1 cannot have a fractional part so they're tested only as the integer part, like it was in the previous stage.</p>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p><strong>Example 1:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">10
+0.234
+7</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">0.14315</code></pre>
+
+<p><strong>Example 2:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">10
+10.234
+7</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">13.14315</code></pre>
+
+<p><strong>Example 3:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">35
+af.xy
+17</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">148.g88a8</code></pre>
+
+<p><strong>Example 4:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">16
+aaaaa.0
+24</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">22df2.00000</code></pre>
+
+<p><strong>Example 5:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">21
+4242
+6</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">451552</code></pre>
+
+<p><strong>Example 6:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">1
+1111111
+10</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">7</code></pre>

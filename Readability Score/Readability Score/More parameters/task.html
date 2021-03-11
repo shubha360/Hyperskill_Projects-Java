@@ -1,0 +1,48 @@
+<h2>Description</h2>
+
+<p>In this stage, you should implement various other scientific approaches to calculate a readability score.</p>
+
+<p>Take a look at different ages and corresponding scores in the table in <a target="_blank" href="https://en.wikipedia.org/wiki/Automated_readability_index" rel="nofollow noopener noreferrer">this</a> article. This table is suitable for all the algorithms described in this stage. To calculate the age use <strong>the upper bound</strong> of the range. For example, if the range is <code class="java">12-13-year-olds</code> then it's upper bound is <code class="java">13-year-olds</code>.</p>
+
+<p>The first algorithm is <strong>Flesch–Kincaid readability tests</strong>. First, you need to create a method that calculates a number of syllables in a word. The formula is given below. You can find more information <a target="_blank" href="https://en.wikipedia.org/wiki/Flesch–Kincaid_readability_tests" rel="nofollow noopener noreferrer">here</a>. You can use the second formula to calculate the index; it allows you to easily calculate the age of a person using the same table from the Automated Readability Index.</p>
+
+<p>$ score = 0.39 * \dfrac{words}{sentences} + 11.8 * \dfrac{syllables}{words} - 15.59 $</p>
+
+<p>The second one is <strong>SMOG index</strong>. It stands for Simple Measure of Gobbledygook. To calculate it, you need to count the number of polysyllables which is the number of words with more than 2 syllables. The formula is shown below. You can find out more <a target="_blank" href="https://en.wikipedia.org/wiki/SMOG" rel="nofollow noopener noreferrer">here</a>. The Wikipedia page says that at least 30 sentences are required for this index to work properly. Don't pay attention to this, just keep it in mind when you use this index in real life. As in the previous example, the grade level is calculated here, so to get the age of a person you need to use the table from the first link.</p>
+
+<p>$ score = 1.043 * \sqrt{polysyllables * \dfrac{30}{sentences}} + 3.1291 $</p>
+
+<p>The next one is <strong>Coleman–Liau index</strong>. The formula is given below. For more information read <a target="_blank" href="http://en.wikipedia.org/wiki/Coleman–Liau_index" rel="noopener noreferrer nofollow">this</a>. L is the average number of characters per 100 words and S is the average number of sentences per 100 words. Like all other indices, the output is a person's grade level. Like all other indices, the result is a minimum grade level required to understand this text.</p>
+
+<p>$ score = 0.0588 * L - 0.296 * S - 15.8 $</p>
+
+<p>So, in this stage, you should program all three approaches. Don't forget about the <strong>Automated readability index</strong>! Also, there should be an option to choose all methods at the same time.</p>
+
+<p>To count the number of syllables you should use letters a, e, i, o, u, y as vowels. You can see <a target="_blank" href="https://simple.wikipedia.org/wiki/Vowel" rel="nofollow noopener noreferrer">here</a> examples and intricacies with determining vowels in a word with 100% accuracy. So, let's use the following 4 rules:</p>
+
+<p>1. Count the number of vowels in the word.<br>
+2. Do not count double-vowels (for example, "rain" has 2 vowels but only 1 syllable).<br>
+3. If the last letter in the word is 'e' do not count it as a vowel (for example, "side" has 1 syllable).<br>
+4. If at the end it turns out that the word contains 0 vowels, then consider this word as a 1-syllable one.</p>
+
+<h2>Example</h2>
+
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">&gt; java Main in.txt
+The text is:
+This is the front page of the Simple English Wikipedia. Wikipedias are places where people work together to write encyclopedias in different languages. We use Simple English words and grammar here. The Simple English Wikipedia is for everyone! That includes children and adults who are learning English. There are 142,262 articles on the Simple English Wikipedia. All of the pages are free to use. They have all been published under both the Creative Commons License and the GNU Free Documentation License. You can help here! You may change these pages and make new pages. Read the help pages and other good pages to learn how to write pages here. If you need help, you may ask questions at Simple talk. Use Basic English vocabulary and shorter sentences. This allows people to understand normally complex terms or phrases.
+
+Words: 137
+Sentences: 14
+Characters: 687
+Syllables: 210
+Polysyllables: 17
+Enter the score you want to calculate (ARI, FK, SMOG, CL, all): all
+
+Automated Readability Index: 7.08 (about 13-year-olds).
+Flesch–Kincaid readability tests: 6.31 (about 12-year-olds).
+Simple Measure of Gobbledygook: 9.42 (about 15-year-olds).
+Coleman–Liau index: 10.66 (about 17-year-olds).
+
+This text should be understood in average by 14.25-year-olds.</code></pre>

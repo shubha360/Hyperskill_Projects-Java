@@ -1,0 +1,31 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Modify the previous program to work with command-line arguments instead of the standard input. The program must parse three arguments: <strong>-mode</strong>, <strong>-key</strong> and <strong>-data</strong>. The first argument should determine the program’s mode (<strong>enc</strong> for encryption, <strong>dec</strong> for decryption). The second argument is an integer key to modify the message, and the third argument is a text or ciphertext to encrypt or decrypt.</p>
+
+<p>All the arguments are guaranteed to be passed to the program. If for some reason it turns out to be wrong:</p>
+
+<ol>
+	<li>If there is no <strong>-mode</strong>, the program should work in <strong>enc</strong> mode.</li>
+	<li>If there is no <strong>-key</strong>, the program should consider that <strong>key</strong> = 0.</li>
+	<li>If there is no <strong>-data</strong>, the program should assume that the <strong>data </strong>is an empty string.</li>
+</ol>
+
+<p>Keep in mind that the order of the arguments might be different. For example,<strong> -mode enc</strong> may be at the end, at the beginning or in the middle of arguments array.</p>
+
+<p><div class="alert alert-primary">Note that to pass an argument that contains spaces as a single argument you need to put it in quotes. So <code class="java">"Welcome to hyperskill!"</code> becomes a single <code class="java">Welcome to hyperskill!</code> argument that doesn't contain quotes. You need quotes to pass this argument in the terminal, but you don't need to remove these quotes in the actual code! In the following examples arguments from the terminal perspective are put in quotes.</div></p>
+
+<h2 style="text-align: center;">Run configuration examples for encryption</h2>
+
+<pre><code class="language-no-highlight">java Main -mode enc -key 5 -data "Welcome to hyperskill!"</code></pre>
+
+<h2 style="text-align: center;">Encryption output example</h2>
+
+<pre><code class="java">\jqhtrj%yt%m~ujwxpnqq&amp;</code></pre>
+
+<h2 style="text-align: center;">Run configuration examples for decryption</h2>
+
+<pre><code class="language-no-highlight">java Main -key 5 -data "\jqhtrj%yt%m~ujwxpnqq&amp;" -mode dec</code></pre>
+
+<h2 style="text-align: center;">Decryption output example</h2>
+
+<pre><code class="java">Welcome to hyperskill!</code></pre>

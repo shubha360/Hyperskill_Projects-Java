@@ -1,0 +1,57 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Extend your program by adding different algorithms to encode/decode data. The first one would be shifting algorithm (it shifts each letter by the specified number according to its order in the alphabet in circle). The second one would be based on Unicode table, like in the previous stage.</p>
+
+<p>When starting the program, the necessary algorithm should be specified by an argument (<strong>-alg</strong>). The first algorithm should be named <strong>shift</strong>, the second one should be named <strong>unicode</strong>. If there is no <strong>-alg</strong> you should default it to <strong>shift</strong>.</p>
+
+<p>Remember that in case of <strong>shift</strong> algorithm you need to encode only English letters (from 'a' to 'z' as the first circle and from 'A' to 'Z' as the second circle i.e. after 'z' comes 'a' and after 'Z' comes 'A').</p>
+
+<p>To complete this stage, we recommend that you create a set of classes and interfaces for encryption and decryption algorithms.</p>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p><strong>Example 1</strong></p>
+
+<pre><code class="language-no-highlight">java Main -mode enc -in road_to_treasure.txt -out protected.txt -key 5 -alg unicode</code></pre>
+
+<p>This command must get data from the file <strong>road_to_treasure.txt</strong>, encrypt the data with the key 5, create a file called <strong>protected.txt</strong> and write ciphertext to it.</p>
+
+<p><strong>Example 2</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">java Main -mode enc -key 5 -data "Welcome to hyperskill!" -alg unicode</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="java">\jqhtrj%yt%m~ujwxpnqq&amp;</code></pre>
+
+<p><strong>Example 3</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">java Main -key 5 -alg unicode -data "\jqhtrj%yt%m~ujwxpnqq&amp;" -mode dec</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="java">Welcome to hyperskill!</code></pre>
+
+<p><strong>Example 4:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">java Main -key 5 -alg shift -data "Welcome to hyperskill!" -mode enc</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">Bjqhtrj yt mdujwxpnqq!</code></pre>
+
+<p><strong>Example 5:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">java Main -key 5 -alg shift -data "Bjqhtrj yt mdujwxpnqq!" -mode dec</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">Welcome to hyperskill!</code></pre>

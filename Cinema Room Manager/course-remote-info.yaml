@@ -1,0 +1,110 @@
+hyperskill_project:
+  id: 133
+  ide_files: https://stepik.org/media/attachments/lesson/420385/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: Thu, 01 Jan 1970 00:00:00 UTC
+stages:
+- id: 709
+  step: 11105
+  is_completed: true
+- id: 710
+  step: 11106
+  is_completed: true
+- id: 711
+  step: 11107
+  is_completed: true
+- id: 712
+  step: 11108
+  is_completed: true
+- id: 713
+  step: 11109
+  is_completed: true
+topics:
+  0:
+  - title: Introduction to Java
+    theory_id: 3500
+  - title: Basic literals
+    theory_id: 3522
+  - title: Overview of the basic program
+    theory_id: 3521
+  - title: Printing data
+    theory_id: 3749
+  1:
+  - title: Types and variables
+    theory_id: 3518
+  - title: Comments
+    theory_id: 3520
+  - title: Coding style conventions
+    theory_id: 12411
+  - title: Naming variables
+    theory_id: 3513
+  - title: Scanning the input
+    theory_id: 9055
+  - title: Arithmetic operations
+    theory_id: 3519
+  - title: Integer types and operations
+    theory_id: 3565
+  - title: Boolean and logical operations
+    theory_id: 3516
+  - title: Relational operators
+    theory_id: 3512
+  - title: Conditional statement
+    theory_id: 3503
+  2:
+  - title: Units of information
+    theory_id: 6865
+  - title: Increment and decrement
+    theory_id: 5008
+  - title: Characters
+    theory_id: 3514
+  - title: Ternary operator
+    theory_id: 3506
+  - title: The for-loop
+    theory_id: 3505
+  - title: The while and do-while loops
+    theory_id: 3498
+  - title: Branching statements
+    theory_id: 3507
+  - title: Sizes and ranges
+    theory_id: 3532
+  - title: Type casting
+    theory_id: 3510
+  - title: Calling a method
+    theory_id: 10973
+  - title: Primitive and reference types
+    theory_id: 5035
+  - title: Array
+    theory_id: 3511
+  - title: Iterating over arrays
+    theory_id: 3602
+  - title: Multidimensional array
+    theory_id: 1933
+  3:
+  - title: Switch statement
+    theory_id: 3504
+  - title: Declaring a method
+    theory_id: 10982
+  - title: The main method
+    theory_id: 3489
+  - title: Functional decomposition
+    theory_id: 10570
+  - title: Arrays as parameters
+    theory_id: 3594
+  4:
+  - title: Write, compile, and run
+    theory_id: 3739
+  - title: Errors in programs
+    theory_id: 3536
+  - title: What is an exception
+    theory_id: 3497
+  - title: NPE
+    theory_id: 1945
+  - title: Array exceptions
+    theory_id: 1940
+  - title: String
+    theory_id: 3523
+  - title: Formatted output
+    theory_id: 7046
+  - title: Final variables
+    theory_id: 7427

@@ -1,0 +1,160 @@
+hyperskill_project:
+  id: 39
+  ide_files: https://stepik.org/media/attachments/lesson/203019/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: Thu, 01 Jan 1970 00:00:00 UTC
+stages:
+- id: 205
+  step: 5262
+  is_completed: true
+- id: 206
+  step: 5263
+  is_completed: true
+- id: 207
+  step: 5264
+  is_completed: true
+- id: 208
+  step: 5265
+  is_completed: true
+topics:
+  0:
+  - title: Units of information
+    theory_id: 6865
+  - title: Introduction to operating systems
+    theory_id: 9704
+  - title: Command line overview
+    theory_id: 8977
+  - title: Parameters and options
+    theory_id: 9746
+  - title: Introduction to Java
+    theory_id: 3500
+  - title: Basic literals
+    theory_id: 3522
+  - title: Overview of the basic program
+    theory_id: 3521
+  - title: Printing data
+    theory_id: 3749
+  - title: Types and variables
+    theory_id: 3518
+  - title: Comments
+    theory_id: 3520
+  - title: Coding style conventions
+    theory_id: 12411
+  - title: Naming variables
+    theory_id: 3513
+  - title: Scanning the input
+    theory_id: 9055
+  - title: Arithmetic operations
+    theory_id: 3519
+  - title: Integer types and operations
+    theory_id: 3565
+  - title: Boolean and logical operations
+    theory_id: 3516
+  - title: Relational operators
+    theory_id: 3512
+  - title: Increment and decrement
+    theory_id: 5008
+  - title: Characters
+    theory_id: 3514
+  - title: Conditional statement
+    theory_id: 3503
+  - title: Ternary operator
+    theory_id: 3506
+  - title: The for-loop
+    theory_id: 3505
+  - title: The while and do-while loops
+    theory_id: 3498
+  - title: Branching statements
+    theory_id: 3507
+  - title: Write, compile, and run
+    theory_id: 3739
+  - title: JVM, JRE, and JDK
+    theory_id: 3499
+  - title: Sizes and ranges
+    theory_id: 3532
+  - title: Type casting
+    theory_id: 3510
+  - title: Calling a method
+    theory_id: 10973
+  - title: Primitive and reference types
+    theory_id: 5035
+  - title: Array
+    theory_id: 3511
+  - title: String
+    theory_id: 3523
+  - title: Running programs on your computer
+    theory_id: 3746
+  1:
+  - title: IDE
+    theory_id: 10996
+  - title: Introduction to OOP
+    theory_id: 3614
+  - title: Switch statement
+    theory_id: 3504
+  - title: Regexps basics
+    theory_id: 7580
+  - title: Declaring a method
+    theory_id: 10982
+  - title: The main method
+    theory_id: 3489
+  - title: Functional decomposition
+    theory_id: 10570
+  - title: Iterating over arrays
+    theory_id: 3602
+  - title: Arrays as parameters
+    theory_id: 3594
+  - title: Processing strings
+    theory_id: 3551
+  - title: Regexps in Java
+    theory_id: 3670
+  - title: Sets, ranges, alternations
+    theory_id: 3674
+  - title: Shorthands
+    theory_id: 3680
+  - title: Quantifiers
+    theory_id: 3687
+  - title: IntelliJ IDEA
+    theory_id: 3801
+  - title: IDEA Basics
+    theory_id: 5819
+  - title: EduTools
+    theory_id: 5839
+  - title: Defining classes
+    theory_id: 3618
+  - title: Constructor
+    theory_id: 3535
+  - title: Instance methods
+    theory_id: 3495
+  2:
+  - title: Floating-point types
+    theory_id: 3517
+  - title: Errors in programs
+    theory_id: 3536
+  - title: What is an exception
+    theory_id: 3497
+  - title: Hierarchy of exceptions
+    theory_id: 3570
+  - title: Exception handling
+    theory_id: 3552
+  - title: Command-line arguments
+    theory_id: 3566
+  - title: Files
+    theory_id: 3635
+  - title: Reading files
+    theory_id: 3636
+  - title: IntelliJ Run Configurations
+    theory_id: 10630
+  - title: Package
+    theory_id: 3621
+  - title: Access modifiers
+    theory_id: 3589
+  - title: Getters and setters
+    theory_id: 3599
+  - title: Inheritance
+    theory_id: 3583
+  - title: Objects
+    theory_id: 4727
+  3:
+  - title: Math library
+    theory_id: 3501

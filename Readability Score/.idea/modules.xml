@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Readability_Score.iml" filepath="$PROJECT_DIR$/.idea/modules/Readability_Score.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Readability Score/task/Readability_Score.Readability_Score-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Readability Score/task/Readability_Score.Readability_Score-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Readability Score/task/Readability_Score.Readability_Score-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Readability Score/task/Readability_Score.Readability_Score-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Readability Score/task/Readability_Score.Readability_Score-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Readability Score/task/Readability_Score.Readability_Score-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Readability_Score.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Readability_Score.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Readability_Score.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Readability_Score.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Readability_Score.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Readability_Score.util.test.iml" />
+    </modules>
+  </component>
+</project>

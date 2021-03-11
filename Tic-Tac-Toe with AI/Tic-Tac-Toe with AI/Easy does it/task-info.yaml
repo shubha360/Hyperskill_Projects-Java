@@ -1,0 +1,708 @@
+type: edu
+custom_name: stage2
+files:
+- name: src/tictactoe/Main.java
+  visible: true
+  text: |-
+    package tictactoe;
+
+    import java.util.InputMismatchException;
+    import java.util.Scanner;
+
+    public class Main {
+        public static void main(String[] args) {
+            new FirstStageGameplay();
+        }
+    }
+
+    class FirstStageGameplay {
+
+        private final char[][] mainGrid = new char[3][3];
+        private final Scanner scanner = new Scanner(System.in);
+
+        private int xCount = 0;
+        private int oCount = 0;
+        private char nextMove;
+        private int occupiedCellCount = 0;
+
+        public FirstStageGameplay() {
+            playGame();
+        }
+
+        private void playGame() {
+
+            System.out.print("Enter the cells: ");
+            String initialInput = scanner.nextLine();
+            toMainGrid(initialInput);
+
+            this.nextMove = xCount == oCount ? 'X' : 'O';
+
+            printMainGrid();
+            processUserInput();
+            printMainGrid();
+            checkGrid();
+        }
+
+        private void toMainGrid(String str) {
+
+            for (int i = 0; i < str.length(); i++) {
+
+                char symbol = str.charAt(i) == '_' ? ' ' : str.charAt(i);
+
+                if (symbol == 'X') {
+                    xCount++;
+                    occupiedCellCount++;
+                } else if (symbol == 'O') {
+                    oCount++;
+                    occupiedCellCount++;
+                }
+
+                if (i <= 2) {
+                    this.mainGrid[0][i] = symbol;
+                } else if (i <= 5) {
+                    this.mainGrid[1][i - 3] = symbol;
+                } else {
+                    this.mainGrid[2][i - 6] = symbol;
+                }
+            }
+        }
+
+        private void printMainGrid() {
+
+            System.out.println("---------");
+            for (int i = 0; i < 3; i++) {
+                System.out.print("| ");
+                for (int j = 0; j < 3; j++) {
+                    System.out.print(mainGrid[i][j] + " ");
+                }
+                System.out.print("|\n");
+            }
+            System.out.println("---------");
+        }
+
+        private void processUserInput() {
+
+            int row = -1;
+            int column = -1;
+
+            while (true) {
+
+                System.out.print("Enter the coordinates: ");
+
+                try {
+                    row = scanner.nextInt();
+                    column = scanner.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("You should enter numbers!");
+                    scanner.next();
+                    continue;
+                }
+
+                if (row < 1 || row > 3 || column < 1 || column > 3) {
+                    System.out.println("Coordinates should be from 1 to 3!");
+                } else if (mainGrid[row - 1][column - 1] != ' ') {
+                    System.out.println("This cell is occupied! Choose another one!");
+                } else {
+                    break;
+                }
+            }
+            mainGrid[row - 1][column - 1] = nextMove;
+            occupiedCellCount++;
+        }
+
+        private void checkGrid() {
+
+            if ((mainGrid[0][0] == nextMove && mainGrid[0][1] == nextMove && mainGrid[0][2] == nextMove) ||
+                    (mainGrid[1][0] == nextMove && mainGrid[1][1] == nextMove && mainGrid[1][2] == nextMove) ||
+                    (mainGrid[2][0] == nextMove && mainGrid[2][1] == nextMove && mainGrid[2][2] == nextMove) ||
+                    (mainGrid[0][0] == nextMove && mainGrid[1][0] == nextMove && mainGrid[2][0] == nextMove) ||
+                    (mainGrid[0][1] == nextMove && mainGrid[1][1] == nextMove && mainGrid[2][1] == nextMove) ||
+                    (mainGrid[0][2] == nextMove && mainGrid[1][2] == nextMove && mainGrid[2][2] == nextMove) ||
+                    (mainGrid[0][0] == nextMove && mainGrid[1][1] == nextMove && mainGrid[2][2] == nextMove) ||
+                    (mainGrid[0][2] == nextMove && mainGrid[1][1] == nextMove && mainGrid[2][0] == nextMove)
+            ) {
+                System.out.println(nextMove + " wins");
+            } else if (occupiedCellCount == 9) {
+                System.out.println("Draw");
+            } else {
+                System.out.println("Game not finished");
+            }
+        }
+    }
+  learner_created: false
+- name: test/Grid.java
+  visible: false
+  text: |-
+    import org.hyperskill.hstest.exception.outcomes.WrongAnswer;
+
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.List;
+    import java.util.stream.Collectors;
+    import java.util.stream.Stream;
+
+    public class Grid {
+
+        private final CellState[][] grid;
+
+        private Grid() {
+            grid = new CellState[3][3];
+        }
+
+        public static Grid fromLine(String line) {
+            Grid grid = new Grid();
+
+            if (line.length() != 9) {
+                throw new WrongAnswer("Wrong input length. Expected 9.\nFound " + line.length());
+            }
+
+            for (int i = 0; i < line.length(); i++) {
+                grid.grid[i / 3][i % 3] = CellState.get(line.charAt(i));
+            }
+
+            return grid;
+        }
+
+        public static Grid fromOutput(String stringField) {
+            return fromOutput(stringField, 1);
+        }
+
+        public static Grid fromOutput(String stringField, int fieldNumber) {
+
+            Grid grid = new Grid();
+
+            List<String> fieldLines = Arrays.stream(stringField.split("\n"))
+                .map(String::strip)
+                .filter(line -> line.startsWith("|") && line.endsWith("|"))
+                .collect(Collectors.toList());
+
+            if (fieldLines.size() < 3 * fieldNumber) {
+                throw new WrongAnswer("Expected not less than " + fieldNumber + " grids in the output!\n" +
+                    "Make sure you print the game grids in the correct format!");
+            }
+
+            fieldLines = fieldLines.subList(fieldNumber * 3 - 3, fieldNumber * 3);
+
+            for (int i = 0; i < fieldLines.size(); i++) {
+                String line = fieldLines.get(i);
+                if (line.length() != 9) {
+                    throw new WrongAnswer("Can't parse the game field. The following line has wrong length:\n" + line);
+                }
+                for (int j = 0; j < 3; j++) {
+                    grid.grid[i][j] = CellState.get(line.charAt(j * 2 + 2));
+                }
+            }
+
+            return grid;
+        }
+
+        public static List<Grid> allGridsFromOutput(String stringField) {
+
+            List<Grid> gridList = new ArrayList<>();
+
+            List<String> fieldLines = Arrays.stream(stringField.split("\n"))
+                .map(String::strip)
+                .filter(line -> line.startsWith("|") && line.endsWith("|"))
+                .collect(Collectors.toList());
+
+            if (fieldLines.size() % 3 != 0) {
+                throw new WrongAnswer("Wrong grid output format! Each grid should contain 3 lines that starts and ends with '|' symbol!");
+            }
+
+            for (int i = 0; i < fieldLines.size() / 3; i++) {
+                List<String> gridLines = fieldLines.subList(i * 3, i * 3 + 3);
+
+                Grid grid = new Grid();
+
+                for (int j = 0; j < gridLines.size(); j++) {
+                    String line = gridLines.get(j);
+                    if (line.length() != 9) {
+                        throw new WrongAnswer("Can't parse the game field. The following line has wrong length:\n" + line);
+                    }
+                    for (int k = 0; k < 3; k++) {
+                        grid.grid[j][k] = CellState.get(line.charAt(k * 2 + 2));
+                    }
+                }
+
+                gridList.add(grid);
+            }
+
+            return gridList;
+        }
+
+        public static Position getMove(Grid from, Grid to) {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (from.grid[i][j] != to.grid[i][j]) {
+                        return new Position(i, j);
+                    }
+                }
+            }
+            throw new WrongAnswer("After making a move the grid was the same!");
+        }
+
+        public boolean isWin(CellState player) {
+            for (int i = 0; i < 3; i++) {
+                if (grid[i][0] == grid[i][1] && grid[i][1] == grid[i][2] && grid[i][2] == player) {
+                    return true;
+                }
+            }
+
+            for (int i = 0; i < 3; i++) {
+                if (grid[0][i] == grid[1][i] && grid[1][i] == grid[2][i] && grid[2][i] == player) {
+                    return true;
+                }
+            }
+
+            return grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2] && grid[2][2] == player
+                || grid[2][0] == grid[1][1] && grid[1][1] == grid[0][2] && grid[0][2] == player;
+        }
+
+        public boolean hasEmptyCells() {
+            return Arrays.stream(grid)
+                .flatMap(Stream::of)
+                .anyMatch(cell -> cell == CellState.EMPTY);
+        }
+
+        public int getNumOfEmptyCells() {
+            return (int) Arrays.stream(grid)
+                .flatMap(Stream::of)
+                .filter(cell -> cell == CellState.EMPTY).count();
+        }
+
+        public GameState getGameState() {
+            if (isWin(CellState.X)) return GameState.X_WIN;
+            if (isWin(CellState.O)) return GameState.O_WIN;
+            if (hasEmptyCells()) return GameState.NOT_FINISHED;
+            else return GameState.DRAW;
+        }
+
+        public CellState[][] getGrid() {
+            return grid;
+        }
+
+        public void setCell(int x, int y, CellState cellState) {
+            grid[x][y] = cellState;
+        }
+
+        public boolean isCorrectNextGrid(Grid grid) {
+            return getNumOfEmptyCells() - grid.getNumOfEmptyCells() == 1;
+        }
+
+        public boolean isValidGrid() {
+
+            int numOfX = (int) Arrays.stream(grid)
+                .flatMap(Stream::of)
+                .filter(cell -> cell == CellState.X).count();
+            int numOfO = (int) Arrays.stream(grid)
+                .flatMap(Stream::of)
+                .filter(cell -> cell == CellState.O).count();
+
+            return Math.abs(numOfO - numOfX) <= 1;
+        }
+
+        public static void checkGridSequence(List<Grid> grids) {
+            if (grids.size() <= 1) {
+                return;
+            }
+
+            for (int i = 1; i < grids.size(); i++) {
+                Grid prevGrid = grids.get(i - 1);
+                Grid grid = grids.get(i);
+                if (!grid.isValidGrid()) {
+                    throw new WrongAnswer("Impossible grid was printed! The difference between Os and Xs in the grid is greater than 1:\n" + grid);
+                }
+                if (!prevGrid.isCorrectNextGrid(grid)) {
+                    throw new WrongAnswer("After making a move on grid\n" + prevGrid + "\n it can't become\n" + grid);
+                }
+            }
+
+            Grid lastGrid = grids.get(grids.size() - 1);
+
+            if (lastGrid.getGameState() == GameState.NOT_FINISHED) {
+                throw new WrongAnswer("Last grid is not terminal!\n" + lastGrid);
+            }
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("---------").append("\n");
+            for (int i = 0; i < 3; i++) {
+                stringBuilder.append("| ").append(grid[i][0]).append(" ").append(grid[i][1]).append(" ").append(grid[i][2]).append(" |\n");
+            }
+            stringBuilder.append("---------");
+            return stringBuilder.toString();
+        }
+
+        private String toLine() {
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < 9; i++) {
+                result.append(grid[i / 3][i % 3]);
+            }
+            return result.toString();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (!(o instanceof Grid)) {
+                return false;
+            }
+
+            Grid grid = (Grid) o;
+
+            for (int i = 0; i < 9; i++) {
+                if (grid.grid[i / 3][i % 3] != this.grid[i / 3][i % 3]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public Grid copy() {
+            return Grid.fromLine(toLine());
+        }
+    }
+
+    enum GameState {
+
+        X_WIN, O_WIN, DRAW, NOT_FINISHED
+
+    }
+
+    enum CellState {
+
+        X("X"), O("O"), EMPTY(" ");
+
+        String value;
+
+        CellState(String value) {
+            this.value = value;
+        }
+
+        static CellState get(char symbol) {
+            switch (symbol) {
+                case 'X':
+                    return X;
+                case 'O':
+                    return O;
+                case ' ':
+                case '_':
+                    return EMPTY;
+                default:
+                    throw new WrongAnswer("Bad symbol '" + symbol + "' in the game grid");
+            }
+        }
+
+        static CellState getOpponent(CellState player) {
+            if (player == X) {
+                return O;
+            } else {
+                return X;
+            }
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+    }
+  learner_created: false
+- name: test/Minimax.java
+  visible: false
+  text: |+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    public class Minimax {
+
+        private static Position bestPosition;
+
+        public static Position getMove(Grid grid, CellState player) {
+
+            int bestScore = Integer.MIN_VALUE;
+
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (grid.getGrid()[i][j] == CellState.EMPTY) {
+                        grid.setCell(i, j, player);
+                        int score = minimax(grid, CellState.getOpponent(player), false, player, 1);
+                        grid.setCell(i, j, CellState.EMPTY);
+                        if (score > bestScore) {
+                            bestScore = score;
+                            bestPosition = new Position(i, j);
+                        }
+                    }
+                }
+            }
+
+            return bestPosition;
+        }
+
+        private static int minimax(Grid grid, CellState player, boolean isMaximize, CellState startPlayer, int depth) {
+
+            switch (grid.getGameState()) {
+                case X_WIN:
+                    return startPlayer == CellState.X ? 10 - depth : depth - 10;
+                case O_WIN:
+                    return startPlayer == CellState.O ? 10 - depth : depth - 10;
+                case DRAW:
+                    return 0;
+            }
+
+            int bestScore = isMaximize ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (grid.getGrid()[i][j] == CellState.EMPTY) {
+                        grid.setCell(i, j, player);
+                        int score = minimax(grid, CellState.getOpponent(player), !isMaximize, startPlayer, depth + 1);
+                        grid.setCell(i, j, CellState.EMPTY);
+                        bestScore = isMaximize ? Math.max(bestScore, score) : Math.min(bestScore, score);
+                    }
+                }
+            }
+
+            return bestScore;
+        }
+
+        public static List<Position> getAvailablePositions(Grid grid, CellState player) {
+
+            List<Position> positions = new ArrayList<>();
+
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (grid.getGrid()[i][j] == CellState.EMPTY) {
+                        grid.setCell(i, j, player);
+                        int score = minimax(grid, CellState.getOpponent(player), false, player, 1);
+                        if (score >= 0) {
+                            positions.add(new Position(i, j));
+                        }
+                        grid.setCell(i, j, CellState.EMPTY);
+                    }
+                }
+            }
+
+            return positions;
+        }
+    }
+
+    class Position {
+
+        int x;
+        int y;
+
+        public Position(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public String toString() {
+            return x + " " + y;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Position position = (Position) o;
+            return x == position.x &&
+                y == position.y;
+        }
+    }
+
+
+
+  learner_created: false
+- name: test/TicTacToeTest.java
+  visible: false
+  text: |
+    import org.hyperskill.hstest.dynamic.DynamicTest;
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testing.TestedProgram;
+
+
+    public class TicTacToeTest extends StageTest<String> {
+
+        int[] easyAiMoves = new int[9];
+
+        @DynamicTest(order = 1)
+        CheckResult testGridOutput() {
+
+            TestedProgram program = new TestedProgram();
+
+            String output = program.start();
+
+            Grid printedGrid = Grid.fromOutput(output);
+            Grid emptyGrid = Grid.fromLine("_________");
+
+            if (!printedGrid.equals(emptyGrid)) {
+                return CheckResult.wrong("After starting the program you should print an empty grid!\n" +
+                    "Correct empty grid:\n" + emptyGrid);
+            }
+
+            if (!output.toLowerCase().contains("enter the coordinates:")) {
+                return CheckResult.wrong("After printing an empty grid you should ask to enter cell coordinates!");
+            }
+
+            output = program.execute("2 2");
+
+            Grid gridAfterMove = Grid.fromOutput(output);
+            Grid correctGridAfterMove = Grid.fromLine("____X____");
+
+            if (!gridAfterMove.equals(correctGridAfterMove)) {
+                return CheckResult.wrong("After making the move wrong grid was printed.\n" +
+                    "Your grid:\n" + gridAfterMove + "\n" +
+                    "Correct grid:\n" + correctGridAfterMove);
+            }
+
+            if (!output.toLowerCase().contains("making move level \"easy\"")) {
+                return CheckResult.wrong("After entering a cell coordinates you should print:\nMaking move level \"easy\"");
+            }
+
+            Grid gridAfterAiMove = Grid.fromOutput(output, 2);
+
+            if (gridAfterAiMove.equals(gridAfterMove)) {
+                return CheckResult.wrong("After AI move grid wasn't changed!");
+            }
+
+            Grid gameGrid = gridAfterAiMove;
+
+            while (true) {
+                if (gameGrid.getGameState() != GameState.NOT_FINISHED) {
+                    switch (gameGrid.getGameState()) {
+                        case X_WIN:
+                            if (!output.contains("X wins")) {
+                                return CheckResult.wrong("You should print 'X wins' if X win the game");
+                            }
+                            break;
+                        case O_WIN:
+                            if (!output.contains("O wins")) {
+                                return CheckResult.wrong("You should print 'O wins' if O win the game");
+                            }
+                            break;
+                        case DRAW:
+                            if (!output.contains("Draw")) {
+                                return CheckResult.wrong("You should print 'Draw' if the game ends with draw!");
+                            }
+                            break;
+                    }
+                    break;
+                }
+                Position nextMove = Minimax.getMove(gameGrid, CellState.X);
+
+                Grid tempGrid = gameGrid.copy();
+                tempGrid.setCell(nextMove.x, nextMove.y, CellState.X);
+
+                output = program.execute((nextMove.x + 1) + " " + (nextMove.y + 1));
+
+                gameGrid = Grid.fromOutput(output);
+
+                if (!gameGrid.equals(tempGrid)) {
+                    return CheckResult.wrong("After making move (" + nextMove + ") the game grid is wrong!\n" +
+                        "Your gird\n" + gameGrid + "\n" +
+                        "Correct grid\n" + tempGrid);
+                }
+
+                if (gameGrid.getGameState() != GameState.NOT_FINISHED)
+                    continue;
+
+                gameGrid = Grid.fromOutput(output, 2);
+            }
+
+            return CheckResult.correct();
+        }
+
+        @DynamicTest(repeat = 100, order = 2)
+        CheckResult checkEasyAi() {
+            TestedProgram program = new TestedProgram();
+            program.start();
+
+            String output = program.execute("2 2");
+
+            Grid gridAfterAiMove = Grid.fromOutput(output, 2);
+
+            CellState[][] array = gridAfterAiMove.getGrid();
+
+            for (int i = 0; i < 9; i++) {
+                if (i == 4) {
+                    continue;
+                }
+                if (array[i / 3][i % 3] == CellState.O) {
+                    easyAiMoves[i]++;
+                }
+            }
+
+            return CheckResult.correct();
+        }
+
+        @DynamicTest(order = 3)
+        CheckResult checkRandom() {
+            double averageScore = 0;
+
+            for (int i = 0; i < easyAiMoves.length; i++) {
+                averageScore += (i + 1) * easyAiMoves[i];
+            }
+
+            averageScore /= 8;
+
+            double expectedValue = (double) (1 + 2 + 3 + 4 + 6 + 7 + 8 + 9) * 100 / 8 / 8;
+
+            if (Math.abs(averageScore - expectedValue) > 20) {
+                return CheckResult.wrong("Looks like your Easy level AI doesn't make a random move!");
+            }
+
+            return CheckResult.correct();
+        }
+
+        boolean isEasyNotMovingLikeMedium = false;
+
+        @DynamicTest(repeat = 30, order = 4)
+        CheckResult checkEasyNotMovingLikeMedium() {
+
+            if (isEasyNotMovingLikeMedium) {
+                return CheckResult.correct();
+            }
+
+            TestedProgram program = new TestedProgram();
+            program.start();
+            program.execute("start user easy");
+
+            String output = program.execute("2 2");
+
+            Grid gameGrid = Grid.fromOutput(output, 2);
+
+            CellState[][] cellStates = gameGrid.getGrid();
+
+            if (cellStates[0][0] == CellState.EMPTY && cellStates[2][2] == CellState.EMPTY) {
+                output = program.execute("1 1");
+                gameGrid = Grid.fromOutput(output, 2);
+                if (gameGrid.getGrid()[2][2] == CellState.EMPTY) {
+                    isEasyNotMovingLikeMedium = true;
+                }
+            } else {
+                output = program.execute("1 3");
+                gameGrid = Grid.fromOutput(output, 2);
+                if (gameGrid.getGrid()[2][0] == CellState.EMPTY) {
+                    isEasyNotMovingLikeMedium = true;
+                }
+            }
+
+            program.stop();
+            return CheckResult.correct();
+        }
+
+        @DynamicTest(order = 5)
+        CheckResult checkEasyNotMovingLikeMediumAfter() {
+            if (!isEasyNotMovingLikeMedium) {
+                return CheckResult.wrong("Looks like your Easy level AI doesn't make a random move!");
+            }
+            return CheckResult.correct();
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/81/stages/448/implement#comment
+status: Solved
+record: 1

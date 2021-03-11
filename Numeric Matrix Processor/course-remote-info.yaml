@@ -1,0 +1,163 @@
+hyperskill_project:
+  id: 60
+  ide_files: https://stepik.org/media/attachments/lesson/210082/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: Thu, 01 Jan 1970 00:00:00 UTC
+stages:
+- id: 323
+  step: 5465
+  is_completed: true
+- id: 324
+  step: 5466
+  is_completed: true
+- id: 325
+  step: 5467
+  is_completed: true
+- id: 326
+  step: 5468
+  is_completed: true
+- id: 327
+  step: 5469
+  is_completed: true
+- id: 328
+  step: 5470
+  is_completed: true
+topics:
+  0:
+  - title: Introduction to matrices
+    theory_id: 7112
+  - title: Types of matrices
+    theory_id: 7285
+  - title: Operations with matrices
+    theory_id: 7296
+  - title: Units of information
+    theory_id: 6865
+  - title: Introduction to Java
+    theory_id: 3500
+  - title: Basic literals
+    theory_id: 3522
+  - title: Overview of the basic program
+    theory_id: 3521
+  - title: Printing data
+    theory_id: 3749
+  - title: Types and variables
+    theory_id: 3518
+  - title: Comments
+    theory_id: 3520
+  - title: Coding style conventions
+    theory_id: 12411
+  - title: Naming variables
+    theory_id: 3513
+  - title: Scanning the input
+    theory_id: 9055
+  - title: Arithmetic operations
+    theory_id: 3519
+  - title: Integer types and operations
+    theory_id: 3565
+  - title: Boolean and logical operations
+    theory_id: 3516
+  - title: Relational operators
+    theory_id: 3512
+  - title: Increment and decrement
+    theory_id: 5008
+  - title: Conditional statement
+    theory_id: 3503
+  - title: Ternary operator
+    theory_id: 3506
+  - title: The for-loop
+    theory_id: 3505
+  - title: The while and do-while loops
+    theory_id: 3498
+  - title: Branching statements
+    theory_id: 3507
+  - title: Sizes and ranges
+    theory_id: 3532
+  - title: Type casting
+    theory_id: 3510
+  - title: Calling a method
+    theory_id: 10973
+  - title: Primitive and reference types
+    theory_id: 5035
+  - title: Array
+    theory_id: 3511
+  - title: Iterating over arrays
+    theory_id: 3602
+  - title: Multidimensional array
+    theory_id: 1933
+  2:
+  - title: Matrix Multiplication
+    theory_id: 7372
+  - title: IDE
+    theory_id: 10996
+  - title: Floating-point types
+    theory_id: 3517
+  - title: Switch statement
+    theory_id: 3504
+  - title: Declaring a method
+    theory_id: 10982
+  - title: Arrays as parameters
+    theory_id: 3594
+  - title: IntelliJ IDEA
+    theory_id: 3801
+  - title: IDEA Basics
+    theory_id: 5819
+  - title: EduTools
+    theory_id: 5839
+  3:
+  - title: Introduction to OOP
+    theory_id: 3614
+  - title: Characters
+    theory_id: 3514
+  - title: Write, compile, and run
+    theory_id: 3739
+  - title: The main method
+    theory_id: 3489
+  - title: Functional decomposition
+    theory_id: 10570
+  - title: String
+    theory_id: 3523
+  - title: Final variables
+    theory_id: 7427
+  - title: Defining classes
+    theory_id: 3618
+  - title: Constructor
+    theory_id: 3535
+  - title: Instance methods
+    theory_id: 3495
+  - title: Package
+    theory_id: 3621
+  - title: Access modifiers
+    theory_id: 3589
+  - title: Getters and setters
+    theory_id: 3599
+  - title: Objects
+    theory_id: 4727
+  - title: Static members
+    theory_id: 3534
+  - title: Initialization blocks
+    theory_id: 3533
+  4:
+  - title: A determinant of a matrix
+    theory_id: 9184
+  - title: Computer algorithms
+    theory_id: 4953
+  - title: Introducing the first algorithm
+    theory_id: 10336
+  - title: The big O notation
+    theory_id: 4991
+  - title: Data structures
+    theory_id: 5161
+  - title: Stack
+    theory_id: 5252
+  - title: Recursion basics
+    theory_id: 5984
+  - title: Call stack
+    theory_id: 5135
+  - title: Recursion
+    theory_id: 3550
+  5:
+  - title: Processing strings
+    theory_id: 3551
+  - title: Math library
+    theory_id: 3501

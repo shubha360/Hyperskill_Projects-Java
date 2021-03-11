@@ -1,0 +1,129 @@
+hyperskill_project:
+  id: 53
+  ide_files: https://stepik.org/media/attachments/lesson/209958/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: Thu, 01 Jan 1970 00:00:00 UTC
+stages:
+- id: 287
+  step: 5429
+  is_completed: true
+- id: 288
+  step: 5430
+  is_completed: true
+- id: 289
+  step: 5431
+  is_completed: true
+- id: 290
+  step: 5432
+  is_completed: true
+- id: 291
+  step: 5433
+  is_completed: true
+- id: 292
+  step: 5434
+  is_completed: true
+- id: 293
+  step: 5435
+  is_completed: true
+topics:
+  0:
+  - title: Units of information
+    theory_id: 6865
+  - title: Introduction to Java
+    theory_id: 3500
+  - title: Basic literals
+    theory_id: 3522
+  - title: Overview of the basic program
+    theory_id: 3521
+  - title: Printing data
+    theory_id: 3749
+  - title: Types and variables
+    theory_id: 3518
+  - title: Comments
+    theory_id: 3520
+  - title: Coding style conventions
+    theory_id: 12411
+  - title: Naming variables
+    theory_id: 3513
+  - title: Scanning the input
+    theory_id: 9055
+  - title: Arithmetic operations
+    theory_id: 3519
+  - title: Integer types and operations
+    theory_id: 3565
+  - title: Increment and decrement
+    theory_id: 5008
+  - title: Characters
+    theory_id: 3514
+  - title: Sizes and ranges
+    theory_id: 3532
+  - title: Type casting
+    theory_id: 3510
+  1:
+  - title: Boolean and logical operations
+    theory_id: 3516
+  - title: Relational operators
+    theory_id: 3512
+  - title: Conditional statement
+    theory_id: 3503
+  - title: Ternary operator
+    theory_id: 3506
+  - title: The for-loop
+    theory_id: 3505
+  - title: The while and do-while loops
+    theory_id: 3498
+  - title: Branching statements
+    theory_id: 3507
+  - title: Calling a method
+    theory_id: 10973
+  - title: Primitive and reference types
+    theory_id: 5035
+  - title: Array
+    theory_id: 3511
+  - title: String
+    theory_id: 3523
+  - title: Processing strings
+    theory_id: 3551
+  2:
+  - title: Introduction to OOP
+    theory_id: 3614
+  - title: Switch statement
+    theory_id: 3504
+  - title: Write, compile, and run
+    theory_id: 3739
+  - title: Declaring a method
+    theory_id: 10982
+  - title: The main method
+    theory_id: 3489
+  - title: Functional decomposition
+    theory_id: 10570
+  - title: StringBuilder
+    theory_id: 3812
+  - title: Defining classes
+    theory_id: 3618
+  - title: Objects
+    theory_id: 4727
+  3:
+  - title: IDE
+    theory_id: 10996
+  - title: IntelliJ IDEA
+    theory_id: 3801
+  4:
+  - title: Floating-point types
+    theory_id: 3517
+  - title: Math library
+    theory_id: 3501
+  - title: Random
+    theory_id: 4910
+  5:
+  - title: Arrays as parameters
+    theory_id: 3594
+  - title: Constructor
+    theory_id: 3535
+  - title: Instance methods
+    theory_id: 3495
+  - title: Package
+    theory_id: 3621
+  - title: Access modifiers
+    theory_id: 3589

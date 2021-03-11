@@ -1,0 +1,56 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Let's add some interactivity to our program. The program should create a 4-digit secret code, and the player should try to guess it on the first try. The program should give a grade to evaluate how accurate the player was.</p>
+
+<p>As you remember, a correctly guessed digit is a cow, and if its position is also correct, then it is a bull. After the player tries to guess the secret code, the program should grade the attempt and finish the execution.</p>
+
+<p>For example, if the secret code is <code class="java">9305</code>, then:</p>
+
+<ol>
+	<li>The number <code class="java">9305</code> contains 4 bulls and 0 cows since all 4 digits are correct and their positions are correct as well. It's the only number that can contain 4 bulls, so it's also the secret code itself.</li>
+	<li>The numbers <code class="java">3059</code>, <code class="java">3590</code>, <code class="java">5930</code>, <code class="java">5039</code> contain 0 bulls and 4 cows since all 4 digits are correct but their positions don't match the positions in the secret code.</li>
+	<li>The numbers <code class="java">9306</code>, <code class="java">9385</code>, <code class="java">9505</code>, <code class="java">1305</code> contain 3 bulls.</li>
+	<li>The numbers <code class="java">9350</code>, <code class="java">9035</code>, <code class="java">5309</code>, <code class="java">3905</code> contain 2 bulls and 2 cows.</li>
+	<li>The numbers <code class="java">1293</code>, <code class="java">5012</code>, <code class="java">3512</code>, <code class="java">5129</code> contain 0 bulls and 2 cows.</li>
+	<li>The numbers <code class="java">1246</code>, <code class="java">7184</code>, <code class="java">4862</code>, <code class="java">2718</code> contain 0 bulls and 0 cows.</li>
+</ol>
+
+<p>Note that guesses can contain repetitive digits, so:</p>
+
+<ol>
+	<li>The number <code class="java">1111</code> contains 0 bulls and 0 cows.</li>
+	<li>The number <code class="java">9999</code> contains 1 bull and 3 cows.</li>
+	<li>The number <code class="java">9955</code> contains 2 bulls and 2 cows.</li>
+</ol>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>In this stage, your goal is to write the core part of the game: the grader.</p>
+
+<ol>
+	<li>Your program should take a 4-digit number as an input.</li>
+	<li>Use a predefined 4-digit code and grade the answer that was input. You can do it digit by digit.</li>
+</ol>
+
+<p>The grade is considered correct if it contains number-and-word pairs (like <code class="java">X bulls and Y cows</code>) that give the correct information. If the answer doesn't contain any bulls and cows, you should output <code class="java">None</code>.</p>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p>The greater-than symbol followed by a space <code class="java">&gt; </code> represents the user input. Note that it's not part of the input.</p>
+
+<p><strong>Example 1</strong></p>
+
+<pre><code class="language-no-highlight">&gt; 1234
+Grade: 1 cow(s). The secret code is 9305.
+</code></pre>
+
+<p><strong>Example 2</strong></p>
+
+<pre><code class="language-no-highlight">&gt; 9087
+Grade: 1 bull(s) and 1 cow(s). The secret code is 9305.
+</code></pre>
+
+<p><strong>Example 3</strong></p>
+
+<pre><code class="language-no-highlight">&gt; 1267
+Grade: None. The secret code is 9305.</code></pre>

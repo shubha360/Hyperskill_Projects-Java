@@ -1,0 +1,11 @@
+type: hyperskill
+title: Bulls and Cows
+language: English
+summary: Write your own advanced version of the classic code breaking game "Bulls
+  and Cows". Start with recreating the original version of the game and then take
+  it to a new level.<br/><br/>Learn more at <a href="https://hyperskill.org">https://hyperskill.org/projects/53</a>
+programming_language: Java
+programming_language_version: 11
+content:
+- Bulls and Cows
+mode: Study

@@ -1,0 +1,67 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>While learning new things, we may mix things up and use the right definition for the wrong term. Let's inform our players if they enter the definition that is wrong for the requested flashcard but correct for another flashcard in our set.</p>
+
+<p>Also, it might be very confusing if our flashcard set contains cards with the same term or definition, since seeing only one side of the card we can't tell them apart. Let's add a constraint: the user must add only unique terms and definitions. To do this, you need to find a way to check whether the set contains a particular term or definition and get the term by the definition, and vice versa.</p>
+
+<p>These two features will definitely improve our game!</p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>Modify your program to behave the following way:</p>
+
+<ul>
+	<li>When the user tries to add a duplicate term, forbid it and output the message <code class="java">The term <em>"term"</em> already exists. Try again:</code> using the term instead of <em><code class="java">"term"</code></em>. Ask for the term until the user inputs a unique term.</li>
+	<li>When the user tries to add a duplicate definition, forbid it and Output the message <code class="java">The definition <em>"definition"</em> already exists. Try again:</code> with the definition instead of <em><code class="java">"definition"</code></em>. Ask the player to input the definition until the user inputs a unique one.</li>
+	<li>When the user enters the wrong definition for the requested term, but this definition is correct for another term, print the appropriate message <code class="java">Wrong. The right answer is <em>"correct answer"</em>, but your definition is correct for <em>"term for user's answer"</em>.</code> , where <em><code class="java">"correct answer"</code></em> is the actual definition for the requested term, and <em><code class="java">"term for user's answer"</code></em> is the appropriate term for the user-entered definition.</li>
+</ul>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p>The symbol <code class="java">&gt; </code> represents the user input. Note that it's not part of the input.</p>
+
+<p><strong>Example 1: </strong><em>the user tries to add duplicated term and definition</em></p>
+
+<pre><code class="language-no-highlight">Input the number of cards:
+&gt; 2
+Card #1:
+&gt; print()
+The definition for card #1:
+&gt; outputs text
+Card #2:
+&gt; print()
+The term "print()" already exists. Try again:
+&gt; str()
+The definition for card #2:
+&gt; outputs text
+The definition "outputs text" already exists. Try again:
+&gt; converts to a string
+Print the definition of "print()":
+&gt; outputs text
+Correct!
+Print the definition of "str()":
+&gt; converts to a string
+Correct!
+</code></pre>
+
+<p><strong>Example 2: </strong><em>the user gives a correct definition for a term that exists, but which is not the term that the program is asking about</em></p>
+
+<pre><code class="language-no-highlight">Input the number of cards:
+&gt; 2
+Card #1:
+&gt; uncle
+The definition for card #1:
+&gt; a brother of one's parent
+Card #2:
+&gt; ankle
+The definition for card #2:
+&gt; a part of the body where the foot and the leg meet
+Print the definition of "uncle":
+&gt; a part of the body where the foot and the leg meet
+Wrong. The right answer is "a brother of one's parent", but your definition is correct for "ankle".
+Print the definition of "ankle":
+&gt; ???
+Wrong. The right answer is "a part of the body where the foot and the leg meet".
+</code></pre>
+
+<p><em>Note that all your outputs and user inputs should be on separate lines.</em></p>

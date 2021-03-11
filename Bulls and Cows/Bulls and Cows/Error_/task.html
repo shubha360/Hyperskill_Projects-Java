@@ -1,0 +1,61 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>There are a lot of error possibilities. What if someone enters an answer of the wrong length? Or the number of possible symbols is less than the length of the code? What if the answer contains invalid symbols? The game may crash before the secret number was guessed!</p>
+
+<p>Let's handle errors like this. At this point, you can implement this without the <code class="java">try catch</code> construction. Use the following rule of thumb: if you can avoid the exception-based logic, avoid it! If you use exceptions in normal situations, how would you deal with unusual (exceptional) situations? Now it may not seem that important, but when you need to find errors in more complex programs, this makes a difference.</p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>In this stage, your program should:</p>
+
+<ol>
+	<li>Handle incorrect input.</li>
+	<li>Print an error message that contains the word <code class="java">error</code>. After that, don't ask for the numbers again, just finish the program.</li>
+</ol>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p>The greater-than symbol followed by a space <code class="java">&gt; </code> represents the user input. Note that it's not part of the input.</p>
+
+<p><strong>Example 1</strong></p>
+
+<pre><code class="language-no-highlight">Input the length of the secret code:
+&gt; 6
+Input the number of possible symbols in the code:
+&gt; 5
+Error: it's not possible to generate a code with a length of 6 with 5 unique symbols.</code></pre>
+
+<p><strong>Example 2</strong></p>
+
+<pre><code class="language-no-highlight">Input the length of the secret code:
+&gt; abc 0 -7
+Error: "abc 0 -7" isn't a valid number.
+</code></pre>
+
+<p><strong>Example 3</strong></p>
+
+<pre><code class="language-no-highlight">Input the length of the secret code:
+&gt; 6
+Input the number of possible symbols in the code:
+&gt; 37
+Error: maximum number of possible symbols in the code is 36 (0-9, a-z).
+</code></pre>
+
+<p><strong>Example 4</strong></p>
+
+<pre><code class="language-no-highlight">Input the length of the secret code:
+&gt; 4
+Input the number of possible symbols in the code:
+&gt; 12
+The secret is prepared: **** (0-9, a-b).
+Okay, let's start a game!
+Turn 1:
+&gt; a234
+Grade: 1 bull and 1 cow
+Turn 2:
+&gt; 73b4
+Grade: 2 bulls and 1 cow
+Turn 3:
+&gt; 9374
+Grage: 4 bulls
+Congratulations! You guessed the secret code.</code></pre>

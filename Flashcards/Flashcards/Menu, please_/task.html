@@ -1,0 +1,176 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Our users cannot create new flashcards all the time. It seems like a good idea to keep old but useful cards in storage so we can use them later. Let's try to do that!</p>
+
+<p>In this stage, you will improve the application's interactivity by having it ask the user for an action and perform it. Also, it will provide additional functionality allowing the user to store flashcards in files for future use.</p>
+
+<p>The program should support the following actions:</p>
+
+<ul>
+	<li>add a card: <code class="java">add</code></li>
+	<li>remove a card: <code class="java">remove</code></li>
+	<li>load cards from file: <code class="java">import</code></li>
+	<li>save cards to file: <code class="java">export</code></li>
+	<li>ask for definitions of some random cards: <code class="java">ask</code></li>
+	<li>exit the program: <code class="java">exit</code></li>
+</ul>
+
+<p>You can use any format of separating to store cards in a file; tests do not check the content of the file, but they do check that all the saved flashcards are loaded correctly.</p>
+
+<p>When you load flashcards from a file, you shouldn't erase the cards that aren't in the file. If the imported flashcard already exists, update its definition in the program memory. There won't be any conflict with definitions in the tests.</p>
+
+<p> </p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>Print the message <code class="java">Input the action (add, remove, import, export, ask, exit):</code> each time the user is prompted for their next action. The action is read from the next line, processed, and the message is output again until the user decides to exit the program.</p>
+
+<p>The program's behavior depends on the action the user inputs:</p>
+
+<ul>
+	<li><code class="java">add</code> — create a new flashcard with a unique term and definition. After adding the card, output the message <code class="java">The pair ("term":"definition") has been added</code>, where <code class="java">"term"</code> is the term entered by the user and <code class="java">"definition"</code> is the definition entered by the user.</li>
+	<li><code class="java">remove</code> — ask the user for the term of the card they want to remove with the message <code class="java">Which card?</code>, and read the user's input from the next line. If a matching flashcard exists, remove it from the set and output the message <code class="java">The card has been removed.</code>. If there is no such flashcard in the set, output the message <code class="java">Can't remove "<em>card</em>": there is no such card.</code>, where <code class="java">"<em>card</em>"</code> is the user's input.</li>
+	<li><code class="java">import</code> — print the line <code class="java">File name:</code>, read the user's input from the next line, which is the file name, and import all the flashcards written to this file. If there is no file with such name, print the message <code class="java">File not found.</code>. After importing the cards, print the message <code class="java">n cards have been loaded.</code>, where <code class="java">n</code> is the number of cards in the file. The imported cards should be added to the ones that already exist in the memory of the program. However, the imported cards have priority: if you import a card with the name that already exists in the memory, the card from the file should overwrite the one in memory.</li>
+	<li><code class="java">export</code> — request the file name with the line <code class="java">File name:</code> and write all currently available flashcards into this file. Print the message <code class="java">n cards have been saved.</code>, where <code class="java">n</code> is the number of cards exported to the file.</li>
+	<li><code class="java">ask</code> — ask the user about the number of cards they want to be asked about and then prompt them for definitions, like in the previous stage.</li>
+	<li><code class="java">exit</code> — print <code class="java">Bye bye!</code> and finish the program.</li>
+</ul>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p>The symbol <code class="java">&gt; </code> represents the user input. Note that it's not part of the input.</p>
+
+<p><strong>Example 1: </strong><em>the user removes an existing card and tries to remove a non-existent one</em></p>
+
+<pre><code class="language-no-highlight">Input the action (add, remove, import, export, ask, exit):
+&gt; add
+The card:
+&gt; France
+The definition of the card:
+&gt; Paris
+The pair ("France":"Paris") has been added.
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; add
+The card:
+&gt; France
+The card "France" already exists.
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; add
+The card:
+&gt; Great Britain
+The definition of the card:
+&gt; Paris
+The definition "Paris" already exists.
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; remove
+Which card?
+&gt; France
+The card has been removed.
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; remove
+Which card?
+&gt; Wakanda
+Can't remove "Wakanda": there is no such card.
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; exit
+Bye bye!</code></pre>
+
+<p><strong>Example 2: </strong><em>the user uses files to import and export their flashcards; definitions of existing cards are updated after import</em></p>
+
+<pre><code class="language-no-highlight">Input the action (add, remove, import, export, ask, exit):
+&gt; import
+File name:
+&gt; ghost_file.txt
+File not found.
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; add
+The card:
+&gt; Japan
+The definition of the card:
+&gt; Tokyo
+The pair ("Japan":"Tokyo") has been added.
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; add
+The card:
+&gt; Russia
+The definition of the card:
+&gt; UpdateMeFromFile
+The pair ("Russia":"UpdateMeFromFile") has been added.
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; import
+File name:
+&gt; capitals.txt
+28 cards have been loaded.
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; ask
+How many times to ask?
+&gt; 1
+Print the definition of "Russia":
+&gt; Moscow
+Correct!
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; export
+File name:
+&gt; capitalsNew.txt
+29 cards have been saved.
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; exit
+Bye bye!</code></pre>
+
+<p><strong>Example 3: </strong><em>the program asks for definitions several times</em></p>
+
+<pre><code class="language-no-highlight">Input the action (add, remove, import, export, ask, exit):
+&gt; add
+The card:
+&gt; a brother of one's parent
+The definition of the card:
+&gt; uncle
+The pair ("a brother of one's parent":"uncle") has been added.
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; add
+The card:
+&gt; a part of the body where the foot and the leg meet
+The definition of the card:
+&gt; ankle
+The pair ("a part of the body where the foot and the leg meet":"ankle") has been added.
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; ask
+How many times to ask?
+&gt; 6
+Print the definition of "a brother of one's parent":
+&gt; ankle
+Wrong. The right answer is "uncle", but your definition is correct for "a part of the body where the foot and the leg meet".
+Print the definition of "a part of the body where the foot and the leg meet":
+&gt; ??
+Wrong. The right answer is "ankle".
+Print the definition of "a brother of one's parent":
+&gt; uncle
+Correct!
+Print the definition of "a part of the body where the foot and the leg meet":
+&gt; ankle
+Correct!
+Print the definition of "a brother of one's parent":
+&gt; ??
+Wrong. The right answer is "uncle".
+Print the definition of "a part of the body where the foot and the leg meet":
+&gt; uncle
+Wrong. The right answer is "ankle", but your definition is correct for "a brother of one's parent".
+
+Input the action (add, remove, import, export, ask, exit):
+&gt; exit
+Bye bye!</code></pre>
+
+<p><em>Note that all your outputs and user inputs should be on separate lines.</em></p>

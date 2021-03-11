@@ -1,0 +1,9 @@
+type: framework
+content:
+- Making coffee
+- Ingredient calculator
+- Estimate the number of servings
+- Buy, fill, take_
+- Keep track of the supplies
+- Brush up your code
+current_task: 5

@@ -1,0 +1,55 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Code from the previous stage works but is ineffective because every byte contains only 3 significant bits. All the rest is just an overhead to reliably send the message.</p>
+
+<p>In this stage, we will use a more efficient code, the <strong>Hamming code</strong>. In this code, every byte contains 4 significant bits, and the other 4 bits are used as an overhead (well, only 3 of them are used as an overhead, the last one just isn't used).</p>
+
+<p>To better understand how this code works, watch <a target="_blank" href="https://www.youtube.com/watch?v=373FUw-2U2k" rel="nofollow noopener noreferrer">this</a> video.</p>
+
+<p>We will use the Hamming code [7,4], i.e. will write 7 bits, 4 of them would be significant bits, 3 of them would be parity bits and the last one would be unused (it should always be set to zero). Note that the video showed the Hamming code [12, 8] with 12 bits which contain 8 significant bits. You should use a smaller version of the Hamming code (just throw away from 9th to 12th bit from the video).</p>
+
+<p>What should you do if the error occurs twice within a single byte? In our program, it won't happen since you simulate a single error in each byte. However, in real life, it definitely can happen. In telecommunications, all messages are split into packages. If errors in the package can't be corrected then this package should be retransmitted.</p>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Notice that it's not part of the input.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<pre><code class="language-no-highlight">Write a mode: &gt; encode
+
+send.txt:
+text view: Test
+hex view: 54 65 73 74
+bin view: 01010100 01100101 01110011 01110100
+
+encoded.txt:
+expand: ..0.101. ..0.100. ..0.110. ..0.101. ..0.111. ..0.011. ..0.111. ..0.100.
+parity: 01001010 10011000 11001100 01001010 00011110 10000110 00011110 10011000
+hex view: 4A 98 CC 4A 1E 86 1E 98</code></pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><code class="language-no-highlight">Write a mode: &gt; send
+
+encoded.txt:
+hex view: 4A 98 CC 4A 1E 86 1E 98
+bin view: 01001010 10011000 11001100 01001010 00011110 10000110 00011110 10011000
+
+received.txt:
+bin view: 01011010 10001000 10001100 01001110 00010110 10100110 00111110 10010000
+hex view: 5A 88 8C 4E 16 A6 3E 90</code></pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre><code class="language-no-highlight">Write a mode: &gt; decode
+
+received.txt:
+hex view: 5A 88 8C 4E 16 A6 3E 90
+bin view: 01011010 10001000 10001100 01001110 00010110 10100110 00111110 10010000
+
+decoded.txt:
+correct: 01001010 10011000 11001100 01001010 00011110 10000110 00011110 10011000
+decode: 01010100 01100101 01110011 01110100
+hex view: 54 65 73 74
+text view: Test</code></pre>

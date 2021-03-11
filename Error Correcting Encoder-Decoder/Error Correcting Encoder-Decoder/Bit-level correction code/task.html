@@ -1,0 +1,64 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>For errors like on the previous stage, simple code from stage 2 doesn't work, because all of 3 symbols will be with errors. Also, we can't write triples of bits like symbols in stage 2, because some triples will be in different bytes. Because of this, 1 triple of bits can contain 2 errors and this triple can't be corrected.</p>
+
+<p>For this reason, we need another correcting code. We will write every bit twice, in every byte 2 last bits will be bits of parity. The parity bit is the sum of the data bits modulo 2. In that way, we write 3 input data bits in one byte.</p>
+
+<p><strong><img alt="" height="202" src="https://ucarecdn.com/1145818f-8a0b-4813-afba-0dee9124eb8f/" width="810"></strong></p>
+
+<p>For decoding, we find a pair with error (where the two bits that are supposed to be similar are, in fact, different after receiving the byte). If the error inside data pairs (first 3 pairs) then you can calculate the real bit which was there before sending using the scheme below. If an error inside a parity bits you should do nothing since data bits are correct.</p>
+
+<p><strong><img alt="" height="160" src="https://ucarecdn.com/99b748e1-5c6f-44cc-9fdc-b2de36d32939/" width="680"></strong></p>
+
+<p>The program in this stage should work in 3 modes: <strong>encode</strong>, <strong>send</strong> and <strong>decode</strong>.<br>
+<br>
+If the mode is <strong>encode</strong> then you need to take the text from <code class="java">send.txt</code>, convert it to ready-to-send form (where you have three significant bits per byte) and save the resulted bytes into the file named <code class="java">encoded.txt</code>.</p>
+
+<p>If the mode is <strong>send</strong>, you should take the file from <code class="java">encoded.txt</code> and simulate the errors in its bytes (1 bit per byte) and save the resulted bytes into the file named <code class="java">received.txt</code>.</p>
+
+<p>If the mode is <strong>decode</strong>, you should take the file from <code class="java">received.txt</code> and decode it to the normal text. Save the text into the file named <code class="java">decoded.txt</code>.</p>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Notice that it's not part of the input.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<pre><code class="language-no-highlight">Write a mode: &gt; encode
+
+send.txt:
+text view: Test
+hex view: 54 65 73 74
+bin view: 01010100 01100101 01110011 01110100
+
+encoded.txt:
+expand: 001100.. 110011.. 000000.. 111100.. 001100.. 110011.. 111100.. 001111.. 001111.. 110011.. 0000....
+parity: 00110011 11001100 00000000 11110000 00110011 11001100 11110000 00111100 00111100 11001100 00000000
+hex view: 33 CC 00 F0 33 CC F0 3C 3C CC 00</code></pre>
+
+<p><strong>Example 2: </strong></p>
+
+<pre><code class="language-no-highlight">Write a mode: &gt; send
+
+encoded.txt:
+hex view: 33 CC 00 F0 33 CC F0 3C 3C CC 00
+bin view: 00110011 11001100 00000000 11110000 00110011 11001100 11110000 00111100 00111100 11001100 00000000
+
+received.txt:
+bin view: 10110011 11011100 00100000 11010000 00110010 11011100 10110000 01111100 00110100 10001100 00010000
+hex view: B3 DC 20 D0 32 DC B0 7C 34 8C 10</code></pre>
+
+<p><strong>Example 3: </strong></p>
+
+<pre><code class="language-no-highlight">Write a mode: &gt; decode
+
+received.txt:
+hex view: B3 DC 20 D0 32 DC B0 7C 34 8C 10
+bin view: 10110011 11011100 00100000 11010000 00110010 11011100 10110000 01111100 00110100 10001100 00010000
+
+decoded.txt:
+correct: 00110011 11001100 00000000 11110000 00110011 11001100 11110000 00111100 00111100 11001100 00000000
+decode: 01010100 01100101 01110011 01110100 0
+remove: 01010100 01100101 01110011 01110100
+hex view: 54 65 73 74
+text view: Test</code></pre>

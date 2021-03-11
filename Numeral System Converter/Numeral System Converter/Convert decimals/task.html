@@ -1,0 +1,48 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Now let's implement a simple converter. It will convert the given decimal number to the given <a target="_blank" href="https://en.wikipedia.org/wiki/Radix" rel="nofollow noopener noreferrer">radix</a>. You should support three radices with prefixes:</p>
+
+<ul>
+	<li>binary (<code class="java">0b</code>);</li>
+	<li>octal (<code class="java">0</code>);</li>
+	<li>hexadecimal (<code class="java">0x</code>).</li>
+</ul>
+
+<p>To get a string with the answer, use the <code class="java">Long.toString(sourceNumber, destinationRadix)</code> expression. Note that the expected output is a String, because Java implicitly converts 0/0b/0x concatenated numbers to their decimal representation.</p>
+
+<p>This stage is auto-graded. The grader will <strong>input two lines</strong> (a number and a radix) and check that <strong>your output</strong> is the correct number representation in the given radix. Don't forget about the prefix!</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p><strong>Example 1:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">8
+16</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">0x8</code></pre>
+
+<p><strong>Example 2:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">101
+2</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">0b1100101</code></pre>
+
+<p><strong>Example 3:</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">103
+8</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="language-no-highlight">0147</code></pre>

@@ -1,0 +1,75 @@
+type: edu
+custom_name: What’s on the card?
+files:
+- name: src/flashcards/Main.java
+  visible: true
+  text: |
+    package flashcards;
+
+    public class Main {
+        public static void main(String[] args) {
+            System.out.println("Card:");
+            System.out.println("Front");
+            System.out.println("Definition:");
+            System.out.println("Back");
+        }
+    }
+  learner_created: false
+- name: test/FlashcardsTest.java
+  visible: false
+  text: "import org.hyperskill.hstest.dynamic.input.DynamicTestingMethod;\nimport\
+    \ org.hyperskill.hstest.stage.StageTest;\nimport org.hyperskill.hstest.testcase.CheckResult;\n\
+    import org.hyperskill.hstest.testcase.TestCase;\nimport org.hyperskill.hstest.testing.TestedProgram;\n\
+    \n\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class FlashcardsTest\
+    \ extends StageTest<String> {\n    \n    //Test 1, in this case the user gets\
+    \ the correct definition, same as test 2\n    @DynamicTestingMethod\n    CheckResult\
+    \ test1() {\n        TestedProgram main = new TestedProgram();\n        String\
+    \ output;\n        \n        main.start();\n        \n        if (main.isFinished())\
+    \ {\n            return CheckResult.wrong(\"Your program should wait for user\
+    \ input\");\n        }\n        \n        main.execute(\"print()\");\n       \
+    \ main.execute(\"outputs text\");\n        output = main.execute(\"outputs text\"\
+    ).toLowerCase();\n        \n        if (output.equals(\"\") || output.matches(\"\
+    \\\\s+\")) {\n            return CheckResult.wrong(\"Your program does not provide\
+    \ feedback to the user\");\n        }\n        \n        if (!output.contains(\"\
+    right\")) {\n            return CheckResult.wrong(\"Your output should contain\
+    \ the word \\\"right\\\" if the user gets the definition\");\n        }\n    \
+    \    \n        return CheckResult.correct();\n        \n    }\n    \n    @DynamicTestingMethod\n\
+    \    CheckResult test2() {\n        TestedProgram main = new TestedProgram();\n\
+    \        String output;\n        \n        main.start();\n    \n        if (main.isFinished())\
+    \ {\n            return CheckResult.wrong(\"Your program should wait for user\
+    \ input\");\n        }\n        \n        main.execute(\"Dog\");\n        main.execute(\"\
+    A barking animal\");\n        output = main.execute(\"A barking animal\").toLowerCase();\n\
+    \        \n        if (output.equals(\"\") || output.matches(\"\\\\s+\")) {\n\
+    \            return CheckResult.wrong(\"Your program does not provide feedback\
+    \ to the user\");\n        }\n        \n        if (!output.contains(\"right\"\
+    )) {\n            return CheckResult.wrong(\"Your output should contain the word\
+    \ \\\"right\\\" if the user gets the definition\");\n        }\n        \n   \
+    \     return CheckResult.correct();\n        \n    }\n    //Test 3, in this case\
+    \ the user fails the definition, same as test 4\n    @DynamicTestingMethod\n \
+    \   CheckResult test3() {\n        TestedProgram main = new TestedProgram();\n\
+    \        String output;\n        \n        main.start();\n    \n        if (main.isFinished())\
+    \ {\n            return CheckResult.wrong(\"Your program should wait for user\
+    \ input\");\n        }\n        \n        main.execute(\"Jetbrains\");\n     \
+    \   main.execute(\"A place for people who love to code\");\n        output = main.execute(\"\
+    A place for people who hate to code\").toLowerCase();\n    \n        if (output.equals(\"\
+    \") || output.matches(\"\\\\s+\")) {\n            return CheckResult.wrong(\"\
+    Your program does not provide feedback to the user\");\n        }\n        \n\
+    \        if (!output.contains(\"wrong\")) {\n            return CheckResult.wrong(\"\
+    Your output should contain the word \\\"wrong\\\" if the user fails the definition\"\
+    );\n        }\n        \n        return CheckResult.correct();\n        \n   \
+    \ }\n    \n    @DynamicTestingMethod\n    CheckResult test4() {\n        TestedProgram\
+    \ main = new TestedProgram();\n        String output;\n        \n        main.start();\n\
+    \    \n        if (main.isFinished()) {\n            return CheckResult.wrong(\"\
+    Your program should wait for user input\");\n        }\n        \n        main.execute(\"\
+    Cat\");\n        main.execute(\"A barking animal\");\n        output = main.execute(\"\
+    A purring animal\").toLowerCase();\n        \n        if (output.equals(\"\")\
+    \ || output.matches(\"\\\\s+\")) {\n            return CheckResult.wrong(\"Your\
+    \ program does not provide feedback to the user\");\n        }\n        \n   \
+    \     if (!output.contains(\"wrong\")) {\n            return CheckResult.wrong(\"\
+    Your output should contain the word \\\"wrong\\\" if the user fails the definition\"\
+    );\n        }\n        \n        return CheckResult.correct();\n        \n   \
+    \ }\n    \n}\n"
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/44/stages/233/implement#comment
+status: Solved
+record: 1

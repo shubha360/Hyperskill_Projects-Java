@@ -1,0 +1,27 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>The algorithm suggested for generating the secret code in the previous stage was honestly a “reinvention of the wheel”. Java already has the tools for generating random numbers! Research some common pseudo-random generation methods such as <code class="java">Math.random()</code> and <code class="java">Random</code> class. Choose the method you like and use it to rewrite the secret code generation.</p>
+
+<p>Nothing else is supposed to change at this stage: the program asks for the length, generates a secret code, and then receives and grades the attempts until the code is guessed. Your task here is to rewrite the code generator without breaking the existing code.</p>
+
+<h2 style="text-align: center;">Objective</h2>
+
+<p>In this stage, rewrite the secret code generator using a suitable Java method.</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>The greater-than symbol followed by a space <code class="java">&gt; </code> represents the user input. Note that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">Please, enter the secret code's length:
+&gt; 4
+Okay, let's start a game!
+Turn 1:
+&gt; 1234
+Grade: 1 bull and 1 cow
+Turn 2:
+&gt; 7354
+Grade: 2 bulls and 1 cow
+Turn 3:
+&gt; 9374
+Grade: 4 bulls
+Congratulations! You guessed the secret code.</code></pre>

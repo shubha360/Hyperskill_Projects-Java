@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Numeric_Matrix_Processor.iml" filepath="$PROJECT_DIR$/.idea/modules/Numeric_Matrix_Processor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Numeric Matrix Processor/task/Numeric_Matrix_Processor.Numeric_Matrix_Processor-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Numeric Matrix Processor/task/Numeric_Matrix_Processor.Numeric_Matrix_Processor-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Numeric Matrix Processor/task/Numeric_Matrix_Processor.Numeric_Matrix_Processor-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Numeric Matrix Processor/task/Numeric_Matrix_Processor.Numeric_Matrix_Processor-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Numeric Matrix Processor/task/Numeric_Matrix_Processor.Numeric_Matrix_Processor-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Numeric Matrix Processor/task/Numeric_Matrix_Processor.Numeric_Matrix_Processor-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Numeric_Matrix_Processor.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Numeric_Matrix_Processor.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Numeric_Matrix_Processor.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Numeric_Matrix_Processor.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Numeric_Matrix_Processor.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Numeric_Matrix_Processor.util.test.iml" />
+    </modules>
+  </component>
+</project>

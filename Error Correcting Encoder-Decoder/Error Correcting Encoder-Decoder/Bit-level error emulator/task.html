@@ -1,0 +1,41 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>In real telecommunication, errors occur on a bit level, that's why we should learn how to deal with them. Now, instead of doing one error every three bytes, the program on this stage should make an error in one bit per byte. So, every byte would be corrupted, but in a small way.</p>
+
+<p>For example, let's take the symbol <code class="java">'A'</code>. In binary, it would be <code class="java">01000001</code>. If we make an error in a single bit, it would look something like <code class="java">01010001</code> or <code class="java">00000001</code> or <code class="java">11000001</code>, making it a completely different symbol, but in binary very close to the symbol <code class="java">'A'</code>. By the way, you can see all binary and hexadecimal representations of the standard symbols <a target="_blank" href="https://www.ascii-code.com" rel="nofollow noopener noreferrer">here</a>.</p>
+
+<p>In this stage, you should write a program that reads the text the user wants to send from the <code class="java">send.txt</code>, and simulate the sending through a poor internet connection making one-bit errors in every byte of the text. Notice that this text is no longer a string since after manipulations in every byte it may happen to be that some bytes didn't correspond to a specific character in the table because Java does not use ASCII table representation in their String implementation. Java uses UNICODE that happens to match with ASCII in the first 128 symbols, but no further. The String class is too complicated for low-level manipulations so you should use bytes or chars instead.</p>
+
+<p>The received message which contains an error in a single bit in every byte should be saved into <code class="java">received.txt</code>.</p>
+
+<p>Also to work with this file in a hex format, you need a <a target="_blank" href="https://plugins.jetbrains.com/plugin/9339-deltahex-editor" rel="nofollow noopener noreferrer">DeltaHex Editor</a>. It's a plugin for IntelliJ IDEA.</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>Suppose your <code class="java">send.txt</code> looks like this:</p>
+
+<pre><code class="language-no-highlight">Simple text.</code></pre>
+
+<p>In hex it should look like this:</p>
+
+<pre><code class="language-no-highlight">53 69 6D 70 6C 65 20 74 65 78 74 2E</code></pre>
+
+<p>Which will look like this in binary:</p>
+
+<pre><code class="language-no-highlight">01010011 01101001 01101101 01110000 
+01101100 01100101 00100000 01110100 
+01100101 01111000 01110100 00101110</code></pre>
+
+<p>After receiving, the file <code class="java">received.txt</code> looks something like this in hex:</p>
+
+<pre><code class="language-no-highlight">73 29 69 72 6E 61 A0 64 75 68 76 AE</code></pre>
+
+<p>Which will look something like this in binary (you can see a one-bit difference in each byte):</p>
+
+<pre><code class="language-no-highlight">01110011 00101001 01101001 01110010 
+01101110 01100001 10100000 01100100 
+01110101 01101000 01110110 10101110</code></pre>
+
+<p>Which will look like this in a non-hex viewer:</p>
+
+<pre><code class="java">s)irna duhv®</code></pre>

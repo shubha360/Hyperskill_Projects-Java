@@ -1,0 +1,170 @@
+hyperskill_project:
+  id: 81
+  ide_files: https://stepik.org/media/attachments/lesson/262721/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: Thu, 01 Jan 1970 00:00:00 UTC
+stages:
+- id: 447
+  step: 7434
+  is_completed: true
+- id: 448
+  step: 7435
+  is_completed: true
+- id: 449
+  step: 7436
+  is_completed: true
+- id: 450
+  step: 7437
+  is_completed: true
+- id: 451
+  step: 7438
+  is_completed: true
+topics:
+  0:
+  - title: Units of information
+    theory_id: 6865
+  - title: Introduction to Java
+    theory_id: 3500
+  - title: Basic literals
+    theory_id: 3522
+  - title: Overview of the basic program
+    theory_id: 3521
+  - title: Printing data
+    theory_id: 3749
+  - title: Types and variables
+    theory_id: 3518
+  - title: Comments
+    theory_id: 3520
+  - title: Coding style conventions
+    theory_id: 12411
+  - title: Naming variables
+    theory_id: 3513
+  - title: Scanning the input
+    theory_id: 9055
+  - title: Arithmetic operations
+    theory_id: 3519
+  - title: Integer types and operations
+    theory_id: 3565
+  - title: Boolean and logical operations
+    theory_id: 3516
+  - title: Relational operators
+    theory_id: 3512
+  - title: Increment and decrement
+    theory_id: 5008
+  - title: Characters
+    theory_id: 3514
+  - title: Conditional statement
+    theory_id: 3503
+  - title: Ternary operator
+    theory_id: 3506
+  - title: The for-loop
+    theory_id: 3505
+  - title: The while and do-while loops
+    theory_id: 3498
+  - title: Branching statements
+    theory_id: 3507
+  - title: Switch statement
+    theory_id: 3504
+  - title: Write, compile, and run
+    theory_id: 3739
+  - title: Errors in programs
+    theory_id: 3536
+  - title: Sizes and ranges
+    theory_id: 3532
+  - title: Type casting
+    theory_id: 3510
+  - title: Calling a method
+    theory_id: 10973
+  - title: Primitive and reference types
+    theory_id: 5035
+  - title: Array
+    theory_id: 3511
+  - title: Iterating over arrays
+    theory_id: 3602
+  - title: Multidimensional array
+    theory_id: 1933
+  - title: String
+    theory_id: 3523
+  1:
+  - title: IDE
+    theory_id: 10996
+  - title: Introduction to OOP
+    theory_id: 3614
+  - title: Declaring a method
+    theory_id: 10982
+  - title: The main method
+    theory_id: 3489
+  - title: Functional decomposition
+    theory_id: 10570
+  - title: IntelliJ IDEA
+    theory_id: 3801
+  - title: IDEA Basics
+    theory_id: 5819
+  - title: EduTools
+    theory_id: 5839
+  - title: Random
+    theory_id: 4910
+  - title: Defining classes
+    theory_id: 3618
+  - title: Objects
+    theory_id: 4727
+  2:
+  - title: Arrays as parameters
+    theory_id: 3594
+  - title: Constructor
+    theory_id: 3535
+  - title: Instance methods
+    theory_id: 3495
+  - title: Package
+    theory_id: 3621
+  - title: Access modifiers
+    theory_id: 3589
+  - title: Getters and setters
+    theory_id: 3599
+  3:
+  - title: Overloading
+    theory_id: 3525
+  - title: Final variables
+    theory_id: 7427
+  - title: Multiple constructors
+    theory_id: 3538
+  - title: Inheritance
+    theory_id: 3583
+  - title: The keyword super
+    theory_id: 3588
+  - title: Annotations basics
+    theory_id: 3622
+  - title: Static members
+    theory_id: 3534
+  - title: Hiding and overriding
+    theory_id: 3572
+  - title: Covariant return types
+    theory_id: 3539
+  4:
+  - title: Computer algorithms
+    theory_id: 4953
+  - title: Introducing the first algorithm
+    theory_id: 10336
+  - title: The big O notation
+    theory_id: 4991
+  - title: Data structures
+    theory_id: 5161
+  - title: Stack
+    theory_id: 5252
+  - title: Recursion basics
+    theory_id: 5984
+  - title: Call stack
+    theory_id: 5135
+  - title: Recursion
+    theory_id: 3550
+  - title: Protected modifier
+    theory_id: 6692
+  - title: Referencing subclass objects
+    theory_id: 3585
+  - title: Polymorphism
+    theory_id: 3587
+  - title: Abstract class
+    theory_id: 3597
+  - title: Interface
+    theory_id: 3615

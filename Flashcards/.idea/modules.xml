@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Flashcards.iml" filepath="$PROJECT_DIR$/.idea/modules/Flashcards.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Flashcards/task/Flashcards.Flashcards-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Flashcards/task/Flashcards.Flashcards-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Flashcards/task/Flashcards.Flashcards-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Flashcards/task/Flashcards.Flashcards-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Flashcards/task/Flashcards.Flashcards-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Flashcards/task/Flashcards.Flashcards-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/The third row/Flashcards.Problems-The_third_row.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/The third row/Flashcards.Problems-The_third_row.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/The third row/Flashcards.Problems-The_third_row.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/The third row/Flashcards.Problems-The_third_row.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/The third row/Flashcards.Problems-The_third_row.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/The third row/Flashcards.Problems-The_third_row.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Flashcards.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Flashcards.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Flashcards.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Flashcards.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Flashcards.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Flashcards.util.test.iml" />
+    </modules>
+  </component>
+</project>

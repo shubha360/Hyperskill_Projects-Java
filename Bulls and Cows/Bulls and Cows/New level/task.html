@@ -1,0 +1,37 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Some players need a challenge, so let's make the secret code in the game harder to guess. Add support for more than 10 symbols by adding letters. Now, the secret code can contain numbers <code class="java">0-9</code> and lowercase Latin characters <code class="java">a-z</code>. The new maximum length for the code is 36. Note that the length of the secret word may not match the size of possible characters in the secret code, so you should make two separate inputs for the secret code length and for the size of possible characters.</p>
+
+<p>Also, since a secret code is not a number anymore, the symbol <code class="java">0</code> should be allowed as the first character in a secret code.</p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>In this step, your program should:</p>
+
+<ol>
+	<li>Ask for the length of the secret code.</li>
+	<li>Ask for the range of possible characters in the secret code.</li>
+	<li>Generate a secret code using numbers and characters. This time, you should also print the secret code using <code class="java">*</code> characters and print which characters were used to generate the secret code.</li>
+	<li>Function as a fully playable game.</li>
+</ol>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>The greater-than symbol followed by a space <code class="java">&gt; </code> represents the user input. Note that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">Input the length of the secret code:
+&gt; 4
+Input the number of possible symbols in the code:
+&gt; 16
+The secret is prepared: **** (0-9, a-f).
+Okay, let's start a game!
+Turn 1:
+&gt; 1a34
+Grade: 1 bull and 1 cow
+Turn 2:
+&gt; b354
+Grade: 2 bulls and 1 cow
+Turn 3:
+&gt; 93b4
+Grade: 4 bulls
+Congratulations! You guessed the secret code.</code></pre>

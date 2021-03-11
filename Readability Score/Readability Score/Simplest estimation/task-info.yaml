@@ -1,0 +1,69 @@
+type: edu
+custom_name: stage1
+files:
+- name: src/readability/Main.java
+  visible: true
+  text: |
+    package readability;
+
+    public class Main {
+        public static void main(String[] args) {
+            System.out.print("Hello world!");
+        }
+    }
+  learner_created: false
+- name: test/ReadabilityTest.java
+  visible: false
+  text: |
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testcase.TestCase;
+
+    import java.util.List;
+
+
+    public class ReadabilityTest extends StageTest<String> {
+
+        @Override
+        public List<TestCase<String>> generate() {
+
+            List<TestCase<String>> tests = List.of(
+                new TestCase<String>()
+                    .setInput("This text is simple to read!"),
+
+                new TestCase<String>()
+                    .setInput("This text is hard to read. " +
+                        "It contains a lot of sentences as well as a lot of words in each sentence."),
+
+                new TestCase<String>()
+                    .setInput("1".repeat(99)),
+
+                new TestCase<String>()
+                    .setInput(" ".repeat(100)),
+
+                new TestCase<String>()
+                    .setInput("q".repeat(101))
+            );
+
+            for (TestCase<String> test : tests) {
+                test.setAttach(test.getInput());
+            }
+
+            return tests;
+        }
+
+        @Override
+        public CheckResult check(String reply, String clue) {
+            String solution = solve(clue);
+            boolean isSuccess = reply.strip().equals(solution.strip());
+            return new CheckResult(isSuccess);
+        }
+
+        private String solve(String input) {
+            return input.length() > 100 ? "HARD" : "EASY";
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/39/stages/205/implement#comment
+status: Solved
+record: 4

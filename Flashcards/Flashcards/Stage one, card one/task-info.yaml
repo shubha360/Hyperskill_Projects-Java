@@ -1,0 +1,47 @@
+type: edu
+custom_name: stage1
+files:
+- name: src/flashcards/Main.java
+  visible: true
+  text: |
+    package flashcards;
+
+    public class Main {
+        public static void main(String[] args) {
+            System.out.println("Hello World!");
+        }
+    }
+  learner_created: false
+- name: test/FlashcardsTest.java
+  visible: false
+  text: "import org.hyperskill.hstest.stage.StageTest;\nimport org.hyperskill.hstest.testcase.CheckResult;\n\
+    import org.hyperskill.hstest.testcase.TestCase;\nimport org.hyperskill.hstest.testing.TestedProgram;\n\
+    \nimport java.util.Arrays;\nimport java.util.List;\n\npublic class FlashcardsTest\
+    \ extends StageTest<String> {\n    \n    @Override\n    public List<TestCase<String>>\
+    \ generate() {\n        return  Arrays.asList(\n                new TestCase<String>()\n\
+    \                .setDynamicTesting(() -> {\n                    TestedProgram\
+    \ main = new TestedProgram();\n                    \n                    String\
+    \ output = main.start();\n                    String[] lines = output.toLowerCase().trim().split(\"\
+    \\n\");\n                    \n                    int lineCount = lines.length;\n\
+    \                    if (lineCount != 4) {\n                        return CheckResult.wrong(\"\
+    Your program should print four lines\");\n                    }\n            \
+    \        \n                    String lineOne = lines[0];\n                  \
+    \  if (!lineOne.trim().equals(\"card:\")) {\n                        return CheckResult.wrong(\"\
+    Your program should print \\\"Card:\\\" as the first line\");\n              \
+    \      }\n                    \n                    String lineTwo = lines[1];\n\
+    \                    if (lineTwo.equals(\"\") || lineTwo.matches(\"\\\\s+\"))\
+    \ {\n                        return CheckResult.wrong(\"Your program should print\
+    \ a term on the second line\");\n                    }\n                    \n\
+    \                    String lineThree = lines[2];\n                    if (!lineThree.trim().equals(\"\
+    definition:\")) {\n                        return CheckResult.wrong(\"Your program\
+    \ should print \\\"Definition:\\\" as the third line\");\n                   \
+    \ }\n                    \n                    String lineFour = lines[3];\n \
+    \                   if (lineFour.equals(\"\") || lineFour.matches(\"\\\\s+\"))\
+    \ {\n                        return CheckResult.wrong(\"Your program should print\
+    \ a definition on the fourth line\");\n                    }\n               \
+    \     \n                    return CheckResult.correct();\n                  \
+    \  \n                })\n        );\n    }\n    \n}\n"
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/44/stages/232/implement#comment
+status: Solved
+record: 3

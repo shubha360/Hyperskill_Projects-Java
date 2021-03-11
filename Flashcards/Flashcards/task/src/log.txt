@@ -1,0 +1,16 @@
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+import
+File name:
+load
+4 cards have been loaded.
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+hardest card
+The hardest cards are Arya, Jon, Hulk, Lionel
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+print
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+log
+File name:
+log

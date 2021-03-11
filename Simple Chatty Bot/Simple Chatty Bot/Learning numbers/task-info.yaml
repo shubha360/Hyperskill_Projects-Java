@@ -1,0 +1,135 @@
+type: edu
+files:
+- name: test/Tests.java
+  visible: false
+  text: |
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testcase.TestCase;
+
+    import java.util.List;
+
+
+    class Clue {
+        int age;
+        String name;
+        int count;
+
+        Clue(String name, int age, int count) {
+            this.age = age;
+            this.name = name;
+            this.count = count;
+        }
+    }
+
+
+    public class Tests extends StageTest<Clue> {
+
+        @Override
+        public List<TestCase<Clue>> generate() {
+            return List.of(
+                new TestCase<Clue>()
+                    .setInput("Marry\n1\n0\n5\n10")
+                    .setAttach(new Clue("Marry", 40, 10))
+            );
+        }
+
+        @Override
+        public CheckResult check(String reply, Clue clue) {
+
+            String[] lines = reply.trim().split("\n");
+
+            int length = 9 + clue.count + 1;
+
+            if (lines.length != length) {
+                return CheckResult.wrong(
+                    "You should output " + length + " lines " +
+                        "(for the count number " + clue.count +").\n" +
+                        "Lines found: " + lines.length + "\n" +
+                        "Your output:\n" +
+                        reply
+                );
+            }
+
+            String lineWithName = lines[3].toLowerCase();
+            String name = clue.name.toLowerCase();
+
+            if (!lineWithName.contains(name)) {
+                return CheckResult.wrong(
+                    "The name was " + clue.name + "\n" +
+                        "But the 4-th line was:\n" +
+                        "\"" + lines[3] + "\"\n\n" +
+                        "4-th line should contain a name of the user"
+                );
+            }
+
+            String lineWithAge = lines[6].toLowerCase();
+            String age = Integer.toString(clue.age);
+
+            if (!lineWithAge.contains(age)) {
+                return CheckResult.wrong(
+                    "Can't find a correct age " +
+                        "in the last line of output! " +
+                        "Maybe you calculated the age wrong?\n\n" +
+                        "Your last line: \n" + "\"" + lines[6] + "\""
+                );
+            }
+
+            for (int i = 0; i < clue.count + 1; i++) {
+                String numLine = lines[i + 8];
+                String actualNum = i + "!";
+
+                if (!numLine.equals(actualNum)) {
+                    return CheckResult.wrong(
+                        "Expected " + (i+8) + "-th line: \n" +
+                            "\"" + actualNum + "\"\n" +
+                            "Your "+ (i+8) + "-th line: \n" +
+                            "\"" + numLine + "\""
+                    );
+                }
+            }
+
+            return CheckResult.correct();
+        }
+
+    }
+  learner_created: false
+- name: src/bot/SimpleBot.java
+  visible: true
+  text: |
+    package bot;
+
+    import java.util.Scanner;
+
+    public class SimpleBot {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Hello! My name is Aid.");
+            System.out.println("I was created in 2018.");
+            System.out.println("Please, remind me your name.");
+
+            String name = scanner.nextLine();
+
+            System.out.println("What a great name you have, " + name + "!");
+            System.out.println("Let me guess your age.");
+            System.out.println("Enter remainders of dividing your age by 3, 5 and 7.");
+
+            int rem3 = scanner.nextInt();
+            int rem5 = scanner.nextInt();
+            int rem7 = scanner.nextInt();
+
+            int age = (rem3 * 70 + rem5 * 21 + rem7 * 15) % 105;
+
+            System.out.println("Your age is " + age + "; that's a good time to start programming!");
+            System.out.println("Now I will prove to you that I can count to any number you want.");
+
+            // read a number and count to it here
+
+            System.out.println("Completed, have a nice day!");
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/113/stages/617/implement#comment
+status: Solved
+record: 3

@@ -1,0 +1,1 @@
+{France=0, Russia=0}

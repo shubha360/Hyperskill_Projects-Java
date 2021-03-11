@@ -1,0 +1,45 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>At this stage, you need to add the ability to read and write original and cipher data to files. The program must parse two additional arguments <strong>-in</strong> and <strong>-out</strong> to specify the full name of a file to read data and to write the result. Arguments <strong>-mode</strong>, <strong>-key</strong>, and <strong>-data</strong> should still work as before.</p>
+
+<p>Your program should read data from <strong>-data</strong> or from a file written in the <strong>-in</strong> argument. That's why you can't have both <strong>-data</strong> and <strong>-in</strong> arguments simultaneously, only one of them.</p>
+
+<ol>
+    <li>If there is no <strong>-mode</strong>, the program should work in <strong>enc</strong> mode.</li>
+    <li>If there is no <strong>-key</strong>, the program should consider that <strong>key</strong> = 0.</li>
+    <li>If there is no <strong>-data</strong>, and there is no <strong>-in</strong> the program should assume that the data is an empty string.</li>
+    <li>If there is no <strong>-out</strong> argument, the program must print data to the standard output.</li>
+    <li>If there are both <strong>-data</strong> and <strong>-in</strong> arguments, your program should prefer <strong>-data</strong> over <strong>-in</strong>.</li>
+</ol>
+
+<p>If there is a non-standard situation (an input file does not exist or an argument doesn’t have a value), the program should not fail. Instead, it must display a clear message about the problem and stop successfully. The message should contain the word "Error" in any case.</p>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p><strong>Example 1</strong></p>
+
+<pre><code class="language-no-highlight">java Main -mode enc -in road_to_treasure.txt -out protected.txt -key 5</code></pre>
+
+<p>This command must get data from the file <strong>road_to_treasure.txt</strong>, encrypt the data with the key 5, create a file called <strong>protected.txt</strong> and write ciphertext to it.</p>
+
+<p><strong>Example 2</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">java Main -mode enc -key 5 -data "Welcome to hyperskill!"</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="java">\jqhtrj%yt%m~ujwxpnqq&amp;</code></pre>
+
+<p><strong>Example 3</strong></p>
+
+<p>Input:</p>
+
+<pre><code class="language-no-highlight">java Main -key 5 -data "\jqhtrj%yt%m~ujwxpnqq&amp;" -mode dec</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="java">Welcome to hyperskill!</code></pre>
+
+<p> </p>
