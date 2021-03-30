@@ -1,0 +1,56 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>In this stage, you will develop an algorithm for creating a maze.</p>
+
+<p>Don't forget the rules of the correct maze:</p>
+
+<ol>
+	<li>There should be walls around the maze, except for two cells: entrance and exit.</li>
+	<li>Any empty cell must be accessible from the entrance or exit of the maze. It is not possible to walk along the maze diagonally, only vertically and horizontally.</li>
+	<li>There's got to be a path from the entrance to the exit. It doesn't matter what is considered an entrance and what is an exit as they are interchangeable.</li>
+	<li>The maze should not contain 3x3 blocks consisting of walls only. Try to fill the entire maze area with pathways.</li>
+</ol>
+
+<p>There is a very good algorithm for building a maze, based on the construction of a minimal spanning tree. You can <a target="_blank" href="https://www.youtube.com/watch?v=KurrmC-sd6k" rel="noopener noreferrer nofollow">watch the video</a> on how this algorithm works.</p>
+
+<p>It should be possible to specify the size of the maze. After a user enters the size, the program must print a maze and then stop.</p>
+
+<p>Break your program down into a set of methods to make it easy to understand and add to or edit later.</p>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p>After starting, your program should ask a user to enter the size of the maze, then output a generated maze, and then stop. Here is a simple example of a maze. Notice that the first number is height and the second number is width.</p>
+
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<pre><code class="language-no-highlight">Please, enter the size of a maze
+&gt;7 9
+██████████████████
+████      ██  ████
+████████  ██  ████
+      ██      ████
+████  ██  ██
+████      ██  ████
+██████████████████</code></pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><code class="language-no-highlight">Please, enter the size of a maze
+&gt;15 35
+██████████████████████████████████████████████████████████████████████
+        ██  ██                  ██                  ██              ██
+██████  ██  ██████████████████  ██████████████████  ██████████  ██████
+██      ██  ██                              ██      ██  ██  ██
+██████  ██  ██████████  ██  ██  ██████████  ██  ██  ██  ██  ██  ██████
+██  ██  ██      ██      ██  ██  ██  ██          ██          ██      ██
+██  ██  ██  ██  ██████████████████  ██████  ██████████████  ██████  ██
+██          ██  ██      ██  ██              ██                  ██  ██
+██████  ██  ██████████  ██  ██████████  ██████████████████████  ██  ██
+██  ██  ██  ██              ██      ██  ██              ██      ██  ██
+██  ██  ██  ██████████  ██████████  ██████████████  ██  ██  ██████  ██
+██      ██      ██  ██  ██          ██          ██  ██              ██
+██  ██████  ██████  ██  ██  ██  ██  ██████████  ██  ██████  ██  ██  ██
+██  ██                      ██  ██                  ██      ██  ██  ██
+██████████████████████████████████████████████████████████████████████</code></pre>

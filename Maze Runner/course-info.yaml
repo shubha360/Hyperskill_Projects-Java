@@ -1,0 +1,13 @@
+type: hyperskill
+title: Maze Runner
+language: English
+summary: 'Mazes are amazing: keep running, find the exit if you can! If you are not
+  too happy about getting stuck in the actual maze, you can entertain yourself with
+  a virtual one. In this project, you will write a program that generates mazes and
+  looks for a way out.<br/><br/>Learn more at <a href="https://hyperskill.org">https://hyperskill.org/projects/47</a>'
+programming_language: Java
+programming_language_version: 11
+content:
+- Maze Runner
+- Problems
+mode: Study

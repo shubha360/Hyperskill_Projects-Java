@@ -1,0 +1,15 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: "import java.util.*;\n\npublic class Main {\n\n    public static void main(String[]\
+    \ args) {        \n        Queue<Integer> queue = new ArrayDeque<>(Arrays.asList(1,\
+    \ 2, 3, 4));\n\n        // write your code here\n\n        System.out.println(queue);\n\
+    \    }\n}"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2338#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Sat, 27 Mar 2021 07:47:03 UTC
+record: -1

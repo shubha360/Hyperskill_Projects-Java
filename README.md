@@ -1,5 +1,5 @@
 # Hyperskill_Projects-Java
-Codes of projects from www.hyperskill.org Java track.
+Codes of projects from www.hyperskill.org Java Developer track.
 
 12 Completed Projects:
 
@@ -18,6 +18,7 @@ Codes of projects from www.hyperskill.org Java track.
 
     - [Hard] Flashcards
 
-1 Incompelte Project:
+2 Incompelte Projects:
 
     - [Medium] Error Correcting Encoder-Decoder (3 / 5 stages implemnted)
+    - [Hard] Maze Runner (1 / 4 stage completed)

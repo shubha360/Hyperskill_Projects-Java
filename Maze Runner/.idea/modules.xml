@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Maze_Runner.iml" filepath="$PROJECT_DIR$/.idea/modules/Maze_Runner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Maze Runner/task/Maze_Runner.Maze_Runner-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Maze Runner/task/Maze_Runner.Maze_Runner-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Maze Runner/task/Maze_Runner.Maze_Runner-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Maze Runner/task/Maze_Runner.Maze_Runner-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Maze Runner/task/Maze_Runner.Maze_Runner-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Maze Runner/task/Maze_Runner.Maze_Runner-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Find a value's index/Maze_Runner.Problems-Find_a_value's_index.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Find a value's index/Maze_Runner.Problems-Find_a_value's_index.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Find a value's index/Maze_Runner.Problems-Find_a_value's_index.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Find a value's index/Maze_Runner.Problems-Find_a_value's_index.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Find a value's index/Maze_Runner.Problems-Find_a_value's_index.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Find a value's index/Maze_Runner.Problems-Find_a_value's_index.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/From string to a number/Maze_Runner.Problems-From_string_to_a_number.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/From string to a number/Maze_Runner.Problems-From_string_to_a_number.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/From string to a number/Maze_Runner.Problems-From_string_to_a_number.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/From string to a number/Maze_Runner.Problems-From_string_to_a_number.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/From string to a number/Maze_Runner.Problems-From_string_to_a_number.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/From string to a number/Maze_Runner.Problems-From_string_to_a_number.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/The LIFO principle in action/Maze_Runner.Problems-The_LIFO_principle_in_action.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/The LIFO principle in action/Maze_Runner.Problems-The_LIFO_principle_in_action.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/The LIFO principle in action/Maze_Runner.Problems-The_LIFO_principle_in_action.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/The LIFO principle in action/Maze_Runner.Problems-The_LIFO_principle_in_action.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/The LIFO principle in action/Maze_Runner.Problems-The_LIFO_principle_in_action.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/The LIFO principle in action/Maze_Runner.Problems-The_LIFO_principle_in_action.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/The smallest value/Maze_Runner.Problems-The_smallest_value.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/The smallest value/Maze_Runner.Problems-The_smallest_value.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/The smallest value/Maze_Runner.Problems-The_smallest_value.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/The smallest value/Maze_Runner.Problems-The_smallest_value.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/The smallest value/Maze_Runner.Problems-The_smallest_value.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/The smallest value/Maze_Runner.Problems-The_smallest_value.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Working with queue/Maze_Runner.Problems-Working_with_queue.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Working with queue/Maze_Runner.Problems-Working_with_queue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Working with queue/Maze_Runner.Problems-Working_with_queue.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Working with queue/Maze_Runner.Problems-Working_with_queue.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Working with queue/Maze_Runner.Problems-Working_with_queue.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Working with queue/Maze_Runner.Problems-Working_with_queue.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Maze_Runner.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Maze_Runner.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Maze_Runner.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Maze_Runner.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Maze_Runner.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Maze_Runner.util.test.iml" />
+    </modules>
+  </component>
+</project>
