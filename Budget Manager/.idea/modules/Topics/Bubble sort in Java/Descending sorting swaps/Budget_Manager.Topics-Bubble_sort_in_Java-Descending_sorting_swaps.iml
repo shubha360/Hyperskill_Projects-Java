@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-Bubble_sort_in_Java-Descending_sorting_swaps" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Bubble sort in Java/Descending sorting swaps" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="Budget_Manager" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Bubble sort in Java/Descending sorting swaps">
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Bubble sort in Java/Descending sorting swaps/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Bubble sort in Java/Descending sorting swaps/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Bubble sort in Java/Descending sorting swaps/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -17,6 +17,7 @@ Codes of projects from www.hyperskill.org Java Developer track.
     - [Medium] Numeral System Converter
 
     - [Hard] Flashcards
+    - [Hard] Budget Manager
 
 2 Incompelte Projects:
 

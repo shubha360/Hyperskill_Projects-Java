@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Budget_Manager.iml" filepath="$PROJECT_DIR$/.idea/modules/Budget_Manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Budget Manager/task/Budget_Manager.Budget_Manager-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Budget Manager/task/Budget_Manager.Budget_Manager-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Budget Manager/task/Budget_Manager.Budget_Manager-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Budget Manager/task/Budget_Manager.Budget_Manager-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Budget Manager/task/Budget_Manager.Budget_Manager-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Budget Manager/task/Budget_Manager.Budget_Manager-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Descending sorting swaps/Budget_Manager.Topics-Bubble_sort_in_Java-Descending_sorting_swaps.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Descending sorting swaps/Budget_Manager.Topics-Bubble_sort_in_Java-Descending_sorting_swaps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Descending sorting swaps/Budget_Manager.Topics-Bubble_sort_in_Java-Descending_sorting_swaps.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Descending sorting swaps/Budget_Manager.Topics-Bubble_sort_in_Java-Descending_sorting_swaps.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Descending sorting swaps/Budget_Manager.Topics-Bubble_sort_in_Java-Descending_sorting_swaps.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Descending sorting swaps/Budget_Manager.Topics-Bubble_sort_in_Java-Descending_sorting_swaps.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Swaps/Budget_Manager.Topics-Bubble_sort_in_Java-Swaps.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Swaps/Budget_Manager.Topics-Bubble_sort_in_Java-Swaps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Swaps/Budget_Manager.Topics-Bubble_sort_in_Java-Swaps.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Swaps/Budget_Manager.Topics-Bubble_sort_in_Java-Swaps.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Swaps/Budget_Manager.Topics-Bubble_sort_in_Java-Swaps.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Swaps/Budget_Manager.Topics-Bubble_sort_in_Java-Swaps.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Theory/Budget_Manager.Topics-Bubble_sort_in_Java-Theory.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Theory/Budget_Manager.Topics-Bubble_sort_in_Java-Theory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Theory/Budget_Manager.Topics-Bubble_sort_in_Java-Theory.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Theory/Budget_Manager.Topics-Bubble_sort_in_Java-Theory.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Theory/Budget_Manager.Topics-Bubble_sort_in_Java-Theory.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Bubble sort in Java/Theory/Budget_Manager.Topics-Bubble_sort_in_Java-Theory.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Budget_Manager.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Budget_Manager.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Budget_Manager.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Budget_Manager.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Budget_Manager.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Budget_Manager.util.test.iml" />
+    </modules>
+  </component>
+</project>

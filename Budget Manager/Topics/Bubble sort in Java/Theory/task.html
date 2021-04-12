@@ -1,0 +1,30 @@
+<html>
+ <head></head>
+ <body>
+  <p><strong>Bubble sort</strong> is one of the simplest sorting algorithms. It repeatedly steps through the array to be sorted, compares each pair of adjacent array elements and swaps them if they are in the wrong order.</p> 
+  <p>The wrong and correct orders depend on the required sorting order. If an array must be sorted in the ascending order, the wrong order is the case when the previous element is greater than the next one. And if an array must be sorted in the descending order, the wrong order is the case when the previous element is less than the next one.</p> 
+  <p>The algorithm is not suitable for large arrays as its average and worst-case time complexity is $O(n^2)$, where $n$ is the array length.</p> 
+  <p>The algorithm is <strong>stable</strong>, i.e. it doesn't change the relative order of identical elements.</p> 
+  <h2 style="text-align: center;">Implementation in Java</h2> 
+  <p>In the following code, the bubble sort is implemented as a static method that takes an array of ints and returns the sorted one.</p> 
+  <pre><code class="language-java">public static int[] bubbleSort(int[] array) {
+    for (int i = 0; i &lt; array.length - 1; i++) {
+        for (int j = 0; j &lt; array.length - i - 1; j++) {
+            /* if a pair of adjacent elements has the wrong order it swaps them */
+            if (array[j] &gt; array[j + 1]) {
+                int temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+        }
+    }
+
+    return array;
+}</code></pre> 
+  <p>As you can see, the algorithm has a very clear implementation.</p> 
+  <p>Let's test the method passing different arrays:</p> 
+  <pre><code class="language-java">bubbleSort(new int[] { 21, 23, 19, 30, 11, 28 }); // { 11, 19, 21, 23, 28, 30 }
+bubbleSort(new int[] { 30, 28, 23, 21, 19, 11 }); // { 11, 19, 21, 23, 28, 30 }</code></pre> 
+  <p>You can start the implemented algorithm in the debug mode to understand it better.</p>
+ </body>
+</html>
