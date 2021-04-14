@@ -1,0 +1,63 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Write a program that reads text lines from the standard input and processes queries consisting of a single word to search for. The program must output all lines that contain the string from the query.</p>
+
+<p>You may choose what the text represents in your project. For example, each line may describe:</p>
+
+<ul>
+	<li>
+	<p>a person, represented by a first name, last name, and an optional email;</p>
+	</li>
+	<li>
+	<p>an address of a building, represented by country, city, state, street, and zip code;</p>
+	</li>
+	<li>
+	<p>information about a book, represented by ISBN, title, author/authors, publisher, and so on.</p>
+	</li>
+</ul>
+
+<p>You can take any of these ideas or use your own, but it is important to work with the same type of dataset throughout all stages of the project. As item delimiters, you can use spaces, commas (see CSV), or any other characters.</p>
+
+<p>Here is an example of a line. It contains three items: first name, last name, and this person's email.</p>
+
+<pre><code class="language-no-highlight">Elsa Sanders elsa@gmail.com</code></pre>
+
+<p>In this example, all items are separated by spaces.</p>
+
+<p>The search should ignore letter cases and all the extra spaces.</p>
+
+<p>Firstly, the user should input a number N, which is a number of lines with data they are going to enter next. Then the user enters N lines with data. After that, the user enters a number M, which is a number of search queries. And after each query, the program should print the information it managed to find among the data. You can see this searching process in the example below.</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>In the following example, we use different names and e-mails as an example of the dataset. The lines that start with <code class="java">&gt; </code> represent the user input. Note that these symbols are not part of the input. </p>
+
+<pre><code class="language-no-highlight">Enter the number of people:
+&gt; 6
+Enter all people:
+&gt; Dwight Joseph djo@gmail.com
+&gt; Rene Webb webb@gmail.com
+&gt; Katie Jacobs
+&gt; Erick Harrington harrington@gmail.com
+&gt; Myrtle Medina
+&gt; Erick Burgess
+
+Enter the number of search queries:
+&gt; 3
+
+Enter data to search people:
+&gt; ERICK
+
+Found people:
+Erick Harrington harrington@gmail.com
+Erick Burgess
+
+Enter data to search people:
+&gt; unknown
+No matching people found.
+
+Enter data to search people:
+&gt; WEBB@gmail.com
+
+Found people:
+Rene Webb webb@gmail.com</code></pre>

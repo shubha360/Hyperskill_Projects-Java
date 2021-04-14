@@ -1,0 +1,67 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Modify the previous program. At this stage, you need to add a user menu.</p>
+
+<p>The menu should display the following actions:</p>
+
+<pre><code class="language-no-highlight">1. Search information.
+2. Print all data.
+0. Exit.</code></pre>
+
+<p>The user must select a menu item and then enter data if necessary. Your program must not stop until the corresponding option (the exit option) is chosen.</p>
+
+<p>Decompose the program into separate methods to make it easy to understand and add to or edit later.</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>In the example below, we use people as a dataset example. The lines that start with <code class="java">&gt; </code> represent the user input. Note that these symbols are not part of the input. </p>
+
+<pre><code class="language-no-highlight">Enter the number of people:
+&gt; 6
+Enter all people:
+&gt; Dwight Joseph djo@gmail.com
+&gt; Rene Webb webb@gmail.com
+&gt; Katie Jacobs
+&gt; Erick Harrington harrington@gmail.com
+&gt; Myrtle Medina
+&gt; Erick Burgess
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+&gt; 3
+
+Incorrect option! Try again.
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+&gt; 1
+
+Enter a name or email to search all suitable people.
+&gt; KATIE
+Katie Jacobs
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+&gt; 2
+
+=== List of people ===
+Dwight Joseph djo@gmail.com
+Rene Webb webb@gmail.com
+Katie Jacobs
+Erick Harrington harrington@gmail.com
+Myrtle Medina
+Erick Burgess
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+&gt; 0
+
+Bye!</code></pre>

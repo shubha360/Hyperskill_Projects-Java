@@ -1,0 +1,12 @@
+type: hyperskill
+title: Simple Search Engine
+language: English
+summary: 'Create your own search engine! It probably won’t compete with Google: yours
+  will be a simple version which processes some data and searches it for a word or
+  a phrase. Simple but cool.<br/><br/>Learn more at <a href="https://hyperskill.org">https://hyperskill.org/projects/66</a>'
+programming_language: Java
+programming_language_version: 11
+content:
+- Simple Search Engine
+- Topics
+mode: Study

@@ -1,0 +1,74 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Now your program can successfully search for all matching lines, ignoring cases and extra spaces. There is one problem though: you need to check whether each line contains a query string or not.</p>
+
+<p>To optimize your program, you can use a data structure called <strong>Inverted Index</strong>. It maps each word to all positions/lines/documents in which the word occurs. As a result, when we receive a query, we can immediately find the answer without any comparisons.</p>
+
+<p>At this stage, build an inverted index when the program starts, and then use the index for searching operations. You can implement it using a <code class="java">Map</code> class. It connects an item with a list (or set) of indexes belonging to the lines that contain the item.</p>
+
+<p>Suppose you have the following array or list of lines:</p>
+
+<pre><code class="language-no-highlight">0: Katie Jacobs
+1: Erick Harrington harrington@gmail.com
+2: Myrtle Medina
+3: Erick Burgess</code></pre>
+
+<p>For these lines, the inverted index will look like this:</p>
+
+<pre><code class="language-no-highlight">Katie -&gt; [0]
+Jacobs -&gt; [0]
+Erick -&gt; [1, 3]
+Harrington -&gt; [1]
+harrington@gmail.com -&gt; [1]
+Myrtle -&gt; [2]
+Medina -&gt; [2]
+Burgess -&gt; [3]</code></pre>
+
+<p>The order of pairs is not important. If you are searching for Erick, you can immediately get the target fields using this mapping.</p>
+
+<p>Note that the Inverted Index is<strong> </strong>not intended to search for parts of a word, it is only used to search for full words.</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>The lines that start with <code class="java">&gt; </code> represent the user input. Note that these symbols are not part of the input. </p>
+
+<pre><code class="language-no-highlight">=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+&gt; 1
+
+Enter a name or email to search all suitable people.
+&gt; ERICK
+2 persons found:
+Erick Harrington harrington@gmail.com
+Erick Burgess
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+&gt; 1
+
+Enter a name or email to search all suitable people.
+&gt; ROY@gmail.com
+1 persons found:
+Richard    Roy    roy@gmail.com
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+&gt; 1
+
+Enter a name or email to search all suitable people.
+&gt; john
+No matching people found.
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+&gt; 0
+
+Bye!</code></pre>
