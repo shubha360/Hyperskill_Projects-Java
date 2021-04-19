@@ -1,0 +1,146 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>As you can see from the previous stage, we need to find a way to get a response code from the URL in the user's browser. By default, Java doesn't have browser capabilities but has opportunities to create your own simple HTTP server.</p>
+
+<h3>What is HTTP</h3>
+
+<p>HTTP means <a target="_blank" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" rel="nofollow noopener noreferrer">Hypertext Transfer Protocol</a>, which is a stateless data transfer protocol based on client-server technology, where messaging occurs according to the request-response scheme. The main manipulation object is the resource indexed by the URI. Every time you need to make an HTTP request, follow this structure:</p>
+
+<p>A request line:</p>
+
+<pre><code class="language-no-highlight">method_name URI HTTP/version</code></pre>
+
+<p>Example:</p>
+
+<pre><code class="language-no-highlight">GET /some/uri HTTP/1.1
+</code></pre>
+
+<p>There are a lot of HTTP methods, but in this project, we will consider two of them:</p>
+
+<p><code class="language-java">GET</code> requests a representation of the specified resource. They only retrieve data and have no other effect.</p>
+
+<p>The <code class="language-java">POST</code> method requests that the server accepts the entity enclosed in the request as a new subordinate of the web resource identified by the URI.</p>
+
+<p>The response looks like this:<br>
+A response line:</p>
+
+<pre><code class="language-no-highlight">HTTP/version status_code message</code></pre>
+
+<p>Example:</p>
+
+<pre><code class="language-no-highlight">HTTP/1.1 200 OK</code></pre>
+
+<h3>Creating a server in java</h3>
+
+<p><code class="language-java">com.sun.net.httpserver</code> package included in Java SE contains classes. The main class is <code class="language-java">HttpServer</code>. This class implements a simple HTTP server. To create an instance of this class, you need to use static factory method "create" and bind it to IP and port.</p>
+
+<pre><code class="language-java">HttpServer server = HttpServer.create();
+server.bind(new InetSocketAddress(8080), 0);</code></pre>
+
+<p>These lines will create an <code class="language-java">http</code> server that will listen for incoming TCP connections from clients on 8080 port. Another main concept is context. When an HTTP request is received, the appropriate <code class="language-java">HttpContext</code> (and handler) is located by finding the context whose path is the longest matching prefix of the request URI's path. To create the context, you should use the method <code class="language-java">createContext</code> and pass a string of URI path and handler that implements the <code class="language-java">HttpHandler</code> interface.</p>
+
+<pre><code class="language-java">server.createContext("/",
+    new HttpHandler() {    
+        public void handle(HttpExchange exchange) throws IOException {
+            String hello = "hello, world";
+            exchange.sendResponseHeaders(200, hello.length());
+            exchange.getResponseBody().write(hello.getBytes());
+            exchange.getResponseBody().close();
+        }
+    }
+); </code></pre>
+
+<p>The lines above will create a context to which all requests will be redirected by the server, and the context handler will always return "hello world".</p>
+
+<p>To start the server, add the line <code class="language-java">server.start()</code>; use the command <code class="language-java">server.stop(1)</code> to shut down the server. <code class="language-java">1</code> here is the maximum delay in seconds to wait until all handlers have finished.</p>
+
+<p>If you try to run it, you can open your browser at <code class="language-java">localhost:8080</code>, and you will see this message.</p>
+
+<p>In this stage, you will receive a query parameter with the authorization code from the Spotify page. It looks like <code class="language-java">http:localhost:8080?code=123</code>. To get the query inside the <code class="language-java">HttpExchange</code> handler, you can use the following line:</p>
+
+<pre><code class="language-java">String query = exchange.getRequestURI().getQuery();
+</code></pre>
+
+<h3>Making HTTP requests in Java</h3>
+
+<p>JDK 11 provides a few classes in the <code class="language-java">java.net.http</code> package to make HTTP requests: read more about them <a target="_blank" href="http://openjdk.java.net/groups/net/httpclient/" rel="nofollow noopener noreferrer">at openjdk.java.net</a>. First, you should create an <code class="language-java">HttpClient</code> instance:</p>
+
+<pre><code class="language-java">HttpClient client = HttpClient.newBuilder().build();</code></pre>
+
+<p>Then you should setup the http request by creating an <code class="language-java">HttpRequest</code> instance. It supports the Builder pattern, so you should just call <code class="language-java">HttpRequest.newBuilder()</code>, then add some methods to setup your request and then call a <code class="language-java">build()</code> method to create it. Here is an example how to create a simple GET request:</p>
+
+<pre><code class="language-java">HttpRequest request = HttpRequest.newBuilder()
+        .uri(URI.create("http://localhost:8080"))
+        .GET()
+        .build();
+</code></pre>
+
+<p>To send the request, use the <code class="language-java">client</code> instance:</p>
+
+<pre><code class="language-java">HttpResponse&lt;String&gt; response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+System.out.println(response.body());
+</code></pre>
+
+<p>This code will print "hello, world" if it connects to the server from the section above.</p>
+
+<p>In this stage, you will create a POST request to get the Spotify access token. The main difference between GET and POST requests is that POST may contain a body with some data. It may be a file, json, xml, or other format. You should set the type of data with "Content-type" header. This example shows how to send a POST request with data in the format <code class="language-java">application/x-www-form-urlencoded</code>:</p>
+
+<pre><code class="language-java">HttpRequest request = HttpRequest.newBuilder()
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .uri(URI.create("http://localhost:8080"))
+                .POST(HttpRequest.BodyPublishers.ofString("login=admin&amp;password=admin"))
+                .build();
+</code></pre>
+
+<p>You should put the body data inside the <code class="language-java">POST()</code> method using the <code class="language-java">HttpRequest.BodyPublishers.ofString</code> method. <code class="language-java">x-www-form-urlencoded</code> data consists of <code class="language-java">key=value</code> pairs, separated by the <code class="language-java">&amp;</code> symbol.</p>
+
+<p>Similarly, you can send json data by setting "Content-type" as <code class="language-java">application/json</code> and passing json inside the <code class="language-java">ofString()</code> method.</p>
+
+<p>Useful hint: you can use <a target="_blank" href="https://reqbin.com/" rel="noopener noreferrer nofollow">reqbin</a> to test POST and GET requests to API without Java.</p>
+
+<h3>Objectives</h3>
+
+<p>Using the <a target="_blank" href="https://developer.spotify.com/documentation/general/guides/authorization-guide/" rel="nofollow noopener noreferrer">Spotify authorization guide</a> and the information given here (you need the section <em>Authorization Code Flow</em>), improve your program by adding real authorization on Spotify.</p>
+
+<ol>
+	<li>Choose any free port on your machine (for example, 8080), and add the <code class="language-java">http://localhost:your_port</code> to the whitelist of <code class="language-java">redirect_uri</code> in your application settings on the Spotify site (<a target="_blank" href="https://developer.spotify.com/dashboard" rel="nofollow noopener noreferrer">Dashboard</a> -&gt; your app -&gt; edit settings -&gt; redirect URIs).<br>
+	Note that you should use the <code class="language-java">http</code> protocol for localhost, not <code class="language-java">http<strong>s</strong></code>, like in the Spotify example.)<br>
+	 </li>
+	<li>On the <code class="language-java">auth</code> command, before printing the auth link (from the previous stage), you should start an HTTP server that will listen for the incoming requests. When the user confirms or rejects the authorization, the server should return the following text to the browser:
+	<ul>
+		<li><em>"Got the code. Return back to your program."</em> if the query contains the authorization code.</li>
+		<li><em>"Authorization code not found. Try again."</em> otherwise.</li>
+	</ul>
+	This code is bound to each user who has a Spotify account and uses your app. Actually, you should ask this code once for each new user and save it somewhere.<br>
+	 </li>
+	<li>After the code is received, the server must shut down and you should get <code class="language-java">access_token</code> by making a POST request on <code class="language-java">https://accounts.spotify.com/api/token</code> with parameters described in the guide, and then print the response body.</li>
+</ol>
+
+<p>Also, in this stage, you should read the Spotify access server point from the command line argument. Server path should be passed to the program using <code class="language-java">-access</code> argument. If this argument is not set, you should use a default argument, <code class="language-java">https://accounts.spotify.com</code>. Make sure you replace constants to this argument value everywhere!</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>Below is an output example of the described program. Try to output all cases like in the example.</p>
+
+<p>The greater-than symbol followed by a space (<code class="language-java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">&gt; new
+Please, provide access for application.
+&gt; auth
+use this link to request the access code:
+https://accounts.spotify.com/authorize?client_id=a19ee7dbfda443b2a8150c9101bfd645&amp;redirect_uri=http://localhost:8080&amp;response_type=code
+waiting for code...
+code received
+making http request for access_token...
+response:
+{"access_token":"BQBSZ0CA3KR0cf0LxmiNK_E87ZqnkJKDD89VOWAZ9f0QXJcsCiHtl5Om-EVhkIfwt1AZs5WeXgfEF69e4JxL3YX6IIW9zl9WegTmgLkb4xLXWwhryty488CLoL2SM9VIY6HaHgxYxdmRFGWSzrgH3dEqcvPoLpd26D8Y","token_type":"Bearer","expires_in":3600,"refresh_token":"AQCSmdQsvsvpneadsdq1brfKlbEWleTE3nprDwPbZgNSge5dVe_svYBG-RG-_PxIGxVvA7gSnehFJjDRAczLDbbdWPjW1yUq2gtKbbNrCQVAH5ZBtY8wAYskmOIW7zn3IEiBzg","scope":""}
+---SUCCESS---
+&gt; new
+---NEW RELEASES---
+Mountains [Sia, Diplo, Labrinth]
+Runaway [Lil Peep]
+The Greatest Show [Panic! At The Disco]
+All Out Life [Slipknot]
+&gt; exit
+---GOODBYE!---</code></pre>

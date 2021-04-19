@@ -1,0 +1,17 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: "class CalculatorCreator {\n\n    public static Calculator createInstance()\
+    \ {\n\n        Calculator anonymousCalculator = /* create an instance of an anonymous\
+    \ class here, \n                                            do not forget ; in\
+    \ the end */\n        return anonymousCalculator;\n    }\n\n}\n\nabstract class\
+    \ Calculator {\n\n    public abstract long sum(long val1, long val2);\n\n    public\
+    \ abstract long subtraction(long val1, long val2);\n}"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2548#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Sun, 18 Apr 2021 11:38:58 UTC
+record: -1

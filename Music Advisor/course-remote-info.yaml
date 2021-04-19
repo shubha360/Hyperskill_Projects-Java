@@ -1,0 +1,232 @@
+hyperskill_project:
+  id: 62
+  ide_files: https://stepik.org/media/attachments/lesson/210107/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: Mon, 19 Apr 2021 05:49:06 UTC
+stages:
+- id: 335
+  step: 5477
+  is_completed: true
+- id: 336
+  step: 5478
+  is_completed: true
+- id: 337
+  step: 5479
+  is_completed: false
+- id: 338
+  step: 5480
+  is_completed: false
+- id: 339
+  step: 5481
+  is_completed: false
+topics:
+  0:
+  - title: Units of information
+    theory_id: 6865
+  - title: Introduction to operating systems
+    theory_id: 9704
+  - title: IDE
+    theory_id: 10996
+  - title: Introduction to OOP
+    theory_id: 3614
+  - title: Introduction to Java
+    theory_id: 3500
+  - title: Basic literals
+    theory_id: 3522
+  - title: Overview of the basic program
+    theory_id: 3521
+  - title: Printing data
+    theory_id: 3749
+  - title: Types and variables
+    theory_id: 3518
+  - title: Comments
+    theory_id: 3520
+  - title: Coding style conventions
+    theory_id: 12411
+  - title: Naming variables
+    theory_id: 3513
+  - title: Scanning the input
+    theory_id: 9055
+  - title: Arithmetic operations
+    theory_id: 3519
+  - title: Integer types and operations
+    theory_id: 3565
+  - title: Boolean and logical operations
+    theory_id: 3516
+  - title: Relational operators
+    theory_id: 3512
+  - title: Increment and decrement
+    theory_id: 5008
+  - title: Characters
+    theory_id: 3514
+  - title: Conditional statement
+    theory_id: 3503
+  - title: Ternary operator
+    theory_id: 3506
+  - title: The for-loop
+    theory_id: 3505
+  - title: The while and do-while loops
+    theory_id: 3498
+  - title: Branching statements
+    theory_id: 3507
+  - title: Switch statement
+    theory_id: 3504
+  - title: Write, compile, and run
+    theory_id: 3739
+  - title: JVM, JRE, and JDK
+    theory_id: 3499
+  - title: Build tools
+    theory_id: 4284
+  - title: Sizes and ranges
+    theory_id: 3532
+  - title: Type casting
+    theory_id: 3510
+  - title: Command line overview
+    theory_id: 8977
+  - title: Parameters and options
+    theory_id: 9746
+  - title: Running programs on your computer
+    theory_id: 3746
+  - title: Maven basics
+    theory_id: 4281
+  - title: Calling a method
+    theory_id: 10973
+  - title: Declaring a method
+    theory_id: 10982
+  - title: The main method
+    theory_id: 3489
+  - title: Functional decomposition
+    theory_id: 10570
+  - title: Primitive and reference types
+    theory_id: 5035
+  - title: Array
+    theory_id: 3511
+  - title: Arrays as parameters
+    theory_id: 3594
+  - title: String
+    theory_id: 3523
+  - title: Processing strings
+    theory_id: 3551
+  - title: Java Archive
+    theory_id: 4311
+  - title: The simplest project with Maven
+    theory_id: 4282
+  - title: StringBuilder
+    theory_id: 3812
+  - title: IntelliJ IDEA
+    theory_id: 3801
+  - title: Defining classes
+    theory_id: 3618
+  - title: Constructor
+    theory_id: 3535
+  - title: Instance methods
+    theory_id: 3495
+  - title: Package
+    theory_id: 3621
+  - title: Objects
+    theory_id: 4727
+  1:
+  - title: The concept of patterns
+    theory_id: 3611
+  - title: Overloading
+    theory_id: 3525
+  - title: Final variables
+    theory_id: 7427
+  - title: Decorator
+    theory_id: 5216
+  - title: Multiple constructors
+    theory_id: 3538
+  - title: Access modifiers
+    theory_id: 3589
+  - title: Getters and setters
+    theory_id: 3599
+  - title: Inheritance
+    theory_id: 3583
+  - title: The keyword super
+    theory_id: 3588
+  - title: Protected modifier
+    theory_id: 6692
+  - title: Referencing subclass objects
+    theory_id: 3585
+  - title: The Object class
+    theory_id: 3596
+  - title: Annotations basics
+    theory_id: 3622
+  - title: Static members
+    theory_id: 3534
+  - title: Initialization blocks
+    theory_id: 3533
+  - title: Hiding and overriding
+    theory_id: 3572
+  - title: Polymorphism
+    theory_id: 3587
+  - title: Interface
+    theory_id: 3615
+  2:
+  - title: World Wide Web
+    theory_id: 6633
+  - title: HyperText Transfer Protocol
+    theory_id: 6569
+  - title: HTTP URL
+    theory_id: 6740
+  - title: HTTP messages
+    theory_id: 6752
+  - title: Errors in programs
+    theory_id: 3536
+  - title: What is an exception
+    theory_id: 3497
+  - title: NPE
+    theory_id: 1945
+  - title: JSON
+    theory_id: 6854
+  - title: Gradle basics
+    theory_id: 5075
+  - title: Basic project with Gradle
+    theory_id: 5077
+  - title: Building apps using Gradle
+    theory_id: 7917
+  - title: Dependency management
+    theory_id: 5076
+  - title: Abstract class
+    theory_id: 3597
+  - title: Abstract class vs interface
+    theory_id: 3563
+  - title: Anonymous classes
+    theory_id: 11896
+  - title: Anonymous classes properties
+    theory_id: 3564
+  3:
+  - title: Immutability
+    theory_id: 7929
+  - title: HTTP Basic Auth
+    theory_id: 7778
+  - title: REST
+    theory_id: 7834
+  - title: Reflection basics
+    theory_id: 3609
+  - title: Retrieving Class instances
+    theory_id: 3554
+  - title: Introduction to generic programming
+    theory_id: 3492
+  - title: Generic methods
+    theory_id: 3606
+  - title: Type Bounds
+    theory_id: 8216
+  - title: Wildcards
+    theory_id: 9455
+  - title: Type Erasure
+    theory_id: 10086
+  - title: Reification
+    theory_id: 10087
+  - title: Generics and Reflection
+    theory_id: 10088
+  - title: Boxing and unboxing
+    theory_id: 3595
+  4:
+  - title: Singleton
+    theory_id: 3555
+  - title: Strategy
+    theory_id: 3556
+  - title: Encapsulating object creation
+    theory_id: 3577

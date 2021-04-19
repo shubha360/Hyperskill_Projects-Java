@@ -1,0 +1,84 @@
+type: edu
+custom_name: stage1
+files:
+- name: src/advisor/Main.java
+  visible: true
+  text: |
+    package advisor;
+
+    public class Main {
+        public static void main(String[] args) {
+            System.out.println("Hello World!");
+        }
+    }
+  learner_created: false
+- name: build.gradle
+  visible: true
+  text: |-
+    apply plugin: 'java'
+    apply plugin: 'application'
+
+    group 'advisor'
+    version '1.0-SNAPSHOT'
+
+    sourceCompatibility = 11
+    mainClassName = 'advisor.Main'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile 'com.google.code.gson:gson:+'
+    }
+
+    jar {
+        manifest {
+            attributes 'Main-Class' : 'advisor.Main'
+        }
+        from {
+            configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        }
+    }
+  learner_created: false
+- name: test/MusicAdvisorTest.java
+  visible: false
+  text: |
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testcase.TestCase;
+
+    import java.util.List;
+
+    public class MusicAdvisorTest extends StageTest {
+
+        @Override
+        public List<TestCase> generate() {
+            return List.of(
+                new TestCase()
+                    .setInput(
+                        "new\n" +
+                        "featured\n" +
+                        "categories\n" +
+                        "playlists Mood\n" +
+                        "exit")
+            );
+        }
+
+        @Override
+        public CheckResult check(String reply, Object clue) {
+            return new CheckResult(
+                reply.contains("---NEW RELEASES---")
+                && reply.contains("---FEATURED---")
+                && reply.contains("---CATEGORIES---")
+                && reply.contains("---GOODBYE!---")
+                && reply.contains("PLAYLISTS---"));
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/62/stages/335/implement#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sun, 18 Apr 2021 09:49:55 UTC
+record: 1

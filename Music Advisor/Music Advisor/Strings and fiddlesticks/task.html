@@ -1,0 +1,48 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>When developing your web applications, it can be useful to implement the ability to register users using third-party services (such as Twitter, Facebook, Google, etc.), as well as the ability to interact with these services (for example, use Twitter to publish a post, or getting a list of friends on Facebook). To implement this functionality, you need to learn how to work with the service's API. Most services use REST (Representational State Transfer) to provide the ability to interact with the service. To learn how to work with it from Java, we will develop a simple application that will offer us music using Spotify.<br>
+<br>
+First, in this stage, you have to implement simple functionality to read user input and provide information at the user's request.</p>
+
+<ul>
+	<li><code class="java">featured</code> — a list of Spotify-featured playlists with their links fetched from API;</li>
+	<li><code class="java">new</code> —  a list of new albums with artists and links on Spotify;</li>
+	<li><code class="java">categories</code>  — a list of all available categories on Spotify (just their names);</li>
+	<li><code class="java">playlists C_NAME</code>,  where C_NAME is the name of category. The list contains playlists of this category and their links on Spotify;</li>
+	<li><code class="java">exit</code> shuts down the application.</li>
+</ul>
+
+<p>Notice that here, you <strong>don’t need</strong> to implement interaction with the API (you will do that later), just replace the API responses with simple strings.</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>Below is an output example of the described program. Try to output all cases like in the example.</p>
+
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">&gt; new
+---NEW RELEASES---
+Mountains [Sia, Diplo, Labrinth]
+Runaway [Lil Peep]
+The Greatest Show [Panic! At The Disco]
+All Out Life [Slipknot]
+&gt; featured
+---FEATURED---
+Mellow Morning
+Wake Up and Smell the Coffee
+Monday Motivation
+Songs to Sing in the Shower
+&gt; categories
+---CATEGORIES---
+Top Lists
+Pop
+Mood
+Latin
+&gt; playlists Mood
+---MOOD PLAYLISTS---
+Walk Like A Badass  
+Rage Beats  
+Arab Mood Booster  
+Sunday Stroll
+&gt; exit
+---GOODBYE!---</code></pre>

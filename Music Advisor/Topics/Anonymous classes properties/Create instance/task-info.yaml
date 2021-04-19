@@ -1,0 +1,19 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: "class CreateInstance {\n\n    public static SuperClass create() {\n\n   \
+    \     SuperClass instance = /* create an instance of an anonymous class here,\
+    \ \n                                 do not forget ; on the end */\n\n       \
+    \ // call the overridden methods\n\n        return instance;\n    }\n}\n\n// Don't\
+    \ change the code below\n\nabstract class SuperClass {\n\n    public static void\
+    \ method1() { \n        System.out.println(\"It's a static method.\");\n    }\n\
+    \n    public void method2() {\n        System.out.println(\"It's not a static\
+    \ method.\");\n    }\n\n    public abstract void method3();\n}"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/11895#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Sun, 18 Apr 2021 11:55:15 UTC
+record: -1

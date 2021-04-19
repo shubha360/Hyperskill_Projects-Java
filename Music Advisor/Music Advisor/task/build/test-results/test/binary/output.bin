@@ -1,0 +1,8 @@
+[1;31m
+Start test 1[0m
++use this link to request the access code:
+ƒhttp://127.0.0.1:45678/authorize?client_id=d5e4a5e431d9471e97fec15d26509715&redirect_uri=http://localhost:8080&response_type=code
+Server error
+)making http request for access_token...
+response:
+Error response

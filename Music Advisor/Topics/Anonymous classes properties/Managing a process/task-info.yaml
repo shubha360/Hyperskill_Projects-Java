@@ -1,0 +1,46 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    import java.util.Scanner;
+
+    public class Main {
+
+        private static String message;
+        private static int errorCode;
+
+        public static void main(String[] args) {
+
+            final Scanner scanner = new Scanner(System.in);
+            message = scanner.nextLine();
+            errorCode = Integer.parseInt(scanner.nextLine());
+
+            startLongProcess(/* pass your callback here */);
+
+        }
+
+        public static void startLongProcess(Callback callback) {
+            callback.onStarted();
+            callback.onStopped(message);
+            callback.onStarted();
+            callback.onFinished(errorCode);
+        }
+
+    }
+
+    interface Callback {
+
+        void onStarted();
+
+        void onStopped(String cause);
+
+        void onFinished(int code);
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2550#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Sun, 18 Apr 2021 11:50:57 UTC
+record: -1

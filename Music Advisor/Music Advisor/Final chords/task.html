@@ -1,0 +1,100 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Since the results can take up many lines, sometimes it is not convenient to see the whole result at once, and you might want to see everything separately. In this stage, you will need to reorganize your application and add paginated output.</p>
+
+<h3>MVC pattern</h3>
+
+<p>MVC (Model View Controller) is an architectural pattern for building an application. Using this pattern we achieve separation of data and presentation, scalability, and maintainability. The main concept of MVC is the division of the program into three parts. Model (or just data) is manipulated by the user performing various actions. Controller receives these actions from the user and interprets them, changes the model, and updates the view. The view determines how the elements on the screen will be displayed, what text they will have, indents, etc.</p>
+
+<ol>
+	<li>The user makes some actions that Controller intercepts.</li>
+	<li>The controller manipulates the Model according to the user’s request.</li>
+	<li>Then the Controller updates the View that the user sees.</li>
+</ol>
+
+<p>This is a <a target="_blank" href="https://martinfowler.com/eaaDev/PassiveScreen.html" rel="nofollow noopener noreferrer">passive view realization</a> of MVC.</p>
+
+<p style="text-align: center;"><strong><img alt="" height="390" src="https://ucarecdn.com/cc70612a-aa89-4812-b4bd-3380c4b33b41/" width="333"></strong></p>
+
+<h3>Objectives</h3>
+
+<p>According to the MVC pattern, reorganize your application into three components (the controller should read input and make requests to the API and update the view) and create a paginated output that will display 5 entries per page. You should be able to navigate through the pages using the commands <code class="java">next</code> (see the next page) and <code class="java">prev</code> (see the previous page). If the user is viewing the last page or the first one and calls next or prev, then you need to display a message: "No more pages." and stay at the same page. Also, under each output should be a message containing the number of the current page and how many total pages there are.</p>
+
+<p>Don't forget about <code class="java">-access</code> and <code class="java">-resource</code> arguments and add another argument: a number of entries that should be shown on a page. Your program should process argument <code class="java">-page</code>. If ths argument isn't set, you should use the default value 5.</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>Below is an output example of the described program. Try to output all cases like in the example.</p>
+
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">&gt; new
+Please, provide access for application.
+&gt; auth
+use this link to request the access code:
+https://accounts.spotify.com/authorize?client_id=a19ee7dbfda443b2a8150c9101bfd645&amp;redirect_uri=http://localhost:8080&amp;response_type=code
+waiting for code...
+code received
+Making http request for access_token...
+Success!
+&gt; new
+OT ALL HEROES WEAR CAPES
+[Metro Boomin, Travis Scott, 21 Savage]
+https://open.spotify.com/album/1zNr37qd3iZJ899byrTkcj
+
+I Used To Know Her - Part 2 - EP
+[H.E.R.]
+https://open.spotify.com/album/46imFLgb9fR1Io6EoPYeQh
+
+The Last Rocket
+[Takeoff]
+https://open.spotify.com/album/5XRCcUfwtLNQflDd9cfz4U
+
+Interstate Gospel
+[Pistol Annies]
+https://open.spotify.com/album/0IXxmmlfSQxgJNWnNjHhgJ
+
+El Mal Querer
+[ROSALÍA]
+https://open.spotify.com/album/355bjCHzRJztCzaG5Za4gq
+
+---PAGE 1 OF 5---
+&gt; prev
+No more pages.
+&gt; next
+Mountains
+[Sia, Diplo, Labrinth]
+https://open.spotify.com/album/3dB0bCgmpEgCSr3aU1bOtv
+
+Pussy Is God
+[King Princess]
+https://open.spotify.com/album/4UzCY6ikiEN4rgY26I4jg0
+
+Shootin Shots (feat. Ty Dolla $ign &amp; Tory Lanez)
+[Trey Songz, Ty Dolla $ign]
+https://open.spotify.com/album/6Erhbwa5HmDwuzYacUpLPr
+
+Runaway
+[Lil Peep]
+https://open.spotify.com/album/38sesm68q3lg21o6Lpzslc
+
+RESET
+[Moneybagg Yo]
+https://open.spotify.com/album/547DJFUYOl2SBYJbo2jZX1
+
+---PAGE 2 OF 5---
+&gt; categories
+Top Lists
+Mood
+Chill
+Hip-Hop
+Electronic/Dance
+---PAGE 1 OF 10---
+&gt; next
+Kids &amp; Family
+Rock
+Indie
+Happy Holidays
+Workout
+---PAGE 2 OF 10---
+&gt; exit</code></pre>

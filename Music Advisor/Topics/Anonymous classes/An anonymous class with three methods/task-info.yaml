@@ -1,0 +1,17 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: "public class Main {\n\n    public static void main(String[] args) {\n\n \
+    \       ThreeMethodsInterface instance = /* create an instance of an anonymous\
+    \ class here, \n                                            do not forget ; in\
+    \ the end */\n\n        instance.do1();\n        instance.do2();\n        instance.do3();\n\
+    \    }\n}\n\ninterface ThreeMethodsInterface {\n\n    void do1();\n\n    void\
+    \ do2();\n\n    void do3();\n}"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2547#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Sun, 18 Apr 2021 11:03:56 UTC
+record: -1

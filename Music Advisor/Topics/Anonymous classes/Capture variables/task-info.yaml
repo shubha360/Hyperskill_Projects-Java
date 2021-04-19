@@ -1,0 +1,20 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: "import java.util.Scanner;\n\npublic class Main {\n\n    public static void\
+    \ main(String[] args) {\n\n        final Scanner scanner = new Scanner(System.in);\n\
+    \        final String str = scanner.nextLine();\n        final int number = Integer.parseInt(scanner.nextLine());\n\
+    \n        Returner returner = /* create an instance of an anonymous class here,\
+    \ \n                               do not forget ; on the end;\n             \
+    \                  variables str and number will be accessible during testing\
+    \ */\n\n        System.out.println(returner.returnString());\n        System.out.println(returner.returnInt());\
+    \ \n    }\n}\n\ninterface Returner {\n\n    public String returnString();\n\n\
+    \    public int returnInt();\n}"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2553#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Sun, 18 Apr 2021 11:21:15 UTC
+record: -1

@@ -1,0 +1,167 @@
+<html>
+ <head></head>
+ <body>
+  <p> As you remember, there are <strong>anonymous classes</strong> in the world of Java. They don't have name identifiers and they enable you to declare and instantiate a class at the same time. But you didn't think that the whole theory was covered in the first topic, did you?<br> So, today is a special day — you will finally learn all the nuances about anonymous classes!</p> 
+  <h2>How to create?</h2> 
+  <p>The most popular way to create an anonymous class is to implement an interface and you have seen it already. So, now let's try something new — let's create an anonymous class that inherits from another class.</p> 
+  <p>Imagine a human: he has a brain and many-many thoughts in it. Every couple of seconds he produces a new thought. And we want to describe it in Java language. So, how will we do it?</p> 
+  <pre><code class="language-java">abstract class HumanThought {
+    public void print() {
+        System.out.println("This is a very important thought.");
+    }
+}</code></pre> 
+  <p>This is our superclass <code class="language-java">HumanThought</code> that has one method for printing the standard thought. And now anonymous classes will help us. By inheriting from <code class="language-java">HumanThought</code> we may have as many different thoughts as we want — and that's all without new <code class="language-java">.java</code> files.</p> 
+  <p>All new thoughts would be children of our superclass and will have their own method print:</p> 
+  <pre><code class="language-java">class Human {
+
+    public void takeMilkshake() {
+
+        // creation of anonymous class by inheriting from class HumanThought
+        HumanThought thought = new HumanThought() {
+            public void print() {
+                System.out.println("What to take? Chocolate or strawberry milkshake..");
+            }
+        };
+        thought.print();
+    }
+}</code></pre> 
+  <p>And if we wanted to create an actual human and invoke method <code class="language-java">takeMilkshake</code> — what would be the output?</p> 
+  <pre><code class="language-java">public class Main {
+
+    public static void main(String[] args) {
+
+        Human human = new Human();
+        human.takeMilkshake();
+    }
+}</code></pre> 
+  <p>Of course, you are thinking the right thought:</p> 
+  <pre><code class="language-java">What to take? Chocolate or strawberry milkshake..</code></pre> 
+  <p>And have you noticed that class <code class="language-java">HumanThought</code> is abstract? Yes, it is — don't forget that we can create an anonymous class by inheriting from both: <strong>concrete</strong> and <strong>abstract</strong> classes.</p> 
+  <p>But to become a master in programming you should get acquainted with another case of creating anonymous classes: when we create an anonymous class and pass it in a constructor as an argument.</p> 
+  <p>So, what is going on in our example below? Firstly, <code class="language-java">Thread</code> is a standard Java class. And if you don't know each other yet, don't be afraid — fruitful cooperation awaits you. And <code class="language-java">Runnable</code> is an interface that describes some action — any you want. In our example, <code class="language-java">Runnable</code> has an action that only prints a phrase.</p> 
+  <p><code class="language-java">Thread</code> has several constructors, that is a normal situation, and one of its constructors take as an argument an anonymous class that implements the interface <code class="language-java">Runnable</code>. </p> 
+  <p>As a result, the anonymous class is passed as an argument of the constructor:</p> 
+  <pre><code class="language-java">class MyExample {
+    public static void main(String[] args) {
+
+        //Anonymous class is created as a constructor argument
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                System.out.println("Run, Forrest, run!");
+            }
+        });
+    }
+}</code></pre> 
+  <h2>Learn callbacks by example</h2> 
+  <p>Also, often, after creating an instance of an anonymous class we pass it to some method as an argument. In this case, the anonymous class is called a <strong>callback</strong>. A callback is a piece of executable code that is passed to another code that executes it (performs a call back) at a convenient time. And can we call our previous example a callback? Yes, we can — because the constructor is a special method.</p> 
+  <p>Let's consider an example. There is a special kind of calculator that can only divide numbers. The calculator takes a callback as its argument and executes the callback passing the result of the calculation or an error message.</p> 
+  <p>The <code class="language-java">Callback</code> interface has two abstract methods:</p> 
+  <pre><code class="language-java">interface Callback {
+
+    /**
+     * Takes a result and processes it
+     */
+    void calculated(int result);
+
+    /**
+     * Takes an error message
+     */
+    void failed(String errorMsg);
+}</code></pre> 
+  <p>The class <code class="language-java">Divider</code> has only one static method (just an example, the demonstrated technique works with any methods):</p> 
+  <pre><code class="language-java">class Divider {
+
+    /**
+     * Divide a by b. It executes the specified callback to process results
+     */
+    public static void divide(int a, int b, Callback callback) {
+
+        if (b == 0) {
+            callback.failed("Division by zero!");
+            return;
+        }
+
+        callback.calculated(a / b);
+    }
+}</code></pre> 
+  <p>Of course, in this case, you can perform the division and return the result without any callbacks. In general, though, callbacks can help you in large applications with multiple parts and layers (especially in multithreaded programs).</p> 
+  <p>Calling a method with a callback:</p> 
+  <pre><code class="language-java">public class CallbacksExample {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+
+        Divider.divide(a, b, new Callback() { // passing callback as an argument
+
+            @Override
+            public void calculated(int result) {
+                String textToPrint = String.format("%d / %d is %d", a, b, result);
+                print(textToPrint);
+            }
+
+            @Override
+            public void failed(String errorMsg) {
+                print(errorMsg);
+            }
+        });
+    }
+
+    public static void print(String text) {
+        System.out.println(text);
+    }
+}</code></pre> 
+  <p>As you can see, we instantiate and pass the callback without any additional variables of the <code class="language-java">Callback</code> type. It's a very common practice for working with callbacks, especially if they are small.</p> 
+  <p>The callback captures the static method <code class="language-java">print</code> and the local variables <code class="language-java">a</code> and <code class="language-java">b</code> from its context. The variables <code class="language-java">a</code> and <code class="language-java">b</code> are <strong>effectively final </strong>here. (i.e the variables aren't changed you don't need to write the keyword <code class="language-java">final</code> ).</p> 
+  <p>Let's run the program.</p> 
+  <p>Input 1:</p> 
+  <pre><code class="language-java">8 2</code></pre> 
+  <p>Output 1:</p> 
+  <pre><code class="language-java">8 / 2 is 4</code></pre> 
+  <p>Input 2:</p> 
+  <pre><code class="language-java">10 0</code></pre> 
+  <p>Output 2:</p> 
+  <pre><code class="language-java">Division by zero!</code></pre> 
+  <p>So, anonymous classes along with the context capture mechanism allow you to transfer logic between parts of your program. They are used as callbacks in large applications and when working with external libraries.</p> 
+  <h2>Restrictions on anonymous classes</h2> 
+  <p>And, of course, anonymous classes have some restrictions:</p> 
+  <ul> 
+   <li>they cannot have static initializers or interface declarations</li> 
+   <li>they cannot have static members, except the constant variables (<code class="language-java">final static</code> fields)</li> 
+   <li>they cannot have constructors</li> 
+  </ul> 
+  <p>Let's consider the following example with an anonymous class <code class="language-java">SpeakingEntity</code>. To not have static initializers, static members, or interface declarations — it's not a big deal. But what about not having a constructor? How to initialize our fields?</p> 
+  <pre><code class="language-java">final String robotName = "Bug";
+final int robotAssemblyYear = 2112;
+
+SpeakingEntity robot = new SpeakingEntity() {
+
+    static final int MAGIC_CONSTANT = 10;
+
+    private String name;
+    private int assemblyYear;
+
+    { /* instance initialization block for setting fields */
+        name = robotName;
+        assemblyYear = robotAssemblyYear;
+    }
+
+    @Override
+    public void sayHello() {
+        System.out.println("1010001" + MAGIC_CONSTANT);
+    }
+
+    @Override
+    public void sayBye() {
+        System.out.println("0101110" + MAGIC_CONSTANT);
+    }
+};</code></pre> 
+  <p>And for examples like this one you should be friends with the good old theory! Remember about instance initializers and what they are for? Yeah, instance initializer allows us to substitute a constructor. It runs each time when an object of the class is created. So, fields <code class="language-java">name</code> and <code class="language-java">assemblyYear</code> will be initialized and our robot will have the name "Bug" and a year of birth!</p> 
+  <h2>Summary</h2> 
+  <p>Perhaps you are wondering where to go to see how anonymous classes are used in "real life"? In that case, we may have a suggestion.</p> 
+  <p>Anonymous classes are actively used when writing user interfaces with the standard Java library called <strong>Swing</strong>. The same with developing a web user interface using <strong>Google Web Toolkit (GWT)</strong>. It is very common to have a lot of listeners that are used just once for one button, so using anonymous classes allows us to avoid writing a lot of classes and having useless files in the development of the code.<br> Some widespread libraries for working through the <strong>HTTP</strong> protocol also use anonymous classes. For example, <a target="_blank" href="https://hc.apache.org/httpcomponents-asyncclient-dev/quickstart.html" rel="noopener noreferrer nofollow">this HttpAsyncClient</a>. </p> 
+  <p>And the last one — what are the <strong>advantages</strong> of anonymous classes? Anonymous classes enable you to make code more concise and reduce the number of <code class="language-java">.java</code> files. And what about encapsulation? Yes, you are thinking right — each anonymous class has very local scope, it is defined exactly where it is needed and it can never be used anywhere else. So, it definitely increases encapsulation and provides you with a great reason to fall in love with Java!</p>
+ </body>
+</html>

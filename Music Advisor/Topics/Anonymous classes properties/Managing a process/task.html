@@ -1,0 +1,33 @@
+<h2>Managing a process</h2>
+<html>
+ <head></head>
+ <body>
+  <p>A program system manages a long process. To start the process you should invoke the static method <strong><code class="language-java">startLongProcess</code></strong> that takes a callback. Here is the declaration of this method:</p> 
+  <pre><code class="language-java">public static void startLongProcess(Callback callback)</code></pre> 
+  <p>The <strong><code class="language-java">Callback</code></strong> interface has three methods:</p> 
+  <pre><code class="language-java">interface Callback {
+    
+    void onStarted();
+    
+    void onStopped(String cause);
+    
+    void onFinished(int code);
+}</code></pre> 
+  <p>You should create an anonymous class that implements the <code class="language-java">Callback</code> interface and pass the instance to the method <code class="language-java">startLongProcess</code> as an argument. The method will call the passed callbacks at different stages of the process.</p> 
+  <p>The anonymous class must override all methods of the <code class="language-java">Callback</code> interface (otherwise the code won't be compiled).</p> 
+  <ul> 
+   <li>The method <strong><code class="language-java">onStarted</code></strong> must print the message <strong>"The process started"</strong> in the standard output.</li> 
+   <li>The method <strong><code class="language-java">onStopped</code></strong> takes a cause and print it to the standard output.</li> 
+   <li>The method <strong><code class="language-java">onFinished</code></strong> takes a code of the process completion. It should print <strong>"The process successfully finished"</strong> if the process is finished with the code 0, otherwise, the method should print the text <strong>"The process is finished with error: "</strong> plus the given code (for example, <strong>"The process is finished with error: 43"</strong>).</li> 
+  </ul> 
+  <p>All strings must be printed without quotes. Each message should be in a new line.</p> 
+  <p>Use the provided code template, do not copy the given class and the method.</p> 
+  <p>If the instance (<strong><code class="language-java">callback</code></strong>) of your anonymous class is created correctly, after calling the following code:</p> 
+  <pre><code class="language-java">callback.onStarted();
+callback.onFinished(0);</code></pre> 
+  <p>you will get the following output:</p> 
+  <pre><code class="language-java">The process started
+The process successfully finished</code></pre>
+ </body>
+</html><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 8 seconds</font><br><br>
+<a href="https://hyperskill.org/learn/step/3564">Show topic summary</a>

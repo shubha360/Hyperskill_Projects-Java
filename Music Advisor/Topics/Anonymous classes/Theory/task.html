@@ -1,0 +1,116 @@
+<html>
+ <head></head>
+ <body>
+  <p>Sometimes developers need to use a small class that overrides some methods of another class or interface only <strong>once</strong>. In this case, declaring a new class may be superfluous. Fortunately, Java provides a mechanism for creating a class in a single statement without having to declare a new named class. Such classes are called <strong>anonymous</strong> because they don't have name identifiers like <code class="java">String</code> or <code class="java">MyClass</code> (but they do have an internal name).</p> 
+  <h2 style="text-align: center;">What is an anonymous class?</h2> 
+  <p>Anonymous classes enable you to declare and instantiate a class at the same time.</p> 
+  <p>An anonymous class always implements an interface or extends another class (concrete or abstract). Here is the common syntax of creating an anonymous class:</p> 
+  <pre><code class="java">new SuperClassOrInterfaceName() {
+
+    // fields
+
+    // overridden methods
+};</code></pre> 
+  <p>The syntax of an anonymous class is an expression. And it's similar to a constructor call except that there is a class definition contained in a block of code. </p> 
+  <p></p>
+  <div class="alert alert-warning">
+   An anonymous class must override all abstract methods of the superclass. That is, all interface methods must be overridden except default methods. If an anonymous class extends a class that has no abstract methods, it doesn't have to override anything.
+  </div>
+  <p></p> 
+  <h2 style="text-align: center;">Writing anonymous classes</h2> 
+  <p>Let's assume we have the following interface with two methods:</p> 
+  <pre><code class="java">interface SpeakingEntity {
+
+    void sayHello();
+
+    void sayBye();
+}</code></pre> 
+  <p>Here is an anonymous class that represents an English-speaking person:</p> 
+  <pre><code class="java">SpeakingEntity englishSpeakingPerson = new SpeakingEntity() {
+            
+    @Override
+    public void sayHello() {
+        System.out.println("Hello!");
+    }
+
+    @Override
+    public void sayBye() {
+        System.out.println("Bye!");
+    }
+};</code></pre> 
+  <p>The anonymous class is declared and instantiated at the same time — as an expression. It overrides both methods of the interface.</p> 
+  <p>We assign an instance of the <strong>anonymous class</strong> to the variable of the interface type. Now, we can invoke overridden methods:</p> 
+  <pre><code class="java">englishSpeakingPerson.sayHello();
+englishSpeakingPerson.sayBye();</code></pre> 
+  <p>Of course, the result is</p> 
+  <pre><code class="java">Hello!
+Bye!</code></pre> 
+  <p>Let's declare and instantiate another anonymous class:</p> 
+  <pre><code class="java">SpeakingEntity cat = new SpeakingEntity() {
+
+    @Override
+    public void sayHello() {
+        System.out.println("Meow!");
+    }
+
+    @Override
+    public void sayBye() {
+        System.out.println("Meow!");
+    }
+};</code></pre> 
+  <p>When we invoke the same methods, we obtain the following result:</p> 
+  <pre><code class="java">Meow!
+Meow!</code></pre> 
+  <p>So, <code class="java">englishSpeakingPerson</code> and <code class="java">cat</code> are instances of different anonymous classes that implement the same interface.</p> 
+  <h2 style="text-align: center;">Accessing context variables</h2> 
+  <p>In the body of an anonymous class, it is possible to capture variables from a context where it is defined:</p> 
+  <ul> 
+   <li>an anonymous class can capture members of its enclosing class (the outer class);</li> 
+   <li>an anonymous class can capture local variables that are declared as <code class="java">final</code> or are <strong>effectively final</strong> (i.e. the variable is not changed but it doesn't have the <code class="java">final</code> keyword).</li> 
+  </ul> 
+  <p>Here is another anonymous class that implements the <code class="java">SpeakingEntity</code> interface:</p> 
+  <pre><code class="java">public class AnonymousClassExample {
+
+    private static String BYE_STRING = "Auf Wiedersehen!"; // static constant
+
+    public static void main(String[] args) {
+
+        final String hello = "Guten Tag!"; // final local variable
+
+        SpeakingEntity germanSpeakingPerson = new SpeakingEntity() {
+
+            @Override
+            public void sayHello() {
+                System.out.println(hello); // it captures the local variable
+            }
+
+            @Override
+            public void sayBye() {
+                System.out.println(BYE_STRING); // it captures the constant field
+            }
+        };
+
+        germanSpeakingPerson.sayHello();
+
+        germanSpeakingPerson.sayBye();
+    }
+}</code></pre> 
+  <p>The anonymous class captures the constant field <code class="java">BYE_STRING</code> and the local final variable <code class="java">hello</code>. This code is successfully compiled and prints what we expect:</p> 
+  <pre><code class="java">Guten Tag!
+Auf Wiedersehen!</code></pre> 
+  <p></p>
+  <div class="alert alert-primary">
+   A declaration of a variable or a method in an anonymous class shadows any other declaration in the enclosing scope that has the same name. You cannot access any shadowed declarations by their names.
+  </div>
+  <p></p> 
+  <h2 style="text-align: center;">When to use anonymous classes</h2> 
+  <p>Generally, you should consider using an anonymous class when:</p> 
+  <ul> 
+   <li>only one instance of the class is needed</li> 
+   <li>the class has a very short body</li> 
+   <li>the class is used right after it's defined</li> 
+  </ul> 
+  <p>In this topic, we've considered rather simple anonymous classes to understand the basic syntax, but in real-life applications, they provide a powerful mechanism for creating classes that encapsulate behaviors and pass them to suitable methods. This is a convenient way to interact with parts of our application or with some third-party libraries.</p> 
+  <p>And in the next topic about anonymous classes you will become acquainted with more difficult examples and will dive into the intricacies of anonymous classes. See you soon!</p>
+ </body>
+</html>

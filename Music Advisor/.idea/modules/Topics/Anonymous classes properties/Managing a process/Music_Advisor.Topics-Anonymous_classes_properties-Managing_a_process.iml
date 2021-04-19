@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-Anonymous_classes_properties-Managing_a_process" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Anonymous classes properties/Managing a process" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="Music_Advisor" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Anonymous classes properties/Managing a process">
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Anonymous classes properties/Managing a process/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Anonymous classes properties/Managing a process/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Anonymous classes properties/Managing a process/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -1,0 +1,199 @@
+<h2 style="text-align: center;">Description</h2>
+
+<h3>GSON library</h3>
+
+<p>Since API basically responds in JSON format, we need to handle it somehow. Writing your own JSON parser will take a long time, so we will use the ready-made solution of the GSON library made by Google. The <code class="language-java">build.gradle</code> file already has this dependency connected, see this line:</p>
+
+<pre><code class="language-java">compile 'com.google.code.gson:gson:+'</code></pre>
+
+<p>For more information about JSON format, check out <a target="_blank" href="https://qhmit.com/json/tutorial/" rel="nofollow noopener noreferrer">the quackit tutorial</a>.</p>
+
+<p>GSON library provides different APIs to work with json. The simplest way to parse a json is using a <code class="language-java">JsonParser</code> class: see <a href='https://howtodoinjava.com/gson/gson-jsonparser/"' rel="nofollow noopener noreferrer">howtodoinjava.com</a> to learn more.</p>
+
+<p>Here is a small example how to parse a simple json object:</p>
+
+<pre><code class="language-java">{
+  "name": "John",
+  "address": {
+    "city": "London",
+    "plot": 12
+  },
+  "age": 23,
+  "hobbies": ["music", "tech news", "blog"]
+}
+</code></pre>
+
+<pre><code class="language-java">String json = "{\"name\":\"John\",\"address\":{\"city\":\"London\",\"plot\":12},\"age\":23,\"hobbies\":[\"music\",\"tech news\",\"blog\"]}";
+JsonObject jo = JsonParser.parseString(json).getAsJsonObject();
+String name = jo.get("name").getAsString();
+int age = jo.get("age").getAsInt();
+
+JsonObject addressObj = jo.getAsJsonObject("address");
+String city = addressObj.get("city").getAsString();
+int plot = addressObj.get("plot").getAsInt();
+
+List&lt;String&gt; hobbies = new ArrayList&lt;&gt;();
+for (JsonElement hobby : jo.getAsJsonArray("hobbies")) {
+    hobbies.add(hobby.getAsString());
+}
+</code></pre>
+
+<h3>REST principles</h3>
+
+<p>Since the Spotify API is based on simple REST principles, we must learn what REST means. Representational State Transfer (REST) is a software architectural style that defines a set of constraints to be used for creating web services.<br>
+It works over HTTP. The main concept of REST is resource: every URL defines its own resource and every HTTP method defines a verb you want to do with this resource.</p>
+
+<p>Examples<br>
+/albums with the GET method should return representational state of all albums;<br>
+/albums with the POST method should create new resource over /albums URL;<br>
+/albums/5 with the PUT method should update information about the fifth album;<br>
+/albums/5 with the DELETE method should delete album number 5.</p>
+
+<h3>Adding authorization header</h3>
+
+<p>Every request to Spotify API must contain a header "Authorization" with the value "Bearer + access_token". Extra information may be passed in query parameters (if it is a GET method) or in the request body (if it is a POST method).</p>
+
+<p>Here is an example how to pass the <code class="language-java">access_token</code> to the <code class="language-java">HttpRequest</code> class:</p>
+
+<pre><code class="language-java">HttpRequest httpRequest = HttpRequest.newBuilder()
+        .header("Authorization", "Bearer " + accessToken)
+        .uri(URI.create(apiPath))
+        .GET()
+        .build();
+</code></pre>
+
+<h3>What should you do</h3>
+
+<p>In this stage, you should replace your fake responses with the real ones. You should make requests to Spotify API and parse responses with the json parser.</p>
+
+<p>Let's remember what information should be provided for each user request:</p>
+
+<ul>
+	<li><code class="language-java">featured</code> — list of Spotify featured playlists with their links fetched from API;</li>
+	<li><code class="language-java">new</code> — list of new albums with artists and links on Spotify;</li>
+	<li><code class="language-java">categories</code> — list of all available categories on Spotify (just their names);</li>
+	<li><code class="language-java">playlists C_NAME</code>, where C_NAME — name of category. List contains playlists of this category and their links on Spotify;</li>
+</ul>
+
+<p>Full documentation how to work with api could be found at <a target="_blank" href="https://developer.spotify.com/documentation/web-api/reference/" rel="nofollow noopener noreferrer">https://developer.spotify.com/documentation/web-api/reference/</a>.<br>
+Object model: <a target="_blank" href="https://developer.spotify.com/documentation/web-api/reference/object-model/" rel="nofollow noopener noreferrer">https://developer.spotify.com/documentation/web-api/reference/object-model/</a></p>
+
+<p>To get all categories, use <code class="language-java">https://api.spotify.com/v1/browse/categories</code><br>
+To get a playlist, use <code class="language-java">https://api.spotify.com/v1/browse/categories/{category_id}/playlists</code><br>
+To get new releases, use <code class="language-java">https://api.spotify.com/v1/browse/new-releases</code><br>
+To get featured playlists, use <code class="language-java">https://api.spotify.com/v1/browse/featured-playlists</code></p>
+
+<p>Pay attention to <code class="language-java">playlists</code> action. Make sure that inside the request you send <strong>category id</strong>, <strong>not category name</strong>! Category names can contain spaces or other invalid URL symbols. So you should request category ids and names before the <code class="language-java">playlists</code> request and find the id by category name. If the id format is correct but you cannot find it in the list of ids, print "Unknown category name.".</p>
+
+<p>In case of invalid category id (contains invalid URL symbols) in playlist request or other API error, the program should output the error message from the Spotify response. For example, if you get the response <code class="language-java">{"error":{"status":404,"message":"Specified id doesn't exist"}}</code>, you should print the following line: "Specified id doesn't exist".</p>
+
+<p>Also, in this stage, you should read 2 server points from command line arguments:</p>
+
+<ul>
+	<li><code class="language-java">-access</code> argument should provide authorization server path. The default value should be <code class="language-java">https://accounts.spotify.com</code></li>
+	<li><code class="language-java">-resource</code> argument should provide API server path. The default value should be <code class="language-java">https://api.spotify.com</code></li>
+</ul>
+
+<p>Make sure you replace constants to these argument values everywhere.</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>Below is an output example of the described program. Try to output all cases like in the example.</p>
+
+<p>The greater-than symbol followed by a space (<code class="language-java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">&gt; new
+Please, provide access for application.
+&gt; auth
+use this link to request the access code:
+https://accounts.spotify.com/authorize?client_id=a19ee7dbfda443b2a8150c9101bfd645&amp;redirect_uri=http://localhost:8080&amp;response_type=code
+waiting for code...
+code received
+Making http request for access_token...
+Success!
+&gt; new
+NOT ALL HEROES WEAR CAPES
+[Metro Boomin, Travis Scott, 21 Savage]
+https://open.spotify.com/album/1zNr37qd3iZJ899byrTkcj
+
+I Used To Know Her - Part 2 - EP
+[H.E.R.]
+https://open.spotify.com/album/46imFLgb9fR1Io6EoPYeQh
+
+The Last Rocket
+[Takeoff]
+https://open.spotify.com/album/5XRCcUfwtLNQflDd9cfz4U
+
+Interstate Gospel
+[Pistol Annies]
+https://open.spotify.com/album/0IXxmmlfSQxgJNWnNjHhgJ
+
+El Mal Querer
+[ROSALÍA]
+https://open.spotify.com/album/355bjCHzRJztCzaG5Za4gq
+
+I Found You (with Calvin Harris)
+[benny blanco, Calvin Harris]
+https://open.spotify.com/album/3jfSJj7tHJxk1a4i2KZt9F
+
+Back to Life (from "Bumblebee")
+[Hailee Steinfeld]
+https://open.spotify.com/album/3sSEnG2RZGnZlTFwJwxPy4
+
+&gt; featured
+Creativity Boost
+https://open.spotify.com/playlist/37i9dQZF1DX56qfiUZBncF
+
+Music for a Workday
+https://open.spotify.com/playlist/37i9dQZF1DXcsT4WKI8W8r
+
+Dance Rewind
+https://open.spotify.com/playlist/37i9dQZF1DX0BcQWzuB7ZO
+
+Acoustic Throwbacks
+https://open.spotify.com/playlist/37i9dQZF1DX8TvdyVZSYFY
+
+Hit Rewind
+https://open.spotify.com/playlist/37i9dQZF1DX0s5kDXi1oC5
+
+Soul Coffee
+https://open.spotify.com/playlist/37i9dQZF1DXaXDsfv6nvZ5
+
+Workday Lounge
+https://open.spotify.com/playlist/37i9dQZF1DWT5lkChsPmpy
+
+&gt; categories
+Top Lists
+Pop
+Mood
+Hip-Hop
+Decades
+Chill
+Electronic/Dance
+R&amp;B
+Party
+Indie
+Workout
+Season's Greetings
+Rock
+Afro
+Sleep
+&gt; playlists Sleep
+Sleep
+https://open.spotify.com/playlist/37i9dQZF1DWZd79rJ6a7lp
+
+Songs For Sleeping
+https://open.spotify.com/playlist/37i9dQZF1DWStLt4f1zJ6I
+
+Peaceful Piano
+https://open.spotify.com/playlist/37i9dQZF1DX4sWSpwq3LiO
+
+Ambient Chill
+https://open.spotify.com/playlist/37i9dQZF1DX3Ogo9pFvBkY
+
+Night Rain
+https://open.spotify.com/playlist/37i9dQZF1DXbcPC6Vvqudd
+
+&gt; playlists unknown
+Unknown category name.
+&gt; exit</code></pre>

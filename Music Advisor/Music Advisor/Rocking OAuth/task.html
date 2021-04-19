@@ -1,0 +1,65 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>You have written a simulation of the final application, and now we will make it fully functional, step by step. In this stage, we will introduce OAuth basics and register your application on the Spotify site.</p>
+
+<h3>Working with OAuth</h3>
+
+<p>OAuth means a protocol for authorization. When you are visiting a website that allows you to register, you often have the option of signing in with Google, Twitter, Facebook, or another service. All these services use OAuth to provide user information to third-party applications.<br>
+<br>
+The main entity of OAuth is <code class="java">access_token</code>, the secret code that should be sent with an HTTP request to API, so that the service is sure that you have enough rights to get information from API.</p>
+
+<p>So, before an application can receive <code class="java">access_token</code>, the user should confirm access to that application. Let’s see how it works:</p>
+
+<ol>
+	<li>A developer of an application wants to use an API (Spotify in our case), so they must go to the site of the corresponding API and create the application there to get <code class="java">client_id</code> and <code class="java">client_secret</code>.</li>
+	<li>After they have registered the application and received the <code class="java">client_id</code> and <code class="java">client_secret</code>, they must create an authorization link which will contain, in query parameters, the <code class="java">client_id</code>, <code class="java">redirect_uri</code> (where the user will be sent after confirm; <code class="java">redirect_uri</code> itself must be allowed in the settings of the application), <code class="java">response_type</code> (what should be returned in case of success), and scopes (what rights the user must provide to their account; in our case, we won’t use scopes).</li>
+	<li>The user follows this link and authorizes access (clicks the “allow” button), and is redirected back to the developer’s specified <code class="java">redirect_uri</code> with the response here.</li>
+	<li>The developer uses this response to get <code class="java">access_token</code>.</li>
+</ol>
+
+<p>We encourage you to do some independent research to get <a target="_blank" href="https://www.youtube.com/watch?v=CPbvxxslDTU" rel="nofollow noopener noreferrer">more information about OAuth</a>!<br>
+<br>
+In our case, using the Spotify API, it will look like this:</p>
+
+<pre><code class="language-no-highlight">https://accounts.spotify.com/authorize?client_id=YOURCLIENT&amp;redirect_uri=https://www.example.com&amp;response_type=code</code></pre>
+
+<ol>
+	<li>The user follows this link and confirms access.</li>
+	<li>Then the user is redirected to <code class="java">redirect_url</code> with the response in the URL (<code class="java">http://www.example.com?code=7angkqw2DAsdfkQ</code>). (Your own server waiting for <code class="java">code</code>.)</li>
+	<li>You use this <code class="java">code</code> to get <code class="java">access_token</code> and make requests to an API.</li>
+</ol>
+
+<p>You can find more information in the <a target="_blank" href="https://developer.spotify.com/documentation/general/guides/authorization-guide/" rel="nofollow noopener noreferrer">authorization guide</a> (look at <em>Authorization Code Flow </em>section).</p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>So, in this stage, you must go to the <a target="_blank" href="https://developer.spotify.com/" rel="nofollow noopener noreferrer">Spotify Web site for developers</a> and create your application.<br>
+To create an application, you should select <code class="java">Dashboard</code> tab on the site, log in to Spotify, and click the button <code class="java"><span style="color: #000000;">Create an App</span></code>.</p>
+
+<p>Add one more command to your program: an <code class="java">auth</code> command that will print the auth link and allow us to use another command (<strong>no real authorization required</strong>, just print a workable link and make some Boolean field true). Don't forget to put your client id in this link.</p>
+
+<p>Make commands unavailable if user access for your program is not confirmed (if they did not call the auth command).</p>
+
+<p>Remember that you should add your <code class="java">redirect_uri</code> in the settings of your application.</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>Below is an output example of the described program. Try to output all cases like in the example.</p>
+
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">&gt; new
+Please, provide access for application.
+&gt; featured
+Please, provide access for application.
+&gt; auth
+https://accounts.spotify.com/authorize?client_id=a19ee7dbfda443b2a8150c9101bfd645&amp;redirect_uri=http://localhost:8080&amp;response_type=code
+---SUCCESS---
+&gt; new
+---NEW RELEASES---
+Mountains [Sia, Diplo, Labrinth]
+Runaway [Lil Peep]
+The Greatest Show [Panic! At The Disco]
+All Out Life [Slipknot]
+&gt; exit
+---GOODBYE!---</code></pre>

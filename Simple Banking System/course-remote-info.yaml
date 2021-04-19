@@ -1,0 +1,200 @@
+hyperskill_project:
+  id: 93
+  ide_files: https://stepik.org/media/attachments/lesson/295560/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: Mon, 19 Apr 2021 05:54:27 UTC
+stages:
+- id: 515
+  step: 8425
+  is_completed: true
+- id: 516
+  step: 8426
+  is_completed: true
+- id: 517
+  step: 8427
+  is_completed: false
+- id: 518
+  step: 8428
+  is_completed: false
+topics:
+  0:
+  - title: Units of information
+    theory_id: 6865
+  - title: Introduction to operating systems
+    theory_id: 9704
+  - title: IDE
+    theory_id: 10996
+  - title: Introduction to OOP
+    theory_id: 3614
+  - title: Introduction to Java
+    theory_id: 3500
+  - title: Basic literals
+    theory_id: 3522
+  - title: Overview of the basic program
+    theory_id: 3521
+  - title: Printing data
+    theory_id: 3749
+  - title: Types and variables
+    theory_id: 3518
+  - title: Comments
+    theory_id: 3520
+  - title: Coding style conventions
+    theory_id: 12411
+  - title: Naming variables
+    theory_id: 3513
+  - title: Scanning the input
+    theory_id: 9055
+  - title: Arithmetic operations
+    theory_id: 3519
+  - title: Integer types and operations
+    theory_id: 3565
+  - title: Boolean and logical operations
+    theory_id: 3516
+  - title: Relational operators
+    theory_id: 3512
+  - title: Increment and decrement
+    theory_id: 5008
+  - title: Characters
+    theory_id: 3514
+  - title: Conditional statement
+    theory_id: 3503
+  - title: Ternary operator
+    theory_id: 3506
+  - title: The for-loop
+    theory_id: 3505
+  - title: The while and do-while loops
+    theory_id: 3498
+  - title: Branching statements
+    theory_id: 3507
+  - title: Switch statement
+    theory_id: 3504
+  - title: Write, compile, and run
+    theory_id: 3739
+  - title: JVM, JRE, and JDK
+    theory_id: 3499
+  - title: Errors in programs
+    theory_id: 3536
+  - title: What is an exception
+    theory_id: 3497
+  - title: Sizes and ranges
+    theory_id: 3532
+  - title: Type casting
+    theory_id: 3510
+  - title: Command line overview
+    theory_id: 8977
+  - title: Parameters and options
+    theory_id: 9746
+  - title: Running programs on your computer
+    theory_id: 3746
+  - title: Calling a method
+    theory_id: 10973
+  - title: Declaring a method
+    theory_id: 10982
+  - title: The main method
+    theory_id: 3489
+  - title: Functional decomposition
+    theory_id: 10570
+  - title: Primitive and reference types
+    theory_id: 5035
+  - title: Array
+    theory_id: 3511
+  - title: Iterating over arrays
+    theory_id: 3602
+  - title: Multidimensional array
+    theory_id: 1933
+  - title: Arrays as parameters
+    theory_id: 3594
+  - title: String
+    theory_id: 3523
+  - title: Hierarchy of exceptions
+    theory_id: 3570
+  - title: Exception handling
+    theory_id: 3552
+  - title: IntelliJ IDEA
+    theory_id: 3801
+  - title: IDEA Basics
+    theory_id: 5819
+  - title: EduTools
+    theory_id: 5839
+  - title: Random
+    theory_id: 4910
+  - title: Defining classes
+    theory_id: 3618
+  - title: Constructor
+    theory_id: 3535
+  - title: Instance methods
+    theory_id: 3495
+  - title: Package
+    theory_id: 3621
+  - title: Access modifiers
+    theory_id: 3589
+  - title: Getters and setters
+    theory_id: 3599
+  - title: Inheritance
+    theory_id: 3583
+  - title: Objects
+    theory_id: 4727
+  1:
+  - title: Build tools
+    theory_id: 4284
+  - title: Gradle basics
+    theory_id: 5075
+  - title: Command-line arguments
+    theory_id: 3566
+  - title: Java Archive
+    theory_id: 4311
+  - title: Basic project with Gradle
+    theory_id: 5077
+  - title: Building apps using Gradle
+    theory_id: 7917
+  - title: Dependency management
+    theory_id: 5076
+  - title: Files
+    theory_id: 3635
+  - title: Reading files
+    theory_id: 3636
+  - title: IntelliJ Run Configurations
+    theory_id: 10630
+  2:
+  - title: Files
+    theory_id: 6989
+  - title: Introduction to databases
+    theory_id: 8497
+  - title: What is SQL
+    theory_id: 7054
+  - title: Basic data types
+    theory_id: 7123
+  - title: Literals
+    theory_id: 7400
+  - title: Expressions
+    theory_id: 7409
+  - title: The NULL value
+    theory_id: 7907
+  - title: Basic SELECT statement
+    theory_id: 7392
+  - title: SELECT FROM statement
+    theory_id: 8611
+  - title: SELECT FROM WHERE statement
+    theory_id: 8619
+  - title: Basic UPDATE statement
+    theory_id: 9067
+  - title: Basic CREATE statement
+    theory_id: 9084
+  - title: Basic INSERT statement
+    theory_id: 9059
+  - title: Connecting to a database with JDBC
+    theory_id: 9519
+  - title: JDBC Statements
+    theory_id: 9955
+  3:
+  - title: Results ordering
+    theory_id: 8627
+  - title: Basic DELETE statement
+    theory_id: 9075
+  - title: Updating selected rows
+    theory_id: 9603
+  - title: JDBC Prepared Statements
+    theory_id: 11014
+  - title: JDBC Transactions
+    theory_id: 11346
