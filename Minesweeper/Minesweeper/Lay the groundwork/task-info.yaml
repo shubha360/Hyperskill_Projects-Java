@@ -1,0 +1,59 @@
+type: edu
+custom_name: stage1
+files:
+- name: src/minesweeper/Main.java
+  visible: true
+  text: |
+    package minesweeper;
+
+    public class Main {
+        public static void main(String[] args) {
+            // write your code here
+        }
+    }
+  learner_created: false
+- name: test/MinesweeperTest.java
+  visible: false
+  text: "import org.hyperskill.hstest.stage.StageTest;\nimport org.hyperskill.hstest.testcase.CheckResult;\n\
+    import org.hyperskill.hstest.testcase.TestCase;\n\nimport java.util.Arrays;\n\
+    import java.util.List;\nimport java.util.Set;\nimport java.util.TreeSet;\nimport\
+    \ java.util.stream.Collectors;\n\npublic class MinesweeperTest extends StageTest\
+    \ {\n    \n    @Override\n    public List<TestCase> generate() {\n        return\
+    \ Arrays.asList(\n                new TestCase<>()\n        );\n    }\n    \n\
+    \    @Override\n    public CheckResult check(String reply, Object attach) {\n\
+    \        List<String> lines =\n                Arrays.stream(reply.split(\"\\\
+    n\"))\n                        .map(String::trim)\n                        .collect(Collectors.toList());\n\
+    \        \n        if (lines.isEmpty()) {\n            return CheckResult.wrong(\n\
+    \                    \"Looks like you didn't output a single line!\"\n       \
+    \     );\n        }\n        \n        int firstLineLength = lines.get(0).length();\n\
+    \        \n        if (lines.size() < 2) {\n            return CheckResult.wrong(\"\
+    Your game field should contain at least 2 lines.\");\n        }\n        \n  \
+    \      Set<Character> symbols = new TreeSet<>();\n        \n        for (String\
+    \ line : lines) {\n            int currLineLength = line.length();\n         \
+    \   \n            if (currLineLength != firstLineLength) {\n                return\
+    \ CheckResult.wrong(\n                        \"You have lines with different\
+    \ lengths!\\n\" +\n                                \"Found lines with \" + currLineLength\
+    \ + \" and \" +\n                                firstLineLength + \" length.\"\
+    \n                );\n            }\n            \n            for (char c : line.toCharArray())\
+    \ {\n                symbols.add(c);\n                \n                if (symbols.size()\
+    \ == 3) {\n                    Character[] ch = symbols.toArray(new Character[0]);\n\
+    \                    char first = ch[0];\n                    char second = ch[1];\n\
+    \                    char third = ch[2];\n                    \n             \
+    \       return CheckResult.wrong(\n                            \"There are three\
+    \ different symbols, \" +\n                                    \"but there must\
+    \ be two - \" +\n                                    \"one for mines, one for\
+    \ safe zones. \" +\n                                    \"Symbols found: \" +\n\
+    \                                    \"\\'\" + first + \"\\', \" +\n         \
+    \                           \"\\'\" + second + \"\\', \" +\n                 \
+    \                   \"\\'\" + third + \"\\'.\"\n                    );\n     \
+    \           }\n            }\n        }\n        if (symbols.size() < 2) {\n \
+    \           return CheckResult.wrong(\"Your field should contain 2 different symbols:\
+    \ \" +\n                    \"one for mines, one for safe zones.\");\n       \
+    \ }\n        \n        return CheckResult.correct();\n    }\n}\n"
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/77/stages/426/implement#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Mon, 19 Apr 2021 09:40:20 UTC
+record: 1

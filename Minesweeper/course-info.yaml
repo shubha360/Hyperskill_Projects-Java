@@ -1,0 +1,11 @@
+type: hyperskill
+title: Minesweeper
+language: English
+summary: You played this game when the Internet cut off, didn’t you? It is time to
+  remember the good old days. In this project, you will create your own "Minesweeper"
+  game.<br/><br/>Learn more at <a href="https://hyperskill.org">https://hyperskill.org/projects/77</a>
+programming_language: Java
+programming_language_version: 11
+content:
+- Minesweeper
+mode: Study
