@@ -672,6 +672,21 @@ files:
         }
     }
   learner_created: false
+- name: src/banking/Banking.java
+  visible: true
+  learner_created: true
+- name: src/banking/Account.java
+  visible: true
+  learner_created: true
+- name: src/banking/AccountInteraction.java
+  visible: true
+  learner_created: true
+- name: tempDatabase.s3db
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/93/stages/518/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Thu, 22 Apr 2021 16:06:12 UTC
 record: -1

@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/295560/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Mon, 19 Apr 2021 05:54:27 UTC
+update_date: Thu, 22 Apr 2021 15:57:59 UTC
 stages:
 - id: 515
   step: 8425
@@ -13,7 +13,7 @@ stages:
   is_completed: true
 - id: 517
   step: 8427
-  is_completed: false
+  is_completed: true
 - id: 518
   step: 8428
   is_completed: false
@@ -158,7 +158,7 @@ topics:
     theory_id: 10630
   2:
   - title: Files
-    theory_id: 6989
+    theory_id: 13025
   - title: Introduction to databases
     theory_id: 8497
   - title: What is SQL

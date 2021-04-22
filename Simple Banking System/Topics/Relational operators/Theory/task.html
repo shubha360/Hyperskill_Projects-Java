@@ -1,0 +1,77 @@
+<html>
+ <head></head>
+ <body>
+  <h2 style="text-align: center;">List of relational operators</h2> 
+  <p>Java provides six relational operators to compare numbers:</p> 
+  <ul> 
+   <li><code class="language-java">==</code> (equal to)</li> 
+   <li><code class="language-java">!=</code> (not equal to)</li> 
+   <li><code class="language-java">&gt;</code> (greater than)</li> 
+   <li><code class="language-java">&gt;=</code> (greater than or equal to)</li> 
+   <li><code class="language-java">&lt;</code> (less than)</li> 
+   <li><code class="language-java">&lt;=</code> (less than or equal to)</li> 
+  </ul> 
+  <p>The result of applying a relational operator to its operands takes the <strong>boolean</strong> type (<code class="language-java">true</code> or <code class="language-java">false</code>) regardless of the types of operands.</p> 
+  <h2 style="text-align: center;">Comparing integer numbers</h2> 
+  <p>Relational operators allow you to easily compare, among other things, two integer numbers. Here are some examples below:</p> 
+  <pre><code class="language-java">int one = 1;
+int two = 2;
+int three = 3;
+int four = 4;
+
+boolean oneIsOne = one == one; // true
+
+boolean res1 = two &lt;= three; // true
+boolean res2 = two != four;  // true
+boolean res3 = two &gt; four;   // false
+boolean res4 = one == three; // false</code></pre> 
+  <p>Relational operators can be used in mixed expressions together with arithmetic operators. In such expressions, relational operators have lesser priorities than arithmetic operators.</p> 
+  <p>In the following example, first of all, two sums are calculated, and then they are compared using the operator <code class="language-java">&gt;</code>.</p> 
+  <pre><code class="language-java">int number = 1000;
+boolean result = number + 10 &gt; number + 9; // 1010 &gt; 1009 is true</code></pre> 
+  <p>The <code class="language-java">result</code> is <code class="language-java">true</code>.</p> 
+  <h2 style="text-align: center;">Joining relational operations using logical operators</h2> 
+  <p>In Java, you cannot write an expression like <strong>a &lt;= b &lt;= c</strong>. Instead, you should join two boolean expressions using logical operators like <code class="language-java">||</code> and <code class="language-java">&amp;&amp;</code>.</p> 
+  <p>Here is an example:</p> 
+  <pre><code class="language-java">number &gt; 100 &amp;&amp; number &lt; 200; // it means 100 &lt; number &lt; 200</code></pre> 
+  <p>Also, we can write parts of the expression in parentheses to improve readability:</p> 
+  <pre><code class="language-java">(number &gt; 100) &amp;&amp; (number &lt; 200);</code></pre> 
+  <p>But parentheses are not necessary here because relational operators have a higher priority than logical operators.</p> 
+  <p>Here is a more general example of variables.</p> 
+  <pre><code class="language-java">int number = ...             // it has a value
+int low = 100, high = 200;   // borders
+
+boolean inRange = number &gt; low &amp;&amp; number &lt; high;  // joining two expressions using AND.</code></pre> 
+  <p>The code checks if the value of <code class="language-java">number</code> belongs to a range.</p> 
+  <p>So, logical operators allow you to join a sequence of relational operations into one expression.</p> 
+  <h2 style="text-align: center;">An example of a program</h2> 
+  <p>Suppose there are three children in the sports class. You want to check if their heights are arranged in descending order. The following program reads three integer numbers <code class="language-java">h1</code>, <code class="language-java">h2</code>, and <code class="language-java">h3</code> and then checks if <code class="language-java">h1 &gt;= h2</code> and <code class="language-java">h2 &gt;= h3</code>. Note that <strong>h</strong> means <strong>the height of a child</strong>.</p> 
+  <pre><code class="language-java">import java.util.Scanner;
+
+public class CheckAscOrder {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int h1 = scanner.nextInt();
+        int h2 = scanner.nextInt();
+        int h3 = scanner.nextInt();
+
+        boolean descOrdered = (h1 &gt;= h2) &amp;&amp; (h2 &gt;= h3);
+
+        System.out.println(descOrdered);
+    }
+}</code></pre> 
+  <p>Here are several input-output pairs:</p> 
+  <p><strong>Input 1</strong></p> 
+  <pre><code class="language-java">185 178 172</code></pre> 
+  <p><strong>Output 1</strong></p> 
+  <pre><code class="language-java">true</code></pre> 
+  <p><strong>Input 2</strong></p> 
+  <pre><code class="language-java">181 184 177</code></pre> 
+  <p><strong>Output 2</strong></p> 
+  <pre><code class="language-java">false</code></pre> 
+  <p>It is possible not to use an additional variable to store the boolean result before output:</p> 
+  <pre><code class="language-java">System.out.println((h1 &gt;= h2) &amp;&amp; (h2 &gt;= h3));</code></pre> 
+  <p>But when your condition is quite long, it is hard to understand what the code does without some explanations. A variable with a good name provides such an explanation.</p>
+ </body>
+</html>

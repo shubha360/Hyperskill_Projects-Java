@@ -11,10 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -80,10 +77,12 @@ public class SimpleBankSystemTest extends StageTest<String> {
                 "SELECT name FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%';");
             while (resultSet.next()) {
                 if (resultSet.getString("name").equals("card")) {
+                    closeConnection();
                     return CheckResult.correct();
                 }
             }
         } catch (SQLException e) {
+            closeConnection();
             return CheckResult.wrong("Can't execute a query in your database! Make sure that your database isn't broken and you close your connection at the end of the program!");
         }
 
@@ -361,6 +360,173 @@ public class SimpleBankSystemTest extends StageTest<String> {
         return CheckResult.correct();
     }
 
+    // ttest is not a typo!
+    @DynamicTest
+    CheckResult ttest10_checkAddIncome() {
+
+        deleteAllRows();
+
+        TestedProgram program = new TestedProgram();
+        program.start(args);
+
+        String output = program.execute("1");
+
+        Matcher cardNumberMatcher = cardNumberPattern.matcher(output);
+        Matcher pinMatcher = pinPattern.matcher(output);
+
+        if (!cardNumberMatcher.find() || !pinMatcher.find()) {
+            return new CheckResult(false, "You should output card number and PIN like in example");
+        }
+
+        String correctPin = pinMatcher.group().trim();
+        String correctCardNumber = cardNumberMatcher.group();
+
+        program.execute("2");
+        program.execute(correctCardNumber + "\n" + correctPin);
+        program.execute("2\n10000");
+        stopAndCheckIfUserProgramWasStopped(program);
+
+        int userBalance = getBalance(correctCardNumber);
+        if (userBalance != 10000) {
+            return CheckResult.wrong("Account balance int the database is wrong after adding income.\nExpected 10000");
+        }
+
+        program = new TestedProgram();
+        program.start(args);
+
+        program.execute("2");
+        program.execute(correctCardNumber + "\n" + correctPin);
+        program.execute("2\n15000");
+        stopAndCheckIfUserProgramWasStopped(program);
+
+        userBalance = getBalance(correctCardNumber);
+        if (userBalance != 25000) {
+            return CheckResult.wrong("Account balance is wrong after adding income.\nExpected 25000");
+        }
+
+        return CheckResult.correct();
+    }
+
+    // ttest is not a typo!
+    @DynamicTest
+    CheckResult ttest11_checkTransfer() {
+
+        String incorrectCardNumber = "2000007269641764"; //Doesn't pass Luhn algorithm
+        String notExistingCardNumber = "2000007269641768";
+
+        deleteAllRows();
+
+        TestedProgram program = new TestedProgram();
+        program.start(args);
+
+        String output = program.execute("1");
+
+        Matcher cardNumberMatcher = cardNumberPattern.matcher(output);
+
+        if (!cardNumberMatcher.find()) {
+            return new CheckResult(false, "Your program outputs card number " +
+                "wrong.\nCard number should look like 400000DDDDDDDDDD. Where D is some digit");
+        }
+
+        String toTransferCardNumber = cardNumberMatcher.group();
+
+        output = program.execute("1");
+
+        cardNumberMatcher = cardNumberPattern.matcher(output);
+        Matcher pinMatcher = pinPattern.matcher(output);
+
+        if (!cardNumberMatcher.find() || !pinMatcher.find()) {
+            return new CheckResult(false, "You should output card number and PIN like in example");
+        }
+
+        String correctPin = pinMatcher.group().trim();
+        String correctCardNumber = cardNumberMatcher.group();
+
+        program.execute("2");
+        program.execute(correctCardNumber + "\n" + correctPin);
+        output = program.execute("3\n" + incorrectCardNumber);
+
+        if (!output.contains("mistake")) {
+            return new CheckResult(false, "You should not allow to transfer " +
+                "to a card number that doesn't pass the Luhn algorithm.\n You should print " +
+                "'Probably you made mistake in the card number. Please try again!'");
+        }
+
+        output = program.execute("3\n" + notExistingCardNumber);
+
+        if (!output.contains("exist")) {
+            return new CheckResult(false, "You should not allow to transfer " +
+                "to a card number that does not exist.\nYou should print " +
+                "'Such a card does not exist.'");
+        }
+
+        output = program.execute("3\n" + toTransferCardNumber + "\n100000");
+        if (!output.toLowerCase().contains("not enough money")) {
+            return new CheckResult(false, "You should not allow a transfer if " +
+                "there is not enough money in the account to complete it. You should print " +
+                "'Not enough money!'");
+        }
+
+        program.execute("2\n20000\n3\n" + toTransferCardNumber + "\n10000");
+
+        stopAndCheckIfUserProgramWasStopped(program);
+
+        int correctBalanceForBothAccounts = 10000;
+        int toTransferCardBalance = getBalance(toTransferCardNumber);
+        int correctCardNumberBalance = getBalance(correctCardNumber);
+
+        if (toTransferCardBalance != correctBalanceForBothAccounts) {
+            return new CheckResult(false, "Incorrect account balance of the card to which the transfer was made.");
+        }
+
+        if (correctCardNumberBalance != correctBalanceForBothAccounts) {
+            return new CheckResult(false, "Incorrect account balance of the card used to make the transfer.");
+        }
+
+        return CheckResult.correct();
+    }
+
+    // ttest is not a typo!
+    @DynamicTest
+    CheckResult ttest12_checkTransfer() {
+
+        deleteAllRows();
+
+        TestedProgram program = new TestedProgram();
+        program.start(args);
+
+        String output = program.execute("1");
+
+        Matcher cardNumberMatcher = cardNumberPattern.matcher(output);
+        Matcher pinMatcher = pinPattern.matcher(output);
+
+        if (!cardNumberMatcher.find() || !pinMatcher.find()) {
+            return new CheckResult(false, "You should output card number and PIN like in example");
+        }
+
+        String correctPin = pinMatcher.group().trim();
+        String correctCardNumber = cardNumberMatcher.group();
+
+        program.execute("2\n" + correctCardNumber + "\n" + correctPin + "\n4");
+
+        stopAndCheckIfUserProgramWasStopped(program);
+
+        try {
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM card where number = ?");
+            statement.setString(1, correctCardNumber);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return new CheckResult(false, "After closing the account, the card should be deleted " +
+                    "from the database.");
+            }
+        } catch (SQLException e) {
+            throw new WrongAnswer("Can't execute a query in your database! Make sure that your database isn't broken and you close your connection at the end of the program!");
+        }
+
+        closeConnection();
+        return CheckResult.correct();
+    }
+
     private static Connection getConnection() {
         if (connection == null) {
             try {
@@ -397,7 +563,8 @@ public class SimpleBankSystemTest extends StageTest<String> {
         try {
             Files.deleteIfExists(tempDbFile);
             Files.copy(userDbFile, tempDbFile);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
     @AfterClass
@@ -414,7 +581,8 @@ public class SimpleBankSystemTest extends StageTest<String> {
         try {
             Files.deleteIfExists(userDbFile);
             Files.move(tempDbFile, userDbFile);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
     private boolean getData(String out) {
@@ -469,6 +637,20 @@ public class SimpleBankSystemTest extends StageTest<String> {
         if (!program.isFinished()) {
             throw new WrongAnswer("After choosing 'Exit' item you should stop your program" +
                 " and close database connection!");
+        }
+    }
+
+    private static int getBalance(String cardNumber) {
+        try {
+            PreparedStatement preparedStatement = getConnection().prepareStatement("SELECT * FROM card WHERE number = ?");
+            preparedStatement.setString(1, cardNumber);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int result = resultSet.getInt("balance");
+            closeConnection();
+            return result;
+        } catch (SQLException e) {
+            throw new WrongAnswer("Can't execute a query in your database! Make sure that your database isn't broken and you close your connection at the end of the program!");
         }
     }
 }

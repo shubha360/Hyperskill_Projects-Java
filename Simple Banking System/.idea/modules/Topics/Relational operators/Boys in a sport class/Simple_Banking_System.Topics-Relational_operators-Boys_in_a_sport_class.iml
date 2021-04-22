@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-Relational_operators-Boys_in_a_sport_class" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Relational operators/Boys in a sport class" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="Simple_Banking_System" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Relational operators/Boys in a sport class">
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Relational operators/Boys in a sport class/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Relational operators/Boys in a sport class/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Relational operators/Boys in a sport class/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -1,0 +1,138 @@
+<html>
+ <head></head>
+ <body>
+  <h2 style="text-align: center;">The String type</h2> 
+  <p><code class="language-java">String</code> is a reference type consisting of characters. It is one of the most widely used types in Java. Here is an example of a string: <code class="language-java">"Hello, Java"</code>. This string is a sequence of 11 characters, including one space.</p> 
+  <p>This type has some features:</p> 
+  <ul> 
+   <li><strong>immutable type</strong>: it's impossible to change a character in a string;</li> 
+   <li>it has methods for getting individual characters and extracting substrings;</li> 
+   <li>individual characters can be accessed by indexes, the first character has the index <strong>0</strong>, the last one – <strong>the length of the string </strong>–<strong> 1</strong>;</li> 
+   <li>non-primitive type.</li> 
+  </ul> 
+  <h2 style="text-align: center;">Creating strings</h2> 
+  <p>A string literal is surrounded by a pair of double quotes, for instance:</p> 
+  <pre><code class="language-java">String simpleString = "It is a simple string"; // a simple string
+System.out.println(simpleString);  // it prints "It is a simple string"
+
+String anotherString = "This is\na multiple\nstring"; // a string with escape sequences
+System.out.println(anotherString); // it prints the result in several lines</code></pre> 
+  <p>A string can represent a long character sequence (text). A string can have one or zero characters.</p> 
+  <pre><code class="language-java">String strangeText = "aaaaaaaaaaaassssssssssss gggggggggggggggggggg ddddddddddd qqqqqq ffff";
+
+String emptyString = "";
+
+String s = "s"; // a string consisting of one character</code></pre> 
+  <p>A string can be <code class="language-java">null</code>. It means no value assigned.</p> 
+  <pre><code class="language-java">String nullString = null; // it is null</code></pre> 
+  <p>Another way to create a variable of <code class="language-java">String</code> is by using the keyword <code class="language-java">new</code>.</p> 
+  <pre><code class="language-java">String str = new String("my-string"); // it creates an object and assigns it to the variable</code></pre> 
+  <h2 style="text-align: center;">Get the length and characters of a string</h2> 
+  <p>Any string has two useful methods:</p> 
+  <ul> 
+   <li> <p><code class="language-java">length()</code> returns the number of characters in the string;</p> </li> 
+   <li><code class="language-java">charAt(int index)</code> returns a character by its index;</li> 
+  </ul> 
+  <p>Here is an example:</p> 
+  <pre><code class="language-java">String s = "Hi, all";
+
+int len = s.length(); // the len is 7
+
+char theFirstChar = s.charAt(0);  // 'H' has the index 0
+
+char theFifthChar = s.charAt(4); // 'a' has the index 4
+
+char theLastChar = s.charAt(s.length() - 1); // 'l' has the index 6</code></pre> 
+  <p></p>
+  <div class="alert alert-warning">
+   You can easily get a character of a string by the index, but you can't change characters because strings are immutable in Java.
+  </div>
+  <p></p> 
+  <h2 style="text-align: center;">Useful methods of strings</h2> 
+  <p>The standard library of Java provides a lot of useful methods for processing strings:</p> 
+  <ul> 
+   <li><code class="language-java">isEmpty()</code> returns <code class="language-java">true</code> if the string is empty, otherwise – <code class="language-java">false</code>;</li> 
+   <li><code class="language-java">toUpperCase()</code> returns a new string in uppercase;</li> 
+   <li><code class="language-java">toLowerCase()</code> returns a new string in lowercase;</li> 
+   <li><code class="language-java">startsWith(prefix)</code> returns <code class="language-java">true</code> if the string starts with the given string prefix, otherwise, <code class="language-java">false</code>;</li> 
+   <li><code class="language-java">endsWith(suffix)</code> returns <code class="language-java">true</code> if the string ends with the given string suffix, otherwise, <code class="language-java">false</code>.</li> 
+   <li><code class="language-java">contains(...)</code> returns <code class="language-java">true</code> if the string contains the given string or character;</li> 
+   <li><code class="language-java">substring(beginIndex, endIndex)</code> returns a substring of the string in the range: <code class="language-java">beginIndex</code>, <code class="language-java">endIndex - 1</code>;</li> 
+   <li><code class="language-java">replace(old, new)</code> returns a new string obtained by replacing all occurrences of <code class="language-java">old</code> with <code class="language-java">new</code> that can be chars or strings.</li> 
+   <li><code class="language-java">trim()</code> returns a copy of the string obtained by omitting the leading and trailing whitespace. Note that whitespace includes not only space character, but mostly everything that looks empty: tab, carriage return, newline character, etc.</li> 
+  </ul> 
+  <p>See the following example to better understand these methods:</p> 
+  <pre><code class="language-java">String text = "The simple text string";
+
+boolean empty = text.isEmpty(); // false
+
+String textInUpperCase = text.toUpperCase(); // "THE SIMPLE TEXT STRING"
+
+boolean startsWith = textInUpperCase.startsWith("THE"); // true
+
+/* replace all space characters with empty strings */
+String noSpaces = textInUpperCase.replace(" ", ""); // "THESIMPLETEXTSTRING"
+
+String textWithWhitespaces = "\t text with whitespaces   !\n  \t";
+
+String trimmedText = textWithWhitespaces.trim(); // "text with whitespaces   !"</code></pre> 
+  <p>To learn more about different methods and arguments you can check out the <a target="_blank" href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" rel="noreferrer nofollow noopener">documentation</a>.</p> 
+  <h2 style="text-align: center;">Exceptions when processing strings</h2> 
+  <p>When working with strings, there can be several exceptions.</p> 
+  <p>1. <code class="language-java">NullPointerException</code>. If a string is <code class="language-java">null</code> and you call a method of the string, it throws <code class="language-java">NullPointerException</code>.</p> 
+  <pre><code class="language-java">String s = null;
+int length = s.length(); // it throws NullPointerException</code></pre> 
+  <p>2. <code class="language-java">StringIndexOutOfBoundsException</code><strong>.</strong> If you try to access a non-existing character by an index then this exception occurs.</p> 
+  <pre><code class="language-java">String s = "ab";
+char c = s.charAt(2); // it throws StringIndexOutOfBoundsException because indexing starts with 0</code></pre> 
+  <p>We will consider how to handle different types of exceptions later.</p> 
+  <h2 style="text-align: center;">Concatenating strings</h2> 
+  <p>Two strings can be concatenated using the "+" operator or the <code class="language-java">concat</code> method. Both approaches lead to the same results.</p> 
+  <pre><code class="language-java">String firstName = "John";
+String lastName = "Smith";
+
+// concatenation using the "+" operator
+String fullName1 = firstName + " " + lastName; // "John Smith"
+
+// concatenation using the concat method 
+String fullName2 = firstName.concat(" ").concat(lastName); // "John Smith"</code></pre> 
+  <p>When we concatenate two strings a new string is created (because strings are <strong>immutable</strong>).</p> 
+  <p></p>
+  <div class="alert alert-warning">
+   <strong>Important: </strong>in the general case 
+   <code class="language-java">str1 + str2</code> is not the same as 
+   <code class="language-java">str2 + str1</code> because the concatenation is not a commutative operation.
+  </div>
+  <p></p> 
+  <h2 style="text-align: center;">Appending values to a string</h2> 
+  <p>It's possible to add values of different types to a string. The value will be automatically converted to a string. See an example below.</p> 
+  <pre><code class="language-java">String str = "str" + 10 + false; // the result is "str10false"</code></pre> 
+  <p>In the example above, the order of execution is:</p> 
+  <ol> 
+   <li>"str" + 10 =&gt; "str10"</li> 
+   <li>"str10" + false = "str10false"</li> 
+  </ol> 
+  <p>Let's see a more complex example:</p> 
+  <pre><code class="language-java">String shortString = "str";
+int number = 100;
+
+String result1 = shortString + number + 50; // the result is "str10050"
+String result2 = number + 50 + shortString; // what is the result2?</code></pre> 
+  <p>The <code class="language-java">result2</code> is <code class="language-java">150str</code>, because, first, we calculate a sum of <code class="language-java">number</code> and <code class="language-java">50</code> and then <code class="language-java">concat</code> it with <code class="language-java">str</code>. The order of operations is important.</p> 
+  <h2 style="text-align: center;">How to compare strings correctly?</h2> 
+  <p>Since <code class="language-java">String</code> is a reference type you shouldn't compare strings using <code class="language-java">==</code><strong> </strong>or <code class="language-java">!=</code> operators. In this case, only addresses will be compared, but not actual values.</p> 
+  <p><code class="language-java">String</code> has two convenient methods for comparing the equivalence of the actual content of one string with the content of another string: <code class="language-java">equals(other)</code> and <code class="language-java">equalsIgnoreCase(other)</code>. See an example below.</p> 
+  <pre><code class="language-java">String first = "first";
+String second = "second";
+
+String anotherFirst = "first";
+String secondInUpperCase = "SECOND";
+
+System.out.println(first.equals(second)); // false, the strings have different values
+System.out.println(first.equals(anotherFirst)); // true, the strings have the same value
+
+System.out.println(second.equals(secondInUpperCase)); // false, the strings have different cases
+System.out.println(second.equalsIgnoreCase(secondInUpperCase)); // true, it ignores cases</code></pre> 
+  <p>Do not forget the rules when comparing strings.</p>
+ </body>
+</html>

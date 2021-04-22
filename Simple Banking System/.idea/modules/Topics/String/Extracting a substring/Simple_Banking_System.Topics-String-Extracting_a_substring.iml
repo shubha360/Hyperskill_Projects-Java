@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-String-Extracting_a_substring" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/String/Extracting a substring" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="Simple_Banking_System" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/String/Extracting a substring">
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/String/Extracting a substring/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/String/Extracting a substring/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/String/Extracting a substring/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
