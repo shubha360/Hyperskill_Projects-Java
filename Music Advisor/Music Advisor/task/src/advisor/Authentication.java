@@ -14,7 +14,7 @@ import java.net.http.HttpResponse;
 public class Authentication {
 
     public static String SERVER_PATH = "https://accounts.spotify.com";
-    public static String REDIRECT_URI = "http://localhost:8080";
+    public static String REDIRECT_URI = "http://localhost:8080/";
     public static String CLIENT_ID = "d5e4a5e431d9471e97fec15d26509715";
     public static String CLIENT_SECRET = "fbc4ec032b6843c88f5bbe0e5244e1d4";
     public static String ACCESS_TOKEN = "";
@@ -22,13 +22,13 @@ public class Authentication {
 
     public void getAccessCode() {
 
-        String uri = SERVER_PATH + "/authorize"
-                + "?client_id=" + CLIENT_ID
-                + "&redirect_uri=" + REDIRECT_URI
-                + "&response_type=code";
+        String authRequestUri = SERVER_PATH +
+                "/authorize?client_id=" + CLIENT_ID +
+                "&response_type=code" +
+                "&redirect_uri=" + REDIRECT_URI;
 
         System.out.println("use this link to request the access code:");
-        System.out.println(uri);
+        System.out.println(authRequestUri);
 
         try {
             HttpServer server = HttpServer.create();
@@ -46,7 +46,7 @@ public class Authentication {
                                 System.out.println(ACCESS_CODE);
                                 request = "Got the code. Return back to your program.";
                             } else {
-                                request = "Not found authorization code. Try again.";
+                                request = "Authorization code not found. Try again.";
                             }
 
                             exchange.sendResponseHeaders(200, request.length());
@@ -64,6 +64,7 @@ public class Authentication {
         } catch (IOException | InterruptedException e) {
             System.out.println("Server error");
         }
+        System.out.println("code received");
     }
 
     public void getAccessToken() {
@@ -87,8 +88,10 @@ public class Authentication {
             HttpClient client = HttpClient.newBuilder().build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            assert response != null;
+            System.out.println();
             System.out.println(response.body());
+            System.out.println();
+            System.out.println();
             System.out.println("---SUCCESS---");
 
         } catch (InterruptedException | IOException e) {

@@ -1,8 +1,37 @@
 [1;31m
 Start test 1[0m
+> auth
 +use this link to request the access code:
-ƒhttp://127.0.0.1:45678/authorize?client_id=d5e4a5e431d9471e97fec15d26509715&redirect_uri=http://localhost:8080&response_type=code
-Server error
+„http://127.0.0.1:45678/authorize?client_id=d5e4a5e431d9471e97fec15d26509715&response_type=code&redirect_uri=http://localhost:8080/
+waiting for code...
+ATester: making requests to redirect uri: http://localhost:8080/
+BTester: done request 1: Authorization code not found. Try again.
+BTester: done request 2: Authorization code not found. Try again.
+code received
+123123
+DTester: done request 3: Got the code. Return back to your program.
+code received
 )making http request for access_token...
 response:
-Error response
+g{"access_token":"456456","token_type":"Bearer","expires_in":3600,"refresh_token":"567567","scope":""}
+---SUCCESS---
+> featured
+---FEATURED---
+Mellow Morning
+Wake Up and Smell the Coffee
+Monday Motivation
+Songs to Sing in the Shower
+> exit
+---GOODBYE!---
+[1;31m
+Start test 2[0m
+> featured
+)Please, provide access for application.
+> exit
+---GOODBYE!---
+[1;31m
+Start test 3[0m
+> new
+)Please, provide access for application.
+> exit
+---GOODBYE!---

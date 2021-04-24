@@ -8,6 +8,13 @@ public class Main {
         }
 
         MusicAdvisor musicAdvisor = new MusicAdvisor();
-        musicAdvisor.authorizeUser();
+        musicAdvisor.start();
+
+//        String authRequestUri = Authentication.SERVER_PATH +
+//                "/authorize?client_id=" + Authentication.CLIENT_ID +
+//                "&response_type=code" +
+//                "&redirect_uri=" + Authentication.REDIRECT_URI;
+//
+//        System.out.println(authRequestUri);
     }
 }

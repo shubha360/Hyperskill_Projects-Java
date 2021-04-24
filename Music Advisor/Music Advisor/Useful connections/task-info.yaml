@@ -6,9 +6,103 @@ files:
   text: |
     package advisor;
 
+    import java.util.Scanner;
+
     public class Main {
         public static void main(String[] args) {
-            System.out.println("Hello World!");
+
+            Scanner scanner = new Scanner(System.in);
+            boolean authorized = false;
+
+            while (true) {
+
+                String input = scanner.nextLine();
+
+                switch (input) {
+
+                    case "auth":
+                        System.out.println("https://accounts.spotify.com/authorize?client_id=d5e4a5e431d9471e97fec15d26509715&response_type=code&redirect_uri=https://open.spotify.com/");
+                        System.out.println("---SUCCESS---");
+                        authorized = true;
+                        break;
+
+                    case "featured":
+                        printFeatured(authorized);
+                        break;
+
+                    case "new":
+                        printNew(authorized);
+                        break;
+
+                    case "categories":
+                        printCategories(authorized);
+                        break;
+
+                    case "playlists Mood":
+
+                        break;
+
+                    case "exit":
+                        System.out.println("---GOODBYE!---");
+                        return;
+                }
+            }
+        }
+
+        static void printFeatured(boolean auth) {
+
+            if (auth) {
+
+                System.out.println("---FEATURED---\n" +
+                        "Mellow Morning\n" +
+                        "Wake Up and Smell the Coffee\n" +
+                        "Monday Motivation\n" +
+                        "Songs to Sing in the Shower");
+            } else {
+                System.out.println("Please, provide access for application.");
+            }
+        }
+
+        static void printNew(boolean auth) {
+
+            if (auth) {
+
+                System.out.println("---NEW RELEASES---\n" +
+                        "Mountains [Sia, Diplo, Labrinth]\n" +
+                        "Runaway [Lil Peep]\n" +
+                        "The Greatest Show [Panic! At The Disco]\n" +
+                        "All Out Life [Slipknot]");
+            } else {
+                System.out.println("Please, provide access for application.");
+            }
+        }
+
+        static void printCategories(boolean auth) {
+
+            if (auth) {
+
+                System.out.println("---CATEGORIES---\n" +
+                        "Top Lists\n" +
+                        "Pop\n" +
+                        "Mood\n" +
+                        "Latin");
+            } else {
+                System.out.println("Please, provide access for application.");
+            }
+        }
+
+        static void printPlayList(boolean auth) {
+
+            if (auth) {
+
+                System.out.println("---MOOD PLAYLISTS---\n" +
+                        "Walk Like A Badass  \n" +
+                        "Rage Beats  \n" +
+                        "Arab Mood Booster  \n" +
+                        "Sunday Stroll");
+            } else {
+                System.out.println("Please, provide access for application.");
+            }
         }
     }
   learner_created: false
@@ -303,32 +397,15 @@ files:
         }
     }
   learner_created: false
-- name: src/advisor/MusicAdvisor.java
-  visible: true
-  learner_created: true
 - name: src/advisor/Authentication.java
   visible: true
   learner_created: true
+- name: src/advisor/MusicAdvisor.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/62/stages/337/implement#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Error in test #1
-
-    The program Main has unexpectedly terminated.
-    It finished execution too early, should continue running.
-
-    Please find below the output of your program during this failed test.
-
-    ---
-
-    Arguments: -access http://127.0.0.1:45678
-
-    use this link to request the access code:
-    http://127.0.0.1:45678/authorize?client_id=d5e4a5e431d9471e97fec15d26509715&amp;redirect_uri=http://localhost:8080&amp;response_type=code
-    Server error
-    making http request for access_token...
-    response:
-    Error response
-  time: Mon, 19 Apr 2021 08:29:24 UTC
-record: -1
+  message: Congratulations!
+  time: Sat, 24 Apr 2021 09:15:03 UTC
+record: 2

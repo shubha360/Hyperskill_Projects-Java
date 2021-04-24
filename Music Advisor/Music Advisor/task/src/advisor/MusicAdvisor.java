@@ -32,7 +32,7 @@ public class MusicAdvisor {
                     break;
 
                 case "playlists Mood":
-
+                    printPlayList(authorized);
                     break;
 
                 case "exit":

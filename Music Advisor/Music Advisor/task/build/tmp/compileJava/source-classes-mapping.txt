@@ -1,7 +1,7 @@
-advisor/MusicAdvisor.java
- advisor.MusicAdvisor
+advisor/Main.java
+ advisor.Main
 advisor/Authentication.java
  advisor.Authentication
  advisor.Authentication$1
-advisor/Main.java
- advisor.Main
+advisor/MusicAdvisor.java
+ advisor.MusicAdvisor

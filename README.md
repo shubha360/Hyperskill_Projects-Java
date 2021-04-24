@@ -25,5 +25,5 @@ Codes of projects from www.hyperskill.org Java Developer track.
 
     - [Medium] Error Correcting Encoder-Decoder (3 / 5 stages completed)
     - [Hard] Maze Runner (1 / 4 stages completed)
-    - [Hard] Music Advisor (2/5 stages completed)
+    - [Hard] Music Advisor (3/5 stages completed)
     - [Hard] Minesweeper (4/5 stages completed)
