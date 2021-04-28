@@ -1,20 +1,35 @@
 package advisor;
 
+import advisor.MusicApi.MusicApi;
+
 public class Main {
     public static void main(String[] args) {
 
-        if (args.length > 1 && args[0].equals("-access")) {
-            Authentication.SERVER_PATH = args[1];
+        if (args.length > 0) {
+
+            for (int i = 0; i < args.length; i++) {
+
+                switch (args[i]) {
+
+                    case "-access":
+                        i++;
+                        Authentication.SERVER_PATH = args[i];
+                        break;
+
+                    case "-resource":
+                        i++;
+                        MusicApi.API_LINK = args[i];
+                        break;
+
+                    case "-page":
+                        i++;
+                        MusicApi.entriesPerPage = Integer.parseInt(args[i]);
+                        break;
+                }
+            }
         }
 
         MusicAdvisor musicAdvisor = new MusicAdvisor();
         musicAdvisor.start();
-
-//        String authRequestUri = Authentication.SERVER_PATH +
-//                "/authorize?client_id=" + Authentication.CLIENT_ID +
-//                "&response_type=code" +
-//                "&redirect_uri=" + Authentication.REDIRECT_URI;
-//
-//        System.out.println(authRequestUri);
     }
 }

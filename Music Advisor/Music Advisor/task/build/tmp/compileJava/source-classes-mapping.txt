@@ -1,7 +1,19 @@
-advisor/Main.java
- advisor.Main
 advisor/Authentication.java
  advisor.Authentication
  advisor.Authentication$1
+advisor/MusicApi/MusicApi.java
+ advisor.MusicApi.Album
+ advisor.MusicApi.MusicApi
+ advisor.MusicApi.Playlist
 advisor/MusicAdvisor.java
  advisor.MusicAdvisor
+advisor/MusicApi/CategorizedPlaylists.java
+ advisor.MusicApi.CategorizedPlaylists
+advisor/MusicApi/NewReleases.java
+ advisor.MusicApi.NewReleases
+advisor/MusicApi/Category.java
+ advisor.MusicApi.Category
+advisor/MusicApi/FeaturedPlaylists.java
+ advisor.MusicApi.FeaturedPlaylists
+advisor/Main.java
+ advisor.Main

@@ -1,11 +1,15 @@
 package advisor;
 
+import advisor.MusicApi.*;
+
 import java.util.Scanner;
 
 public class MusicAdvisor {
 
     Scanner scanner = new Scanner(System.in);
     boolean authorized = false;
+
+    MusicApi api = null;
 
     public void start() {
 
@@ -20,24 +24,36 @@ public class MusicAdvisor {
                     break;
 
                 case "featured":
-                    printFeatured(authorized);
+                    printFeaturedPlaylists();
                     break;
 
                 case "new":
-                    printNew(authorized);
+                    printNewReleases();
                     break;
 
                 case "categories":
-                    printCategories(authorized);
+                    printCategories();
                     break;
 
-                case "playlists Mood":
-                    printPlayList(authorized);
+                case "next" :
+                    api.next();
+                    break;
+
+                case "prev":
+                    api.prev();
                     break;
 
                 case "exit":
                     System.out.println("---GOODBYE!---");
                     return;
+
+                default:
+
+                    if (input.matches("playlists .+")) {
+
+                        String cName = input.substring(10);
+                        printPlayListWithCName( cName);
+                    }
             }
         }
     }
@@ -50,59 +66,41 @@ public class MusicAdvisor {
         authorized = true;
     }
 
+    private void printFeaturedPlaylists() {
 
-
-    private void printFeatured(boolean auth) {
-
-        if (auth) {
-
-            System.out.println("---FEATURED---\n" +
-                    "Mellow Morning\n" +
-                    "Wake Up and Smell the Coffee\n" +
-                    "Monday Motivation\n" +
-                    "Songs to Sing in the Shower");
+        if (authorized) {
+            api = new FeaturedPlaylists();
+            api.obtain();
         } else {
             System.out.println("Please, provide access for application.");
         }
     }
 
-    private void printNew(boolean auth) {
+    private void printNewReleases() {
 
-        if (auth) {
-
-            System.out.println("---NEW RELEASES---\n" +
-                    "Mountains [Sia, Diplo, Labrinth]\n" +
-                    "Runaway [Lil Peep]\n" +
-                    "The Greatest Show [Panic! At The Disco]\n" +
-                    "All Out Life [Slipknot]");
+        if (authorized) {
+            api = new NewReleases();
+            api.obtain();
         } else {
             System.out.println("Please, provide access for application.");
         }
     }
 
-    private void printCategories(boolean auth) {
+    private void printCategories() {
 
-        if (auth) {
-
-            System.out.println("---CATEGORIES---\n" +
-                    "Top Lists\n" +
-                    "Pop\n" +
-                    "Mood\n" +
-                    "Latin");
+        if (authorized) {
+            api = new Category();
+            api.obtain();
         } else {
             System.out.println("Please, provide access for application.");
         }
     }
 
-    private void printPlayList(boolean auth) {
+    private void printPlayListWithCName(String cName) {
 
-        if (auth) {
-
-            System.out.println("---MOOD PLAYLISTS---\n" +
-                    "Walk Like A Badass  \n" +
-                    "Rage Beats  \n" +
-                    "Arab Mood Booster  \n" +
-                    "Sunday Stroll");
+        if (authorized) {
+            api = new CategorizedPlaylists(cName);
+            api.obtain();
         } else {
             System.out.println("Please, provide access for application.");
         }

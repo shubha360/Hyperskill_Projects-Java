@@ -13,6 +13,17 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Music Advisor/task" />
+            <option value="$PROJECT_DIR$/Topics/Anonymous classes properties/Calculator" />
+            <option value="$PROJECT_DIR$/Topics/Anonymous classes properties/Create instance" />
+            <option value="$PROJECT_DIR$/Topics/Anonymous classes properties/Iterations" />
+            <option value="$PROJECT_DIR$/Topics/Anonymous classes properties/Managing a process" />
+            <option value="$PROJECT_DIR$/Topics/Anonymous classes properties/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Anonymous classes/An anonymous class with three methods" />
+            <option value="$PROJECT_DIR$/Topics/Anonymous classes/Capture variables" />
+            <option value="$PROJECT_DIR$/Topics/Anonymous classes/Implement Runnable" />
+            <option value="$PROJECT_DIR$/Topics/Anonymous classes/Single method" />
+            <option value="$PROJECT_DIR$/Topics/Anonymous classes/String reverser" />
+            <option value="$PROJECT_DIR$/Topics/Anonymous classes/Theory" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>

@@ -1,5 +1,7 @@
 package advisor;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -88,10 +90,10 @@ public class Authentication {
             HttpClient client = HttpClient.newBuilder().build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            System.out.println();
+            JsonObject object = JsonParser.parseString(response.body()).getAsJsonObject();
+            ACCESS_TOKEN = object.get("access_token").getAsString();
+
             System.out.println(response.body());
-            System.out.println();
-            System.out.println();
             System.out.println("---SUCCESS---");
 
         } catch (InterruptedException | IOException e) {

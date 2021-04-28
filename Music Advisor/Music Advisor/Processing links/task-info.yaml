@@ -1090,6 +1090,12 @@ files:
         }
     }
   learner_created: false
+- name: src/advisor/MusicApi.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/62/stages/338/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 28 Apr 2021 05:26:16 UTC
+record: 4
