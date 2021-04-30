@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-28T11:26:00" hostname="DESKTOP-4IPOM31" time="0.187">
+  <properties/>
+  <testcase name="start" classname="Test" time="0.187"/>
+  <system-out><![CDATA[?[1;31m
+Start test 1?[0m
+> /help
+The program calculates the sum of numbers
+> /exit
+Bye!
+?[1;31m
+Start test 2?[0m
+> 123 321
+444
+> -456 390
+-66
+> 264 -73
+191
+> 2 -2
+0
+> 99
+99
+> -211
+-211
+> 
+> /exit
+Bye!
+?[1;31m
+Start test 3?[0m
+> 4 6 8
+18
+> 2 -3 -4
+-5
+> -8 -7 -1
+-16
+> 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+20
+> 10 20 30 40 50 -10 -20 -30 -40
+50
+> 3 -2 -1
+0
+> /exit
+Bye!
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

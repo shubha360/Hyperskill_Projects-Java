@@ -1,0 +1,76 @@
+<h2>Description</h2>
+
+<p>At this stage, your program should support variables. We suppose that the name of a variable (identifier) can contain only Latin letters. The case is also important; for example, <strong>n</strong> is not the same as <strong>N</strong>. The value can be an integer number or a value of another variable.</p>
+
+<p>Use <code class="java">Map</code> to support variables.</p>
+
+<p>The assignment statement may look like the following:</p>
+
+<pre><code class="java">n = 3
+m=4
+a  =   5
+b = a
+v=   7
+n =9</code></pre>
+
+<p>A variable can have a name consisting of more than one letter.</p>
+
+<pre><code class="java">count = 10</code></pre>
+
+<p>To print the value of a variable you should just type its name.</p>
+
+<pre><code class="java">N = 5
+N
+5</code></pre>
+
+<p>It should be possible to set a new value to an existing variable.</p>
+
+<pre><code class="java">a = 1
+a = 2
+a = 3
+a
+3</code></pre>
+
+<p>If an identifier or value of a variable is invalid, the program must print a message like the one below.</p>
+
+<pre><code class="java">a1 = 8
+Invalid identifier
+n = a2a
+Invalid assignment
+a = 7 = 8
+Invalid assignment</code></pre>
+
+<p>If a variable is not declared yet, the program should print <code class="java">"Unknown variable"</code>.</p>
+
+<pre><code class="java">a = 8
+b = c
+Unknown variable
+e
+Unknown variable</code></pre>
+
+<p>Handle as many incorrect inputs as possible. The program must never throw the <code class="java">NumberFormatException</code> or any other exception.</p>
+
+<p>It is important to note, all variables must store their values between calculations of different expressions.</p>
+
+<h2>Input/Output example</h2>
+
+<pre><code class="java">a  =  3
+b= 4
+c =5
+a + b - c
+2
+b - c + 4 - a
+0
+a = 800
+a + b + c
+809
+BIG = 9000
+BIG
+9000
+big
+Unknown variable
+/exit
+Bye!
+</code></pre>
+
+<p>The program should not stop until the user enters the <code class="java">/exit</code> command.</p>

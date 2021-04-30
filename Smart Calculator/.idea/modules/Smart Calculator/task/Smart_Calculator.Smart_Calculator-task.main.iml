@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Smart_Calculator-task:main" external.linked.project.path="$MODULE_DIR$/../../../../Smart Calculator/task" external.root.project.path="$MODULE_DIR$/../../../.." external.system.id="GRADLE" external.system.module.group="Smart_Calculator" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../../../../Smart Calculator/task/out/production/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../Smart Calculator/task/src">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../Smart Calculator/task/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

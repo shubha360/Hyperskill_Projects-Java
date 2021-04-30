@@ -1,0 +1,102 @@
+<h2>Description</h2>
+
+<p>At this stage, your program should support for multiplication <code class="java">*</code>, integer division <code class="java">/</code> and parentheses <code class="java">(...)</code>. They have a higher priority than addition <code class="java">+</code> and subtraction <code class="java">-</code>. Do not forget about variables; they, and the unary minus operator, should still work. Modify the result of the <code class="java">/help</code> command to explain all possible operators.</p>
+
+<p>Here is an example of an expression that contains all possible operations:</p>
+
+<pre><code class="java">3 + 8 * ((4 + 3) * 2 + 1) - 6 / (2 + 1)</code></pre>
+
+<p>The result is 121.</p>
+
+<p>A general expression can contain many parentheses and operations with different priorities. It is difficult to calculate such expressions if you do not use special methods. Fortunately, there is a fairly effective and universal solution, using a stack, to calculate the most general expressions.</p>
+
+<p><strong>From infix to postfix</strong></p>
+
+<p>Earlier we processed expressions written in infix notation. This notation is not very convenient if an expression has operations with different priorities, especially when brackets are used. But we can use <strong>postfix notation</strong>, also known as reverse <strong>Polish notation (RPN)</strong>. In this notation, operators follow their operands. See several examples below.</p>
+
+<p><strong>Infix notation 1:</strong></p>
+
+<pre><code class="java">3 + 2 * 4</code></pre>
+
+<p><strong>Postfix notation 1:</strong></p>
+
+<pre><code class="java">3 2 4 * +
+</code></pre>
+
+<p><strong>Infix notation 2:</strong></p>
+
+<pre><code class="java">2 * (3 + 4) + 1</code></pre>
+
+<p><strong>Postfix notation 2:</strong></p>
+
+<pre><code class="java">2 3 4 + * 1 +</code></pre>
+
+<p>To better understand the postfix notation, you can <a target="_blank" href="https://www.mathblog.dk/tools/infix-postfix-converter/" rel="nofollow noopener noreferrer">play with a converter here</a>.</p>
+
+<p>As you can see, in postfix notation operations are arranged according to their priority and parentheses are not used at all. So, it is easier to calculate expressions written in postfix notation.</p>
+
+<p>You can use a stack (<strong>LIFO</strong>) to convert an expression from infix to postfix notation. The stack is used to store operators for reordering. Here are some rules that describe how to create an algorithm that converts an expression from infix to postfix notation.</p>
+
+<ol>
+	<li>Add operands (numbers and variables) to the result (postfix notation) as they arrive.</li>
+	<li>If the stack is empty or contains a left parenthesis on top, push the incoming operator on the stack.</li>
+	<li>If the incoming operator has higher precedence than the top of the stack, push it on the stack.</li>
+	<li>If the incoming operator has lower or equal precedence than the top of the operator stack, pop the stack and add operators to the result until you see an operator that has a smaller precedence or a left parenthesis on the top of the stack; then add the incoming operator to the stack.</li>
+	<li>If the incoming element is a left parenthesis, push it on the stack.</li>
+	<li>If the incoming element is a right parenthesis, pop the stack and add operators to the result until you see a left parenthesis. Discard the pair of parentheses.</li>
+	<li>At the end of the expression, pop the stack and add all operators to the result.</li>
+</ol>
+
+<p>No parentheses should remain on the stack. Otherwise, the expression has unbalanced brackets. It is a syntax error.</p>
+
+<p><strong>Calculating the result</strong></p>
+
+<p>When we have an expression in postfix notation, we can calculate it using another stack. To do that, scan the postfix expression from left to right:</p>
+
+<ul>
+	<li>
+	<p>If the incoming element is a number, push it into the stack (the whole number, not a single digit!).</p>
+	</li>
+	<li>If the incoming element is the name of a variable, push its value into the stack.</li>
+	<li>
+	<p>If the incoming element is an operator, then pop twice to get two numbers and perform the operation; push the result on the stack.</p>
+	</li>
+	<li>
+	<p>When the expression ends, the number on the top of the stack is a final result.</p>
+	</li>
+</ul>
+
+<p>Here you can find <a target="_blank" href="http://www.cs.nthu.edu.tw/~wkhon/ds/ds10/tutorial/tutorial2.pdf" rel="nofollow noopener noreferrer">an example and additional explanations on postfix expressions</a>.</p>
+
+<h2>Input/Output example</h2>
+
+<pre><code class="java">8 * 3 + 12 * (4 - 2)
+48
+2 - 2 + 3
+3
+4 * (2 + 3
+Invalid expression
+-10
+-10
+a=4
+b=5
+c=6
+a*2+b*3+c*(2+3)
+53
+1 +++ 2 * 3 -- 4
+11
+3 *** 5
+Invalid expression
+4+3)
+Invalid expression</code></pre>
+
+<p>The program should not stop until the user enters the <code class="java">/exit</code> command.</p>
+
+<p>Note that a sequence of <code class="java">+</code> (like <code class="java">+++</code> or <code class="java">+++++</code>) is an admissible operator that should be interpreted as a single plus. A sequence of <code class="java">-</code> (like <code class="java">--</code> or <code class="java">--</code>-) is also an admissible operator and its meaning depends on the length. If a user enters a sequence of <code class="java">*</code> or <code class="java">/</code>, the program must print a message that the expression is invalid.</p>
+
+<p><strong>As a bonus, </strong>you may add the power operator <code class="java">^</code> that has higher priority than <code class="java">*</code> and <code class="java">/</code>.</p>
+
+<pre><code class="java">2^2
+4
+2*2^3
+16</code></pre>

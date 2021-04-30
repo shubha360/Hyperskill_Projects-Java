@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Smart Calculator/task" />
+            <option value="$PROJECT_DIR$/Topics/Multidimensional array/Cinema" />
+            <option value="$PROJECT_DIR$/Topics/Multidimensional array/Find the corners" />
+            <option value="$PROJECT_DIR$/Topics/Multidimensional array/Maximum element in a matrix" />
+            <option value="$PROJECT_DIR$/Topics/Multidimensional array/Reverse elements" />
+            <option value="$PROJECT_DIR$/Topics/Multidimensional array/Swap the columns" />
+            <option value="$PROJECT_DIR$/Topics/Multidimensional array/Symmetric matrix" />
+            <option value="$PROJECT_DIR$/Topics/Multidimensional array/The third row" />
+            <option value="$PROJECT_DIR$/Topics/Multidimensional array/Theory" />
+            <option value="$PROJECT_DIR$/util" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

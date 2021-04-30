@@ -1,7 +1,7 @@
 # Hyperskill_Projects-Java
 Codes of projects from www.hyperskill.org Java Developer track.
 
-16 Completed Projects:
+15 Completed Projects:
 
     - [Easy] Simple Chat Bot
     - [Easy] Coffee Machine
@@ -20,10 +20,10 @@ Codes of projects from www.hyperskill.org Java Developer track.
     - [Hard] Budget Manager
     - [Hard] Simple Search Engine
     - [Hard] Simple Banking System
-    - [Hard] Music Advisor
 
 4 Incompelte Projects:
 
     - [Medium] Error Correcting Encoder-Decoder (3 / 5 stages completed)
     - [Hard] Maze Runner (1 / 4 stages completed)
-    - [Hard] Minesweeper (4 / 5 stages completed)
+    - [Hard] Minesweeper (4/5 stages completed)
+    - [Hard] Smart Calculator (3/8 stages completed)

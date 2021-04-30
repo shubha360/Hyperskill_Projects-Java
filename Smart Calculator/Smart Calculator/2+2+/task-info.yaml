@@ -1,0 +1,145 @@
+type: edu
+custom_name: stage2
+files:
+- name: src/calculator/Main.java
+  visible: true
+  text: |
+    package calculator;
+
+    import java.util.Scanner;
+
+    public class Main {
+
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            // put your code here
+        }
+    }
+  learner_created: false
+- name: test/Test.java
+  visible: false
+  text: |
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testcase.TestCase;
+    import org.hyperskill.hstest.testing.TestedProgram;
+
+    import java.util.Arrays;
+    import java.util.List;
+
+    public class Test extends StageTest<String> {
+        @Override
+        public List<TestCase<String>> generate() {
+            return Arrays.asList(
+                    new TestCase<String>().setDynamicTesting(() -> {
+                        TestedProgram main = new TestedProgram();
+                        main.start();
+
+                        // test of exit
+                        String output = main.execute("/exit").toLowerCase().replace("\"", "");
+                        if (!output.startsWith("bye")) {
+                            return CheckResult.wrong("Your program didn't print \"bye\" after entering \"/exit\".");
+                        }
+
+                        return new CheckResult(main.isFinished(), "Your program should exit after entering \"/exit\".");
+                    }),
+
+                    new TestCase<String>().setDynamicTesting(() -> {
+                        // sum of singe digits
+                        TestedProgram main = new TestedProgram();
+                        main.start();
+
+                        // two positive
+                        String output = main.execute("17 9").trim();
+                        if (!output.equals("26")) {
+                            return CheckResult.wrong("Your program cannot sum two positive single digits.");
+                        }
+
+                        // positive and negative
+                        output = main.execute("-2 5").trim();
+                        if (!output.equals("3")) {
+                            return CheckResult.wrong("Your program cannot sum positive and negative numbers.");
+                        }
+
+                        // input empty string
+                        output = main.execute("");
+                        if (output.length() != 0) {
+                            return CheckResult.wrong("Incorrect response to an empty string. " +
+                                    "The program should not print anything.");
+                        }
+
+                        // input one number
+                        output = main.execute("7").trim();
+                        if (!output.equals("7")) {
+                            return CheckResult.wrong("The program printed not the same number that was entered.");
+                        }
+
+                        // test of /exit
+                        output = main.execute("/exit").toLowerCase().replace("\"", "");
+                        if (!output.startsWith("bye")) {
+                            return CheckResult.wrong("Your program didn't print \"bye\" after entering \"/exit\".");
+                        }
+
+                        return new CheckResult(main.isFinished(), "Your program should exit after entering \"/exit\".");
+                    }),
+
+                    new TestCase<String>().setDynamicTesting(() -> {
+                        // sum of three-digit numbers
+                        TestedProgram main = new TestedProgram();
+                        main.start();
+
+                        // sum of two positive numbers
+                        String output = main.execute("100 200").trim();
+                        if (!output.equals("300")) {
+                            return CheckResult.wrong("Your program cannot sum two positive three-digit numbers.");
+                        }
+
+                        // input one number
+                        output = main.execute("500").trim();
+                        if (!output.equals("500")) {
+                            return CheckResult.wrong("The program printed not the same number that was entered.");
+                        }
+
+                        // sum of positive and negative numbers
+                        output = main.execute("300 -400").trim();
+                        if (!output.equals("-100")) {
+                            return CheckResult.wrong("Your program cannot sum positive and negative numbers.");
+                        }
+
+                        // input empty string
+                        output = main.execute("");
+                        if (output.length() != 0) {
+                            return CheckResult.wrong("Incorrect response to an empty string. " +
+                                    "The program should not print anything.");
+                        }
+
+                        // input one negative number
+                        output = main.execute("-500").trim();
+                        if (!output.equals("-500")) {
+                            return CheckResult.wrong("The program printed not the same number that was entered.");
+                        }
+
+                        // the sum of the numbers is zero
+                        output = main.execute("1 -1").trim();
+                        if (!output.equals("0")) {
+                            return CheckResult.wrong("The problem when sum is equal to 0 has occurred");
+                        }
+
+                        // test of /exit
+                        output = main.execute("/exit").toLowerCase().replace("\"", "");
+                        if (!output.startsWith("bye")) {
+                            return CheckResult.wrong("Your program didn't print \"bye\" after entering \"/exit\".");
+                        }
+
+                        return new CheckResult(main.isFinished(), "Your program should exit after entering \"/exit\".");
+                    })
+            );
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/42/stages/221/implement#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 28 Apr 2021 11:15:26 UTC
+record: 2
