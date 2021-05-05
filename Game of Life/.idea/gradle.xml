@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#JAVA_INTERNAL" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Topics/Functional interfaces/A lambda expression with seven arguments" />
+            <option value="$PROJECT_DIR$/Topics/Functional interfaces/Ternary predicate" />
+            <option value="$PROJECT_DIR$/Topics/Functional interfaces/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Lambda expressions/Apply function to all elements" />
+            <option value="$PROJECT_DIR$/Topics/Lambda expressions/Creating a closure" />
+            <option value="$PROJECT_DIR$/Topics/Lambda expressions/Expression closure" />
+            <option value="$PROJECT_DIR$/Topics/Lambda expressions/Max of two integers" />
+            <option value="$PROJECT_DIR$/Topics/Lambda expressions/Next even number" />
+            <option value="$PROJECT_DIR$/Topics/Lambda expressions/Production of all numbers in the range" />
+            <option value="$PROJECT_DIR$/Topics/Lambda expressions/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Linear search in Java/Count elements of an array in another one" />
+            <option value="$PROJECT_DIR$/Topics/Linear search in Java/The first occurrence in the subarray" />
+            <option value="$PROJECT_DIR$/Topics/Linear search in Java/The index of the K occurrence" />
+            <option value="$PROJECT_DIR$/Topics/Linear search in Java/The number of occurrences" />
+            <option value="$PROJECT_DIR$/Topics/Linear search in Java/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Method references/Ascending and descending sorting" />
+            <option value="$PROJECT_DIR$/Topics/Method references/Theory" />
+            <option value="$PROJECT_DIR$/util" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

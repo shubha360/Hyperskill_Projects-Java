@@ -1,0 +1,35 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    import java.util.*;
+    import java.util.function.*;
+
+
+    public class Main {
+
+        public static <T> void applyFunction(T[] array, Function<T, T> func) {
+            // write your code here
+        }
+
+        // do not change code below
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            String method = scanner.nextLine();
+            String[] array = scanner.nextLine().split(" ");
+            applyFunction(array,
+                    "lower".equals(method) ? String::toLowerCase :
+                    "upper".equals(method) ? String::toUpperCase :
+                    "new".equals(method) ? String::new :
+                    "trim".equals(method) ? String::trim : String::intern);
+            Arrays.stream(array).forEach(e -> System.out.print(e + " "));
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/4330#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Mon, 03 May 2021 10:20:10 UTC
+record: -1

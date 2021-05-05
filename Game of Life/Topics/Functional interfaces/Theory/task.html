@@ -1,0 +1,87 @@
+<html>
+ <head></head>
+ <body>
+  <p>In this topic, you will learn a new concept called <strong>functional interfaces</strong>. This is vital knowledge because these kinds of interfaces allow developers to use functional programming over the concepts from OOP and, in a sense, connect both these worlds together. It is functional interfaces that make it possible to use lambda expressions, method references, and other functional stuff. We suppose that you are already familiar with interfaces, lambda expressions, and anonymous classes. Now we are going to show you how they are all connected with each other.</p> 
+  <h2 style="text-align: center;">Functions and interfaces</h2> 
+  <p>If an interface contains only a<strong> single abstract method</strong> (such an interface sometimes is called a <strong>SAM type</strong>), it can be considered as a function. In addition to standard ways of implementing interfaces through inheritance or anonymous classes, these interfaces can be implemented by using a lambda expression or a method reference.</p> 
+  <p>Here is a clone of the standard <code class="language-java">Function&lt;T, R&gt;</code> interface that demonstrates the basic idea:</p> 
+  <pre><code class="language-java">@FunctionalInterface 
+interface Func&lt;T, R&gt; { 
+    R apply(T val); // single abstract method
+}</code></pre> 
+  <p></p>
+  <div class="alert alert-primary">
+   The annotation 
+   <code class="language-java">@FunctionalInterface</code> is used to mark functional interfaces and to raise a compile-time error if an interface doesn't satisfy the requirements of a functional interface. The use of this annotation is not mandatory but recommended.
+  </div>
+  <p></p> 
+  <p>The <code class="language-java">Func&lt;T, R&gt;</code> interface meets the requirements to be a functional interface because it has a single <code class="language-java">apply</code> method, which takes a value of the type <code class="language-java">T</code> and returns a result of the type <code class="language-java">R</code>.</p> 
+  <p>Here is an example of a lambda expression that implements this custom interface:</p> 
+  <pre><code class="language-java">Func&lt;Integer, Integer&gt; multiplier10 = n -&gt; n * 10
+System.out.println(multiplier10.apply(5)); // 50</code></pre> 
+  <p>In a similar way, all standard functions can be represented as functional interfaces, including <code class="language-java">BiFunction&lt;T, U, R&gt;</code>. The concept of functional interfaces is another way to model functions instead of using regular methods.</p> 
+  <p>It is worth noticing, that <code class="language-java">static</code> and <code class="language-java">default</code> methods are allowed in functional interfaces because these methods are not abstract:</p> 
+  <pre><code class="language-java">@FunctionalInterface 
+interface Func&lt;T, R&gt; { 
+    R apply(T val);
+
+    static void doNothingStatic() { }
+
+    default void doNothingByDefault() { } 
+}</code></pre> 
+  <p>This interface is a valid functional interface as well.</p> 
+  <h2 style="text-align: center;">Implementing functional interfaces</h2> 
+  <p>There are several ways to implement a functional interface. As you know from the previous OOP theory, it is impossible to directly create an instance of an interface. Then what should we do?</p> 
+  <p>First of all, we should implement the interface to create a concrete class. Then, create an instance of this concrete class. The main requirement is to implement the <code class="language-java">apply</code> method to get a concrete behavior.</p> 
+  <p>Let's consider three ways to do it.</p> 
+  <p><strong>1) Anonymous classes.</strong> </p> 
+  <p>Of course, like any other interface, a functional interface can be implemented by using an anonymous class or regular inheritance.</p> 
+  <p>To implement a functional interface let's create an anonymous class and override the <code class="language-java">apply</code> method. The overridden method calculates the square of a given value:</p> 
+  <pre><code class="language-java">Func&lt;Long, Long&gt; square = new Func&lt;Long, Long&gt;() {
+    @Override
+    public Long apply(Long val) {
+        return val * val;
+    }
+};
+
+long val = square.apply(10L); // the result is 100L</code></pre> 
+  <p>In this example, we model a math function that squares a given value. This code works perfectly but it is a bit unclear since it contains a lot of extra characters to perform a single line of useful code.</p> 
+  <p>We won't give you an example of a regular class because it has the same (and even more) disadvantages.</p> 
+  <p><strong>2) Lambda expressions.</strong> </p> 
+  <p>A functional interface can also be implemented and instantiated by using a lambda expression.</p> 
+  <p>Here is a lambda expression that has the same behavior as the anonymous class above:</p> 
+  <pre><code class="language-java">Func&lt;Long, Long&gt; square = val -&gt; val * val; // the lambda expression
+
+long val = square.apply(10L); // the result is 100L</code></pre> 
+  <p>The type of the functional interface (left) and the type of the lambda (right) are the same from a semantic perspective. Parameters and the result of a lambda expression correspond to the parameters and the result of <strong>a single abstract method </strong>of the functional interface.</p> 
+  <p></p>
+  <div class="alert alert-warning">
+   The code that creates a lambda expression may look as if the object of an interface type is created. As you know, it is impossible. Actually, the Java compiler automatically creates a special intermediate class that implements the functional interface and then creates an object of this class rather than an object of an interface type. The name of such a class may look like 
+   <code class="language-java">Functions$$Lambda$14/0x0000000100066840</code> or something similar.
+  </div>
+  <p></p> 
+  <p><strong>3) Method references.</strong></p> 
+  <p>Another way to implement a functional interface is by using method references. In this case, the signature of a method should match the signature of the single abstract method of a functional interface.</p> 
+  <p>Suppose, there is a method <code class="language-java">square</code> that takes and returns a <code class="language-java">long</code> value:</p> 
+  <pre><code class="language-java">public static long square(long val) {
+    return val * val;
+}</code></pre> 
+  <p>The signature of this method fits the <code class="language-java">Func&lt;Long, Long&gt;</code> functional interface. This means we can create a method reference and assign it to an object of the <code class="language-java">Func&lt;Long, Long&gt;</code> type:</p> 
+  <pre><code class="language-java">Func&lt;Long, Long&gt; square = Functions::square;</code></pre> 
+  <p>Keep in mind, that the compiler creates an intermediate hidden class that implements the <code class="language-java">Func&lt;Long, Long&gt;</code> interface in a similar way to the case of lambda expressions.</p> 
+  <p></p>
+  <div class="alert alert-primary">
+   Usually, method references are more readable than the corresponding lambda expressions. Try to prefer this way of implementing and instantiating functional interfaces when possible.
+  </div>
+  <p></p> 
+  <h2 style="text-align: center;">Conclusion</h2> 
+  <p>Here are the key points of this topic:</p> 
+  <ul> 
+   <li>a functional interface is a special kind of an interface containing a single abstract method, though it can also contain <code class="language-java">static</code> and <code class="language-java">default</code> methods;</li> 
+   <li>a functional interface can be implemented and instantiated by a lambda expression or a method reference;</li> 
+   <li>Java compiler automatically creates special hidden classes for lambda expressions and method references;</li> 
+   <li>it is possible to use the <code class="language-java">@FunctionalInterface</code> annotation to force checking whether an interface satisfies the requirement of the functional interfaces;</li> 
+   <li>in Java, functional programming has been built on top of OOP, especially, interfaces and polymorphism.</li> 
+  </ul>
+ </body>
+</html>

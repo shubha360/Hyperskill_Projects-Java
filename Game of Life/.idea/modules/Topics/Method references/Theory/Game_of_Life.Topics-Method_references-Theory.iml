@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-Method_references-Theory" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Method references/Theory" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="Game_of_Life" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Method references/Theory">
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Method references/Theory/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Method references/Theory/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Method references/Theory/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

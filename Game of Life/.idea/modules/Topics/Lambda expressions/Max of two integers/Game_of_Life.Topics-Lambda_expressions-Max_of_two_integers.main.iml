@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-Lambda_expressions-Max_of_two_integers:main" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Lambda expressions/Max of two integers" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="Game_of_Life" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../../../../../Topics/Lambda expressions/Max of two integers/out/production/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Lambda expressions/Max of two integers/src">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../Topics/Lambda expressions/Max of two integers/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

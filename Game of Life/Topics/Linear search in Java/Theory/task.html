@@ -1,0 +1,49 @@
+<html>
+ <head></head>
+ <body>
+  <p><strong>Linear (sequential) search</strong> is a simple algorithm for searching a value in arrays or similar collections. The algorithm checks each element of an array until it finds one that matches the target value. If the algorithm reaches the end of an array, it terminates unsuccessfully. In the worst case, it performs exactly <span class="math-tex">\(n\)</span> comparisons where <span class="math-tex">\(n\)</span> is the length of the input array containing data.</p> 
+  <p>This algorithm can be also modified to check if an array contains a target element, to search for the first/last occurrence of an element, to search a value in a certain range of indexes, or to count all occurrences of a target element.</p> 
+  <h2 style="text-align: center;">Implementation in Java</h2> 
+  <p>Let's consider an implementation of the algorithm in Java as a regular static method. The method takes an array of int's and a number to search in the array. It returns the index of the found element or, if nothing was found, <code class="language-java">-1</code>.</p> 
+  <pre><code class="language-java">public static int search(int[] array, int value) {
+    int index = -1;
+    for (int i = 0; i &lt; array.length; i++) {
+        if (array[i] == value) {
+            index = i;
+            break;
+        }
+    }
+    return index;
+}</code></pre> 
+  <p>The implementation compares each element of an input array with the passed value in a loop. If an element is equal to the value, the loop stops and the method returns the found index. If no value is found in the array, the method returns <code class="language-java">-1</code>.</p> 
+  <p>Let's call the method passing different arrays and values:</p> 
+  <pre><code class="language-java">int[] numbers = {1, 4, 7, 2, 3, 5};
+
+search(numbers, 1); // 0
+search(numbers, 2); // 3
+search(numbers, 3); // 4
+search(numbers, 4); // 1
+search(numbers, 5); // 5
+search(numbers, 6); // -1, no value found</code></pre> 
+  <p>In the last sample, the algorithm returns <code class="language-java">-1</code> after it has checked all elements of the array and found none that equals <code class="language-java">6</code>.</p> 
+  <h2 style="text-align: center;">Searching in sorted arrays</h2> 
+  <p>Note that this algorithm works both for <strong>sorted</strong> and <strong>unsorted</strong> arrays. We can make the algorithm more efficient at searching for an element in a sorted array; here is a modified version of the algorithm:</p> 
+  <pre><code class="language-java">public static int searchInSortedArray(int[] array, int value) {
+    int index = -1;
+    for (int i = 0; i &lt; array.length; i++) {
+        if (array[i] == value) {
+            index = i;
+            break;
+        } else if (array[i] &gt; value) {
+           break;
+        }
+    }
+    return index;
+}</code></pre> 
+  <p>If the next element checked is greater than the passed value, it means we will not find the value in the array and we can stop.</p> 
+  <p>Below is an example of how this can be applied:</p> 
+  <pre><code class="language-java">searchInSortedArray(new int[] {8, 15, 19, 20, 21}, 10); // -1, the element 10 is not found</code></pre> 
+  <p>The algorithm performs only two comparisons to confirm that the element is not contained in the array. Thus, we check a smaller number of elements when the passed value is not contained in the array and is smaller than the max element. Otherwise, the algorithm still makes <span class="math-tex">\(n\)</span> comparisons and the time complexity is <span class="math-tex">\(O(n)\)</span></p> 
+  <p>There are more efficient algorithms for searching in sorted sequences – namely, <strong>binary search</strong>. But this is a whole other story.</p>
+ </body>
+</html>

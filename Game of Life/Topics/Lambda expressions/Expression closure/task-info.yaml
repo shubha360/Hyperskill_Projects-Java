@@ -1,0 +1,22 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    import java.util.function.DoubleUnaryOperator;
+
+    class Operator {
+
+        public static int a = 10;
+        public static int b = 20;
+        public static int c = 30;
+
+        public static DoubleUnaryOperator unaryOperator = // Write your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2367#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Mon, 03 May 2021 10:11:08 UTC
+record: -1

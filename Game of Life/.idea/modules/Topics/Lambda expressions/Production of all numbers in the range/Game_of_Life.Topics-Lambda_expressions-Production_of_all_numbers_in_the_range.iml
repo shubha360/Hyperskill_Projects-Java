@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-Lambda_expressions-Production_of_all_numbers_in_the_range" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Lambda expressions/Production of all numbers in the range" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="Game_of_Life" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Lambda expressions/Production of all numbers in the range">
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Lambda expressions/Production of all numbers in the range/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Lambda expressions/Production of all numbers in the range/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Lambda expressions/Production of all numbers in the range/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

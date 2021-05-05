@@ -1,0 +1,99 @@
+<html>
+ <head></head>
+ <body>
+  <p>As you know, lambda expressions allow you to use code as data and pass it as a method's arguments. Another way to do it is to use method references. They are often even more readable than corresponding lambda expressions. Besides, method references force developers to decompose a program into a set of short methods with clear areas of responsibility.</p> 
+  <h2 style="text-align: center;">Make code clearer with method references</h2> 
+  <p>By method reference, we mean a function that refers to a particular method via its name and can be invoked any time we need it. The base syntax of a method reference looks like this:</p> 
+  <pre><code class="language-java">objectOrClass :: methodName</code></pre> 
+  <p>where <code class="language-java">objectOrClass</code> can be a <strong>class name</strong> or a <strong>particular instance</strong> of a class.</p> 
+  <p>Here is an example, we create a reference to the standard static method <code class="language-java">max</code> of the <code class="language-java">Integer</code> class.</p> 
+  <pre><code class="language-java">BiFunction&lt;Integer, Integer, Integer&gt; max = Integer::max;</code></pre> 
+  <p>Here, <code class="language-java">Integer::max</code> is a method reference to a static method.</p> 
+  <p>This code works because the definition of the method <code class="language-java">int max(int a, int b)</code> fits the type <code class="language-java">BiFunction&lt;Integer, Integer, Integer&gt;</code>: they both mean taking two integer arguments and returning an integer value.</p> 
+  <p></p>
+  <div class="alert alert-primary">
+   You may already know that 
+   <code class="language-java">BiFunction&lt;Integer, Integer, Integer&gt;</code> is not the only way to create a suitable object in this case. It is possible to use 
+   <code class="language-java">IntBinaryOperator</code> and some other classes. We will consider them in other topics.
+  </div>
+  <p></p> 
+  <p>Now we have the <code class="language-java">max</code> object that can be used as a function by invoking the <code class="language-java">apply</code> method. Let's invoke it!</p> 
+  <pre><code class="language-java">System.out.println(max.apply(50, 70)); // 70</code></pre> 
+  <p>So, once assigned to an object, a method reference works in the same way as a lambda expression.</p> 
+  <p>Here is an alternative way to create the same object using a lambda expression:</p> 
+  <pre><code class="language-java">BiFunction&lt;Integer, Integer, Integer&gt; max = (x, y) -&gt; Integer.max(x, y);</code></pre> 
+  <p>It is recommended to use method references rather than lambda expressions if you just need to invoke a standard method without other operations. Your code will be shorter, more readable, and easier to test.</p> 
+  <p></p>
+  <div class="alert alert-primary">
+   Note that we can refer to both standard and our custom methods using method references.
+  </div>
+  <p></p> 
+  <h2 style="text-align: center;">Kinds of method references</h2> 
+  <p>It's possible to write method references to both static and instance (non-static) methods.</p> 
+  <p>In general, there are four kinds of method references:</p> 
+  <ul> 
+   <li>reference to a static method;</li> 
+   <li>reference to an instance method of an existing object;</li> 
+   <li>reference to an instance method of an object of a particular type;</li> 
+   <li>reference to a constructor.</li> 
+  </ul> 
+  <p><strong>1) Reference to a static method</strong></p> 
+  <p>The general form is the following:</p> 
+  <pre><code class="language-java">ClassName :: staticMethodName</code></pre> 
+  <p>Let's take a look at the reference to the static method <code class="language-java">sqrt</code><strong> </strong>of the class <code class="language-java">Math</code>:</p> 
+  <pre><code class="language-java">Function&lt;Double, Double&gt; sqrt = Math::sqrt;</code></pre> 
+  <p>Now we can invoke the <code class="language-java">sqrt</code> method for double values:</p> 
+  <pre><code class="language-java">sqrt.apply(100.0d); // the result is 10.0d</code></pre> 
+  <p>The <code class="language-java">sqrt</code> method can be also written using the following lambda expression:</p> 
+  <pre><code class="language-java">Function&lt;Double, Double&gt; sqrt = x -&gt; Math.sqrt(x);</code></pre> 
+  <p><strong>2) Reference to an instance method of an object</strong></p> 
+  <p>The general form looks like this:</p> 
+  <pre><code class="language-java">objectName :: instanceMethodName</code></pre> 
+  <p>Let's check out the example of a reference to the <code class="language-java">indexOf</code> method of a particular string.</p> 
+  <pre><code class="language-java">String whatsGoingOnText = "What's going on here?";
+
+Function&lt;String, Integer&gt; indexWithinWhatsGoingOnText = whatsGoingOnText::indexOf;</code></pre> 
+  <p>Here is the result of applying it to different arguments:</p> 
+  <pre><code class="language-java">System.out.println(indexWithinWhatsGoingOnText.apply("going")); // 7
+System.out.println(indexWithinWhatsGoingOnText.apply("Hi"));    // -1</code></pre> 
+  <p>As you can see, actually we always work with the <code class="language-java">whatsGoingOnText</code> object captured from the context.</p> 
+  <p>The following example of a lambda expression is a full equivalent of the reference above and can make your understanding of the situation better:</p> 
+  <pre><code class="language-java">Function&lt;String, Integer&gt; indexWithinWhatsGoingOnText = string -&gt; whatsGoingOnText.indexOf(string);</code></pre> 
+  <p><strong>3) Reference to an instance method of an object of a particular type</strong></p> 
+  <p>Here is a general form of a reference:</p> 
+  <pre><code class="language-java">ClassName :: instanceMethodName</code></pre> 
+  <p>In that case, you need to pass an instance of the class as the function argument.</p> 
+  <p>Let's focus on the following reference to an instance of the method <code class="language-java">doubleValue</code> of the class <code class="language-java">Long</code>:</p> 
+  <pre><code class="language-java">Function&lt;Long, Double&gt; converter = Long::doubleValue;</code></pre> 
+  <p>Now we can invoke the <code class="language-java">converter</code> for long values:</p> 
+  <pre><code class="language-java">converter.apply(100L); // the result is 100.0d
+converter.apply(200L); // the result is 200.0d</code></pre> 
+  <p>Also, we can write the same converter using the following lambda expression:</p> 
+  <pre><code class="language-java">Function&lt;Long, Double&gt; converter = val -&gt; val.doubleValue();</code></pre> 
+  <p><strong>4) Reference to a constructor</strong></p> 
+  <p>This reference has the following declaration:</p> 
+  <pre><code class="language-java">ClassName :: new</code></pre> 
+  <p>For example, let's consider our custom class <code class="language-java">Person</code> with a single field <code class="language-java">name</code>.</p> 
+  <pre><code class="language-java">class Person {
+    String name;
+
+    public Person(String name) {
+        this.name = name;
+    }
+}</code></pre> 
+  <p>Here is a reference to the constructor of this class:</p> 
+  <pre><code class="language-java">Function&lt;String, Person&gt; personGenerator = Person::new;</code></pre> 
+  <p>This function produces new <code class="language-java">Person</code> objects based on their names.</p> 
+  <pre><code class="language-java">Person johnFoster = personGenerator.apply("John Foster"); // we have a John Foster object</code></pre> 
+  <p>Here is the corresponding lambda expression that does the same.</p> 
+  <pre><code class="language-java">Function&lt;String, Person&gt; personGenerator = name -&gt; new Person(name);</code></pre> 
+  <p>Further, we will use lambda expressions and method references together.</p> 
+  <p></p>
+  <div class="alert alert-primary">
+   More practical examples will be explored in the following topics. For now, it is enough to grasp the general idea and the syntax of method references.
+  </div>
+  <p></p> 
+  <h2>Conclusion</h2> 
+  <p>You've learned a new way to create function objects by using method references. It has much in common with lambda expressions but allows writing more readable and decomposed code. At the end of this topic, you should memorize all four types of method references and be ready to use them in your programs when you need to convey a piece of code into some method.</p>
+ </body>
+</html>

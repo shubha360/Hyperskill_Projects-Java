@@ -1,0 +1,18 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    import java.util.function.LongUnaryOperator;
+
+    class Operator {
+
+        public static LongUnaryOperator unaryOperator = // Write your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2364#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Mon, 03 May 2021 10:14:53 UTC
+record: -1

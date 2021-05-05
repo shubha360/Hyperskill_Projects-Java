@@ -1,0 +1,22 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    class Predicate {
+
+        @FunctionalInterface
+        public interface TernaryIntPredicate {
+            // Write a method here
+        }
+
+        public static final TernaryIntPredicate allValuesAreDifferentPredicate = // Write a lambda expression here
+
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2370#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Tue, 04 May 2021 06:54:49 UTC
+record: -1

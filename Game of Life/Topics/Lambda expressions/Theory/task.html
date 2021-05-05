@@ -1,0 +1,105 @@
+<html>
+ <head></head>
+ <body>
+  <p>As you already know, Java is primarily an object-oriented programming language. It supports classes, methods, fields, and other concepts from this paradigm. Here, methods are the main way to represent the behavior of objects, classes, and whole programs. You can write absolutely any code inside their bodies and then invoke this code from other parts of your program using the names of the methods. This approach allows developers to create very structured and well-readable programs, but sometimes it's not enough and we should use other ways to represent behavior rather than methods.</p> 
+  <h2 style="text-align: center;">Functional programming in Java</h2> 
+  <p>This topic begins to explain another programming paradigm called <strong>functional programming (FP)</strong> that uses <strong>functions</strong> as the primary concept to provide an alternative way to solve many programming challenges. Like methods, functions are used to decompose code into small pieces. Sometimes these concepts are even interchangeable. However, unlike methods, functions can also behave like regular Java objects (e.g., be passed/returned to/from a method).</p> 
+  <p>Of course, it is impossible to explain the whole paradigm at once, so there will be a lot of engaging topics. The first concept we will learn is <strong>lambda expressions</strong> which is the closest one to the standard Java methods. Let's take a look at what they are and why we use them.</p> 
+  <h2 style="text-align: center;">Lambda expressions</h2> 
+  <p>By <strong>lambda expression</strong> (or just "lambda"), we mean a <strong>function</strong> that isn't bound to its name (an anonymous function) but can be assigned to a variable.</p> 
+  <p>The most general form of a lambda expression looks like this: <code class="language-java">(parameters) -&gt; { body };</code>. Here, the part before <code class="language-java">-&gt;</code> is the list of parameters (like in methods), and the part after that is the body that can return a value. The brackets <code class="language-java">{ }</code> are required only for multi-line lambda expressions.</p> 
+  <p></p>
+  <div class="alert alert-primary">
+   Sometimes, lambdas don't have parameters or return values or even both. Even if a lambda doesn't have a value to return, it has a body that does some useful actions (e.g. prints or saves something). You will encounter practical examples with such lambdas in the next topics.
+  </div>
+  <p></p> 
+  <p>Another important thing — like a regular Java object, a lambda expression always has a special type. There are a lot of types presented in the Java Standard Library. In this topic, we will only mention two of them: <code class="language-java">Function</code> and <code class="language-java">BiFunction</code>. Both of the classes are located in the <code class="language-java">java.util.function</code> package among others.</p> 
+  <p></p>
+  <div class="alert alert-primary">
+   You don't need to find and remember all possible types of lambda expressions at once. You will gradually do this as you learn.
+  </div>
+  <p></p> 
+  <p>Let's consider a single-line lambda expression that just multiplies its two parameters.</p> 
+  <pre><code class="language-java">BiFunction&lt;Integer, Integer, Integer&gt; mult = (x, y) -&gt; x * y;</code></pre> 
+  <p>The expression has the type <code class="language-java">BiFunction&lt;Integer, Integer, Integer&gt;</code> which means, that it takes two <code class="language-java">Integer</code> values and returns another <code class="language-java">Integer</code> value.</p> 
+  <p>There are a lot of ways to write lambda expressions. Let's consider more examples.</p> 
+  <pre><code class="language-java">// if it has only one argument "()" are optional
+Function&lt;Integer, Integer&gt; adder1 = x -&gt; x + 1;
+
+// without type inference
+Function&lt;Integer, Integer&gt; mult2 = (Integer x) -&gt; x * 2;
+
+// with multiple statements
+Function&lt;Integer, Integer&gt; adder5 = (x) -&gt; {
+    x += 2;
+    x += 3;
+    return x;
+};</code></pre> 
+  <p></p>
+  <div class="alert alert-primary">
+   Although Java provides a lot of ways to write lambda expressions, you always need to choose the shortest and most readable way to do this.
+  </div>
+  <p></p> 
+  <h2 style="text-align: center;">Invoking lambda expressions</h2> 
+  <p>Once a lambda expression is created, it can be used in other places of your program like a regular Java object. You can invoke the body of an expression using special methods like <code class="language-java">apply</code> as many times as you need. The name of the method depends on the type of lambda expression.</p> 
+  <pre><code class="language-java">int result2x5 = mult.apply(2, 5); // 10
+int result3x1 = mult.apply(3, 1); // 3</code></pre> 
+  <p>So, we can invoke a lambda expression like a regular method passing arguments and obtaining results!</p> 
+  <h2 style="text-align: center;">Passing lambda expressions to methods</h2> 
+  <p>One of the most popular cases is to pass a lambda expression to a method and then call it there.</p> 
+  <p>Look at the method below. It takes an object of the standard generic <code class="language-java">Function</code> type. </p> 
+  <pre><code class="language-java">private static void printResultOfLambda(Function&lt;String, Integer&gt; function) {
+    System.out.println(function.apply("HAPPY NEW YEAR 3000!"));
+}</code></pre> 
+  <p>This function can take a <code class="language-java">String</code> argument and return an <code class="language-java">Integer</code> result.</p> 
+  <p>To test the method, let's create an object and pass it into the method:</p> 
+  <pre><code class="language-java">// it returns the length of a string
+Function&lt;String, Integer&gt; f = s -&gt; s.length();
+printResultOfLambda(f); // it prints 20</code></pre> 
+  <p>You can also pass a lambda expression to the method directly without an intermediate reference:</p> 
+  <pre><code class="language-java">// passing without a reference
+printResultOfLambda(s -&gt; s.length()); // the result is the same: 20</code></pre> 
+  <p>As you can see, we can pass our function presented by an object to a method as its argument, if the method takes an object of a suitable type. Then, inside the method, the given function will be invoked.</p> 
+  <p>But why do we need it? First, let's look at another example, which uses a more complex lambda expression and calculates the number of digits on the string.</p> 
+  <pre><code class="language-java">// It prints the number of digits: 4
+printResultOfLambda(s -&gt; {
+    int count = 0;
+    for (char c : s.toCharArray()) {
+        if (Character.isDigit(c)) {
+            count++;
+        }
+    }
+    return count;
+});</code></pre> 
+  <p>What is important here? We pass to the <code class="language-java">printResultOfLambda</code> not data, but some piece of code as data. So, we can parameterize the same method with a different behavior at runtime. This is what typical uses of lambda expressions look like. Many standard methods can accept lambda expressions. This will be discussed in more detail in the following topics.</p> 
+  <p>Let's introduce an important term according to the examples. In functional programming theory, a function that accepts or returns another function is called a <strong>higher-order function</strong>. In terms of Java, we're talking about methods or functions which take / return <code class="language-java">Function&lt;T, R&gt;</code>, <code class="language-java">BiFunction&lt;T, U, R&gt;</code> or other types we will consider soon.</p> 
+  <h2 style="text-align: center;">Closures</h2> 
+  <p>Another important trick with lambda expressions is the possibility to capture values from a context where the lambda is defined and use the values within the body. This technique is called <strong>closure</strong>.</p> 
+  <p></p>
+  <div class="alert alert-warning">
+   Capturing is possible only if a context variable has the 
+   <code class="language-java">final</code> keyword or it's 
+   <strong>effectively final</strong>, i.e. the variable isn't changed in further code. Otherwise, an error happens.
+  </div>
+  <p></p> 
+  <p>Let's see an example.</p> 
+  <pre><code class="language-java">final String hello = "Hello, ";
+Function&lt;String, String&gt; helloFunction = (name) -&gt; hello + name;
+
+System.out.println(helloFunction.apply("John"));
+System.out.println(helloFunction.apply("Anastasia"));</code></pre> 
+  <p>The lambda expression captured the final variable <code class="language-java">hello</code>.</p> 
+  <p>The result of this code.</p> 
+  <pre><code class="language-java">Hello, John
+Hello, Anastasia</code></pre> 
+  <p>Let's consider the example with an effectively final variable.</p> 
+  <pre><code class="language-java">int constant = 100;
+Function&lt;Integer, Integer&gt; adder100 = x -&gt; x + constant;
+
+System.out.println(adder100.apply(200));
+System.out.println(adder100.apply(300));</code></pre> 
+  <p>The variable <code class="language-java">constant</code> is effectively final and being captured by the lambda expression.</p> 
+  <h2 style="text-align: center;">Conclusion</h2> 
+  <p>In this topic, you started learning a new programming paradigm. You've seen the syntax of lambda expressions and how to pass them to methods to vary their behavior at runtime. You've also learned how lambda expressions can use context variables within the body. While you are still at the beginning of the journey in the world of functional programming, you will see soon how many new possibilities this paradigm brings to solve complex practical problems.</p>
+ </body>
+</html>

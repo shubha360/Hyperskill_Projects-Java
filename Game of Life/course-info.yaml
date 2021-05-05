@@ -1,0 +1,14 @@
+type: hyperskill
+title: Game of Life
+language: English
+summary: 'Get firsthand experience of creating a small inhabited universe and observe
+  the many patterns in which this “life” can evolve. Generation by generation, watch
+  the cells come and go, reacting to their environment, perishing from loneliness
+  or finding comfort in company. In this project, you will write a simple “Game of
+  Life”, a classic toy for programmers to entertain and educate themselves. Careful:
+  might be hypnotizing!<br/><br/>Learn more at <a href="https://hyperskill.org">https://hyperskill.org/projects/54</a>'
+programming_language: Java
+programming_language_version: 11
+content:
+- Topics
+mode: Study
