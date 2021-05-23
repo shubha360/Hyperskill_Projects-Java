@@ -1,0 +1,173 @@
+<h2>Description</h2>
+
+<p>One of the features of relational databases is, quite obviously, the relations between the tables. Let's create a table <code class="java">CAR</code> that relates to a particular company. The data in this table should be linked to the <code class="java">COMPANY</code> table with a foreign key.</p>
+
+<p>Since one company can have more than one car but one car can only belong to one company, the appropriate <a target="_blank" href="https://medium.com/@emekadc/how-to-implement-one-to-one-one-to-many-and-many-to-many-relationships-when-designing-a-database-9da2de684710" rel="noopener noreferrer nofollow">table relation model</a> is One to Many.</p>
+
+<h2>Objectives</h2>
+
+<p>Create another table named <code class="java">CAR</code> with the following columns:</p>
+
+<ul>
+    <li><code class="java">ID</code> column should be <code class="java">PRIMARY KEY</code> and <code class="java">AUTO_INCREMENT</code> with the type <code class="java">INT</code>.</li>
+    <li><code class="java">NAME</code> column should be <code class="java">UNIQUE</code> and <code class="java">NOT NULL</code> with the type <code class="java">VARCHAR</code>.</li>
+    <li><code class="java">COMPANY_ID</code> column should be <code class="java">NOT NULL</code> with the type <code class="java">INT</code>. This column should be a <code class="java">FOREIGN KEY</code> referring to the <code class="java">ID</code> column of the table <code class="java">COMPANY</code>.</li>
+    <li><code class="java">COMPANY</code> table should be the same as in the previous stage.</li>
+</ul>
+
+<p>Update the option <code class="java">Company list</code> in the manager menu. Now, after showing the list of companies the program should prompt the user to choose one of them:</p>
+
+<pre><code class="language-no-highlight">Choose a company:
+1. First company name
+2. Second company name
+3. Third company name</code></pre>
+
+<p>Once the user has chosen a company, print the company menu:</p>
+
+<pre><code class="language-no-highlight">'Company name' company:
+1. Car list
+2. Create a car
+0. Back</code></pre>
+
+<p>If the user chose the option <code class="java">Car list</code>, the program should print the list of cars that belong to the chosen company. If the car list is empty, print the message <code class="java">The car list is empty!</code>. Otherwise, print the cars ordered by their ID column. Their indexes should start from <span class="math-tex">\(1\)</span>, for example:</p>
+
+<pre><code class="language-no-highlight">'Company name' cars:
+1. First car name
+2. Second car name
+3. Third car name</code></pre>
+
+<p>After printing the car list, print the company menu again. If the option <code class="java">Create a car</code> was chosen, the program should prompt the user for the car name and save it in the database. The <code class="java">COMPANY_ID</code> column of that car should refer to the company where it was created.</p>
+
+<p>If the <code class="java">Back</code> option was chosen, go back and print the manager menu.</p>
+
+<p>Note that a list numeration should always start with 1.</p>
+
+<p><div class="alert alert-primary">To pass the tests, you have to enable the auto-commit mode so that all changes are automatically saved in the database file. To do that, call the method <code class="java">connection.setAutoCommit(true)</code> of the <code class="java">Connection</code> object.</div></p>
+
+<h2>Examples</h2>
+
+<p>The greater-than symbol followed by a space <code class="java">&gt; </code> represents the user input. Note that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">1. Log in as a manager
+0. Exit
+&gt; 1
+
+1. Company list
+2. Create a company
+0. Back
+&gt; 2
+
+Enter the company name:
+&gt; Car To Go
+The company was created!
+
+1. Company list
+2. Create a company
+0. Back
+&gt; 2
+
+Enter the company name:
+&gt; Drive Now
+The company was created!
+
+1. Company list
+2. Create a company
+0. Back
+&gt; 1
+
+Choose the company:
+1. Car To Go
+2. Drive Now
+0. Back
+&gt; 1
+
+'Car To Go' company
+1. Car list
+2. Create a car
+0. Back
+&gt; 1
+
+The car list is empty!
+
+1. Car list
+2. Create a car
+0. Back
+&gt; 2
+
+Enter the car name:
+&gt; Hyundai Venue
+The car was added!
+
+1. Car list
+2. Create a car
+0. Back
+&gt; 2
+
+Enter the car name:
+&gt; Maruti Suzuki Dzire
+The car was added!
+
+1. Car list
+2. Create a car
+0. Back
+&gt; 1
+
+Car list:
+1. Hyundai Venue
+2. Maruti Suzuki Dzire
+
+1. Car list
+2. Create a car
+0. Back
+&gt; 0
+
+1. Company list
+2. Create a company
+0. Back
+&gt; 1
+
+Choose the company:
+1. Car To Go
+2. Drive Now
+0. Back
+&gt; 2
+
+'Drive Now' company
+1. Car list
+2. Create a car
+0. Back
+&gt; 1
+
+The car list is empty!
+
+1. Car list
+2. Create a car
+0. Back
+&gt; 2
+
+Enter the car name:
+&gt; Lamborghini Urraco
+The car was added!
+
+1. Car list
+2. Create a car
+0. Back
+&gt; 1
+
+Car list:
+1. Lamborghini Urraco
+
+1. Car list
+2. Create a car
+0. Back
+&gt; 0
+
+1. Company list
+2. Create a company
+0. Back
+&gt; 0
+
+1. Log in as a manager
+0. Exit
+&gt; 0
+</code></pre>

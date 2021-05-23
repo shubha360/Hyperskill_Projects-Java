@@ -1,0 +1,86 @@
+<html>
+ <head></head>
+ <body>
+  <p><strong>Branching statements</strong> are used to alter the standard behavior of loops; they can terminate a loop or skip some iterations.</p> 
+  <h2 style="text-align: center;">The break statement</h2> 
+  <p>The <strong>break</strong> statement has two uses:</p> 
+  <ul> 
+   <li>it terminates the current loop of any type (<strong>for</strong>, <strong>while</strong>, <strong>do-while</strong>);</li> 
+   <li>it terminates a case in the <strong>switch</strong> statement;</li> 
+  </ul> 
+  <p>In this topic, we will learn how to use it to terminate loops.</p> 
+  <p>The following example demonstrates a loop that includes one <code class="language-java">break</code>.</p> 
+  <pre><code class="language-java">int i = 10;
+while (true) { // the condition to continue the loop
+    if (i == 0) { // the condition to perform the break that stops this loop 
+        break;
+    }
+    i--;
+}</code></pre> 
+  <p>In the code above, the condition to continue the loop is always <code class="language-java">true</code>, but it will be successfully stopped when the variable <code class="language-java">i</code> becomes <code class="language-java">0</code> through the use of <code class="language-java">break</code> inside the conditional statement.</p> 
+  <p>The <strong>break</strong> statement terminates only the loop in which it is currently located. If this loop is performed inside another loop, the outer loop won't be stopped.</p> 
+  <p>The following code prints a ladder of numbers.</p> 
+  <pre><code class="language-java">for (int i = 0; i &lt; 10; i++) {
+    for (int j = 0; j &lt; 10; j++) {
+        System.out.print(j + " ");
+        if (i == j) {
+            break;
+        }
+    }
+    System.out.println();
+}</code></pre> 
+  <p>The break statement can't stop the outer loop (with variable <code class="language-java">i</code>) and the code prints:</p> 
+  <pre><code class="language-java">0 
+0 1 
+0 1 2 
+0 1 2 3 
+0 1 2 3 4 
+0 1 2 3 4 5 
+0 1 2 3 4 5 6 
+0 1 2 3 4 5 6 7 
+0 1 2 3 4 5 6 7 8 
+0 1 2 3 4 5 6 7 8 9</code></pre> 
+  <p>To stop the outer loop we'd like to declare a Boolean variable <code class="language-java">stopped</code> and use it as a special Boolean flag.</p> 
+  <pre><code class="language-java">boolean stopped = false;
+for (int i = 0; (i &lt; 10) &amp;&amp; !stopped; i++) {
+    for (int j = 0; j &lt; 10; j++) {
+        System.out.print(j + " ");
+        if (i == j) {
+            stopped = true;
+            break;
+        }
+     }
+    System.out.println();
+}</code></pre> 
+  <p>Now, the program's output is not the same:</p> 
+  <pre><code class="language-java">0</code></pre> 
+  <p>There is another way to stop the outer loop: the labeled break operator. However, it's not good practice to use it. Google it if you are really interested.</p> 
+  <h2 style="text-align: center;">The continue statement</h2> 
+  <p>It causes a loop to skip the current iteration and go to the next one.</p> 
+  <p>This statement can be used inside any kind of loops.</p> 
+  <ul> 
+   <li>inside the <strong>for-loop</strong>, the continue causes control to immediately move to the increment/decrement statement;</li> 
+   <li>inside the <strong>while</strong> or<strong> do-while loop</strong>, control immediately moves to the condition.</li> 
+  </ul> 
+  <p>In the following example, a sequence of numbers is output. Odd numbers are skipped.</p> 
+  <pre><code class="language-java">int n = 10;
+for (int i = 0; i &lt; n; i++) {
+    if (i % 2 != 0) {
+        continue;
+    }
+    System.out.print(i + " ");
+}</code></pre> 
+  <p>The output:</p> 
+  <pre><code class="language-java">0 2 4 6 8</code></pre> 
+  <p>The <strong>continue </strong>statement and the <strong>break </strong>statement only affect the loop in which they are located. The <strong>continue </strong>statement cannot skip the current iteration of the outer loop.</p> 
+  <p>Often, we can rewrite our loop without using the continue statement. Here is an example:</p> 
+  <pre><code class="language-java">int n = 10;
+for (int i = 0; i &lt; n; i++) { 
+    if (i % 2 == 0) {
+        System.out.print(i + " ");
+    } 
+}</code></pre> 
+  <p>The result is the same as above, but the code became shorter and more readable.</p> 
+  <p>It is important to note that the widespread use of branching statements leads to poorly-structured code because conditions in your loops are not actually what you need to do. So, use them wisely — only when it helps to make code shorter and easier to understand for humans.</p>
+ </body>
+</html>

@@ -12,7 +12,7 @@ Codes of projects from www.hyperskill.org Java Developer track.
     - [Medium] Battleship
     - [Medium] Encryption-Decryption
     - [Medium] Numeric Matrix Proccesor
-    - [Medium] Tic-Tac-Toe wi AI
+    - [Medium] Tic-Tac-Toe with AI
     - [Medium] Readabilty Score
     - [Medium] Numeral System Converter
 
@@ -21,10 +21,11 @@ Codes of projects from www.hyperskill.org Java Developer track.
     - [Hard] Simple Search Engine
     - [Hard] Simple Banking System
 
-5 Incompelte Projects:
+6 Incompelte Projects:
 
     - [Medium] Error Correcting Encoder-Decoder (3/5 stages completed)
     - [Hard] Maze Runner (1/4 stages completed)
     - [Hard] Minesweeper (4/5 stages completed)
     - [Hard] Smart Calculator (3/8 stages completed)
     - [Hard] Game of Life (3/5 stages completed)
+    - [Challenging] Car Sharing (3/4 stages completed)

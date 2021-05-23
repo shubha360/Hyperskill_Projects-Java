@@ -1,0 +1,212 @@
+<h2><strong style="background-color: transparent; color: #000000; font-size: 11pt; font-variant: normal;"></strong>Description</h2>
+
+<p>The companies are all set and ready to rent out their cars. Until now, there was no opportunity to interact with potential customers in any way. Let's create a log-in option for the customers so that they can rent a car through the platform.</p>
+
+<h2>Objectives</h2>
+
+<p>Create a table named <code class="java">CUSTOMER</code> with the following columns:</p>
+
+<ul>
+	<li><code class="java">ID</code> column should be <code class="java">PRIMARY KEY</code> and <code class="java">AUTO_INCREMENT</code> with the type <code class="java">INT</code>.</li>
+	<li><code class="java">NAME</code> column should be <code class="java">UNIQUE</code> and <code class="java">NOT NULL</code> with the type <code class="java">VARCHAR</code>.</li>
+	<li><code class="java">RENTED_CAR_ID</code> should have the type <code class="java">INT</code>. This column should be a <code class="java">FOREIGN KEY</code> referring to the <code class="java">ID</code> column of the <code class="java">CAR</code> table, and this column can be <code class="java">NULL</code> in case the customer didn't rent a car.</li>
+</ul>
+
+<p>Update the main menu adding a couple of new options:</p>
+
+<pre><code class="language-no-highlight">1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit</code></pre>
+
+<p><code class="java">Log in as a manager</code> should work the same as described in the previous stage.</p>
+
+<p>If the option <code class="java">Create a customer</code> was chosen, the program should prompt the user to enter a customer name and then save it in the database. By default, the column <code class="java">RENTED_CAR_ID</code> of the customer should be <code class="java">NULL</code>.</p>
+
+<p>If the <code class="java">Log in as a customer</code> option was chosen, the program should print the list of existing customers and prompt the user to choose one:</p>
+
+<pre><code class="language-no-highlight">Choose a customer:
+1. First customer
+2. Second customer
+0. Back</code></pre>
+
+<p>If the <code class="java">Back</code> option was chosen, go back and print the main menu. If the customer list is empty, print the message <code class="java">The customer list is empty!</code> and return to the main menu. If the user chooses one of the customers, print the customer menu:</p>
+
+<pre><code class="language-no-highlight">1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back</code></pre>
+
+<p>If the <code class="java">Back</code> option was chosen, go back and print the main menu.</p>
+
+<p>If the user chose <code class="java">My rented car</code>, print the name of the car they rented and the company it belongs to:</p>
+
+<pre><code class="language-no-highlight">Your rented car:
+Hyundai Venue
+Company:
+Car To Go</code></pre>
+
+<p>In case a customer doesn't currently have any rented cars, print <code class="java">You didn't rent a car!</code>.</p>
+
+<p>If a customer wants to <code class="java">Return a rented car</code>, the program should set the column <code class="java">RENTED_CAR_ID</code> of the current customer to <code class="java">NULL</code>. If the user tries to return a car that they didn't actually rent, print <code class="java">You didn't rent a car!</code>.</p>
+
+<p>If the customer wants to <code class="java">Rent a car</code>, the program should print the list of available companies and prompt the user to choose one. If the company list is empty, the program should print the message <code class="java">The company list is empty!</code> and return to the customer menu. If the customer has already rented a car, print <code class="java">You've already rented a car!</code>.</p>
+
+<p>If the customer chose a company that doesn't have any available cars at the moment, print <code class="java">No available cars in the 'Company name' company</code>.</p>
+
+<p>If the customer was lucky and the chosen company has cars to rent out, the program should print the cars ordered by their <code class="java">ID</code> column and prompt the user to pick one. Remember that indexes in the list should start from <span class="math-tex">\(1\)</span>:</p>
+
+<pre><code class="language-no-highlight">Choose a car:
+1. Hyundai Venue
+2. Maruti Suzuki Dzire
+0. Back</code></pre>
+
+<p>After the user has chosen a car, print the message <code class="java">You rented 'Car name'</code> and then go to the customer menu. If the customer didn't like any of the options and wants to go <code class="java">Back</code>, the program should take them back to the customer menu.</p>
+
+<p>Note that a list numeration should always start with 1.</p>
+
+<p><div class="alert alert-primary">To pass the tests, you have to enable the auto-commit mode so that all changes are automatically saved in the database file. To do that, call the method <code class="java">connection.setAutoCommit(true)</code> of the <code class="java">Connection</code> object.</div></p>
+
+<h2>Examples</h2>
+
+<p>The greater-than symbol followed by a space <code class="java">&gt; </code> represents the user input. Note that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 2
+
+The customer list is empty!
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 3
+
+Enter the customer name:
+&gt; First customer
+The customer was added!
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 3
+
+Enter the customer name:
+&gt; Second customer
+The customer was added!
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 2
+
+Customer list:
+1. First customer
+2. Second customer
+0. Back
+&gt; 1
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 3
+
+You didn't rent a car!
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 2
+
+You didn't rent a car!
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 0
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 0
+</code></pre>
+
+<pre><code class="language-no-highlight">1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 2
+
+The customer list:
+1. First customer
+2. Second customer
+0. Back
+&gt; 1
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 1
+
+Choose a company:
+1. Car To Go
+2. Drive Now
+0. Back
+&gt; 1
+
+Choose a car:
+1. Hyundai Venue
+2. Maruti Suzuki Dzire
+0. Back
+&gt; 1
+
+You rented 'Hyundai Venue'
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 3
+
+Your rented car:
+Hyundai Venue
+Company:
+Car To Go
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 1
+
+You've already rented a car!
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 2
+
+You've returned a rented car!
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 0
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 0</code></pre>

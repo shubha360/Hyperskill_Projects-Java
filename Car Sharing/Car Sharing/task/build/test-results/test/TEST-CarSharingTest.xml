@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CarSharingTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-05-23T15:53:26" hostname="DESKTOP-4IPOM31" time="3.766">
+  <properties/>
+  <testcase name="start" classname="CarSharingTest" time="3.766">
+    <failure message="java.lang.AssertionError: Wrong answer in test #9&#10;&#10;If a customer has already rented a car and is trying to rent another one you should print 'You've already rented a car!'&#10;&#10;Please find below the output of your program during this failed test.&#10;Note that the '&gt;' character indicates the beginning of the input line.&#10;&#10;---&#10;&#10;Arguments: -databaseFileName carsharing&#10;&#10;1. Log in as a manager&#10;2. Log in as a customer&#10;3. Create a customer&#10;0. Exit&#10;&gt; 2&#10;&#10;Customer list:&#10;1. First customer&#10;2. Second customer&#10;0. Back&#10;&gt; 1&#10;&#10;1. Rent a car&#10;2. Return a rented car&#10;3. My rented car&#10;0. Back&#10;&gt; 1&#10;&#10;Choose the company:&#10;1. Car To Go&#10;2. Drive Now&#10;0. Back&#10;&gt; 1&#10;&#10;1. Hyundai Venue&#10;2. Maruti Suzuki Dzire&#10;0. Back&#10;&gt; 1&#10;&#10;You rented 'Hyundai Venue'&#10;&#10;1. Rent a car&#10;2. Return a rented car&#10;3. My rented car&#10;0. Back&#10;&gt; 3&#10;&#10;Your rented car:&#10;Hyundai Venue&#10;Company:&#10;Car To Go&#10;&#10;1. Rent a car&#10;2. Return a rented car&#10;3. My rented car&#10;0. Back&#10;&gt; 1&#10;&#10;You've already rented a car!&#10;&#10;1. Rent a car&#10;2. Return a rented car&#10;3. My rented car&#10;0. Back&#10;&gt; 2&#10;&#10;1. Rent a car&#10;2. Return a rented car&#10;3. My rented car&#10;0. Back" type="java.lang.AssertionError">java.lang.AssertionError: Wrong answer in test #9
+
+If a customer has already rented a car and is trying to rent another one you should print 'You've already rented a car!'
+
+Please find below the output of your program during this failed test.
+Note that the '&gt;' character indicates the beginning of the input line.
+
+---
+
+Arguments: -databaseFileName carsharing
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 2
+
+Customer list:
+1. First customer
+2. Second customer
+0. Back
+&gt; 1
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 1
+
+Choose the company:
+1. Car To Go
+2. Drive Now
+0. Back
+&gt; 1
+
+1. Hyundai Venue
+2. Maruti Suzuki Dzire
+0. Back
+&gt; 1
+
+You rented 'Hyundai Venue'
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 3
+
+Your rented car:
+Hyundai Venue
+Company:
+Car To Go
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 1
+
+You've already rented a car!
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 2
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.hyperskill.hstest.stage.StageTest.start(StageTest.java:141)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:110)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
+	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:62)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:119)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:182)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:164)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:414)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+</failure>
+  </testcase>
+  <system-out><![CDATA[?[1;31m
+Start test 1?[0m
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+> 0
+
+?[1;31m
+Start test 2?[0m
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+> 1
+
+1. Company list
+2. Create a company
+0. Back
+> 0
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+?[1;31m
+Start test 3?[0m
+?[1;31m
+Start test 4?[0m
+?[1;31m
+Start test 5?[0m
+?[1;31m
+Start test 6?[0m
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+> 1
+
+1. Company list
+2. Create a company
+0. Back
+> 1
+
+The company list is empty!
+
+1. Company list
+2. Create a company
+0. Back
+> 2
+
+Enter the company name:
+> Super company
+The company was created!
+
+1. Company list
+2. Create a company
+0. Back
+> 1
+
+Choose the company:
+1. Super company
+0. Back
+> 0
+
+1. Company list
+2. Create a company
+0. Back
+> 2
+
+Enter the company name:
+> Another company
+The company was created!
+
+1. Company list
+2. Create a company
+0. Back
+> 2
+
+Enter the company name:
+> One more company
+The company was created!
+
+1. Company list
+2. Create a company
+0. Back
+> 1
+
+Choose the company:
+1. Super company
+2. Another company
+3. One more company
+0. Back
+> 2
+
+1. Car list
+2. Create a car
+0. Back
+?[1;31m
+Start test 7?[0m
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+> 1
+
+1. Company list
+2. Create a company
+0. Back
+> 2
+
+Enter the company name:
+> Car To Go
+The company was created!
+
+1. Company list
+2. Create a company
+0. Back
+> 2
+
+Enter the company name:
+> Drive Now
+The company was created!
+
+1. Company list
+2. Create a company
+0. Back
+> 1
+
+Choose the company:
+1. Car To Go
+2. Drive Now
+0. Back
+> 1
+
+1. Car list
+2. Create a car
+0. Back
+> 1
+
+The car list is empty!
+
+1. Car list
+2. Create a car
+0. Back
+> 2
+
+Enter the car name:
+> Hyundai Venue
+The car was added!
+
+1. Car list
+2. Create a car
+0. Back
+> 2
+
+Enter the car name:
+> Maruti Suzuki Dzire
+The car was added!
+
+1. Car list
+2. Create a car
+0. Back
+> 1
+
+1. Hyundai Venue
+2. Maruti Suzuki Dzire
+
+1. Car list
+2. Create a car
+0. Back
+> 0
+
+1. Company list
+2. Create a company
+0. Back
+> 1
+
+Choose the company:
+1. Car To Go
+2. Drive Now
+0. Back
+> 2
+
+1. Car list
+2. Create a car
+0. Back
+> 1
+
+The car list is empty!
+
+1. Car list
+2. Create a car
+0. Back
+> 2
+
+Enter the car name:
+> Lamborghini Urraco
+The car was added!
+
+1. Car list
+2. Create a car
+0. Back
+> 1
+
+1. Lamborghini Urraco
+
+1. Car list
+2. Create a car
+0. Back
+> 0
+
+1. Company list
+2. Create a company
+0. Back
+> 0
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+> 0
+
+?[1;31m
+Start test 8?[0m
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+> 2
+
+The customer list is empty!
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+> 3
+
+Enter the customer name:
+> First customer
+The customer was added!
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+> 3
+
+Enter the customer name:
+> Second customer
+The customer was added!
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+> 2
+
+Customer list:
+1. First customer
+2. Second customer
+0. Back
+> 1
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+> 3
+
+You didn't rent a car!
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+> 2
+
+You didn't rent a car!
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+?[1;31m
+Start test 9?[0m
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+> 2
+
+Customer list:
+1. First customer
+2. Second customer
+0. Back
+> 1
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+> 1
+
+Choose the company:
+1. Car To Go
+2. Drive Now
+0. Back
+> 1
+
+1. Hyundai Venue
+2. Maruti Suzuki Dzire
+0. Back
+> 1
+
+You rented 'Hyundai Venue'
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+> 3
+
+Your rented car:
+Hyundai Venue
+Company:
+Car To Go
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+> 1
+
+You've already rented a car!
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+> 2
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

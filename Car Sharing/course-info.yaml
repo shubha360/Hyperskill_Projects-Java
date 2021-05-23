@@ -1,0 +1,12 @@
+type: hyperskill
+title: Car Sharing
+language: English
+summary: Car-sharing is becoming a more and more popular green alternative to owning
+  a car. Let's create a program that manages a car-sharing service allowing companies
+  to rent out their cars and find customers.<br/><br/>Learn more at <a href="https://hyperskill.org">https://hyperskill.org/projects/140</a>
+programming_language: Java
+programming_language_version: 11
+content:
+- Car Sharing
+- Topics
+mode: Study

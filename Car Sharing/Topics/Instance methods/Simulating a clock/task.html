@@ -1,0 +1,28 @@
+<h2>Simulating a clock</h2>
+<html>
+ <head></head>
+ <body>
+  <p>You are given a class <code class="language-java">Clock</code>. It has two int fields: <code class="language-java">hours</code> and <code class="language-java">minutes</code>. The clock has a minute scale from 0 to 59 and an hour scale from 1 to 12. The clock does not know whether it's day or night (no AM or PM).</p> 
+  <p>Implement the method <code class="language-java">next</code> that increases the value of minutes by 1. The minutes must be reset to zero when the current hour ends. Do not forget to change the hours as well.</p> 
+  <p>Do not make the fields and methods <code class="language-java">private</code>.</p> 
+  <p>Let's consider the examples.</p> 
+  <p>1) The initial time of the object <code class="language-java">clock</code> is 12:00, i.e., <code class="language-java">hours = 12</code> and <code class="language-java">minutes = 0</code>. Applying the <code class="language-java">next</code> method to the <code class="language-java">clock</code>, we change its field <code class="language-java">minutes</code> to <code class="language-java">minutes = 1</code>. In this way, the time is 12:01.</p> 
+  <pre><code class="language-java">Clock clock = new Clock(); // the time is 12:00
+clock.next(); // the time is 12:01</code></pre> 
+  <p> 2) The initial time of a <code class="language-java">clock</code> object is 10:59, i.e. <code class="language-java">hours = 10</code> and <code class="language-java">minutes = 59</code>. After applying the <code class="language-java">next</code> method to the <code class="language-java">clock</code>, we turn its fields to <code class="language-java">hours = 11</code> and <code class="language-java">minutes = 0</code>, i.e., the time is 11:00 now.</p> 
+  <pre><code class="language-java">Clock clock = new Clock();
+clock.hours = 10;
+clock.minutes = 59;
+// time is 10:59
+
+clock.next(); // the time is 11:00</code></pre> 
+  <p> </p> 
+  <p>Here is an example of a clock you are supposed to imitate.</p> 
+  <p> </p> 
+  <p style="text-align: center;"><img alt="" height="201px" src="https://ucarecdn.com/f62bb626-cc70-4dbd-a7f2-145418cc74c7/" width="202px"></p>
+ </body>
+</html><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 8 seconds</font><br><br>
+<b>Caution</b><br><br>
+You may see errors in your code or execution results due to missing context. Don’t worry about it, just write the solution and press Check.
+<br><br>
+<a href="https://hyperskill.org/learn/step/3495">Show topic summary</a>

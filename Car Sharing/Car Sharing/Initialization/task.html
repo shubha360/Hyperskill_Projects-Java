@@ -1,0 +1,22 @@
+<h2>Description</h2>
+
+<p>In this project, you will work with the H2 database. It is an open-source lightweight Java database that can be embedded in Java applications or run in the client-server mode. Mainly, the H2 database can be configured to run as an in-memory database, which means that data will not persist on the disk. Because of the embedded database, it is not used for product development but mostly for development and testing purposes.</p>
+
+<p>Before you start with the project, you need to <a target="_blank" href="https://www.tutorialspoint.com/h2_database/h2_database_jdbc_connection.htm" rel="noopener noreferrer nofollow">connect to the database from Java</a>.</p>
+
+<p>Let's start by creating a <code class="java">COMPANY</code> table that will store information about the created car companies.</p>
+
+<h2>Objectives</h2>
+
+<p>Create a single table named <code class="java">COMPANY</code> with the following columns:</p>
+
+<ul>
+    <li><code class="java">ID</code> with the type <code class="java">INT</code>;</li>
+    <li><code class="java">NAME</code> with the type <code class="java">VARCHAR</code>.</li>
+</ul>
+
+<p>After running the program, it should create the database file in the <code class="java">carsharing/db/</code> folder, initialize the table described above, and stop.</p>
+
+<p>The database file name is obtained from the command-line arguments. Here is an example of args: <code class="java">-databaseFileName carsharing</code>. If the <code class="java">-databaseFileName</code> argument is not given, then the database file name can be anything.</p>
+
+<p><div class="alert alert-primary">To pass the tests, you have to enable the auto-commit mode so that all changes are automatically saved in the database file. To do that, call the method <code class="java">connection.setAutoCommit(true)</code> of the <code class="java">Connection</code> object.</div></p>

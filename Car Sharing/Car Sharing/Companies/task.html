@@ -1,0 +1,110 @@
+<h2>Description</h2>
+
+<p>Great, we have a database! Now, let's implement the ability to actually work with it from your program. In this stage, you will create a user-friendly menu that allows you to log in as a manager, create companies, and save them in the database.</p>
+
+<p><div class="alert alert-primary">Here is the <a target="_blank" href="https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm" rel="noopener noreferrer nofollow">Data Access Object Pattern</a> that allows you to get the data from the database as a Java object. This can make working with the database easier.</div></p>
+
+<h2>Objectives</h2>
+
+<p>Update your database and add constraints to the <code class="java">COMPANY</code> table columns:</p>
+
+<ul>
+	<li><code class="java">ID</code> column should be <code class="java">PRIMARY KEY</code> and <code class="java">AUTO_INCREMENT</code>.</li>
+	<li><code class="java">NAME</code> column should be <code class="java">UNIQUE</code> and <code class="java">NOT NULL</code>.</li>
+	<li>Column types should be the same as in the previous stage.</li>
+</ul>
+
+<p>Implement the menu with the following options:</p>
+
+<pre><code class="language-no-highlight">1. Log in as a manager
+0. Exit</code></pre>
+
+<p>If the option <code class="java">Exit</code> was chosen, the program should stop. In case the user chose <code class="java">Log in as a manager</code>, the following menu should be printed:</p>
+
+<pre><code class="language-no-highlight">1. Company list
+2. Create a company
+0. Back</code></pre>
+
+<p>Now, if the user chose to go <code class="java">Back</code>, the program should print the main menu. <code class="java">Company list</code> should print the list of companies sorted by their IDs. Their indexes start from <span class="math-tex">\(1\)</span>, for example:</p>
+
+<pre><code class="language-no-highlight">Company list:
+1. First company name
+2. Second company name
+3. Third company name</code></pre>
+
+<p>If there are no companies, print <code class="java">The company list is empty!</code>.</p>
+
+<p>If the option <code class="java">Create a company</code> was chosen, the program should prompt the user to enter a company name with the message <code class="java">Enter the company name:</code>, read the company name, and save it to the database.</p>
+
+<p>Note that a list numeration should always start with 1.</p>
+
+<p><div class="alert alert-primary">To pass the tests, you have to enable the auto-commit mode so that all changes are automatically saved in the database file. To do that, call the method <code class="java">connection.setAutoCommit(true)</code> of the <code class="java">Connection</code> object.</div></p>
+
+<h2>Examples</h2>
+
+<p>The greater-than symbol followed by a space <code class="java">&gt; </code> represents the user input. Note that it's not part of the input.</p>
+
+<pre><code class="language-no-highlight">1. Log in as a manager
+0. Exit
+&gt; 1
+
+1. Company list
+2. Create a company
+0. Back
+&gt; 1
+
+The company list is empty!
+
+1. Company list
+2. Create a company
+0. Back
+&gt; 2
+
+Enter the company name:
+&gt; Super company
+The company was created!
+
+1. Company list
+2. Create a company
+0. Back
+&gt; 1
+
+Company list:
+1. Super company
+
+1. Company list
+2. Create a company
+0. Back
+&gt; 2
+
+Enter the company name:
+&gt; Another company
+The company was created!
+
+1. Company list
+2. Create a company
+0. Back
+&gt; 2
+
+Enter the company name:
+&gt; One more company
+The company was created!
+
+1. Company list
+2. Create a company
+0. Back
+&gt; 1
+
+Company list:
+1. Super company
+2. Another company
+3. One more company
+
+1. Company list
+2. Create a company
+0. Back
+&gt; 0
+
+1. Log in as a manager
+0. Exit
+&gt; 0</code></pre>
