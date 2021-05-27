@@ -1,0 +1,14 @@
+type: hyperskill
+title: Amazing Numbers
+language: English
+summary: We use numbers every day. But do you know how many different properties they
+  have? Let's take a look at some of the amazing properties of numbers. After completing
+  this project, you will write a program that knows how to determine whether a number
+  is Palindromic or Gapful, or how to distinguish Spy numbers from others. Numbers
+  can be fascinating!<br/><br/>Learn more at <a href="https://hyperskill.org">https://hyperskill.org/projects/184</a>
+programming_language: Java
+programming_language_version: 11
+content:
+- Amazing Numbers
+- Topics
+mode: Study

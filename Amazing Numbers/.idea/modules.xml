@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Amazing_Numbers.iml" filepath="$PROJECT_DIR$/.idea/modules/Amazing_Numbers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Amazing Numbers/task/Amazing_Numbers.Amazing_Numbers-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Amazing Numbers/task/Amazing_Numbers.Amazing_Numbers-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Amazing Numbers/task/Amazing_Numbers.Amazing_Numbers-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Amazing Numbers/task/Amazing_Numbers.Amazing_Numbers-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Amazing Numbers/task/Amazing_Numbers.Amazing_Numbers-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Amazing Numbers/task/Amazing_Numbers.Amazing_Numbers-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Printing data/Digits from 0 to 9 in a single line/Amazing_Numbers.Topics-Printing_data-Digits_from_0_to_9_in_a_single_line.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Printing data/Digits from 0 to 9 in a single line/Amazing_Numbers.Topics-Printing_data-Digits_from_0_to_9_in_a_single_line.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Printing data/Digits from 0 to 9 in a single line/Amazing_Numbers.Topics-Printing_data-Digits_from_0_to_9_in_a_single_line.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Printing data/Digits from 0 to 9 in a single line/Amazing_Numbers.Topics-Printing_data-Digits_from_0_to_9_in_a_single_line.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Printing data/Digits from 0 to 9 in a single line/Amazing_Numbers.Topics-Printing_data-Digits_from_0_to_9_in_a_single_line.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Printing data/Digits from 0 to 9 in a single line/Amazing_Numbers.Topics-Printing_data-Digits_from_0_to_9_in_a_single_line.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Printing data/Printing a magic letter/Amazing_Numbers.Topics-Printing_data-Printing_a_magic_letter.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Printing data/Printing a magic letter/Amazing_Numbers.Topics-Printing_data-Printing_a_magic_letter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Printing data/Printing a magic letter/Amazing_Numbers.Topics-Printing_data-Printing_a_magic_letter.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Printing data/Printing a magic letter/Amazing_Numbers.Topics-Printing_data-Printing_a_magic_letter.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Printing data/Printing a magic letter/Amazing_Numbers.Topics-Printing_data-Printing_a_magic_letter.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Printing data/Printing a magic letter/Amazing_Numbers.Topics-Printing_data-Printing_a_magic_letter.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Printing data/Theory/Amazing_Numbers.Topics-Printing_data-Theory.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Printing data/Theory/Amazing_Numbers.Topics-Printing_data-Theory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Printing data/Theory/Amazing_Numbers.Topics-Printing_data-Theory.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Printing data/Theory/Amazing_Numbers.Topics-Printing_data-Theory.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Printing data/Theory/Amazing_Numbers.Topics-Printing_data-Theory.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Printing data/Theory/Amazing_Numbers.Topics-Printing_data-Theory.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Printing data/We need to learn Java/Amazing_Numbers.Topics-Printing_data-We_need_to_learn_Java.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Printing data/We need to learn Java/Amazing_Numbers.Topics-Printing_data-We_need_to_learn_Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Printing data/We need to learn Java/Amazing_Numbers.Topics-Printing_data-We_need_to_learn_Java.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Printing data/We need to learn Java/Amazing_Numbers.Topics-Printing_data-We_need_to_learn_Java.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Printing data/We need to learn Java/Amazing_Numbers.Topics-Printing_data-We_need_to_learn_Java.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Printing data/We need to learn Java/Amazing_Numbers.Topics-Printing_data-We_need_to_learn_Java.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Amazing_Numbers.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Amazing_Numbers.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Amazing_Numbers.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Amazing_Numbers.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Amazing_Numbers.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Amazing_Numbers.util.test.iml" />
+    </modules>
+  </component>
+</project>

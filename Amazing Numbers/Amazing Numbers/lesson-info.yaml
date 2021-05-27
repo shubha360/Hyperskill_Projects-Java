@@ -1,0 +1,11 @@
+type: framework
+content:
+- Buzz numbers
+- Duck numbers
+- Palindromic numbers
+- Gapful numbers
+- Spy numbers
+- Sunny and Square numbers
+- Jumping numbers
+- Happy and Sad numbers
+current_task: 4

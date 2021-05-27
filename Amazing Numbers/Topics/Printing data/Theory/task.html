@@ -1,0 +1,51 @@
+<html>
+ <head></head>
+ <body>
+  <p>Throughout this educational platform, you will often write programs that print data on the screen. Let's learn how to do that using a standard approach in Java.</p> 
+  <h2 style="text-align: center;">Displaying text using println() and print()</h2> 
+  <p><strong>Standard output</strong> is a receiver to which a program can send information (text). It is supported by all common operating systems. Java provides a special object <code class="language-java">System.out</code> to work with the standard output. We will often use it to print something.</p> 
+  <p>The <code class="language-java">println</code> method displays the passed string followed by a new line on the screen (<strong>print-line</strong>). As an example, the following code fragment prints four lines.</p> 
+  <pre><code class="language-java">System.out.println("I ");
+System.out.println("know ");
+System.out.println("Java ");
+System.out.println("well.");</code></pre> 
+  <p><strong>The output:</strong></p> 
+  <pre><code class="language-java">I
+know
+Java
+well.</code></pre> 
+  <p>All strings were printed as is, without double quotes.</p> 
+  <p>The method allows you to print an empty line when no string is given:</p> 
+  <pre><code class="language-java">System.out.println("Java is a popular programming language.");
+System.out.println(); // prints empty line
+System.out.println("It is used all over the world!");</code></pre> 
+  <p><strong>The output:</strong></p> 
+  <pre><code class="language-java">Java is a popular programming language.
+
+It is used all over the world!</code></pre> 
+  <p>The <code class="language-java">print</code> method displays the passed value and places the cursor (the position where we display a value) after it. As an example, the code below outputs all strings in a single line.</p> 
+  <pre><code class="language-java">System.out.print("I ");
+System.out.print("know ");
+System.out.print("Java ");
+System.out.print("well.");</code></pre> 
+  <p><strong>The output:</strong></p> 
+  <pre><code class="language-java">I know Java well.</code></pre> 
+  <p>Pay attention to the spaces between words. We pass them to methods for printing.</p> 
+  <h2 style="text-align: center;">Printing numbers and characters</h2> 
+  <p>Both methods <code class="language-java">println</code> and <code class="language-java">print</code> allow a program to print not only strings and characters, but also numbers.</p> 
+  <p>Let's print two secret codes.</p> 
+  <pre><code class="language-java">System.out.print(108);   // printing a number
+System.out.print('c');   // printing a character that represents a letter
+System.out.print("Q");   // printing a string
+System.out.println('3'); // printing a character that represents a digit
+
+System.out.print(22);
+System.out.print('E');
+System.out.print(8);
+System.out.println('1');</code></pre> 
+  <p>It outputs:</p> 
+  <pre><code class="language-no-highlight">108cQ3
+22E81</code></pre> 
+  <p>As is the case with strings, none of the characters contain quotes.</p>
+ </body>
+</html>

@@ -1,0 +1,315 @@
+type: edu
+files:
+- name: src/numbers/Main.java
+  visible: true
+  text: |
+    package numbers;
+
+    public class Main {
+        public static void main(String[] args) {
+    //        write your code here
+        }
+    }
+  learner_created: false
+- name: test/util/Checker.java
+  visible: false
+  text: |
+    package util;
+
+    import org.hyperskill.hstest.exception.outcomes.WrongAnswer;
+
+    import java.text.MessageFormat;
+    import java.util.function.Predicate;
+    import java.util.function.UnaryOperator;
+
+    import static java.util.Objects.isNull;
+
+    public class Checker implements UnaryOperator<UserProgram> {
+        protected Predicate<UserProgram> validator;
+        protected String feedback;
+        protected Object[] parameters;
+
+        protected Checker() {
+            this("Incorrect output for user input: {0}.");
+        }
+
+        protected Checker(String feedback) {
+            this($ -> true, feedback);
+        }
+
+        public Checker(Predicate<UserProgram> validator, String feedback) {
+            this.feedback = feedback;
+            this.validator = validator;
+        }
+
+        @Override
+        public UserProgram apply(UserProgram program) {
+            if (validator.test(program)) {
+                return program;
+            }
+            throw new WrongAnswer(MessageFormat.format(feedback, isNull(parameters)
+                    ? new Object[]{program.getInput(), program.getOutput()} : parameters));
+
+        }
+
+    }
+  learner_created: false
+- name: test/util/TextChecker.java
+  visible: false
+  text: |
+    package util;
+
+    public class TextChecker extends Checker {
+
+        public TextChecker(String expected) {
+            this(expected, "Expected that the output contains \"{2}\".");
+        }
+
+        public TextChecker(String expected, String feedback) {
+            super(feedback);
+
+            validator = program -> {
+                parameters = new Object[]{program.getInput(), program.getOutput(), expected};
+                return program.getOutput().toLowerCase().contains(expected.toLowerCase());
+            };
+        }
+
+    }
+  learner_created: false
+- name: test/util/UserProgram.java
+  visible: false
+  text: |-
+    package util;
+
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testing.TestedProgram;
+
+    import java.util.function.Function;
+
+    public class UserProgram {
+        private TestedProgram program;
+
+        private Object input;
+        private String output;
+
+        public UserProgram start(String... args) {
+            program = new TestedProgram();
+            output = program.start(args);
+            return this;
+        }
+
+        public UserProgram check(final Function<UserProgram, UserProgram> checker) {
+            return checker.apply(this);
+        }
+
+        public CheckResult result() {
+            return CheckResult.correct();
+        }
+
+        public UserProgram execute(Object userInput) {
+            this.input = userInput;
+            output = program.execute(userInput.toString());
+            return this;
+        }
+
+        public String getOutput() {
+            return output;
+        }
+
+        public Object getInput() {
+            return input;
+        }
+
+        public boolean isFinished() {
+            return program.isFinished();
+        }
+    }
+  learner_created: false
+- name: test/util/LinesChecker.java
+  visible: false
+  text: |
+    package util;
+
+    import static java.util.function.Predicate.not;
+
+    public class LinesChecker extends Checker {
+
+        public LinesChecker(final long expected) {
+            super("Expected {0} non blank lines but actual output contains {1} lines.");
+
+            validator = program -> {
+                final var actual = program.getOutput().lines().filter(not(String::isBlank)).count();
+                parameters = new Object[]{expected, actual};
+                return actual == expected;
+            };
+        }
+
+
+    }
+  learner_created: false
+- name: test/util/RegexChecker.java
+  visible: false
+  text: |
+    package util;
+
+    import java.util.regex.Pattern;
+
+    public class RegexChecker extends Checker {
+        private final Pattern expected;
+
+        public RegexChecker(final String regexp, final String feedback) {
+            this(regexp, Pattern.CASE_INSENSITIVE, feedback);
+        }
+
+        public RegexChecker(final String regexp, final int flags, final String feedback) {
+            super(feedback);
+            this.expected = Pattern.compile(regexp, flags);
+            validator = program -> expected.matcher(program.getOutput()).find();
+        }
+
+    }
+  learner_created: false
+- name: test/BuzzChecker.java
+  visible: false
+  text: |
+    import util.Checker;
+    import util.UserProgram;
+
+    import java.util.regex.Pattern;
+
+    public class BuzzChecker extends Checker {
+        private static final Pattern BUZZ_NUMBER = Pattern.compile(
+                "is(?<buzz>n't| not)?+( a)?+ buzz", Pattern.CASE_INSENSITIVE);
+        private static final Pattern EXPLANATION = Pattern.compile(
+                "divisible by 7 and it ends with 7|divisible by 7|ends with 7"
+                        + "|neither divisible by 7 nor it ends with 7", Pattern.CASE_INSENSITIVE);
+
+        private final long number;
+
+        BuzzChecker(long number) {
+            this.number = number;
+            this.validator = this::test;
+        }
+
+        public boolean test(UserProgram program) {
+            final var matcher = BUZZ_NUMBER.matcher(program.getOutput());
+            if (!matcher.find()) {
+                feedback = "You should check whether is the number is a Buzz number or not.";
+                return false;
+            }
+            final var isDivisible = number % 7 == 0;
+            final var isEndsWith7 = number % 10 == 7;
+            final var isBuzz = isDivisible || isEndsWith7;
+            final var actual = matcher.group("buzz") == null;
+
+            if (actual != isBuzz) {
+                feedback = "For {0} expected: \"is{1} a Buzz number\". Actual output: \"is{2} a Buzz number.";
+                parameters = new Object[]{number, isBuzz ? "" : " not", matcher.group("buzz")};
+                return false;
+            }
+
+            final var explanation = isBuzz ? isDivisible ? isEndsWith7
+                    ? "divisible by 7 and it ends with 7"
+                    : "divisible by 7"
+                    : "ends with 7"
+                    : "neither divisible by 7 nor it ends with 7";
+
+
+            if (!matcher.usePattern(EXPLANATION).find()) {
+                feedback = "The program should print an explanation by which criterion this number is a buzz number";
+                return false;
+            }
+            if (!matcher.group().equalsIgnoreCase(explanation)) {
+                feedback = "Expected explanation is \"{0}\". Actual explanation is \"{1}\".";
+                parameters = new Object[]{explanation, matcher.group()};
+                return false;
+            }
+            return true;
+        }
+    }
+  learner_created: false
+- name: test/NumbersTest.java
+  visible: false
+  text: |
+    import org.hyperskill.hstest.dynamic.DynamicTest;
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import util.*;
+
+    import java.util.Random;
+    import java.util.stream.LongStream;
+
+    public final class NumbersTest extends StageTest {
+        private static final Random random = new Random();
+        private static final long RANDOM_TESTS = 20;
+        private static final long FIRST_NUMBERS = 15;
+
+        private static final Checker ASK_FOR_NUMBER = new RegexChecker(
+                "enter( a)? natural number",
+                "The program should ask the user to enter a natural number."
+        );
+        private static final Checker ERROR_MESSAGE = new RegexChecker(
+                "is( not|n't) natural",
+                "Number {0} is not natural. Expected message: \"... is not natural\""
+        );
+        private static final Checker FINISHED = new Checker(UserProgram::isFinished,
+                "The program should finish."
+        );
+        private final long[] notNaturalNumbers = {-1, -2, -3, -4, -5};
+
+        @DynamicTest(order = 1)
+        CheckResult zeroTest() {
+            return new UserProgram()
+                    .start()
+                    .check(ASK_FOR_NUMBER)
+                    .execute(0)
+                    .check(new RegexChecker("is( not|n't) natural",
+                            "Only computers and robots start counting from zero. " +
+                                    "For humans the natural numbers starts from one. " +
+                                    "Expected message: \"... is not natural\""))
+                    .check(FINISHED)
+                    .result();
+        }
+
+        @DynamicTest(data = "notNaturalNumbers", order = 5)
+        CheckResult notNaturalNumbersTest(final long number) {
+            return new UserProgram()
+                    .start()
+                    .check(ASK_FOR_NUMBER)
+                    .execute(number)
+                    .check(ERROR_MESSAGE)
+                    .check(FINISHED)
+                    .result();
+        }
+
+        private long[] numbers() {
+            return LongStream.concat(
+                    LongStream.range(1, FIRST_NUMBERS),
+                    random.longs(RANDOM_TESTS, 1, Short.MAX_VALUE)
+            ).toArray();
+        }
+
+        @DynamicTest(data = "numbers", order = 10)
+        CheckResult buzzTest(long number) {
+            return new UserProgram()
+                    .start()
+                    .check(ASK_FOR_NUMBER)
+                    .execute(number)
+                    .check(new LinesChecker(4))
+                    .check(new RegexChecker("number is (even|odd)",
+                            "The program should calculate and print the parity of the given number."))
+                    .check(new TextChecker(number % 2 == 0 ? "even" : "odd",
+                            "Number''s parity is incorrect. Number {0} should be {1}."))
+                    .check(new BuzzChecker(number))
+                    .check(FINISHED)
+                    .result();
+        }
+
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/184/stages/931/implement#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sat, 22 May 2021 16:21:55 UTC
+record: 1

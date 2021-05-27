@@ -1,0 +1,79 @@
+<h2>Description</h2>
+
+<p>Integers can be even or odd. All numbers that end with 0, 2, 4, 6, or 8 are even; the rest are odd. However, numbers have many other properties, you will learn about some of them in this project.</p>
+
+<p>First, let's talk about <strong>Buzz numbers</strong>. They are numbers that are either divisible by 7 or end with 7. For example, the number 14 is a buzz number, since it is divisible by 7 without a remainder; the number 17 ends with 7, it is also a buzz number. However, the number 75 is not a Buzz number, since it is neither divisible by 7 nor ends with 7. The number 7 is a Buzz number too.</p>
+
+<p>Your task at this stage is to write a program that prints the natural number parity and determines whether this number is a Buzz. The program should print why this number is a Buzz number.</p>
+
+<p>Do you know how to determine whether a number is divisible by 7 or not? We have a great tip: </p>
+
+<ol>
+	<li>Remove the last digit;</li>
+	<li>Multiply the removed digit by 2 and subtract it from the remaining number.</li>
+	<li>If the result of the subtraction can be divided by 7, then the initial number is divisible by 7. You can apply the whole sequence multiple times until you get a relatively small/easy-to-interpret subtraction result.</li>
+</ol>
+
+<p>For example, take 196. We remove the last digit and get 19. We subtract 12 (the removed digit multiplied by 2) to get 7. Since the last left digit is 7, the number is multiple of 7. So 196 is a Buzz number!</p>
+
+<p>You can use any solution you want, the tests won't check it.</p>
+
+<h2>Objectives</h2>
+
+<p>Your program should check whether the given natural number is a buzz number.</p>
+
+<ol>
+	<li>Ask a user to enter a natural number.</li>
+	<li>If the number is not natural, print an error message.</li>
+	<li>Calculate and print the parity of the number.</li>
+	<li>Check whether is the number is a Buzz number and print the explanation.</li>
+	<li>Finish the program after printing the message.</li>
+</ol>
+
+<p>Natural numbers are whole numbers starting from 1.</p>
+
+<h2>Examples</h2>
+
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<pre><code class="language-no-highlight">Enter a natural number:
+&gt; 13
+This number is Odd.
+It is not a Buzz number.
+Explanation:
+13 is neither divisible by 7 nor it ends with 7.</code></pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><code class="language-no-highlight">Enter a natural number:
+&gt; 14
+This number is Even.
+It is a Buzz number.
+Explanation:
+14 is divisible by 7.</code></pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre><code class="language-no-highlight">Enter a natural number:
+&gt; 17
+This number is Odd.
+It is a Buzz number.
+Explanation:
+17 ends with 7.</code></pre>
+
+<p><strong>Example 4:</strong></p>
+
+<pre><code class="language-no-highlight">Enter a natural number:
+&gt; 7
+This number is Odd.
+It is a Buzz number.
+Explanation:
+7 is divisible by 7 and it ends with 7.</code></pre>
+
+<p><strong>Example 5:</strong></p>
+
+<pre><code class="language-no-highlight">Enter a natural number:
+-76
+This number is not natural!</code></pre>

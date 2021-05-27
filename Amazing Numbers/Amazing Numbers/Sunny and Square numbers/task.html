@@ -1,0 +1,127 @@
+<h2>Description</h2>
+
+<p>N is a <strong>sunny</strong> number if N+1 is a <strong>perfect square</strong> number. In mathematics, a square<strong> </strong>number or a perfect square is an integer that is the square of an integer; in other words, it is the product of an integer with itself. For example, 9 is a square number, since it equals 3<sup>2</sup> and can be written as 3×3.</p>
+
+<p>Our program can search for Spy and Palindromic numbers. What if we want to find all even Spy numbers? Or find all odd numbers among Palindromic numbers? Are there any Palindromics that are also Spies? In this stage, you will add the ability to search for several properties at once!</p>
+
+<p>What if a user enters the same property twice by mistake? For example, they want to find all even numbers that are even? Just ignore this duplicate property. What about two mutually exclusive properties? For example, if a user wants to find even numbers that are odd. In this case, the program will initiate the search, but there are no such numbers. We need to make our program foolproof. If a request contains mutually exclusive properties, the program should abort this request and warn the user. There are three pairs of mutually exclusive properties. A request cannot include <strong>Even and Odd</strong>, <strong>Duck and Spy</strong>, <strong>Sunny and Square </strong>numbers.</p>
+
+<h2>Objectives</h2>
+
+<p>Your program should process the user requests. In this stage, your program should:</p>
+
+<ol>
+	<li>Welcome users;</li>
+	<li>Display the instructions;</li>
+	<li>Ask for a request;</li>
+	<li>If a user enters zero, terminate the program; </li>
+	<li>If numbers are not natural, print the error message;</li>
+	<li>If an incorrect property is specified, print the error message and the list of available properties;</li>
+	<li>For one number, calculate and print the properties of the number;</li>
+	<li>For two numbers, print the list of numbers with their properties;</li>
+	<li>For two numbers and one property, print the numbers with this property only; </li>
+	<li>For two numbers and two properties, print the numbers that have both properties.</li>
+	<li>If a user specifies mutually exclusive properties, abort the request and warn a user. </li>
+	<li>Once a request has been processed, continue execution from step 3.</li>
+</ol>
+
+<p>In the current stage, the property names include <code class="java">even</code>, <code class="java">odd</code>, <code class="java">buzz</code> , <code class="java">duck</code>, <code class="java">palindromic</code> , <code class="java">gapful</code> , <code class="java">spy</code>, <code class="java">square</code>, and <code class="java">sunny</code>. The test won't check the order of properties, their indentation, and spaces. You may format numbers as you like. Please, add the information below:</p>
+
+<h3>Instructions</h3>
+
+<pre><code class="language-no-highlight">Supported requests:
+- enter a natural number to know its properties; 
+- enter two natural numbers to obtain the properties of the list:
+  * the first parameter represents a starting number;
+  * the second parameter shows how many consecutive numbers are to be printed;
+- two natural numbers and a property to search for;
+- two natural numbers and two properties to search for;
+- separate the parameters with one space;
+- enter 0 to exit.</code></pre>
+
+<h3>Error messages</h3>
+
+<pre><code class="language-no-highlight">The first parameter should be a natural number or zero.</code></pre>
+
+<pre><code class="language-no-highlight">The second parameter should be a natural number.</code></pre>
+
+<pre><code class="language-no-highlight">The property [SUN] is wrong.
+Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY]</code></pre>
+
+<pre><code class="language-no-highlight">The properties [HOT, SUN] are wrong.
+Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY]</code></pre>
+
+<pre><code class="language-no-highlight">The request contains mutually exclusive properties: [ODD, EVEN]
+There are no numbers with these properties.</code></pre>
+
+<h2>Examples</h2>
+
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<pre><code class="language-no-highlight">Welcome to Amazing Numbers!
+
+Supported requests:
+- enter a natural number to know its properties;
+- enter two natural numbers to obtain the properties of the list:
+  * the first parameter represents a starting number;
+  * the second parameters show how many consecutive numbers are to be processed;
+- two natural numbers and two properties to search for;
+- separate the parameters with one space;
+- enter 0 to exit.
+
+Enter a request: &gt; 1
+
+Properties of 1
+        buzz: false
+        duck: false
+ palindromic: true
+      gapful: false
+         spy: true
+      square: true
+       sunny: false
+        even: false
+         odd: true
+
+Enter a request: &gt; 1 8 square
+
+               1 is palindromic, spy, square, odd
+               4 is palindromic, spy, square, even
+               9 is palindromic, spy, square, odd
+              16 is square, even
+              25 is square, odd
+              36 is square, even
+              49 is buzz, square, odd
+              64 is square, even
+
+Enter a request: &gt; 1 7 sunny
+
+               3 is palindromic, spy, sunny, odd
+               8 is palindromic, spy, sunny, even
+              15 is sunny, odd
+              24 is sunny, even
+              35 is buzz, sunny, odd
+              48 is sunny, even
+              63 is buzz, sunny, odd
+
+Enter a request: &gt; 1 7 sunny square
+
+The request contains mutually exclusive properties: [SQUARE, SUNNY]
+There are no numbers with these properties.
+
+Enter a request: &gt; 1 2 sunny polindromic
+
+The property [POLINDROMIC] is wrong.
+Available properties: [BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY, EVEN, ODD]
+
+Enter a request: &gt; 1 2 sunny palindromic
+
+               3 is palindromic, spy, sunny, odd
+               8 is palindromic, spy, sunny, even
+
+Enter a request: 0
+
+Goodbye!
+
+Process finished with exit code 0</code></pre>

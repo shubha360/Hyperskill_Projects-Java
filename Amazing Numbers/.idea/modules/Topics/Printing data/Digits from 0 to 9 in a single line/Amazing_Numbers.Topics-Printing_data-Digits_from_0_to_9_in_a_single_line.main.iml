@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-Printing_data-Digits_from_0_to_9_in_a_single_line:main" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Printing data/Digits from 0 to 9 in a single line" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="Amazing_Numbers" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../../../../../Topics/Printing data/Digits from 0 to 9 in a single line/out/production/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Printing data/Digits from 0 to 9 in a single line/src">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../Topics/Printing data/Digits from 0 to 9 in a single line/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -1,0 +1,382 @@
+type: edu
+files:
+- name: src/numbers/Main.java
+  visible: true
+  text: |
+    package numbers;
+
+    public class Main {
+        public static void main(String[] args) {
+    //        write your code here
+        }
+    }
+  learner_created: false
+- name: test/util/Checker.java
+  visible: false
+  text: |
+    package util;
+
+    import org.hyperskill.hstest.exception.outcomes.WrongAnswer;
+
+    import java.text.MessageFormat;
+    import java.util.function.Predicate;
+    import java.util.function.UnaryOperator;
+
+    import static java.util.Objects.isNull;
+
+    public class Checker implements UnaryOperator<UserProgram> {
+        protected Predicate<UserProgram> validator;
+        protected String feedback;
+        protected Object[] parameters;
+
+        protected Checker() {
+            this("Incorrect output for user input: {0}.");
+        }
+
+        protected Checker(String feedback) {
+            this($ -> true, feedback);
+        }
+
+        public Checker(Predicate<UserProgram> validator, String feedback) {
+            this.feedback = feedback;
+            this.validator = validator;
+        }
+
+        @Override
+        public UserProgram apply(UserProgram program) {
+            if (validator.test(program)) {
+                return program;
+            }
+            throw new WrongAnswer(MessageFormat.format(feedback, isNull(parameters)
+                    ? new Object[]{program.getInput(), program.getOutput()} : parameters));
+
+        }
+
+    }
+  learner_created: false
+- name: test/util/TextChecker.java
+  visible: false
+  text: |
+    package util;
+
+    public class TextChecker extends Checker {
+
+        public TextChecker(String expected) {
+            this(expected, "Expected that the output contains \"{2}\".");
+        }
+
+        public TextChecker(String expected, String feedback) {
+            super(feedback);
+
+            validator = program -> {
+                parameters = new Object[]{program.getInput(), program.getOutput(), expected};
+                return program.getOutput().toLowerCase().contains(expected.toLowerCase());
+            };
+        }
+
+    }
+  learner_created: false
+- name: test/util/UserProgram.java
+  visible: false
+  text: |-
+    package util;
+
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testing.TestedProgram;
+
+    import java.util.function.Function;
+
+    public class UserProgram {
+        private TestedProgram program;
+
+        private Object input;
+        private String output;
+
+        public UserProgram start(String... args) {
+            program = new TestedProgram();
+            output = program.start(args);
+            return this;
+        }
+
+        public UserProgram check(final Function<UserProgram, UserProgram> checker) {
+            return checker.apply(this);
+        }
+
+        public CheckResult result() {
+            return CheckResult.correct();
+        }
+
+        public UserProgram execute(Object userInput) {
+            this.input = userInput;
+            output = program.execute(userInput.toString());
+            return this;
+        }
+
+        public String getOutput() {
+            return output;
+        }
+
+        public Object getInput() {
+            return input;
+        }
+
+        public boolean isFinished() {
+            return program.isFinished();
+        }
+    }
+  learner_created: false
+- name: test/util/LinesChecker.java
+  visible: false
+  text: |
+    package util;
+
+    import static java.util.function.Predicate.not;
+
+    public class LinesChecker extends Checker {
+
+        public LinesChecker(final long expected) {
+            super("Expected {0} non blank lines but actual output contains {1} lines.");
+
+            validator = program -> {
+                final var actual = program.getOutput().lines().filter(not(String::isBlank)).count();
+                parameters = new Object[]{expected, actual};
+                return actual == expected;
+            };
+        }
+
+
+    }
+  learner_created: false
+- name: test/util/RegexChecker.java
+  visible: false
+  text: |
+    package util;
+
+    import java.util.regex.Pattern;
+
+    public class RegexChecker extends Checker {
+        private final Pattern expected;
+
+        public RegexChecker(final String regexp, final String feedback) {
+            this(regexp, Pattern.CASE_INSENSITIVE, feedback);
+        }
+
+        public RegexChecker(final String regexp, final int flags, final String feedback) {
+            super(feedback);
+            this.expected = Pattern.compile(regexp, flags);
+            validator = program -> expected.matcher(program.getOutput()).find();
+        }
+
+    }
+  learner_created: false
+- name: test/NumbersTest.java
+  visible: false
+  text: |
+    import org.hyperskill.hstest.dynamic.DynamicTest;
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import util.Checker;
+    import util.RegexChecker;
+    import util.TextChecker;
+    import util.UserProgram;
+
+    import java.util.Random;
+    import java.util.function.Function;
+    import java.util.function.Predicate;
+    import java.util.stream.LongStream;
+
+    public final class NumbersTest extends StageTest {
+        private static final Random random = new Random();
+
+        private static final int NEGATIVE_NUMBERS_TESTS = 5;
+        private static final int FIRST_NUMBERS = 15;
+        private static final int RANDOM_TESTS = 10;
+
+        private static final Checker WELCOME = new TextChecker("Welcome to Amazing Numbers!");
+
+        private static final String EXPLAIN = "The program should explain this in the help.";
+        private static final Function<UserProgram, UserProgram> HELP =
+                new TextChecker("Supported requests")
+                        .andThen(new TextChecker(
+                                "enter a natural number",
+                                "In this stage, a user can enter one number to print a card. " + EXPLAIN))
+                        .andThen(new TextChecker(
+                                "enter 0 to exit",
+                                "Display the instructions on how to exit"));
+
+        private static final Checker ASK_REQUEST = new TextChecker(
+                "enter a request",
+                "The program should print \"Enter a request\" instead of asking for a natural number."
+        );
+        private static final Checker ERROR_FIRST = new RegexChecker(
+                "The first (parameter|number) should be a natural number or zero",
+                "The first parameter \"{0}\" is wrong. The program should print an error message."
+        );
+        private static final Checker PROPERTIES_OF = new RegexChecker(
+                "properties of \\d",
+                "The first line of number''s properties should contain \"Properties of {0}\"."
+        );
+        private static final Checker RUNNING = new Checker(Predicate.not(UserProgram::isFinished),
+                "The program should continue to work till the user enter \"0\"."
+        );
+        private static final Checker FINISHED = new Checker(UserProgram::isFinished,
+                "The program should finish when the user entered \"0\"."
+        );
+        private final UserProgram program = new UserProgram();
+
+        // Stage #3
+
+        @DynamicTest(order = 5)
+        CheckResult welcomeTest() {
+            return program
+                    .start()
+                    .check(WELCOME)
+                    .check(HELP)
+                    .check(RUNNING)
+                    .check(ASK_REQUEST)
+                    .execute(0)
+                    .check(FINISHED)
+                    .result();
+        }
+
+        @DynamicTest(repeat = NEGATIVE_NUMBERS_TESTS, order = 10)
+        CheckResult notNaturalNumbersTest() {
+            long negativeNumber = -random.nextInt(Byte.MAX_VALUE) - 1L;
+            return program
+                    .start()
+                    .check(WELCOME)
+                    .check(HELP)
+                    .check(ASK_REQUEST)
+                    .execute(negativeNumber)
+                    .check(ERROR_FIRST)
+                    .check(RUNNING)
+                    .check(ASK_REQUEST)
+                    .execute(0)
+                    .check(FINISHED)
+                    .result();
+        }
+
+        @DynamicTest(order = 20)
+        CheckResult naturalNumbersTest() {
+            final var numbers = LongStream.concat(
+                    LongStream.range(1, FIRST_NUMBERS),
+                    random.longs(RANDOM_TESTS, 1, Long.MAX_VALUE)
+            );
+
+            program.start().check(WELCOME).check(HELP);
+
+            numbers.forEach(number -> program
+                    .check(ASK_REQUEST)
+                    .execute(number)
+                    .check(PROPERTIES_OF)
+                    .check(new PropertiesChecker(number))
+                    .check(RUNNING));
+
+            return program
+                    .check(RUNNING)
+                    .check(ASK_REQUEST)
+                    .execute(0)
+                    .check(FINISHED)
+                    .result();
+        }
+
+
+    }
+  learner_created: false
+- name: test/NumberProperty.java
+  visible: false
+  text: |
+    import java.util.Optional;
+    import java.util.function.LongPredicate;
+    import java.util.regex.Pattern;
+    import java.util.stream.LongStream;
+
+    public enum NumberProperty implements LongPredicate {
+        BUZZ(x -> x % 7 == 0 || x % 10 == 7),
+        DUCK(number -> digits(number).anyMatch(digit -> digit == 0)),
+        PALINDROMIC(number -> {
+            final var digits = String.valueOf(number);
+            return new StringBuilder(digits).reverse().toString().equals(digits);
+        }),
+        EVEN(x -> x % 2 == 0),
+        ODD(x -> x % 2 != 0);
+
+        private final LongPredicate hasProperty;
+        private final Pattern pattern = Pattern.compile(
+                name() + "\\s*[:-]\\s*(?<value>true|false)",
+                Pattern.CASE_INSENSITIVE
+        );
+
+        NumberProperty(LongPredicate hasProperty) {
+            this.hasProperty = hasProperty;
+        }
+
+        private static LongStream digits(long number) {
+            return Long.toString(number).chars().mapToLong(Character::getNumericValue);
+        }
+
+        @Override
+        public boolean test(long number) {
+            return hasProperty.test(number);
+        }
+
+        public Optional<Boolean> extractValue(String output) {
+            final var matcher = pattern.matcher(output);
+            final var isFound = matcher.find();
+            return Optional
+                    .ofNullable(isFound ? matcher.group("value") : null)
+                    .map(Boolean::valueOf);
+        }
+
+    }
+  learner_created: false
+- name: test/PropertiesChecker.java
+  visible: false
+  text: |
+    import util.Checker;
+    import util.UserProgram;
+
+    public class PropertiesChecker extends Checker {
+        private final long number;
+
+        public PropertiesChecker(long number) {
+            this.number = number;
+            validator = this::test;
+        }
+
+        public boolean test(UserProgram program) {
+            for (var property : NumberProperty.values()) {
+                final var name = property.name();
+
+                if (!program.getOutput().toLowerCase().contains(name.toLowerCase())) {
+                    feedback = "The property \"{0}\" was not found in the output.";
+                    parameters = new Object[]{name};
+                    return false;
+                }
+
+                final var expected = property.test(number);
+                final var actualValue = property.extractValue(program.getOutput());
+
+                if (actualValue.isEmpty()) {
+                    feedback = "The value for property {0} was not found. Expected: {1}";
+                    parameters = new Object[]{name, expected};
+                    return false;
+                }
+                final var actual = actualValue.get();
+
+                if (expected != actual) {
+                    feedback = "For the property {0}, the expected value is {1} but was found {2}.";
+                    parameters = new Object[]{name, expected, actual};
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/184/stages/933/implement#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sun, 23 May 2021 05:56:41 UTC
+record: 3

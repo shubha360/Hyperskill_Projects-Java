@@ -1,0 +1,132 @@
+hyperskill_project:
+  id: 184
+  ide_files: https://stepik.org/media/attachments/lesson/531718/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: Sun, 23 May 2021 05:36:29 UTC
+stages:
+- id: 931
+  step: 13198
+  is_completed: true
+- id: 932
+  step: 13199
+  is_completed: true
+- id: 933
+  step: 13200
+  is_completed: true
+- id: 934
+  step: 13201
+  is_completed: true
+- id: 935
+  step: 13202
+  is_completed: false
+- id: 936
+  step: 13203
+  is_completed: false
+- id: 937
+  step: 13204
+  is_completed: false
+- id: 938
+  step: 13205
+  is_completed: false
+topics:
+  0:
+  - title: Units of information
+    theory_id: 6865
+  - title: Introduction to Java
+    theory_id: 3500
+  - title: Basic literals
+    theory_id: 3522
+  - title: Overview of the basic program
+    theory_id: 3521
+  - title: Printing data
+    theory_id: 3749
+  - title: Types and variables
+    theory_id: 3518
+  - title: Comments
+    theory_id: 3520
+  - title: Coding style conventions
+    theory_id: 12411
+  - title: Naming variables
+    theory_id: 3513
+  - title: Scanning the input
+    theory_id: 9055
+  - title: Arithmetic operations
+    theory_id: 3519
+  - title: Integer types and operations
+    theory_id: 3565
+  - title: Boolean and logical operations
+    theory_id: 3516
+  - title: Relational operators
+    theory_id: 3512
+  - title: Conditional statement
+    theory_id: 3503
+  - title: Ternary operator
+    theory_id: 3506
+  - title: Sizes and ranges
+    theory_id: 3532
+  2:
+  - title: Increment and decrement
+    theory_id: 5008
+  - title: The for-loop
+    theory_id: 3505
+  - title: The while and do-while loops
+    theory_id: 3498
+  - title: Branching statements
+    theory_id: 3507
+  - title: Switch statement
+    theory_id: 3504
+  - title: Type casting
+    theory_id: 3510
+  - title: Calling a method
+    theory_id: 10973
+  - title: Declaring a method
+    theory_id: 10982
+  - title: The main method
+    theory_id: 3489
+  - title: Functional decomposition
+    theory_id: 10570
+  3:
+  - title: Characters
+    theory_id: 3514
+  - title: Primitive and reference types
+    theory_id: 5035
+  - title: Array
+    theory_id: 3511
+  - title: String
+    theory_id: 3523
+  - title: Processing strings
+    theory_id: 3551
+  4:
+  - title: Computer programming
+    theory_id: 8739
+  - title: Introduction to OOP
+    theory_id: 3614
+  - title: Write, compile, and run
+    theory_id: 3739
+  - title: StringBuilder
+    theory_id: 3812
+  - title: Defining classes
+    theory_id: 3618
+  - title: Objects
+    theory_id: 4727
+  6:
+  - title: Iterating over arrays
+    theory_id: 3602
+  - title: Arrays as parameters
+    theory_id: 3594
+  - title: Final variables
+    theory_id: 7427
+  - title: Constructor
+    theory_id: 3535
+  - title: Instance methods
+    theory_id: 3495
+  - title: Static members
+    theory_id: 3534
+  - title: Enums in Java
+    theory_id: 11514
+  - title: Fields and methods in enum
+    theory_id: 11523
+  7:
+  - title: Formatted output
+    theory_id: 7046

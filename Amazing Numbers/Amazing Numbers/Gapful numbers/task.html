@@ -1,0 +1,111 @@
+<h2>Description</h2>
+
+<p>In this stage, we are going to add one more property — <strong>Gapful numbers</strong>. It is a number that contains at least 3 digits and is divisible by the concatenation of its first and last digit <strong>without a remainder</strong>. 12 is not a Gapful number, as it has only two digits. 132 is a Gapful number, as <strong>1</strong>3<strong>2</strong> % 12 == 0. 7881 is another example of a Gapful number, as <strong>7</strong>88<strong>1 %</strong> 71 == 0. </p>
+
+<p>Until this stage, the program could only process only one number at a time. Now, a user should be able to enter two numbers to obtain the properties of a list of numbers. Separate the numbers with one space. Space separates the first number in the list and the length of the list. For, example. <code class="java">100 2</code> tells the program to process two numbers: <code class="java">100</code> and <code class="java">101</code>. <code class="java">1 100</code> means that the program is about to process 100 numbers, starting from <code class="java">1</code>. If a user enters one number, the program should work the same as in the previous stages. The program should analyze a number and print its properties. As before, if a user enters a single <code class="java">0</code> (zero), terminate the program. Information about each number should be printed in one line in the following format:</p>
+
+<pre><code class="language-no-highlight">             140 is even, buzz, duck, gapful
+             141 is odd, palindromic</code></pre>
+
+<p>So, the format is <code class="java">{number} is {property}, {property}, ... {property}</code></p>
+
+<h2>Objectives</h2>
+
+<ol>
+</ol>
+
+<p>Your program should process various user requests. In this stage, your program should:</p>
+
+<ol>
+    <li>Welcome users;</li>
+    <li>Display the instructions;</li>
+    <li>Ask for a request;</li>
+    <li>If a user enters zero, terminate the program;</li>
+    <li>If a user enters an empty request, print the instructions;</li>
+    <li>If numbers are not natural, print an error message;</li>
+    <li>If one number is entered, calculate and print the properties of this number;</li>
+    <li>For two numbers, print the list of numbers with properties;</li>
+    <li>Once the request is processed, continue execution from step 3.</li>
+</ol>
+
+<p>In the current stage, the property names include <code class="java">even</code>, <code class="java">odd</code>, <code class="java">buzz</code> , <code class="java">duck</code>, <code class="java">palindromic</code> and <code class="java">gapful</code>. The test won't check the order of properties, their indentation, and spaces. You may format numbers as you like. Please, add the information below:</p>
+
+<p><strong>Instructions</strong></p>
+
+<pre><code class="language-no-highlight">Supported requests:
+- enter a natural number to know its properties;
+- enter two natural numbers to obtain the properties of the list:
+  * the first parameter represents a starting number;
+  * the second parameter shows how many consecutive numbers are to be printed;
+- separate the parameters with one space;
+- enter 0 to exit.</code></pre>
+
+<p><strong>Error messages</strong></p>
+
+<pre><code class="language-no-highlight">The first parameter should be a natural number or zero.</code></pre>
+
+<pre><code class="language-no-highlight">The second parameter should be a natural number.</code></pre>
+
+<h2>Examples</h2>
+
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<pre><code class="language-no-highlight">Welcome to Amazing Numbers!
+
+Supported requests:
+- enter a natural number to know its properties;
+- enter two natural numbers to obtain the properties of the list:
+  * the first parameter represents a starting number;
+  * the second parameters show how many consecutive numbers are to be processed;
+- separate the parameters with one space;
+- enter 0 to exit.
+
+Enter a request: &gt; 7881
+
+Properties of 7,881
+        buzz: false
+        duck: false
+ palindromic: false
+      gapful: true
+        even: false
+         odd: true
+
+Enter a request: &gt; 7880
+
+Properties of 7,880
+        buzz: false
+        duck: true
+ palindromic: false
+      gapful: false
+        even: true
+         odd: false
+
+Enter a request: &gt; 105 5
+
+             105 is buzz, duck, gapful, odd
+             106 is duck, even
+             107 is buzz, duck, odd
+             108 is duck, gapful, even
+             109 is duck, odd
+
+Enter a request: &gt; exit
+
+The first parameter should be a natural number or zero.
+
+Enter a request: &gt;
+
+Supported requests:
+- enter a natural number to know its properties;
+- enter two natural numbers to obtain the properties of the list:
+  * the first parameter represents a starting number;
+  * the second parameters show how many consecutive numbers are to be processed;
+- separate the parameters with one space;
+- enter 0 to exit.
+
+Enter a request: &gt; 0
+
+Goodbye!
+
+Process finished with exit code 0</code></pre>
