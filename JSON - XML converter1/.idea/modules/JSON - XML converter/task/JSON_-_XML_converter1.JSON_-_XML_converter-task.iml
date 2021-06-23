@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":JSON_-_XML_converter-task" external.linked.project.path="$MODULE_DIR$/../../../../JSON - XML converter/task" external.root.project.path="$MODULE_DIR$/../../../.." external.system.id="GRADLE" external.system.module.group="JSON_-_XML_converter1" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../JSON - XML converter/task">
+      <excludeFolder url="file://$MODULE_DIR$/../../../../JSON - XML converter/task/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../JSON - XML converter/task/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../JSON - XML converter/task/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

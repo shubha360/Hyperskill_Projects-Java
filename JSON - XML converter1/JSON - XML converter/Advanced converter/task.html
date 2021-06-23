@@ -1,0 +1,406 @@
+<h2>Description</h2>
+
+<p>You’ve explored how to parse XML/JSON with sub-elements structure and attributes. Now you can write an XML/JSON converter using the function from the two previous stages.</p>
+
+<p>Your parser should convert both XML and JSON to the same intermediate structure you wrote in the previous two stages. Basically, in this stage, you should write a converter from this intermediate structure back to XML/JSON. This allows both JSON conversion to the XML as well as XML conversion to JSON.</p>
+
+<p>Notice that the JSON can contain more than one element in the top level of a hierarchy but an XML can contain just one. You can fix this by adding a new top-level parent called root.</p>
+
+<p>Note that you <strong>do not need</strong> to output JSON or XML in a formatted form. You can print them in one line. Because grader deletes all unnecessary whitespace characters before checking.</p>
+
+<p>You should read from the file named <code class="language-json">test.txt</code>. If you want to test your program, you should check it on some other file, because the contents of this file will be overwritten during testing and after testing the file will be deleted.</p>
+
+<h2>Examples</h2>
+
+<p><strong>Example 1:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-json">{
+    "transaction": {
+        "id": "6753322",
+        "number": {
+            "@region": "Russia",
+            "#number": "8-900-000-00-00"
+        },
+        "amount": null
+    }
+}</code></pre>
+
+<p>Output example</p>
+
+<pre><code class="language-xml">&lt;transaction&gt;
+    &lt;id&gt;6753322&lt;/id&gt;
+    &lt;number region="Russia"&gt;8-900-000-00-00&lt;/number&gt;
+    &lt;amount /&gt;
+&lt;/transaction&gt;</code></pre>
+
+<p><strong>Example 2:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-json">{
+    "transaction": {
+        "id": "6753322",
+        "number": {
+            "@region": "Russia",
+            "#number": "8-900-000-00-00"
+        },
+        "amount": null
+    },
+    "meta": {
+        "version": 0.01
+    }
+}</code></pre>
+
+<p>Output example</p>
+
+<pre><code class="language-xml">&lt;root&gt;
+    &lt;transaction&gt;
+        &lt;id&gt;6753322&lt;/id&gt;
+        &lt;number region="Russia"&gt;8-900-000-00-00&lt;/number&gt;
+        &lt;amount /&gt;
+    &lt;/transaction&gt;
+    &lt;meta&gt;
+        &lt;version&gt;0.01&lt;/version&gt;
+    &lt;/meta&gt;
+&lt;/root&gt;</code></pre>
+
+<p><strong>Example 3:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-json">{
+    "transaction": {
+        "id": "6753322",
+        "number": {
+            "@region": "Russia",
+            "#number": "8-900-000-000"
+        },
+        "empty1": null,
+        "empty2": { },
+        "empty3": "",
+        "inner1": {
+            "inner2": {
+                "inner3": {
+                    "key1": "value1",
+                    "key2": "value2"
+                }
+            }
+        },
+        "inner4": {
+            "@": 123,
+            "#inner4": "value3"
+        },
+        "inner5": {
+            "@attr1": 123.456,
+            "#inner4": "value4"
+        },
+        "inner6": {
+            "@attr2": 789.321,
+            "#inner6": "value5"
+        },
+        "inner7": {
+            "#inner7": "value6"
+        },
+        "inner8": {
+            "@attr3": "value7"
+        },
+        "inner9": {
+            "@attr4": "value8",
+            "#inner9": "value9",
+            "something": "value10"
+        },
+        "inner10": {
+            "@attr5": null,
+            "#inner10": null
+        },
+        "inner11": {
+            "@": null,
+            "#": null
+        },
+        "inner12": {
+            "@somekey": "attrvalue",
+            "#inner12": null,
+            "somekey": "keyvalue",
+            "inner12": "notnull"
+        },
+        "": {
+            "#": null,
+            "secret": "this won't be converted"
+        }
+    },
+    "meta": {
+        "version": 0.01
+    }
+}</code></pre>
+
+<p>Output example</p>
+
+<pre><code class="language-xml">&lt;root&gt;
+    &lt;transaction&gt;
+        &lt;id&gt;6753322&lt;/id&gt;
+        &lt;number region="Russia"&gt;8-900-000-000&lt;/number&gt;
+        &lt;empty1 /&gt;
+        &lt;empty2&gt;&lt;/empty2&gt;
+        &lt;empty3&gt;&lt;/empty3&gt;
+        &lt;inner1&gt;
+            &lt;inner2&gt;
+                &lt;inner3&gt;
+                    &lt;key1&gt;value1&lt;/key1&gt;
+                    &lt;key2&gt;value2&lt;/key2&gt;
+                &lt;/inner3&gt;
+            &lt;/inner2&gt;
+        &lt;/inner1&gt;
+        &lt;inner4&gt;
+            &lt;inner4&gt;value3&lt;/inner4&gt;
+        &lt;/inner4&gt;
+        &lt;inner5&gt;
+            &lt;attr1&gt;123.456&lt;/attr1&gt;
+            &lt;inner4&gt;value4&lt;/inner4&gt;
+        &lt;/inner5&gt;
+        &lt;inner6 attr2="789.321"&gt;value5&lt;/inner6&gt;
+        &lt;inner7&gt;value6&lt;/inner7&gt;
+        &lt;inner8&gt;
+            &lt;attr3&gt;value7&lt;/attr3&gt;
+        &lt;/inner8&gt;
+        &lt;inner9&gt;
+            &lt;attr4&gt;value8&lt;/attr4&gt;
+            &lt;inner9&gt;value9&lt;/inner9&gt;
+            &lt;something&gt;value10&lt;/something&gt;
+        &lt;/inner9&gt;
+        &lt;inner10 attr5="" /&gt;
+        &lt;inner11&gt;&lt;/inner11&gt;
+        &lt;inner12&gt;
+            &lt;somekey&gt;keyvalue&lt;/somekey&gt;
+            &lt;inner12&gt;notnull&lt;/inner12&gt;
+        &lt;/inner12&gt;
+    &lt;/transaction&gt;
+    &lt;meta&gt;
+        &lt;version&gt;0.01&lt;/version&gt;
+    &lt;/meta&gt;
+&lt;/root&gt;</code></pre>
+
+<p><strong>Example 4:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-xml">&lt;root&gt;
+    &lt;id&gt;6753322&lt;/id&gt;
+    &lt;number region="Russia"&gt;8-900-000-00-00&lt;/number&gt;
+    &lt;nonattr1 /&gt;
+    &lt;nonattr2&gt;&lt;/nonattr2&gt;
+    &lt;nonattr3&gt;text&lt;/nonattr3&gt;
+    &lt;attr1 id="1" /&gt;
+    &lt;attr2 id="2"&gt;&lt;/attr2&gt;
+    &lt;attr3 id="3"&gt;text&lt;/attr3&gt;
+    &lt;email&gt;
+        &lt;to&gt;to_example@gmail.com&lt;/to&gt;
+        &lt;from&gt;from_example@gmail.com&lt;/from&gt;
+        &lt;subject&gt;Project discussion&lt;/subject&gt;
+        &lt;body font="Verdana"&gt;Body message&lt;/body&gt;
+        &lt;date day="12" month="12" year="2018"/&gt;
+    &lt;/email&gt;
+&lt;/root&gt;</code></pre>
+
+<p>Output example</p>
+
+<pre><code class="language-json">{
+    "root": {
+        "id": "6753322",
+        "number": {
+            "@region": "Russia",
+            "#number": "8-900-000-00-00"
+        },
+        "nonattr1": null,
+        "nonattr2": "",
+        "nonattr3": "text",
+        "attr1": {
+            "@id": "1",
+            "#attr1": null
+        },
+        "attr2": {
+            "@id": "2",
+            "#attr2": ""
+        },
+        "attr3": {
+            "@id": "3",
+            "#attr3": "text"
+        },
+        "email": {
+            "to": "to_example@gmail.com",
+            "from": "from_example@gmail.com",
+            "subject": "Project discussion",
+            "body": {
+                "@font": "Verdana",
+                "#body": "Body message"
+            },
+            "date": {
+                "@day": "12",
+                "@month": "12",
+                "@year": "2018",
+                "#date": null
+            }
+        }
+    }
+}</code></pre>
+
+<p><strong>Example 5:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-json">{
+    "elem1": {
+        "@attr1": "val1",
+        "@attr2": "val2",
+        "#elem1": {
+            "elem2": {
+                "@attr3": "val3",
+                "@attr4": "val4",
+                "#elem2": "Value1"
+            },
+            "elem3": {
+                "@attr5": "val5",
+                "@attr6": "val6",
+                "#elem3": "Value2"
+            }
+        }
+    }
+}</code></pre>
+
+<p>Output example</p>
+
+<pre><code class="language-xml">&lt;elem1 attr1="val1" attr2="val2"&gt;
+    &lt;elem2 attr3="val3" attr4="val4"&gt;Value1&lt;/elem2&gt;
+    &lt;elem3 attr5="val5" attr6="val6"&gt;Value2&lt;/elem3&gt;
+&lt;/elem1&gt;</code></pre>
+
+<p><strong>Example 6:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-xml">&lt;elem1 attr1="val1" attr2="val2"&gt;
+    &lt;elem2 attr3="val3" attr4="val4"&gt;Value1&lt;/elem2&gt;
+    &lt;elem3 attr5="val5" attr6="val6"&gt;Value2&lt;/elem3&gt;
+&lt;/elem1&gt;</code></pre>
+
+<p>Output example</p>
+
+<pre><code class="language-json">{
+    "elem1": {
+        "@attr1": "val1",
+        "@attr2": "val2",
+        "#elem1": {
+            "elem2": {
+                "@attr3": "val3",
+                "@attr4": "val4",
+                "#elem2": "Value1"
+            },
+            "elem3": {
+                "@attr5": "val5",
+                "@attr6": "val6",
+                "#elem3": "Value2"
+            }
+        }
+    }
+}</code></pre>
+
+<p><strong>Example 7:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-json">{"transaction":{"id":"6753322","number":{"@region":"Russia","#number":"8-900-000-000"},"empty1":null,"empty2":{},"empty3":"","inner1":{"inner2":{"inner3":{"key1":"value1","key2":"value2"}}},"inner4":{"@":123,"#inner4":"value3"},"inner5":{"@attr1":123.456,"#inner4":"value4"},"inner6":{"@attr2":789.321,"#inner6":"value5"},"inner7":{"#inner7":"value6"},"inner8":{"@attr3":"value7"},"inner9":{"@attr4":"value8","#inner9":"value9","something":"value10"},"inner10":{"@attr5":null,"#inner10":null},"inner11":{"@":null,"#":null},"inner12":{"@somekey":"attrvalue","#inner12":null,"somekey":"keyvalue","inner12":"notnull"},"":{"#":null,"secret":"this won't be converted"}},"meta":{"version":0.01}}</code></pre>
+
+<p>Output example</p>
+
+<pre><code class="language-xml">&lt;root&gt;
+    &lt;transaction&gt;
+        &lt;id&gt;6753322&lt;/id&gt;
+        &lt;number region="Russia"&gt;8-900-000-000&lt;/number&gt;
+        &lt;empty1 /&gt;
+        &lt;empty2&gt;&lt;/empty2&gt;
+        &lt;empty3&gt;&lt;/empty3&gt;
+        &lt;inner1&gt;
+            &lt;inner2&gt;
+                &lt;inner3&gt;
+                    &lt;key1&gt;value1&lt;/key1&gt;
+                    &lt;key2&gt;value2&lt;/key2&gt;
+                &lt;/inner3&gt;
+            &lt;/inner2&gt;
+        &lt;/inner1&gt;
+        &lt;inner4&gt;
+            &lt;inner4&gt;value3&lt;/inner4&gt;
+        &lt;/inner4&gt;
+        &lt;inner5&gt;
+            &lt;attr1&gt;123.456&lt;/attr1&gt;
+            &lt;inner4&gt;value4&lt;/inner4&gt;
+        &lt;/inner5&gt;
+        &lt;inner6 attr2="789.321"&gt;value5&lt;/inner6&gt;
+        &lt;inner7&gt;value6&lt;/inner7&gt;
+        &lt;inner8&gt;
+            &lt;attr3&gt;value7&lt;/attr3&gt;
+        &lt;/inner8&gt;
+        &lt;inner9&gt;
+            &lt;attr4&gt;value8&lt;/attr4&gt;
+            &lt;inner9&gt;value9&lt;/inner9&gt;
+            &lt;something&gt;value10&lt;/something&gt;
+        &lt;/inner9&gt;
+        &lt;inner10 attr5="" /&gt;
+        &lt;inner11&gt;&lt;/inner11&gt;
+        &lt;inner12&gt;
+            &lt;somekey&gt;keyvalue&lt;/somekey&gt;
+            &lt;inner12&gt;notnull&lt;/inner12&gt;
+        &lt;/inner12&gt;
+    &lt;/transaction&gt;
+    &lt;meta&gt;
+        &lt;version&gt;0.01&lt;/version&gt;
+    &lt;/meta&gt;
+&lt;/root&gt;</code></pre>
+
+<p><strong>Example 8:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-xml">&lt;root&gt;&lt;id&gt;6753322&lt;/id&gt;&lt;number region="Russia"&gt;8-900-000-00-00&lt;/number&gt;&lt;nonattr1 /&gt;&lt;nonattr2&gt;&lt;/nonattr2&gt;&lt;nonattr3&gt;text&lt;/nonattr3&gt;&lt;attr1 id="1" /&gt;&lt;attr2 id="2"&gt;&lt;/attr2&gt;&lt;attr3 id="3"&gt;text&lt;/attr3&gt;&lt;email&gt;&lt;to&gt;to_example@gmail.com&lt;/to&gt;&lt;from&gt;from_example@gmail.com&lt;/from&gt;&lt;subject&gt;Project discussion&lt;/subject&gt;&lt;body font="Verdana"&gt;Body message&lt;/body&gt;&lt;date day="12" month="12" year="2018"/&gt;&lt;/email&gt;&lt;/root&gt;</code></pre>
+
+<p>Output example</p>
+
+<pre><code class="language-json">{
+    "root": {
+        "id": "6753322",
+        "number": {
+            "@region": "Russia",
+            "#number": "8-900-000-00-00"
+        },
+        "nonattr1": null,
+        "nonattr2": "",
+        "nonattr3": "text",
+        "attr1": {
+            "@id": "1",
+            "#attr1": null
+        },
+        "attr2": {
+            "@id": "2",
+            "#attr2": ""
+        },
+        "attr3": {
+            "@id": "3",
+            "#attr3": "text"
+        },
+        "email": {
+            "to": "to_example@gmail.com",
+            "from": "from_example@gmail.com",
+            "subject": "Project discussion",
+            "body": {
+                "@font": "Verdana",
+                "#body": "Body message"
+            },
+            "date": {
+                "@day": "12",
+                "@month": "12",
+                "@year": "2018",
+                "#date": null
+            }
+        }
+    }
+}</code></pre>

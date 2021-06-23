@@ -1,0 +1,883 @@
+type: edu
+custom_name: stage4
+files:
+- name: src/converter/Main.java
+  visible: true
+  text: |
+    package converter;
+
+    public class Main {
+        public static void main(String[] args) {
+            System.out.println("Hello World!");
+        }
+    }
+  learner_created: false
+- name: test/ConverterTest.java
+  visible: false
+  text: |
+    import org.hyperskill.hstest.dynamic.DynamicTest;
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testing.TestedProgram;
+
+    import java.io.IOException;
+    import java.nio.file.Files;
+    import java.nio.file.Path;
+    import java.nio.file.StandardCopyOption;
+    import java.util.List;
+    import java.util.regex.Pattern;
+
+    import static java.util.stream.Collectors.toUnmodifiableList;
+    import static util.Assert.assertEquals;
+    import static util.Assert.assertFalse;
+
+    public class ConverterTest extends StageTest {
+        private static final Pattern ELEMENTS_DELIMITER = Pattern
+                .compile("\\s+(?=Element:)", Pattern.CASE_INSENSITIVE);
+
+        final int[] testCases = {1, 2, 3, 4};
+
+        @DynamicTest(data = "testCases")
+        CheckResult simpleTest(final int testCase) throws IOException {
+            Files.copy(
+                    Path.of("test/data/test" + testCase + ".json"),
+                    Path.of("test.txt"),
+                    StandardCopyOption.REPLACE_EXISTING);
+
+            final var expectedOutput = Files.readString(
+                    Path.of("test/data/expected" + testCase + ".txt"));
+            final var expectedElements = parseOutput(expectedOutput);
+
+            final var program = new TestedProgram();
+            final var actualOutput = program.start();
+
+            assertFalse(actualOutput.isBlank(), "empty");
+            final var actualElements = parseOutput(actualOutput);
+
+            assertFalse(actualElements.size() < expectedElements.size(),
+                    "lessElements", actualElements.size(), expectedElements.size());
+
+            assertFalse(actualElements.size() < expectedElements.size(),
+                    "moreElements", actualElements.size(), expectedElements.size());
+
+            for (int i = 0; i < expectedElements.size(); ++i) {
+                assertEquals(expectedElements.get(i), expectedElements.get(i),
+                        "elementsNotEqual", i + 1, expectedElements.get(i));
+            }
+
+            return CheckResult.correct();
+        }
+
+        private List<Element> parseOutput(final String data) {
+            return ELEMENTS_DELIMITER
+                    .splitAsStream(data)
+                    .map(Element::parse)
+                    .collect(toUnmodifiableList());
+        }
+
+    }
+  learner_created: false
+- name: test/Element.java
+  visible: false
+  text: |
+    import java.util.Collections;
+    import java.util.HashMap;
+    import java.util.Map;
+    import java.util.Objects;
+    import java.util.function.Consumer;
+    import java.util.regex.Pattern;
+
+    import static java.util.function.Predicate.not;
+    import static java.util.stream.Collectors.toUnmodifiableList;
+    import static util.Assert.*;
+
+    public class Element {
+        private static final Pattern PATH_PATTERN = Pattern
+                .compile("^path\\s*=\\s*(?<path>\\w+(?:, \\w+)*)\\s*", Pattern.CASE_INSENSITIVE);
+
+        private static final Pattern VALUE_PATTERN = Pattern
+                .compile("^value\\s*=\\s*(?<value>null|\".*\")\\s*", Pattern.CASE_INSENSITIVE);
+
+        private static final Pattern ATTRIBUTE_PATTERN = Pattern
+                .compile("(?<key>\\w+)\\s*=\\s*\"(?<value>.*)\"", Pattern.CASE_INSENSITIVE);
+
+        private static final Pattern THIRD_PATTERN = Pattern
+                .compile("^(?<keyword>value|attributes).*", Pattern.CASE_INSENSITIVE);
+
+        private final String path;
+        private final ElementValue value;
+        private final Map<String, String> attributes;
+
+        public Element(final String path) {
+            this(path, ElementValue.ABSENT);
+        }
+
+        public Element(final String path, final ElementValue value) {
+            this(path, value, Collections.emptyMap());
+        }
+
+        public Element(final String path, final ElementValue value, final Map<String, String> attributes) {
+            this.path = path;
+            this.value = value;
+            this.attributes = attributes;
+        }
+
+        public static Element parse(final String data) {
+            final var elementLines = data.lines()
+                    .filter(not(String::isBlank))
+                    .map(String::strip)
+                    .collect(toUnmodifiableList());
+
+            assertTrue(elementLines.size() > 1, "minimumTwoLines");
+
+            final var lines = elementLines.iterator();
+
+            final var first = lines.next();
+            assertTrue(first.startsWith("Element:"), "startElement", first);
+
+            final var second = lines.next();
+            assertTrue(second.startsWith("path"), "startPath", second);
+
+            final var pathRecord = PATH_PATTERN.matcher(second);
+            assertTrue(pathRecord.matches(), "pathPattern", second);
+            final var path = pathRecord.group("path");
+
+            if (!lines.hasNext()) {
+                return new Element(path);
+            }
+
+            final var third = lines.next();
+            final var keyRecord = THIRD_PATTERN.matcher(third);
+            assertTrue(keyRecord.matches(), "thirdLine", third);
+            final var keyword = keyRecord.group("keyword");
+
+            final ElementValue value;
+
+            if ("value".equalsIgnoreCase(keyword)) {
+                final var record = VALUE_PATTERN.matcher(third);
+                assertTrue(record.matches(), "valuePattern", third);
+                value = ElementValue.parse(record.group("value"));
+                if (!lines.hasNext()) {
+                    return new Element(path, value);
+                }
+                assertTrue(lines.next().startsWith("attributes"), "startAttributes");
+            } else {
+                value = ElementValue.ABSENT;
+            }
+
+            assertTrue(lines.hasNext(), "noAttributes");
+
+            final var attributes = new HashMap<String, String>();
+
+            final Consumer<String> parseAttribute = line -> {
+                final var record = ATTRIBUTE_PATTERN.matcher(line);
+                assertTrue(record.matches(), "attributePattern", line);
+                attributes.put(record.group("key"), record.group("value"));
+            };
+
+            lines.forEachRemaining(parseAttribute);
+
+            return new Element(path, value, attributes);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Element element = (Element) o;
+            return path.equals(element.path)
+                    && value.equals(element.value)
+                    && attributes.equals(element.attributes);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(path, value, attributes);
+        }
+
+        @Override
+        public String toString() {
+            final var output = new StringBuilder("Element:\npath = " + path + '\n' + value);
+            if (!attributes.isEmpty()) {
+                output.append("attributes:\n");
+                attributes.forEach((key, value) -> output.append(key + " = \"" + value + "\"\n"));
+            }
+            return output.toString();
+        }
+    }
+  learner_created: false
+- name: test/ElementValue.java
+  visible: false
+  text: |
+    import java.util.Objects;
+    import java.util.regex.Pattern;
+
+    public class ElementValue {
+        public static final ElementValue ABSENT = new ElementValue(Type.ABSENT);
+        public static final ElementValue NULL = new ElementValue(Type.NULL);
+
+        private static final Pattern TEXT_PATTERN = Pattern.compile("^\"?(?<text>.*?)\"?$");
+        private final Type type;
+        private final String text;
+
+        public ElementValue(final Type type) {
+            this.type = type;
+            text = null;
+        }
+
+        public ElementValue(final String text) {
+            this.type = Type.TEXT;
+            this.text = text;
+        }
+
+        public static ElementValue parse(final String value) {
+            if ("null".equalsIgnoreCase(value)) {
+                return NULL;
+            }
+            final var text = TEXT_PATTERN.matcher(value).replaceFirst("${text}");
+            return new ElementValue(text);
+        }
+
+        enum Type {
+            ABSENT, NULL, TEXT
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ElementValue that = (ElementValue) o;
+            return type == that.type && Objects.equals(text, that.text);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(type, text);
+        }
+
+        @Override
+        public String toString() {
+            switch (type) {
+                case ABSENT:
+                    return "";
+                case NULL:
+                    return "value = null\n";
+                default:
+                    return "value = \"" + text + "\"\n";
+            }
+        }
+    }
+  learner_created: false
+- name: test/Messages.java
+  visible: false
+  text: |-
+    import java.util.ListResourceBundle;
+
+    public class Messages extends ListResourceBundle {
+        @Override
+        protected Object[][] getContents() {
+            return new Object[][]{
+                    {"empty", "Your output is empty line."},
+                    {"minimumTwoLines",
+                            "Every element block should contains minimum two lines."},
+                    {"startElement",
+                            "The first line of element block should starts with \"Element\" keyword.\n"
+                                    + "Found the first line: \"{0}\"."},
+                    {"startPath",
+                            "The second line of element block should starts with \"path\" keyword.\n"
+                                    + "Found the second line in the block: \"{0}\"."},
+                    {"pathPattern",
+                            "The path of element should be in the format: \"path = tag0, tag1, ..., tagN\"\n"
+                                    + "Found the path in format: \"{0}\"."},
+                    {"thirdLine",
+                            "The third line of block should starts with keywords 'value' or 'attributes'.\n"
+                                    + "Found the third line: {0}."},
+                    {"valuePattern",
+                            "The value of element should be in the format:\n"
+                                    + "value = \"...\" or value = null\n" + "Found: {0}."},
+                    {"startAttributes",
+                            "The line after value should starts with \"attributes\" keyword.\n"
+                                    + "Found the line after the \"value\": \"{0}\"."},
+                    {"noAttributes",
+                            "After keyword \"attributes\" should be at least one attribute.\n"
+                                    + "If an element doesn't have attributes the program "
+                                    + "should skip printing the keyword \"attributes\" for that element."},
+                    {"attributePattern",
+                            "The attribute of element should be in the format:\n"
+                                    + "key = \"value\"" + "Found: {0}."},
+
+                    {"lessElements",
+                            "The number of elements is less then expected.\n"
+                                    + "The program outputs only {0} elements but expected {1}."},
+                    {"moreElements",
+                            "The number of elements is more then expected.\n"
+                                    + "The program outputs {0} elements but expected only {1}."},
+                    {"elementsNotEqual",
+                            "The element number {0} is not equals to expected.\n"
+                                    + "The expected output for element #{0} is\n{1}"},
+            };
+        }
+    }
+  learner_created: false
+- name: test/data/expected1.txt
+  visible: false
+  text: |
+    Element:
+    path = transaction
+
+    Element:
+    path = transaction, id
+    value = "6753322"
+
+    Element:
+    path = transaction, number
+    value = "8-900-000-000"
+    attributes:
+    region = "Russia"
+
+    Element:
+    path = transaction, empty1
+    value = null
+
+    Element:
+    path = transaction, empty2
+    value = ""
+
+    Element:
+    path = transaction, empty3
+    value = ""
+
+    Element:
+    path = transaction, inner1
+
+    Element:
+    path = transaction, inner1, inner2
+
+    Element:
+    path = transaction, inner1, inner2, inner3
+
+    Element:
+    path = transaction, inner1, inner2, inner3, key1
+    value = "value1"
+
+    Element:
+    path = transaction, inner1, inner2, inner3, key2
+    value = "value2"
+
+    Element:
+    path = transaction, inner4
+
+    Element:
+    path = transaction, inner4, inner4
+    value = "value3"
+
+    Element:
+    path = transaction, inner5
+
+    Element:
+    path = transaction, inner5, attr1
+    value = "123.456"
+
+    Element:
+    path = transaction, inner5, inner4
+    value = "value4"
+
+    Element:
+    path = transaction, inner6
+    value = "value5"
+    attributes:
+    attr2 = "789.321"
+
+    Element:
+    path = transaction, inner7
+    value = "value6"
+
+    Element:
+    path = transaction, inner8
+
+    Element:
+    path = transaction, inner8, attr3
+    value = "value7"
+
+    Element:
+    path = transaction, inner9
+
+    Element:
+    path = transaction, inner9, attr4
+    value = "value8"
+
+    Element:
+    path = transaction, inner9, inner9
+    value = "value9"
+
+    Element:
+    path = transaction, inner9, something
+    value = "value10"
+
+    Element:
+    path = transaction, inner10
+    value = null
+    attributes:
+    attr5 = ""
+
+    Element:
+    path = transaction, inner11
+    value = ""
+
+    Element:
+    path = transaction, inner12
+
+    Element:
+    path = transaction, inner12, somekey
+    value = "keyvalue"
+
+    Element:
+    path = transaction, inner12, inner12
+    value = "notnull"
+
+    Element:
+    path = meta
+
+    Element:
+    path = meta, version
+    value = "0.01"
+  learner_created: false
+- name: test/data/expected2.txt
+  visible: false
+  text: |
+    Element:
+    path = root1
+    attributes:
+    attr1 = "val1"
+    attr2 = "val2"
+
+    Element:
+    path = root1, elem1
+    value = "Value1"
+    attributes:
+    attr3 = "val3"
+    attr4 = "val4"
+
+    Element:
+    path = root1, elem2
+    value = "Value2"
+    attributes:
+    attr5 = "val5"
+    attr6 = "val6"
+
+    Element:
+    path = root2
+    value = null
+    attributes:
+    attr1 = ""
+    attr2 = ""
+
+    Element:
+    path = root3
+    value = ""
+    attributes:
+    attr1 = "val2"
+    attr2 = "val1"
+
+    Element:
+    path = root4
+    value = "Value4"
+  learner_created: false
+- name: test/data/expected3.txt
+  visible: false
+  text: |
+    Element:
+    path = root1
+    attributes:
+    attr1 = "val1"
+    attr2 = "val2"
+
+    Element:
+    path = root1, elem1
+    value = "Value1"
+    attributes:
+    attr3 = "val3"
+    attr4 = "val4"
+
+    Element:
+    path = root1, elem2
+    value = "Value2"
+    attributes:
+    attr5 = "val5"
+    attr6 = "val6"
+
+    Element:
+    path = root2
+    value = null
+    attributes:
+    attr1 = ""
+    attr2 = ""
+
+    Element:
+    path = root3
+    value = ""
+    attributes:
+    attr1 = "val2"
+    attr2 = "val1"
+
+    Element:
+    path = root4
+    value = "Value4"
+  learner_created: false
+- name: test/data/expected4.txt
+  visible: false
+  text: |
+    Element:
+    path = transaction
+
+    Element:
+    path = transaction, id
+    value = "13243547"
+
+    Element:
+    path = transaction, number
+    value = "8-900-000-999"
+    attributes:
+    region = "USA"
+
+    Element:
+    path = transaction, inner1
+
+    Element:
+    path = transaction, inner1, inner2
+
+    Element:
+    path = transaction, inner1, inner2, inner3
+
+    Element:
+    path = transaction, inner1, inner2, inner3, key1
+    value = "value1"
+
+    Element:
+    path = transaction, inner1, inner2, inner3, key2
+    value = "value2"
+
+    Element:
+    path = transaction, inner4
+
+    Element:
+    path = transaction, inner4, inner4
+    value = "value3"
+
+    Element:
+    path = transaction, inner5
+
+    Element:
+    path = transaction, inner5, attr1
+    value = "123.456"
+
+    Element:
+    path = transaction, inner5, inner4
+    value = "value4"
+
+    Element:
+    path = transaction, inner6
+    value = "value5"
+    attributes:
+    attr2 = "789.321"
+
+    Element:
+    path = transaction, inner7
+    value = "value6"
+
+    Element:
+    path = transaction, inner8
+
+    Element:
+    path = transaction, inner8, attr3
+    value = "value7"
+
+    Element:
+    path = transaction, inner9
+
+    Element:
+    path = transaction, inner9, attr4
+    value = "value8"
+
+    Element:
+    path = transaction, inner9, inner9
+    value = "value9"
+
+    Element:
+    path = transaction, inner9, something
+    value = "value10"
+
+    Element:
+    path = transaction, inner10
+    value = null
+    attributes:
+    attr5 = ""
+
+    Element:
+    path = transaction, inner11
+    value = ""
+
+    Element:
+    path = transaction, inner12
+
+    Element:
+    path = transaction, inner12, somekey
+    value = "keyvalue"
+
+    Element:
+    path = transaction, inner12, inner12
+    value = "notnull"
+
+    Element:
+    path = meta
+
+    Element:
+    path = meta, version
+    value = "0.01"
+  learner_created: false
+- name: test/data/test1.json
+  visible: false
+  text: |
+    {
+        "transaction": {
+            "id": "6753322",
+            "number": {
+                "@region": "Russia",
+                "#number": "8-900-000-000"
+            },
+            "empty1": null,
+            "empty2": { },
+            "empty3": "",
+            "inner1": {
+                "inner2": {
+                    "inner3": {
+                        "key1": "value1",
+                        "key2": "value2"
+                    }
+                }
+            },
+            "inner4": {
+                "@": 123,
+                "#inner4": "value3"
+            },
+            "inner5": {
+                "@attr1": 123.456,
+                "#inner4": "value4"
+            },
+            "inner6": {
+                "@attr2": 789.321,
+                "#inner6": "value5"
+            },
+            "inner7": {
+                "#inner7": "value6"
+            },
+            "inner8": {
+                "@attr3": "value7"
+            },
+            "inner9": {
+                "@attr4": "value8",
+                "#inner9": "value9",
+                "something": "value10"
+            },
+            "inner10": {
+                "@attr5": null,
+                "#inner10": null
+            },
+            "inner11": {
+                "@": null,
+                "#": null
+            },
+            "inner12": {
+                "@somekey": "attrvalue",
+                "#inner12": null,
+                "somekey": "keyvalue",
+                "inner12": "notnull"
+            },
+            "": {
+                "#": null,
+                "secret": "this won't be converted"
+            }
+        },
+        "meta": {
+            "version": 0.01
+        }
+    }
+  learner_created: false
+- name: test/data/test2.json
+  visible: false
+  text: |+
+    {
+        "root1": {
+            "@attr1": "val1",
+            "@attr2": "val2",
+            "#root1": {
+                "elem1": {
+                    "@attr3": "val3",
+                    "@attr4": "val4",
+                    "#elem1": "Value1"
+                },
+                "elem2": {
+                    "@attr5": "val5",
+                    "@attr6": "val6",
+                    "#elem2": "Value2"
+                }
+            }
+        },
+        "root2": {
+            "@attr1": null,
+            "@attr2": "",
+            "#root2": null
+        },
+        "root3": {
+            "@attr1": "val2",
+            "@attr2": "val1",
+            "#root3": ""
+        },
+        "root4": "Value4"
+    }
+
+  learner_created: false
+- name: test/data/test3.json
+  visible: false
+  text: '{"root1":{"@attr1":"val1","@attr2":"val2","#root1":{"elem1":{"@attr3":"val3","@attr4":"val4","#elem1":"Value1"},"elem2":{"@attr5":"val5","@attr6":"val6","#elem2":"Value2"}}},"root2":{"@attr1":null,"@attr2":"","#root2":null},"root3":{"@attr1":"val2","@attr2":"val1","#root3":""},"root4":"Value4"}'
+  learner_created: false
+- name: test/data/test4.json
+  visible: false
+  text: |
+    {
+        "transaction": {
+            "id": "13243547",
+            "number": {
+                "@region": "USA",
+                "#number": "8-900-000-999"
+            },
+            "inner1": {
+                "inner2": {
+                    "inner3": {
+                        "key1": "value1",
+                        "key2": "value2"
+                    }
+                }
+            },
+            "inner4": {
+                "@": 123,
+                "#inner4": "value3"
+            },
+            "inner5": {
+                "@attr1": 123.456,
+                "#inner4": "value4"
+            },
+            "inner6": {
+                "@attr2": 789.321,
+                "#inner6": "value5"
+            },
+            "inner7": {
+                "#inner7": "value6"
+            },
+            "inner8": {
+                "@attr3": "value7"
+            },
+            "inner9": {
+                "@attr4": "value8",
+                "#inner9": "value9",
+                "something": "value10"
+            },
+            "inner10": {
+                "@attr5": null,
+                "#inner10": null
+            },
+            "inner11": {
+                "@": null,
+                "#": null
+            },
+            "inner12": {
+                "@somekey": "attrvalue",
+                "#inner12": null,
+                "somekey": "keyvalue",
+                "inner12": "notnull"
+            },
+            "": {
+                "#": null,
+                "secret": "this won't be converted"
+            }
+        },
+        "meta": {
+            "version": 0.01
+        }
+    }
+  learner_created: false
+- name: test/util/Assert.java
+  visible: false
+  text: |-
+    package util;
+
+    import org.hyperskill.hstest.exception.outcomes.WrongAnswer;
+
+    import java.util.ResourceBundle;
+    import java.util.regex.Pattern;
+
+    import static java.text.MessageFormat.format;
+
+    public class Assert {
+        private static final ResourceBundle messages = ResourceBundle.getBundle("Messages");
+
+        public static void assertEquals(
+                final Object expected,
+                final Object actual,
+                final String error,
+                final Object... args) {
+
+            if (!expected.equals(actual)) {
+                final var feedback = format(messages.getString(error), args);
+                throw new WrongAnswer(feedback);
+            }
+        }
+
+        public static void assertMatches(
+                final String pattern,
+                final String actual,
+                final String error,
+                final Object... args) {
+
+            if (!actual.matches(pattern)) {
+                final var feedback = format(messages.getString(error), args);
+                throw new WrongAnswer(feedback);
+            }
+        }
+
+        public static void assertMatches(
+                final Pattern pattern,
+                final String actual,
+                final String error,
+                final Object... args) {
+
+            if (!pattern.matcher(actual).matches()) {
+                final var feedback = format(messages.getString(error), args);
+                throw new WrongAnswer(feedback);
+            }
+        }
+
+        public static void assertTrue(
+                final boolean condition,
+                final String error,
+                final Object... args) {
+            if (!condition) {
+                final var feedback = format(messages.getString(error), args);
+                throw new WrongAnswer(feedback);
+            }
+        }
+
+        public static void assertFalse(
+                final boolean condition,
+                final String error,
+                final Object... args) {
+            if (condition) {
+                final var feedback = format(messages.getString(error), args);
+                throw new WrongAnswer(feedback);
+            }
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/61/stages/332/implement#comment
+status: Unchecked
+record: -1

@@ -1,0 +1,777 @@
+<h2>Description</h2>
+
+<p>In this stage, you will parse fully-featured JSON documents. And after that, you will get the fully-featured XML/JSON converter.</p>
+
+<p>There are some little details that you are missing: JSON has arrays, but every item of the array doesn't contain a key value; they just go one after another. To convert it to XML, you need to enclose these elements into the <code class="language-json">&lt;element&gt;</code> tag. Also, you can detect an array in the XML if all the sub children (at least 2, a single child is not an array) have the same name (for instance, <code class="language-json">&lt;transaction&gt;</code> in the example below). An empty JSON array should be converted to an empty string, just like a JSON empty object. An array inside an array does not have a key (which would be the opening and closing tag in XML) with which you can define this array. To avoid this, the array inside the array should be defined inside the <code class="language-json">&lt;element&gt;</code> tags since every element in an array should be defined inside this tag.</p>
+
+<p>Also, a comma doesn't have to follow the element, JSON lets you place it after any amount of spaces and new lines. You can see this in the example #3.</p>
+
+<p>Another thing is that JSON can contain boolean values: <code class="language-json">true</code> and <code class="language-json">false</code>. During conversion, you should turn them into strings <code class="language-json">"true"</code> and <code class="language-json">"false"</code>.</p>
+
+<p>Also, XML supports values of attributes enclosed with single quotes, not only double quotes. For example, <code class="language-json">&lt;xml attr="xml"&gt;&lt;/xml&gt;</code> and <code class="language-json">&lt;xml attr='xml'&gt;&lt;/xml&gt;</code> mean the same and both of them are valid in XML.</p>
+
+<p>At last, in this stage, you should skip any XML header that starts with <code class="language-json">&lt;?</code> and ends with <code class="language-json">?&gt;</code>. There is no need for this in JSON.</p>
+
+<p>Use examples as a reference as they cover all of the cases and tricky situations mentioned above.</p>
+
+<p>Note that you <strong>do not need</strong> to output JSON or XML in a formatted form. You can print them in one line because the grader deletes all unnecessary whitespace characters before checking.</p>
+
+<p>You should read from the file named <code class="language-json">test.txt</code>. If you want to test your program, you should check it on some other file, because the contents of this file will be overwritten during testing and after testing the file will be deleted.</p>
+
+<h2>Examples</h2>
+
+<p><strong>Example 1:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-json">{
+    "transactions": {
+        "id": "6753322",
+        "data": [
+            123,
+            true,
+            false,
+            [ ],
+            [],
+            { },
+            {},
+            [
+                1, 2, 3,
+                {
+                    "@attr": "value6",
+                    "#element": "value7"
+                }
+            ],
+            null,
+            "",
+            {
+                "key1": "value1",
+                "key2": {
+                    "@attr": "value2",
+                    "#key2": "value3"
+                }
+            },
+            {
+                "@attr2": "value4",
+                "#element": "value5"
+            }
+        ]
+    }
+}</code></pre>
+
+<p>Output example</p>
+
+<pre><code class="language-xml">&lt;transactions&gt;
+    &lt;id&gt;6753322&lt;/id&gt;
+    &lt;data&gt;
+        &lt;element&gt;123&lt;/element&gt;
+        &lt;element&gt;true&lt;/element&gt;
+        &lt;element&gt;false&lt;/element&gt;
+        &lt;element&gt;&lt;/element&gt;
+        &lt;element&gt;&lt;/element&gt;
+        &lt;element&gt;&lt;/element&gt;
+        &lt;element&gt;&lt;/element&gt;
+        &lt;element&gt;
+            &lt;element&gt;1&lt;/element&gt;
+            &lt;element&gt;2&lt;/element&gt;
+            &lt;element&gt;3&lt;/element&gt;
+            &lt;element attr="value6"&gt;value7&lt;/element&gt;
+        &lt;/element&gt;
+        &lt;element /&gt;
+        &lt;element&gt;&lt;/element&gt;
+        &lt;element&gt;
+            &lt;key1&gt;value1&lt;/key1&gt;
+            &lt;key2 attr="value2"&gt;value3&lt;/key2&gt;
+        &lt;/element&gt;
+        &lt;element attr2="value4"&gt;value5&lt;/element&gt;
+    &lt;/data&gt;
+&lt;/transactions&gt;</code></pre>
+
+<p> </p>
+
+<p><strong>Example 2:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-xml">&lt;?xml version = "1.0" encoding = "utf-8"?&gt;
+&lt;transactions&gt;
+    &lt;transaction&gt;
+        &lt;id&gt;6753322&lt;/id&gt;
+        &lt;number region = "Russia"&gt;8-900-000-00-00&lt;/number&gt;
+        &lt;date day = "12" month = "12" year = "2018"/&gt;
+        &lt;amount currency="EUR"&gt;1000.00&lt;/amount&gt;
+        &lt;completed&gt;true&lt;/completed&gt;
+    &lt;/transaction&gt;
+    &lt;transaction&gt;
+        &lt;id&gt;67533244&lt;/id&gt;
+        &lt;number region = "Russia"&gt;8-900-000-00-01&lt;/number&gt;
+        &lt;date day = "13" month = "12" year = "2018"/&gt;
+        &lt;amount currency ="RUB"&gt;2000.00&lt;/amount&gt;
+        &lt;completed&gt;true&lt;/completed&gt;
+    &lt;/transaction&gt;
+    &lt;transaction&gt;
+        &lt;id&gt;67533257&lt;/id&gt;
+        &lt;number region="Russia"&gt;8-900-000-00-02&lt;/number&gt;
+        &lt;date day = "14" month = "12" year = "2018"/&gt;
+        &lt;amount currency = "EUR"&gt;3000.00&lt;/amount&gt;
+        &lt;completed&gt;false&lt;/completed&gt;
+    &lt;/transaction&gt;
+    &lt;transaction&gt;
+        &lt;id&gt;67533259&lt;/id&gt;
+        &lt;number region = "Ukraine"&gt;8-900-000-00-03&lt;/number&gt;
+        &lt;date day = "15" month = "12" year = "2018"/&gt;
+        &lt;amount currency = "GRN"&gt;4000.00&lt;/amount&gt;
+        &lt;completed&gt;false&lt;/completed&gt;
+    &lt;/transaction&gt;
+    &lt;transaction&gt;
+        &lt;id&gt;67533566&lt;/id&gt;
+        &lt;number region = "Ukraine"&gt;8-900-000-00-04&lt;/number&gt;
+        &lt;date day = "16" month = "12" year = "2018"/&gt;
+        &lt;amount currency = "USD"&gt;5000.00&lt;/amount&gt;
+        &lt;completed&gt;false&lt;/completed&gt;
+    &lt;/transaction&gt;
+&lt;/transactions&gt;</code></pre>
+
+<p>Output example </p>
+
+<pre><code class="language-json">{
+    "transactions" : [
+        {
+            "id" : "6753322",
+            "number" : {
+                "@region" : "Russia",
+                "#number" : "8-900-000-00-00"
+            },
+            "date" : {
+                "@day" : "12",
+                "@month" : "12",
+                "@year" : "2018",
+                "#date" : null
+            },
+            "amount" : {
+                "@currency" : "EUR",
+                "#amount" : "1000.00"
+            },
+            "completed" : "true"
+        },
+        {
+            "id" : "67533244",
+            "number" : {
+                "@region" : "Russia",
+                "#number" : "8-900-000-00-01"
+            },
+            "date" : {
+                "@day" : "13",
+                "@month" : "12",
+                "@year" : "2018",
+                "#date" : null
+            },
+            "amount" : {
+                "@currency" : "RUB",
+                "#amount" : "2000.00"
+            },
+            "completed" : "true"
+        },
+        {
+            "id" : "67533257",
+            "number" : {
+                "@region" : "Russia",
+                "#number" : "8-900-000-00-02"
+            },
+            "date" : {
+                "@day" : "14",
+                "@month" : "12",
+                "@year" : "2018",
+                "#date" : null
+            },
+            "amount" : {
+                "@currency" : "EUR",
+                "#amount" : "3000.00"
+            },
+            "completed" : "false"
+        },
+        {
+            "id" : "67533259",
+            "number" : {
+                "@region" : "Ukraine",
+                "#number" : "8-900-000-00-03"
+            },
+            "date" : {
+                "@day" : "15",
+                "@month" : "12",
+                "@year" : "2018",
+                "#date" : null
+            },
+            "amount" : {
+                "@currency" : "GRN",
+                "#amount" : "4000.00"
+            },
+            "completed" : "false"
+        },
+        {
+            "id" : "67533566",
+            "number" : {
+                "@region" : "Ukraine",
+                "#number" : "8-900-000-00-04"
+            },
+            "date" : {
+                "@day" : "16",
+                "@month" : "12",
+                "@year" : "2018",
+                "#date" : null
+            },
+            "amount" : {
+                "@currency" : "USD",
+                "#amount" : "5000.00"
+            },
+            "completed" : "false"
+        }
+    ]
+}</code></pre>
+
+<p> </p>
+
+<p><strong>Example 3:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-json">{
+    "transaction": {
+        "id": "6753322",
+        "number": {
+            "@region": "Russia",
+            "#number": "8-900-000-000"
+        },
+        "special1": false,
+        "special2": true,
+        "empty1": null,
+        "empty2": { },
+        "empty3": [ ],
+        "empty4": {},
+        "empty5": [],
+        "empty6": {
+
+        },
+        "empty7": [
+
+        ],
+        "empty8": "",
+        "array1": [
+            null, null
+        ],
+        "array2": [
+            [],
+            true, false, null,
+            123, 123.456,
+            "",
+            {
+                "key1": "value1",
+                "key2": {
+                    "@attr": "value2",
+                    "#key2": "value3"
+                }
+            },
+            {
+                "@attr2": "value4",
+                "#element": "value5"
+            }
+            ,
+            {
+                "@attr3": "value4",
+                "#elem": "value5"
+            },
+            {
+                "#element": null
+            },
+            {
+                "#element": {
+                    "deep": {
+                        "@deepattr": "deepvalue",
+                        "#deep": [
+                            1, 2, 3
+                        ]
+                    }
+                }
+            }
+        ],
+        "inner1": {
+            "inner2": {
+                "inner3": {
+                    "key1": "value1",
+                    "key2": "value2"
+                }
+            }
+        },
+        "inner4": {
+            "@": 123,
+            "#inner4": "value3"
+        },
+        "inner5": {
+            "@attr1": 123.456,
+            "#inner4": "value4"
+        },
+        "inner6": {
+            "@attr2": 789.321,
+            "#inner6": "value5"
+        },
+        "inner7": {
+            "#inner7": "value6"
+        },
+        "inner8": {
+            "@attr3": "value7"
+        },
+        "inner9": {
+            "@attr4": "value8",
+            "#inner9": "value9",
+            "something": "value10"
+        },
+        "inner10": {
+            "@attr5": null,
+            "#inner10": null
+        },
+        "inner11": {
+            "@attr11": "value11",
+            "#inner11": {
+                "inner12": {
+                    "@attr12": "value12",
+                    "#inner12": {
+                        "inner13": {
+                            "@attr13": "value13",
+                            "#inner13": {
+                                "inner14": "v14"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "inner15": {
+            "@": null,
+            "#": null
+        },
+        "inner16": {
+            "@somekey": "attrvalue",
+            "#inner16": null,
+            "somekey": "keyvalue",
+            "inner16": "notnull"
+        },
+        "crazyattr1": {
+            "@attr1": 123,
+            "#crazyattr1": "v15"
+        },
+        "crazyattr2": {
+            "@attr1": 123.456,
+            "#crazyattr2": "v16"
+        },
+        "crazyattr3": {
+            "@attr1": null,
+            "#crazyattr3": "v17"
+        },
+        "crazyattr4": {
+            "@attr1": true,
+            "#crazyattr4": "v18"
+        },
+        "crazyattr5": {
+            "@attr1": false,
+            "#crazyattr5": "v19"
+        },
+        "crazyattr6": {
+            "@attr1": "",
+            "#crazyattr6": "v20"
+        },
+        "crazyattr7": {
+            "@attr1": {},
+            "#crazyattr7": "v21"
+        },
+        "crazyattr9": {
+            "@attr1": {
+                "@": 1,
+                "#": 2,
+                "": 3,
+                "key": 4
+            },
+            "#crazyattr9": "v23"
+        },
+        "crazyattr10": {
+            "@attr1": [],
+            "#crazyattr10": "v24"
+        },
+        "crazyattr11": {
+            "attr1": "better",
+            "@attr1": {
+                "key9": "value9"
+            },
+            "#crazyattr11": "v25"
+        },
+        "crazyattr12": {
+            "@attr1": [
+                ""
+            ],
+            "#crazyattr12": "v26"
+        },
+        "": {
+            "#": null,
+            "secret": "won't be converted"
+        },
+        "@": 123,
+        "#": [
+            1, 2, 3
+        ]
+    },
+    "meta": {
+        "version": 0.01
+    }
+}</code></pre>
+
+<p>Output example</p>
+
+<pre><code class="language-xml">&lt;root&gt;
+    &lt;transaction&gt;
+        &lt;id&gt;6753322&lt;/id&gt;
+        &lt;number region="Russia"&gt;8-900-000-000&lt;/number&gt;
+        &lt;special1&gt;false&lt;/special1&gt;
+        &lt;special2&gt;true&lt;/special2&gt;
+        &lt;empty1 /&gt;
+        &lt;empty2&gt;&lt;/empty2&gt;
+        &lt;empty3&gt;&lt;/empty3&gt;
+        &lt;empty4&gt;&lt;/empty4&gt;
+        &lt;empty5&gt;&lt;/empty5&gt;
+        &lt;empty6&gt;&lt;/empty6&gt;
+        &lt;empty7&gt;&lt;/empty7&gt;
+        &lt;empty8&gt;&lt;/empty8&gt;
+        &lt;array1&gt;
+            &lt;element /&gt;
+            &lt;element /&gt;
+        &lt;/array1&gt;
+        &lt;array2&gt;
+            &lt;element&gt;&lt;/element&gt;
+            &lt;element&gt;true&lt;/element&gt;
+            &lt;element&gt;false&lt;/element&gt;
+            &lt;element /&gt;
+            &lt;element&gt;123&lt;/element&gt;
+            &lt;element&gt;123.456&lt;/element&gt;
+            &lt;element&gt;&lt;/element&gt;
+            &lt;element&gt;
+                &lt;key1&gt;value1&lt;/key1&gt;
+                &lt;key2 attr="value2"&gt;value3&lt;/key2&gt;
+            &lt;/element&gt;
+            &lt;element attr2="value4"&gt;value5&lt;/element&gt;
+            &lt;element&gt;
+                &lt;attr3&gt;value4&lt;/attr3&gt;
+                &lt;elem&gt;value5&lt;/elem&gt;
+            &lt;/element&gt;
+            &lt;element /&gt;
+            &lt;element&gt;
+                &lt;deep deepattr="deepvalue"&gt;
+                    &lt;element&gt;1&lt;/element&gt;
+                    &lt;element&gt;2&lt;/element&gt;
+                    &lt;element&gt;3&lt;/element&gt;
+                &lt;/deep&gt;
+            &lt;/element&gt;
+        &lt;/array2&gt;
+        &lt;inner1&gt;
+            &lt;inner2&gt;
+                &lt;inner3&gt;
+                    &lt;key1&gt;value1&lt;/key1&gt;
+                    &lt;key2&gt;value2&lt;/key2&gt;
+                &lt;/inner3&gt;
+            &lt;/inner2&gt;
+        &lt;/inner1&gt;
+        &lt;inner4&gt;
+            &lt;inner4&gt;value3&lt;/inner4&gt;
+        &lt;/inner4&gt;
+        &lt;inner5&gt;
+            &lt;attr1&gt;123.456&lt;/attr1&gt;
+            &lt;inner4&gt;value4&lt;/inner4&gt;
+        &lt;/inner5&gt;
+        &lt;inner6 attr2="789.321"&gt;value5&lt;/inner6&gt;
+        &lt;inner7&gt;value6&lt;/inner7&gt;
+        &lt;inner8&gt;
+            &lt;attr3&gt;value7&lt;/attr3&gt;
+        &lt;/inner8&gt;
+        &lt;inner9&gt;
+            &lt;attr4&gt;value8&lt;/attr4&gt;
+            &lt;inner9&gt;value9&lt;/inner9&gt;
+            &lt;something&gt;value10&lt;/something&gt;
+        &lt;/inner9&gt;
+        &lt;inner10 attr5="" /&gt;
+        &lt;inner11 attr11="value11"&gt;
+            &lt;inner12 attr12="value12"&gt;
+                &lt;inner13 attr13="value13"&gt;
+                    &lt;inner14&gt;v14&lt;/inner14&gt;
+                &lt;/inner13&gt;
+            &lt;/inner12&gt;
+        &lt;/inner11&gt;
+        &lt;inner15&gt;&lt;/inner15&gt;
+        &lt;inner16&gt;
+            &lt;somekey&gt;keyvalue&lt;/somekey&gt;
+            &lt;inner16&gt;notnull&lt;/inner16&gt;
+        &lt;/inner16&gt;
+        &lt;crazyattr1 attr1="123"&gt;v15&lt;/crazyattr1&gt;
+        &lt;crazyattr2 attr1="123.456"&gt;v16&lt;/crazyattr2&gt;
+        &lt;crazyattr3 attr1=""&gt;v17&lt;/crazyattr3&gt;
+        &lt;crazyattr4 attr1="true"&gt;v18&lt;/crazyattr4&gt;
+        &lt;crazyattr5 attr1="false"&gt;v19&lt;/crazyattr5&gt;
+        &lt;crazyattr6 attr1=""&gt;v20&lt;/crazyattr6&gt;
+        &lt;crazyattr7 attr1=""&gt;v21&lt;/crazyattr7&gt;
+        &lt;crazyattr9&gt;
+            &lt;attr1&gt;
+                &lt;key&gt;4&lt;/key&gt;
+            &lt;/attr1&gt;
+            &lt;crazyattr9&gt;v23&lt;/crazyattr9&gt;
+        &lt;/crazyattr9&gt;
+        &lt;crazyattr10 attr1=""&gt;v24&lt;/crazyattr10&gt;
+        &lt;crazyattr11&gt;
+            &lt;attr1&gt;better&lt;/attr1&gt;
+            &lt;crazyattr11&gt;v25&lt;/crazyattr11&gt;
+        &lt;/crazyattr11&gt;
+        &lt;crazyattr12&gt;
+            &lt;attr1&gt;
+                &lt;element&gt;&lt;/element&gt;
+            &lt;/attr1&gt;
+            &lt;crazyattr12&gt;v26&lt;/crazyattr12&gt;
+        &lt;/crazyattr12&gt;
+    &lt;/transaction&gt;
+    &lt;meta&gt;
+        &lt;version&gt;0.01&lt;/version&gt;
+    &lt;/meta&gt;
+&lt;/root&gt;</code></pre>
+
+<p> </p>
+
+<p><strong>Example 4:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-xml">&lt;root&gt;
+    &lt;transaction&gt;
+        &lt;id&gt;6753322&lt;/id&gt;
+        &lt;number region='Russia'&gt;8-900-000-000&lt;/number&gt;
+        &lt;special1&gt;false&lt;/special1&gt;
+        &lt;special2&gt;true&lt;/special2&gt;
+        &lt;empty1 /&gt;
+        &lt;empty2&gt;&lt;/empty2&gt;
+        &lt;array1&gt;
+            &lt;element /&gt;
+            &lt;element /&gt;
+        &lt;/array1&gt;
+        &lt;array2&gt;
+            &lt;element&gt;&lt;/element&gt;
+            &lt;element /&gt;
+            &lt;element&gt;123&lt;/element&gt;
+            &lt;element&gt;123.456&lt;/element&gt;
+            &lt;element&gt;
+                &lt;key1&gt;value1&lt;/key1&gt;
+                &lt;key2 attr="value2"&gt;value3&lt;/key2&gt;
+            &lt;/element&gt;
+            &lt;element attr2='value4'&gt;value5&lt;/element&gt;
+            &lt;element&gt;
+                &lt;attr3&gt;value4&lt;/attr3&gt;
+                &lt;elem&gt;value5&lt;/elem&gt;
+            &lt;/element&gt;
+            &lt;element&gt;
+                &lt;deep deepattr="deepvalue"&gt;
+                    &lt;element&gt;1&lt;/element&gt;
+                    &lt;element&gt;2&lt;/element&gt;
+                    &lt;element&gt;3&lt;/element&gt;
+                &lt;/deep&gt;
+            &lt;/element&gt;
+        &lt;/array2&gt;
+        &lt;inner1&gt;
+            &lt;inner2&gt;
+                &lt;inner3&gt;
+                    &lt;key1&gt;value1&lt;/key1&gt;
+                    &lt;key2&gt;value2&lt;/key2&gt;
+                &lt;/inner3&gt;
+            &lt;/inner2&gt;
+        &lt;/inner1&gt;
+        &lt;inner4&gt;
+            &lt;inner4&gt;value3&lt;/inner4&gt;
+        &lt;/inner4&gt;
+        &lt;inner5&gt;
+            &lt;attr1&gt;123.456&lt;/attr1&gt;
+            &lt;inner4&gt;value4&lt;/inner4&gt;
+        &lt;/inner5&gt;
+        &lt;inner6 attr2="789.321"&gt;value5&lt;/inner6&gt;
+        &lt;inner7&gt;value6&lt;/inner7&gt;
+        &lt;inner8&gt;
+            &lt;attr3&gt;value7&lt;/attr3&gt;
+        &lt;/inner8&gt;
+        &lt;inner9&gt;
+            &lt;attr4&gt;value8&lt;/attr4&gt;
+            &lt;inner9&gt;value9&lt;/inner9&gt;
+            &lt;something&gt;value10&lt;/something&gt;
+        &lt;/inner9&gt;
+        &lt;inner10 attr5='' /&gt;
+        &lt;inner11 attr11="value11"&gt;
+            &lt;inner12 attr12="value12"&gt;
+                &lt;inner13 attr13="value13"&gt;
+                    &lt;inner14&gt;v14&lt;/inner14&gt;
+                &lt;/inner13&gt;
+            &lt;/inner12&gt;
+        &lt;/inner11&gt;
+        &lt;inner15&gt;&lt;/inner15&gt;
+        &lt;inner16&gt;
+            &lt;somekey&gt;keyvalue&lt;/somekey&gt;
+            &lt;inner16&gt;notnull&lt;/inner16&gt;
+        &lt;/inner16&gt;
+        &lt;crazyattr1 attr1='123'&gt;v15&lt;/crazyattr1&gt;
+        &lt;crazyattr2 attr1="123.456"&gt;v16&lt;/crazyattr2&gt;
+        &lt;crazyattr3 attr1=''&gt;v17&lt;/crazyattr3&gt;
+        &lt;crazyattr9&gt;
+            &lt;attr1&gt;
+                &lt;key&gt;4&lt;/key&gt;
+            &lt;/attr1&gt;
+            &lt;crazyattr9&gt;v23&lt;/crazyattr9&gt;
+        &lt;/crazyattr9&gt;
+    &lt;/transaction&gt;
+    &lt;meta&gt;
+        &lt;version&gt;0.01&lt;/version&gt;
+    &lt;/meta&gt;
+&lt;/root&gt;</code></pre>
+
+<p>Output example</p>
+
+<pre><code class="language-json">{
+    "root": {
+        "transaction": {
+            "id": "6753322",
+            "number": {
+                "@region": "Russia",
+                "#number": "8-900-000-000"
+            },
+            "special1": "false",
+            "special2": "true",
+            "empty1": null,
+            "empty2": "",
+            "array1": [
+                null, null
+            ],
+            "array2": [
+                "",
+                null,
+                "123",
+                "123.456",
+                {
+                    "key1": "value1",
+                    "key2": {
+                        "@attr": "value2",
+                        "#key2": "value3"
+                    }
+                },
+                {
+                    "@attr2": "value4",
+                    "#element": "value5"
+                },
+                {
+                    "attr3": "value4",
+                    "elem": "value5"
+                },
+                {
+                    "deep": {
+                        "@deepattr": "deepvalue",
+                        "#deep": [
+                            "1",
+                            "2",
+                            "3"
+                        ]
+                    }
+                }
+            ],
+            "inner1": {
+                "inner2": {
+                    "inner3": {
+                        "key1": "value1",
+                        "key2": "value2"
+                    }
+                }
+            },
+            "inner4": {
+                "inner4": "value3"
+            },
+            "inner5": {
+                "attr1": "123.456",
+                "inner4": "value4"
+            },
+            "inner6": {
+                "@attr2": "789.321",
+                "#inner6": "value5"
+            },
+            "inner7": "value6",
+            "inner8": {
+                "attr3": "value7"
+            },
+            "inner9": {
+                "attr4": "value8",
+                "inner9": "value9",
+                "something": "value10"
+            },
+            "inner10": {
+                "@attr5": "",
+                "#inner10": null
+            },
+            "inner11": {
+                "@attr11": "value11",
+                "#inner11": {
+                    "inner12": {
+                        "@attr12": "value12",
+                        "#inner12": {
+                            "inner13": {
+                                "@attr13": "value13",
+                                "#inner13": {
+                                    "inner14": "v14"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "inner15": "",
+            "inner16": {
+                "somekey": "keyvalue",
+                "inner16": "notnull"
+            },
+            "crazyattr1": {
+                "@attr1": "123",
+                "#crazyattr1": "v15"
+            },
+            "crazyattr2": {
+                "@attr1": "123.456",
+                "#crazyattr2": "v16"
+            },
+            "crazyattr3": {
+                "@attr1": "",
+                "#crazyattr3": "v17"
+            },
+            "crazyattr9": {
+                "attr1": {
+                    "key": "4"
+                },
+                "crazyattr9": "v23"
+            }
+        },
+        "meta": {
+            "version": "0.01"
+        }
+    }
+}</code></pre>
+
+<p> </p>
+
+<p><strong>Example 5:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-json">{"transaction":{"id":"6753322","number":{"@region":"Russia","#number":"8-900-000-000"},"special1":false,"special2":true,"empty1":null,"empty2":{},"empty3":[],"empty4":{},"empty5":[],"empty6":{},"empty7":[],"empty8":"","array1":[null,null],"array2":[[],true,false,null,123,123.456,"",{"key1":"value1","key2":{"@attr":"value2","#key2":"value3"}},{"@attr2":"value4","#element":"value5"},{"@attr3":"value4","#elem":"value5"},{"#element":null},{"#element":{"deep":{"@deepattr":"deepvalue","#deep":[1,2,3]}}}],"inner1":{"inner2":{"inner3":{"key1":"value1","key2":"value2"}}},"inner4":{"@":123,"#inner4":"value3"},"inner5":{"@attr1":123.456,"#inner4":"value4"},"inner6":{"@attr2":789.321,"#inner6":"value5"},"inner7":{"#inner7":"value6"},"inner8":{"@attr3":"value7"},"inner9":{"@attr4":"value8","#inner9":"value9","something":"value10"},"inner10":{"@attr5":null,"#inner10":null},"inner11":{"@attr11":"value11","#inner11":{"inner12":{"@attr12":"value12","#inner12":{"inner13":{"@attr13":"value13","#inner13":{"inner14":"v14"}}}}}},"inner15":{"@":null,"#":null},"inner16":{"@somekey":"attrvalue","#inner16":null,"somekey":"keyvalue","inner16":"notnull"},"crazyattr1":{"@attr1":123,"#crazyattr1":"v15"},"crazyattr2":{"@attr1":123.456,"#crazyattr2":"v16"},"crazyattr3":{"@attr1":null,"#crazyattr3":"v17"},"crazyattr4":{"@attr1":true,"#crazyattr4":"v18"},"crazyattr5":{"@attr1":false,"#crazyattr5":"v19"},"crazyattr6":{"@attr1":"","#crazyattr6":"v20"},"crazyattr7":{"@attr1":{},"#crazyattr7":"v21"},"crazyattr9":{"@attr1":{"@":1,"#":2,"":3,"key":4},"#crazyattr9":"v23"},"crazyattr10":{"@attr1":[],"#crazyattr10":"v24"},"crazyattr11":{"attr1":"better","@attr1":{"key9":"value9"},"#crazyattr11":"v25"},"crazyattr12":{"@attr1":[""],"#crazyattr12":"v26"},"":{"#":null,"secret":"won't be converted"},"@":123,"#":[1,2,3]},"meta":{"version":0.01}}</code></pre>
+
+<p>Output example #5 = Output example #3</p>
+
+<p> </p>
+
+<p><strong>Example 6:</strong></p>
+
+<p>Input example</p>
+
+<pre><code class="language-xml">&lt;root&gt;&lt;transaction&gt;&lt;id&gt;6753322&lt;/id&gt;&lt;number region='Russia'&gt;8-900-000-000&lt;/number&gt;&lt;special1&gt;false&lt;/special1&gt;&lt;special2&gt;true&lt;/special2&gt;&lt;empty1 /&gt;&lt;empty2&gt;&lt;/empty2&gt;&lt;array1&gt;&lt;element /&gt;&lt;element /&gt;&lt;/array1&gt;&lt;array2&gt;&lt;element&gt;&lt;/element&gt;&lt;element /&gt;&lt;element&gt;123&lt;/element&gt;&lt;element&gt;123.456&lt;/element&gt;&lt;element&gt;&lt;key1&gt;value1&lt;/key1&gt;&lt;key2 attr="value2"&gt;value3&lt;/key2&gt;&lt;/element&gt;&lt;element attr2='value4'&gt;value5&lt;/element&gt;&lt;element&gt;&lt;attr3&gt;value4&lt;/attr3&gt;&lt;elem&gt;value5&lt;/elem&gt;&lt;/element&gt;&lt;element&gt;&lt;deep deepattr="deepvalue"&gt;&lt;element&gt;1&lt;/element&gt;&lt;element&gt;2&lt;/element&gt;&lt;element&gt;3&lt;/element&gt;&lt;/deep&gt;&lt;/element&gt;&lt;/array2&gt;&lt;inner1&gt;&lt;inner2&gt;&lt;inner3&gt;&lt;key1&gt;value1&lt;/key1&gt;&lt;key2&gt;value2&lt;/key2&gt;&lt;/inner3&gt;&lt;/inner2&gt;&lt;/inner1&gt;&lt;inner4&gt;&lt;inner4&gt;value3&lt;/inner4&gt;&lt;/inner4&gt;&lt;inner5&gt;&lt;attr1&gt;123.456&lt;/attr1&gt;&lt;inner4&gt;value4&lt;/inner4&gt;&lt;/inner5&gt;&lt;inner6 attr2="789.321"&gt;value5&lt;/inner6&gt;&lt;inner7&gt;value6&lt;/inner7&gt;&lt;inner8&gt;&lt;attr3&gt;value7&lt;/attr3&gt;&lt;/inner8&gt;&lt;inner9&gt;&lt;attr4&gt;value8&lt;/attr4&gt;&lt;inner9&gt;value9&lt;/inner9&gt;&lt;something&gt;value10&lt;/something&gt;&lt;/inner9&gt;&lt;inner10 attr5='' /&gt;&lt;inner11 attr11="value11"&gt;&lt;inner12 attr12="value12"&gt;&lt;inner13 attr13="value13"&gt;&lt;inner14&gt;v14&lt;/inner14&gt;&lt;/inner13&gt;&lt;/inner12&gt;&lt;/inner11&gt;&lt;inner15&gt;&lt;/inner15&gt;&lt;inner16&gt;&lt;somekey&gt;keyvalue&lt;/somekey&gt;&lt;inner16&gt;notnull&lt;/inner16&gt;&lt;/inner16&gt;&lt;crazyattr1 attr1='123'&gt;v15&lt;/crazyattr1&gt;&lt;crazyattr2 attr1="123.456"&gt;v16&lt;/crazyattr2&gt;&lt;crazyattr3 attr1=''&gt;v17&lt;/crazyattr3&gt;&lt;crazyattr9&gt;&lt;attr1&gt;&lt;key&gt;4&lt;/key&gt;&lt;/attr1&gt;&lt;crazyattr9&gt;v23&lt;/crazyattr9&gt;&lt;/crazyattr9&gt;&lt;/transaction&gt;&lt;meta&gt;&lt;version&gt;0.01&lt;/version&gt;&lt;/meta&gt;&lt;/root&gt;</code></pre>
+
+<p>Output example #6 = Output example #4</p>

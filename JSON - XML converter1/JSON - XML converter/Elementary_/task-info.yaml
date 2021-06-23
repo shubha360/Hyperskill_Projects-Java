@@ -1,0 +1,106 @@
+type: edu
+custom_name: Elementary!
+files:
+- name: src/converter/Main.java
+  visible: true
+  text: |
+    package converter;
+
+    public class Main {
+        public static void main(String[] args) {
+            System.out.println("Hello World!");
+        }
+    }
+  learner_created: false
+- name: test/ConverterTest.java
+  visible: false
+  text: |-
+    import org.hyperskill.hstest.dynamic.DynamicTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testing.TestedProgram;
+
+    import java.util.regex.Pattern;
+
+    public class ConverterTest extends ExtendedTest {
+        private static final Pattern SPACES = Pattern.compile("\\s+");
+
+        final String[][] clues = new String[][]{
+                {"<host>127.0.0.1</host>", "{\"host\":\"127.0.0.1\"}"},
+                {"{\"host\":\"127.0.0.1\"}", "<host>127.0.0.1</host>"},
+                {"<pizza>slice</pizza>", "{\"pizza\":\"slice\"}"},
+                {"{\"pizza\":\"slice\"}", "<pizza>slice</pizza>"},
+                {"<success/>", "{\"success\":null}"},
+                {"{\"success\":null}", "<success/>"},
+                {"{\"jdk\":\"1.8.9\"}", "<jdk>1.8.9</jdk>"},
+                {"<jdk>1.8.9</jdk>", "{\"jdk\":\"1.8.9\"}"},
+                {"<qwerty/>", "{\"qwerty\":null}"},
+                {"{\"qwerty\":null}", "<qwerty/>"}
+        };
+
+        @DynamicTest(data = "clues")
+        CheckResult simpleTest(final String input, final String expected) {
+            final var program = new TestedProgram();
+            program.start();
+
+            final var actual = SPACES.matcher(program.execute(input)).replaceAll("");
+
+            assertEquals(expected, actual, "feedback", input, expected, actual);
+
+            return CheckResult.correct();
+        }
+    }
+  learner_created: false
+- name: test/ErrorMessages.java
+  visible: false
+  text: |-
+    import java.util.ListResourceBundle;
+
+    public class ErrorMessages extends ListResourceBundle {
+        @Override
+        protected Object[][] getContents() {
+            return new Object[][]{
+                    {"feedback", "The input data: {0}\nThe expected output: {1}\nYour program output: {2}"}
+            };
+        }
+    }
+  learner_created: false
+- name: test/ExtendedTest.java
+  visible: false
+  text: |-
+    import org.hyperskill.hstest.exception.outcomes.WrongAnswer;
+    import org.hyperskill.hstest.stage.StageTest;
+
+    import java.util.ResourceBundle;
+    import static java.text.MessageFormat.format;
+
+    public abstract class ExtendedTest extends StageTest {
+        private static final ResourceBundle messages = ResourceBundle.getBundle("ErrorMessages");
+
+        public static void assertEquals(
+                final String expected,
+                final String actual,
+                final String error,
+                final Object... args) {
+
+            if (!expected.equals(actual)) {
+                final var feedback = format(messages.getString(error), args);
+                throw new WrongAnswer(feedback);
+            }
+        }
+    }
+  learner_created: false
+- name: src/converter/Converter.java
+  visible: true
+  learner_created: true
+- name: src/converter/ToXmlConverter.java
+  visible: true
+  learner_created: true
+- name: src/converter/ToJsonConverter.java
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/projects/61/stages/329/implement#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Tue, 08 Jun 2021 06:31:01 UTC
+record: 1

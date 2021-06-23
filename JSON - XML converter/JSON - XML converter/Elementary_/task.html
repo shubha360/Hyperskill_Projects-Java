@@ -1,0 +1,89 @@
+<h2>Description</h2>
+
+<p>Today, XML and JSON are the most popular formats of data that can be understood both by computers and by humans. These formats are used to exchange information between servers, between various components in a single application, and much more.</p>
+
+<p>Before we start, let’s explore what XML and JSON are.</p>
+
+<p><strong>XML</strong> stands for eXtensible Markup Language.<br>
+XML uses tags to hold data. Everything in XML is built on tags.</p>
+
+<p>A tag is a specially-formatted label used in markup languages: <code class="language-xml">&lt;opening_tag&gt;content&lt;/closing tag&gt;</code>. The content of a tag is inside the same opening and closing tags. The inside of the tag can be empty. For example <code class="language-xml">&lt;html&gt;&lt;/html&gt;</code>. In this case, it is possible to shorthand this into one opening and closing tag. For example, <code class="language-xml">&lt;html/&gt;</code> is an empty tag with no corresponding pair.</p>
+
+<p>XML is used for storing and transporting data.<br>
+XML contains data in a hierarchical order.</p>
+
+<p><strong><img alt="" src="https://lh3.googleusercontent.com/5PTV0la6YAKsZr51mVJv2qqNx0BlgT64DEsW-8CUJXsf1nu0hsDUEJufR4y5VadNrXYqaNRqR30sxpYHXnmGwR2CDtGZtELxOZ1zaAEeDgl7hv-pOtUMiCD-OtRpKwE4TTAx54G4"></strong></p>
+
+<p>Take a look at the example in the image above:</p>
+
+<pre><code class="language-xml">&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;bookstore&gt;
+    &lt;book category="some categoty"&gt;
+        &lt;title lang="en"&gt;Everyday Italian&lt;/title&gt;
+        &lt;author&gt;Gaida De Laurentis&lt;/author&gt;
+        &lt;year&gt;2005&lt;/year&gt;
+        &lt;price&gt;30.00&lt;/price&gt;
+    &lt;/book&gt;
+&lt;/bookstore&gt;</code></pre>
+
+<p>To find out more about XML go to <a target="_blank" href="https://searchmicroservices.techtarget.com/definition/XML-Extensible-Markup-Language" rel="nofollow noopener noreferrer">this</a> link.</p>
+
+<p>Now, let's take a look at JSON.</p>
+
+<p><strong>JSON</strong> stands for JavaScript Object Notation.</p>
+
+<p>JSON is a very flexible format. It has arrays, objects, strings, numbers, booleans, and null. An array looks like this: <code class="language-json">[ e1 , e2 , e3 , ... ]</code>. Types of elements in arrays may not be the same. An object looks like this: <code class="language-json">{ k1 : v1 , k2 : v2 , ... }</code>. This is a map where a key is a string type and the value can be any type. One key corresponds to only one value. A key and a value are separated by a colon, and different key-value pairs are separated by a comma. You can learn more about JSON format <a target="_blank" href="https://www.quackit.com/json/tutorial/what_is_json.cfm" rel="nofollow noopener noreferrer">here</a>.</p>
+
+<p>Example of JSON :</p>
+
+<pre><code class="language-json">{
+    "id" : "67533566",
+    "number" : "8-900-000-00-04",
+    "date" : "2018-12-15",
+    "amount" : "5000.00"
+}</code></pre>
+
+<p>Converting XML to JSON might be useful in mapping projects and config files. As you can see, they can contain similar information.</p>
+
+<p><strong><img alt="" src="https://lh4.googleusercontent.com/KpfzgA_iCwZtf_2XdexwRyWkZoTl__8RWDQJRfRDS6QKyacFsbrSko46mKxj7qMosDhkxhQ0kdIGqwnGZpeJBzcKA6q0fhKEY_FhmVLxGQxTHH3nug2YKXIwy2Xht8eAXZkJDfls"></strong></p>
+
+<p>In this stage, you will write a simple XML/JSON converter.</p>
+
+<p><strong>Conversion of XML to JSON:</strong></p>
+
+<p>Extract an element between tags and enclose it within double quotes.<br>
+Extract element content and enclose it within double quotes. If the element is empty, assign null (JSON value).</p>
+
+<p><strong>Conversion of JSON to XML:</strong></p>
+
+<p>Extract key between double quotes (XML element).<br>
+Extract element content from JSON value.<br>
+If value is not null, enclose JSON with <code class="language-xml">&lt;&gt;&lt;/&gt;</code>, else enclose within <code class="language-xml">&lt; /&gt;</code>.</p>
+
+<p>Write a program that reads XML/JSON from standard input and outputs the converted XML/JSON.</p>
+
+<p>If the first non-space character of the input is <code class="language-xml">&lt;</code> then this is an XML document, and you need to convert it into JSON. Otherwise, the first non-space character would be <code class="language-xml">{</code> and you need to convert this JSON into an XML. Before checking, the grader deletes all spaces and newline characters so you can output it pretty much as you wish. Try to output this in as readable a format as you can.</p>
+
+<h2>Examples</h2>
+
+<p>The greater-than symbol followed by a space (<code class="language-xml">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<pre><code class="language-xml">&gt; &lt;host&gt;127.0.0.1&lt;/host&gt;
+{"host":"127.0.0.1"}</code></pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><code class="language-xml">&gt; {"jdk" : "1.8.9"}
+&lt;jdk&gt;1.8.9&lt;/jdk&gt;</code></pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre><code class="language-xml">&gt; &lt;success/&gt;
+{"success": null}</code></pre>
+
+<p><strong>Example 4:</strong></p>
+
+<pre><code class="language-xml">&gt; {"storage" : null}
+&lt;storage/&gt;</code></pre>

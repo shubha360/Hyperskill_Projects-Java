@@ -1,0 +1,8 @@
+[1;31m
+Start test 1[0m
+B{"employee":{"@department":"manager","#employee":"Garry Smith"}}
+[1;31m
+Start test 2[0m
+<{"person":{"@rate":"1","@name":"Torvalds","#person":null}}
+[1;31m
+Start test 3[0m

@@ -1,0 +1,267 @@
+hyperskill_project:
+  id: 61
+  ide_files: https://stepik.org/media/attachments/lesson/210098/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: Tue, 08 Jun 2021 10:06:26 UTC
+stages:
+- id: 329
+  step: 5471
+  is_completed: true
+- id: 330
+  step: 5472
+  is_completed: false
+- id: 331
+  step: 5473
+  is_completed: false
+- id: 332
+  step: 5474
+  is_completed: false
+- id: 333
+  step: 5475
+  is_completed: false
+- id: 334
+  step: 5476
+  is_completed: false
+topics:
+  0:
+  - title: JVM, JRE, and JDK
+    theory_id: 3499
+  - title: Immutability
+    theory_id: 7929
+  - title: Units of information
+    theory_id: 6865
+  - title: IDE
+    theory_id: 10996
+  - title: Computer algorithms
+    theory_id: 4953
+  - title: The big O notation
+    theory_id: 4991
+  - title: Data structures
+    theory_id: 5161
+  - title: Fixed-size array
+    theory_id: 7255
+  - title: Dynamic array
+    theory_id: 5357
+  - title: Introduction to operating systems
+    theory_id: 9704
+  - title: Computer programming
+    theory_id: 8739
+  - title: Introduction to Java
+    theory_id: 3500
+  - title: Basic literals
+    theory_id: 3522
+  - title: Overview of the basic program
+    theory_id: 3521
+  - title: Printing data
+    theory_id: 3749
+  - title: Types and variables
+    theory_id: 3518
+  - title: Comments
+    theory_id: 3520
+  - title: Coding style conventions
+    theory_id: 12411
+  - title: Naming variables
+    theory_id: 3513
+  - title: Scanning the input
+    theory_id: 9055
+  - title: Introduction to OOP
+    theory_id: 3614
+  - title: Arithmetic operations
+    theory_id: 3519
+  - title: Integer types and operations
+    theory_id: 3565
+  - title: Boolean and logical operations
+    theory_id: 3516
+  - title: Relational operators
+    theory_id: 3512
+  - title: Increment and decrement
+    theory_id: 5008
+  - title: Characters
+    theory_id: 3514
+  - title: Conditional statement
+    theory_id: 3503
+  - title: Ternary operator
+    theory_id: 3506
+  - title: The for-loop
+    theory_id: 3505
+  - title: The while and do-while loops
+    theory_id: 3498
+  - title: Branching statements
+    theory_id: 3507
+  - title: Switch statement
+    theory_id: 3504
+  - title: Write, compile, and run
+    theory_id: 3739
+  - title: Errors in programs
+    theory_id: 3536
+  - title: What is an exception
+    theory_id: 3497
+  - title: NPE
+    theory_id: 1945
+  - title: JSON
+    theory_id: 6854
+  - title: XML
+    theory_id: 6901
+  - title: Sizes and ranges
+    theory_id: 3532
+  - title: Type casting
+    theory_id: 3510
+  - title: Calling a method
+    theory_id: 10973
+  - title: Declaring a method
+    theory_id: 10982
+  - title: The main method
+    theory_id: 3489
+  - title: Overloading
+    theory_id: 3525
+  - title: Functional decomposition
+    theory_id: 10570
+  - title: Primitive and reference types
+    theory_id: 5035
+  - title: Array
+    theory_id: 3511
+  - title: Arrays as parameters
+    theory_id: 3594
+  - title: String
+    theory_id: 3523
+  - title: Processing strings
+    theory_id: 3551
+  - title: Final variables
+    theory_id: 7427
+  - title: Hierarchy of exceptions
+    theory_id: 3570
+  - title: Exception handling
+    theory_id: 3552
+  - title: IntelliJ IDEA
+    theory_id: 3801
+  - title: Command line overview
+    theory_id: 8977
+  - title: Parameters and options
+    theory_id: 9746
+  - title: Running programs on your computer
+    theory_id: 3746
+  - title: Files
+    theory_id: 3635
+  - title: Reading files
+    theory_id: 3636
+  - title: Defining classes
+    theory_id: 3618
+  - title: Constructor
+    theory_id: 3535
+  - title: Instance methods
+    theory_id: 3495
+  - title: Multiple constructors
+    theory_id: 3538
+  - title: Package
+    theory_id: 3621
+  - title: Access modifiers
+    theory_id: 3589
+  - title: Getters and setters
+    theory_id: 3599
+  - title: Inheritance
+    theory_id: 3583
+  - title: The keyword super
+    theory_id: 3588
+  - title: Protected modifier
+    theory_id: 6692
+  - title: Referencing subclass objects
+    theory_id: 3585
+  - title: Annotations basics
+    theory_id: 3622
+  - title: Objects
+    theory_id: 4727
+  - title: Boxing and unboxing
+    theory_id: 3595
+  - title: Static members
+    theory_id: 3534
+  - title: Hiding and overriding
+    theory_id: 3572
+  - title: Polymorphism
+    theory_id: 3587
+  - title: Interface
+    theory_id: 3615
+  1:
+  - title: 'Hashing: overview'
+    theory_id: 9831
+  - title: Hash function
+    theory_id: 10878
+  - title: Hash table
+    theory_id: 13054
+  - title: Regexps basics
+    theory_id: 7580
+  - title: Iterating over arrays
+    theory_id: 3602
+  - title: Regexps in Java
+    theory_id: 3670
+  - title: Sets, ranges, alternations
+    theory_id: 3674
+  - title: Shorthands
+    theory_id: 3680
+  - title: Quantifiers
+    theory_id: 3687
+  - title: Regexes in programs
+    theory_id: 3696
+  - title: Patterns and Matcher
+    theory_id: 3712
+  - title: Replacing characters
+    theory_id: 3708
+  - title: Match results
+    theory_id: 3716
+  - title: Introduction to generic programming
+    theory_id: 3492
+  - title: Generics and Object
+    theory_id: 3493
+  - title: What are collections
+    theory_id: 3770
+  - title: The Collections Framework overview
+    theory_id: 3624
+  - title: ArrayList
+    theory_id: 3567
+  - title: The List interface
+    theory_id: 3581
+  - title: The Set interface
+    theory_id: 3575
+  - title: The Map interface
+    theory_id: 3558
+  - title: The Object class
+    theory_id: 3596
+  2:
+  - title: Stack
+    theory_id: 5252
+  - title: Recursion basics
+    theory_id: 5984
+  - title: Call stack
+    theory_id: 5135
+  - title: Recursion
+    theory_id: 3550
+  3:
+  - title: Queue
+    theory_id: 5350
+  - title: Deque
+    theory_id: 5356
+  - title: Reflection basics
+    theory_id: 3609
+  - title: Queue and Stack
+    theory_id: 3576
+  - title: The utility class Collections
+    theory_id: 3573
+  - title: Iterator and Iterable
+    theory_id: 3574
+  - title: Runtime type checking
+    theory_id: 3571
+  4:
+  - title: Generic methods
+    theory_id: 3606
+  - title: Type Bounds
+    theory_id: 8216
+  - title: Wildcards
+    theory_id: 9455
+  - title: Type Erasure
+    theory_id: 10086
+  - title: Reification
+    theory_id: 10087
+  - title: Abstract class
+    theory_id: 3597
+  - title: Abstract class vs interface
+    theory_id: 3563

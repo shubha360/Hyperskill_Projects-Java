@@ -1,0 +1,83 @@
+<h2>Conditional statement</h2>
+<html>
+ <head></head>
+ <body>
+  <p>The <strong>conditional statement</strong> is a construction that allows a program to perform different computations depending on the value of a Boolean expression. If it is <code class="language-java">true</code>, the program performs one computation; otherwise, if it is <code class="language-java">false</code>, the program performs another computation. Here are some examples of Boolean expressions: <code class="language-java">a &gt; b</code>, <code class="language-java">i - j == 1</code>, and so on.</p> 
+  <p>The conditional statement has different forms. We will use all of them.</p> 
+  <h2 style="text-align: center;">The single if-case</h2> 
+  <p>The simplest form of the conditional statement consists of the keyword <code class="language-java">if</code>, a Boolean expression, and a body enclosed in curly braces.</p> 
+  <pre><code class="language-java">if (expression) {
+    // body: do something
+}</code></pre> 
+  <p>If the expression is <code class="language-java">true</code>, the statements inside the code block are executed; otherwise, the program skips them.</p> 
+  <p>See the following example.</p> 
+  <pre><code class="language-java">int age = ...; // it has a value
+if (age &gt; 100) {
+    System.out.println("Very experienced person");
+}</code></pre> 
+  <p>In this example, if the <code class="language-java">age</code> is greater than 100 the code prints <strong>"Very experienced person"</strong>, otherwise, it does nothing.</p> 
+  <p>Sometimes you will see a situation when the expression in a condition is a single <code class="language-java">boolean</code> type variable. Instead of writing <code class="language-java">b == true</code> or <code class="language-java">b == false</code>, use this variable (or its negation with <code class="language-java">!</code>) as the Boolean expression:</p> 
+  <pre><code class="language-kotlin">boolean b = ...; // it is true or false
+if (b) { // or !b
+    // do something
+}</code></pre> 
+  <p>A conditional statement can be used in any place in a program where the statement is expected. It can be even nested inside another conditional statement to perform multistage checks.</p> 
+  <h2 style="text-align: center;">The if-else-cases</h2> 
+  <p>The if-case above can be extended with the keyword <code class="language-java">else</code> and another body to do alternative actions when the expression is <code class="language-java">false</code>.</p> 
+  <pre><code class="language-java">if (expression) {    
+    // do something
+} else {
+    // do something else
+}</code></pre> 
+  <p>In this case, if the expression is <code class="language-java">true</code>, then the first code block is executed; otherwise, the second code block is executed, but not both together.</p> 
+  <p>In the example below, the program outputs different text depending on the value of <code class="language-java">num</code> (even or odd).</p> 
+  <p></p>
+  <div class="alert alert-primary">
+   Note, a number is even if it can be divided exactly by 2; otherwise it's odd.
+  </div>
+  <p></p> 
+  <pre><code class="language-java">int num = ...; // the num is initialized by some value
+
+if (num % 2 == 0) {
+    System.out.println("It's an even number");
+} else {    
+    System.out.println("It's an odd number");
+}</code></pre> 
+  <p>Since a number can only be even or odd, only one message will be displayed. If <code class="language-java">num</code> is 10, the program outputs <code class="language-java">"It's an even number"</code>. If the value is 11, it outputs <code class="language-java">"It's an odd number"</code>.</p> 
+  <h2 style="text-align: center;">The if-else-if-cases</h2> 
+  <p>The most general form of the conditional statement consists of several conditions and <code class="language-java">else</code>-branches.</p> 
+  <pre><code class="language-java">if (expression0) {
+    // do something
+} else if (expression1) {
+    // do something else 1
+// ...
+} else if (expressionN) {
+    // do something else N
+}</code></pre> 
+  <p>The following code outputs recommendations about what computer you need to buy depending on your budget.</p> 
+  <pre><code class="language-java">long dollars = ...; // your budget
+
+if (dollars &lt; 1000) {
+    System.out.println("Buy a laptop");
+} else if (dollars &lt; 2000) {
+    System.out.println("Buy a personal computer");
+} else if (dollars &lt; 100_000) {
+    System.out.println("Buy a server");
+} else {
+    System.out.println("Buy a data center or a quantum computer");
+}</code></pre> 
+  <p>This conditional statement has four branches: <code class="language-java">dollars &lt; 1000</code>, <code class="language-java">dollars &lt; 2000</code>, <code class="language-java">dollars &lt; 100_000</code> and <code class="language-java">dollars &gt;= 100_000</code>. If the value of dollars is <code class="language-java">10_000</code> it prints <code class="language-java">"Buy a server"</code>.</p> 
+  <p>A conditional statement with multiple branches creates a <strong>decision tree</strong>, whose nodes consist of boolean expressions, and each branch is marked with <em>true</em> or <em>false</em>. The <em>true</em>-branch leads to a block of statements to be executed and a <code class="language-java">false</code>-branch leads to the next condition to be checked. The last false-branch means <strong>"</strong><em>in all other cases</em><strong>"</strong>.</p> 
+  <p></p>
+  <div class="alert alert-warning">
+   When talking about conditions programmers often use the term "control flow statements". 
+   <strong>Control flow</strong> is the order in which various parts of a program are executed. You will probably meet this term in our topics and on other external resources.
+  </div>
+  <p></p> 
+  <p>The picture below demonstrates such a tree for the example with computers.</p> 
+  <p style="text-align: center;"><img alt="" height="466" src="https://ucarecdn.com/3825c12e-3146-425b-9c1c-d3b2ecf2495b/" width="652"></p> 
+  <p style="text-align: center;"><strong>Decision tree for buying a laptop</strong></p> 
+  <p><br> This example completes our examination of conditional statements.</p>
+ </body>
+</html>
+<a href="https://hyperskill.org/learn/step/3503">Show topic summary</a>

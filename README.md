@@ -21,7 +21,7 @@ Codes of projects from www.hyperskill.org Java Developer track.
     - [Hard] Simple Search Engine
     - [Hard] Simple Banking System
 
-7 Incompelte Projects:
+8 Incompelte Projects:
 
     - [Easy] Amazing Numbers (4/8 stages completed)
     - [Medium] Error Correcting Encoder-Decoder (3/5 stages completed)
@@ -29,4 +29,5 @@ Codes of projects from www.hyperskill.org Java Developer track.
     - [Hard] Minesweeper (4/5 stages completed)
     - [Hard] Smart Calculator (3/8 stages completed)
     - [Hard] Game of Life (3/5 stages completed)
+    - [Hard] JSON-XML Converter (1/6 stages completed)
     - [Challenging] Car Sharing (3/4 stages completed)
